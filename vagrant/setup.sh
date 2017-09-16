@@ -1,0 +1,16 @@
+#!/bin/bash
+
+sudo sed -i '1 s/^.*$/mclogs.dev/' /etc/hostname
+sudo hostname aternos.dev
+
+sudo apt-get update
+sudo apt-get upgrade -y
+
+sudo apt-get install screen curl python-software-properties zip unzip htop rsync php php-fpm php-mongodb git nginx mongodb composer -y
+
+cd /web/mclogs && composer install
+
+cp /vagrant/vagrant/nginx/* /etc/nginx/sites-enabled/
+
+sudo service nginx restart
+sudo service php7.0-fpm restart

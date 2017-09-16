@@ -1,0 +1,13 @@
+{
+    "name": "aternos/mclogs",
+    "description": "Paste, share and analyse Minecraft server logs",
+    "authors": [
+        {
+            "name": "Matthias Neid",
+            "email": "matthias@aternos.org"
+        }
+    ],
+    "require": {
+        "mongodb/mongodb": "^1.1"
+    }
+}
