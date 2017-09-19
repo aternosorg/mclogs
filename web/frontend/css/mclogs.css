@@ -179,15 +179,16 @@ body {
 }
 
 .article-icon {
-    width: 40%;
+    width: 33%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 256px;
+    font-size: 180px;
+    padding: 40px 8px;
 }
 
 .article-info {
-    width: 60%;
+    width: 50%;
 }
 
 .article-title {

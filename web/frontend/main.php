@@ -33,10 +33,10 @@
                         <i class="fa fa-info-circle"></i> Info
                     </a>
                     <a class="menu-item" href="/#plugin">
-                        <i class="fa fa-plug"></i> Plugin
+                        <i class="fa fa-database"></i> Plugin
                     </a>
                     <a class="menu-item" href="/#api">
-                        <i class="fa fa-cogs"></i> API
+                        <i class="fa fa-code"></i> API
                     </a>
                     <a class="menu-social btn btn-blue btn-notext btn-large btn-no-margin" href="https://twitter.com/Aternos" target="_blank">
                         <i class="fa fa-twitter"></i>
@@ -120,7 +120,7 @@
             <div class="row-inner">
                 <div class="article left">
                     <div class="article-icon">
-                        <i class="fa fa-plug"></i>
+                        <i class="fa fa-database"></i>
                     </div>
                     <div class="article-info">
                         <div class="article-title">
@@ -145,7 +145,7 @@
             <div class="row-inner">
                 <div class="article right">
                     <div class="article-icon">
-                        <i class="fa fa-cogs"></i>
+                        <i class="fa fa-code"></i>
                     </div>
                     <div class="article-info">
                         <div class="article-title">
