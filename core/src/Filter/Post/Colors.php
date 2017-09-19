@@ -21,7 +21,7 @@ class Colors implements PostFilterInterface
         $replace = array();
         foreach ($colors as $code => $color) {
             $search[] = "\e[" . $code;
-            $replace[] = '<span class="format-' . $color . '">';
+            $replace[] = '<span class="format format-' . $color . '">';
         }
 
         $lines = explode("\n", $data);

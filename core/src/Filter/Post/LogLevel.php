@@ -16,11 +16,18 @@ class LogLevel implements PostFilterInterface
      */
     public static function Filter(string $data, array &$meta): string
     {
-        $data = preg_replace(
-            '/(\[(?:[0-9]{2}\:?){3}\] \[.*\/(\w+)\]\:)/',
-            '</span><span class="level level-$2"><span class="level-prefix">$1</span>',
-            $data
-        );
+        $pattern = [
+            '/(\[(?:[0-9]{2}\:?){3}\] \[.*\/(\w+)\]\:)/', // regular
+            '/((?:[0-9]{2,4}-?){3} (?:[0-9]{2}\:?){3} \[(\w+)\])/' // old
+        ];
+
+        foreach ($pattern as $p) {
+            $data = preg_replace(
+                $p,
+                '</span><span class="level level-$2"><span class="level-prefix">$1</span>',
+                $data
+            );
+        }
 
         $data = substr($data, strlen('</span>'));
         $data .= '</span>';

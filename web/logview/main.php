@@ -5,6 +5,7 @@
 
     body {
         background: #2d3943;
+        color: #fff;
     }
 
     .level-prefix {
@@ -17,10 +18,12 @@
     .level-info .level-prefix {
         color: dodgerblue;
     }
-    .level-warn {
-        color: orangered;
+    .level-warn,
+    .level-warning {
+        color: orange;
     }
-    .level-error {
+    .level-error,
+    .level-severe {
         color: red;
     }
 
