@@ -19,7 +19,8 @@ $config = [
      */
     'post' => [
         '\\Filter\\Post\\HtmlEntities',
-        '\\Filter\\Post\\LineBreaks'
+        '\\Filter\\Post\\LineBreaks',
+        '\\Filter\\Post\\LogLevel'
     ]
 
 ];
