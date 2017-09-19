@@ -76,7 +76,7 @@ class Log
      */
     public function get()
     {
-        return $this->data;
+        return $this->postFilter();
     }
 
     /**
@@ -87,6 +87,9 @@ class Log
      */
     public function put(string $data)
     {
+        $this->data = $data;
+        $this->preFilter();
+
         $config = Config::Get('storage');
 
         /**
@@ -94,8 +97,7 @@ class Log
          */
         $storage = $config['storages'][$config['storageId']]['class'];
 
-        $this->id = $storage::Put($data);
-        $this->data = $data;
+        $this->id = $storage::Put($this->data);
         $this->exists = true;
 
         return $this->id;
@@ -103,8 +105,6 @@ class Log
 
     /**
      * Renew the expiry timestamp to expand the ttl
-     *
-     * @param Id $id
      */
     public function renew()
     {
@@ -116,5 +116,41 @@ class Log
         $storage = $config['storages'][$this->id->getStorage()]['class'];
 
         $storage::Renew($this->id);
+    }
+
+    /**
+     * Apply pre filters to data string
+     */
+    private function preFilter()
+    {
+        $config = Config::Get('filter');
+        foreach ($config['pre'] as $preFilterClass) {
+            /**
+             * @var \Filter\Pre\PreFilterInterface $preFilterClass
+             */
+
+            $this->data = $preFilterClass::Filter($this->data);
+        }
+    }
+
+    /**
+     * Apply post filters to data string
+     *
+     * @return string
+     */
+    private function postFilter(): string
+    {
+        $config = Config::Get('filter');
+        $meta = [];
+        $data = $this->data;
+        foreach ($config['post'] as $postFilterClass) {
+            /**
+             * @var \Filter\Post\PostFilterInterface $postFilterClass
+             */
+
+            $data = $postFilterClass::Filter($data, $meta);
+        }
+
+        return $data;
     }
 }
