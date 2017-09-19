@@ -10,21 +10,23 @@ class Mongo implements StorageInterface
     private static $collection = null;
 
     /**
-     *
-     *
-     * @return \MongoDB\Collection
+     * Connect to MongoDB
      */
-    private static function Connect(): \MongoDB\Collection
+    private static function Connect()
     {
 
         if (self::$collection === null) {
             $connection = new \MongoDB\Client();
             self::$collection = $connection->mclogs->logs;
         }
-
-        return self::$collection;
     }
 
+    /**
+     * Put some data in the storage, returns the (new) id for the data
+     *
+     * @param string $data
+     * @return \Id|boolean ID or false
+     */
     public static function Put(string $data): \Id
     {
         self::Connect();
@@ -35,8 +37,7 @@ class Mongo implements StorageInterface
 
         do {
             $id->regenerate();
-            $result = self::$collection->findOne(["_id" => $id->getRaw()]);
-        } while ($result !== null);
+        } while (self::Get($id) !== false);
 
         $date = new \MongoDB\BSON\UTCDateTime((time() + $config['storageTime']) * 1000);
 
@@ -49,6 +50,12 @@ class Mongo implements StorageInterface
         return $id;
     }
 
+    /**
+     * Get some data from the storage by id
+     *
+     * @param \Id $id
+     * @return string|false Data or false, e.g. if it doesn't exist
+     */
     public static function Get(\Id $id)
     {
         self::Connect();
@@ -62,6 +69,12 @@ class Mongo implements StorageInterface
         return $result->data;
     }
 
+    /**
+     * Renew the data to reset the time to live
+     *
+     * @param \Id $id
+     * @return bool Success
+     */
     public static function Renew(\Id $id): bool
     {
         $config = \Config::Get("storage");

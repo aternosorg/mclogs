@@ -9,14 +9,16 @@ $config = [
      */
     "storages" => [
         "m" => [
-            "id" => "m",
             "name" => "MongoDB",
             "class" => "\\Storage\\Mongo"
         ],
         "f" => [
-            "id" => "f",
             "name" => "Filesystem",
             "class" => "\\Storage\\Filesystem"
+        ],
+        "r" => [
+            "name" => "Redis",
+            "class" => "\\Storage\\Redis"
         ]
     ],
 
@@ -25,11 +27,11 @@ $config = [
      *
      * Should be a key in the $storages array
      */
-    "storageId" => "m",
+    "storageId" => "r",
 
     /**
      * Time in seconds to store data after put or last renew
      */
-    "storageTime" => 10 /* 3 * 24 * 60 * 60 */
+    "storageTime" => 3 * 24 * 60 * 60
 
 ];
