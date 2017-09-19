@@ -8,6 +8,7 @@ $config = [
      * The classes should implement \Filter\Pre\PreFilterInterface
      */
     'pre' => [
+        '\\Filter\\Pre\\Length',
         '\\Filter\\Pre\\Ip'
     ],
 

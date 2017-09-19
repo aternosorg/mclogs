@@ -1,6 +1,4 @@
-<textarea id="log">
-
-</textarea>
+<textarea id="log"></textarea>
 <button id="send">Send</button>
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>

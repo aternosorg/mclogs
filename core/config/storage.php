@@ -27,11 +27,18 @@ $config = [
      *
      * Should be a key in the $storages array
      */
-    "storageId" => "r",
+    "storageId" => "f",
 
     /**
      * Time in seconds to store data after put or last renew
      */
-    "storageTime" => 3 * 24 * 60 * 60
+    "storageTime" => 3 * 24 * 60 * 60,
+
+    /**
+     * Maximum string length to store
+     *
+     * Will be cutted by \Filter\Pre\Length
+     */
+    "maxLength" => 1048576
 
 ];
