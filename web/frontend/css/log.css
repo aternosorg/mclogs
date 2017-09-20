@@ -8,7 +8,9 @@
     color: #f0f0f0;
 }
 
-.level-INFO .level-prefix {
+.level-INFO .level-prefix,
+.level-DEBUG .level-prefix,
+.level-TRACE .level-prefix {
     color: #2d87d3;
 }
 .level-WARN,
@@ -113,8 +115,17 @@
     padding-left: 64px;
 }
 
-.plugin-error {
+.highlight-error {
     background: #F62451;
+    color: #f0f0f0;
+    padding: 1px 3px;
+    border-radius: 2px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.highlight-warning {
+    background: #FF6625;
     color: #f0f0f0;
     padding: 1px 3px;
     border-radius: 2px;

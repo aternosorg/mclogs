@@ -17,13 +17,13 @@ class IndentMultiline implements PostFilterInterface
     public static function Filter(string $data, array &$meta): string
     {
         $pattern = [
-            '(?:\[(?:[0-9]{2}\:?){3}\] \[.*\/(?:\w+)\]\:)', // regular
-            '(?:(?:[0-9]{2,4}-?){3} (?:[0-9]{2}\:?){3} \[(?:\w+)\])' // old
+            '(?:\[(?:[0-9]{2}\:?){3}\] \[[^\/]+\/(?:\w+)\](?: \[[^\]]+\])?\:)', // regular
+            '(?:(?:[0-9]{2,4}-?){3} (?:[0-9]{2}\:?){3} \[(?:\w+)\])', // old
         ];
 
         foreach ($pattern as $p) {
 
-            $search = '/('.$p.'.*\n)((?:(?!'.$p.').*\n)+)/m';
+            $search = '/('.$p.'.*\n)((?:(?!'.$p.').+\n)+)/m';
 
             $data = preg_replace(
                 $search,

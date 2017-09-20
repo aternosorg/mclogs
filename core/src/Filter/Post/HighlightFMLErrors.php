@@ -2,13 +2,13 @@
 
 namespace Filter\Post;
 
-class HighlightPluginErrors implements PostFilterInterface
+class HighlightFMLErrors implements PostFilterInterface
 {
 
     /**
      * Filter the $data string, add some $meta data and return the string
      *
-     * Find plugin errors and highlight them with a span
+     * Find fml errors and highlight them with a span
      *
      * @param string $data
      * @param array $meta
@@ -17,9 +17,8 @@ class HighlightPluginErrors implements PostFilterInterface
     public static function Filter(string $data, array &$meta): string
     {
         $patterns = [
-            "highlight-error plugin-error plugin-not-load" => '/(Could not load \'[^\']+\' in folder \'[^\']+\')/',
-            "highlight-error plugin-error plugin-enabling" => '/(Error occurred while enabling [^\(]+\(Is it up to date\?\))/',
-            "highlight-error plugin-error plugin-event-error" => '/(Could not pass event \w+ to .*)/'
+            "highlight-warning fml-warning fml-confirm" => '/(Run the command \/fml confirm or or \/fml cancel to proceed.)/',
+            "highlight-warning fml-warning fml-missing" => '/(Forge Mod Loader detected missing blocks\/items.)/',
         ];
 
         foreach ($patterns as $class => $pattern) {

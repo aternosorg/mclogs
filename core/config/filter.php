@@ -20,10 +20,11 @@ $config = [
     'post' => [
         '\\Filter\\Post\\HtmlEntities',
         '\\Filter\\Post\\IndentMultiline',
-        '\\Filter\\Post\\Colors',
-        '\\Filter\\Post\\LineBreaks',
         '\\Filter\\Post\\LogLevel',
-        '\\Filter\\Post\\HighlightPluginErrors'
+        '\\Filter\\Post\\Colors',
+        '\\Filter\\Post\\HighlightPluginErrors',
+        '\\Filter\\Post\\HighlightFMLErrors',
+        '\\Filter\\Post\\LineBreaks'
     ]
 
 ];

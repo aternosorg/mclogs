@@ -15,6 +15,6 @@ class Ip implements PreFilterInterface {
      */
     public static function Filter(string $data): string
     {
-        return preg_replace('/(?<! v)([0-9]{1,3}\.){3}[0-9]{1,3}/', "**.**.**.**", $data);
+        return preg_replace('/(?<!([0-9]|-|\w))([0-9]{1,3}\.){3}[0-9]{1,3}(?![0-9])/', "**.**.**.**", $data);
     }
 }

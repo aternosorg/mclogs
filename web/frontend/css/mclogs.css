@@ -243,6 +243,10 @@ body {
     flex-grow: 1;
 }
 
+.log-row .row-inner {
+    max-width: 1400px;
+}
+
 @media all and (max-width: 800px) {
     .logo {
         width: 128px;
