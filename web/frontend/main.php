@@ -25,9 +25,9 @@
     <body>
         <header class="row navigation">
             <div class="row-inner">
-                <div class="logo">
+                <a href="/" class="logo">
                     <img src="img/logo.png" />
-                </div>
+                </a>
                 <div class="menu">
                     <a class="menu-item" href="/#info">
                         <i class="fa fa-info-circle"></i> Info

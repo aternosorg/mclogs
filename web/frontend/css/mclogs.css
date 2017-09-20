@@ -5,6 +5,10 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 a {
     text-decoration: none;
     color: inherit;
@@ -221,6 +225,22 @@ body {
     padding: 10px;
     font-family: "Roboto Mono", monospace;
     font-size: 14px;
+}
+
+.log {
+    font-family: "Roboto Mono", monospace;
+    word-break: break-all;
+    font-size: 14px;
+}
+
+.log-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.log-row {
+    flex-grow: 1;
 }
 
 @media all and (max-width: 800px) {

@@ -7,6 +7,6 @@ switch ($_SERVER['REQUEST_URI']) {
         require_once("frontend/main.php");
         break;
     default:
-        require_once("logview/main.php");
+        require_once("frontend/logview.php");
         break;
 }
