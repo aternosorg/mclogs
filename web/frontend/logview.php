@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<?php
+$id = new Id(substr($_SERVER['REQUEST_URI'], 1));
+$log = new Log($id);
+
+if(!$log->exists()) {
+    http_response_code(404);
+}
+?><!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -56,25 +63,39 @@
         </header>
         <div class="row dark log-row">
             <div class="row-inner">
+                <?php if($log->exists()): ?>
                 <div class="log">
-                <?php
-                    $id = new Id(substr($_SERVER['REQUEST_URI'], 1));
-                    $log = new Log($id);
-
-                    if (!$log->exists()) {
-                        echo "404 und so";
-                        exit;
-                    }
-                    echo $log->get();
-                    $log->renew();
-                ?>
+                    <?php
+                        $log->renew();
+                        echo $log->get();
+                    ?>
                 </div>
+                <?php else: ?>
+                <div class="not-found">
+                    <div class="not-found-title">404 - Log not found.</div>
+                    <div class="not-found-text">The log you try to open does not exist (anymore).<br />We automatically delete all logs that weren't opened in the last 72 hours.</div>
+                    <div class="not-found-buttons">
+                        <a href="/" class="btn btn-no-margin btn-blue btn-small">
+                            <i class="fa fa-home"></i> Paste a new log
+                        </a>
+                    </div>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
+        <?php if($log->exists()): ?>
+        <div class="row row-notice dark">
+            <div class="row-inner">
+                This log will be saved for 72 hours from their last view.<br />
+                <a href="mailto:abuse@aternos.org?subject=Report%20mclo.gs/<?=$id->get(); ?>">Report abuse</a>
+            </div>
+        </div>
+        <?php endif; ?>
         <div class="row footer">
             <div class="row-inner">
                 &copy; 2017 by mclo.gs - a service by <a href="https://aternos.org">Aternos</a> | <a href="https://aternos.org/impressum/">Imprint</a>
             </div>
         </div>
+        <script src="js/logview.js"></script>
     </body>
 </html>

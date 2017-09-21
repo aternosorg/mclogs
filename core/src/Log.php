@@ -19,6 +19,11 @@ class Log
     private $data = null;
 
     /**
+     * @var string
+     */
+    private $filtered = null;
+
+    /**
      * Log constructor.
      *
      * @param Id|null $id
@@ -76,7 +81,21 @@ class Log
      */
     public function get()
     {
-        return $this->postFilter();
+        if($this->filtered === null) {
+            $this->filtered = $this->postFilter();
+        }
+
+        return $this->filtered;
+    }
+
+    /**
+     * Get the amount of lines in this log
+     *
+     * @return int
+     */
+    public function getLineNumbers(): int
+    {
+        return count(explode("\n", $this->get()));
     }
 
     /**
@@ -141,7 +160,7 @@ class Log
     private function postFilter(): string
     {
         $config = Config::Get('filter');
-        $meta = [];
+        $meta = ['id' => $this->id];
         $data = $this->data;
         foreach ($config['post'] as $postFilterClass) {
             /**

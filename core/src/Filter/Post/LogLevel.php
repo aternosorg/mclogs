@@ -38,7 +38,6 @@ class LogLevel implements PostFilterInterface
         }
 
         if($count > 0) {
-            $data = substr($data, strlen('</span>'));
             $data .= '</span>';
         }
         return $data;

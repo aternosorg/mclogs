@@ -111,14 +111,21 @@
 }
 
 .log-multiline {
-    display: block;
-    padding-left: 64px;
+    padding-left: 32px;
+}
+
+.log-multiline .line-number {
+    margin-right: 64px;
+}
+
+.log-multiline .line-number:last-child {
+    margin-right: 4px;
 }
 
 .highlight-error {
     background: #F62451;
     color: #f0f0f0;
-    padding: 1px 3px;
+    padding: 0px 3px;
     border-radius: 2px;
     font-weight: bold;
     display: inline-block;
@@ -127,8 +134,36 @@
 .highlight-warning {
     background: #FF6625;
     color: #f0f0f0;
-    padding: 1px 3px;
+    padding: 0px 3px;
     border-radius: 2px;
     font-weight: bold;
     display: inline-block;
+}
+
+.line-number {
+    text-align: right;
+    width: 50px;
+    display: inline-block;
+    padding: 0 4px;
+    margin-right: 4px;
+    color: #777;
+    font-weight: bold;
+    font-family: "Roboto Mono", monospace;
+    font-size: 14px;
+    outline: none;
+}
+
+.line-number:hover {
+    color: #2d87d3;
+}
+
+.line-active {
+    background: #2d87d3;
+    color: #f0f0f0;
+    border-radius: 2px;
+}
+
+.line-active:hover {
+    color: #f0f0f0;
+    cursor: default;
 }

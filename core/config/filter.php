@@ -8,6 +8,7 @@ $config = [
      * The classes should implement \Filter\Pre\PreFilterInterface
      */
     'pre' => [
+        '\\Filter\\Pre\\Trim',
         '\\Filter\\Pre\\Length',
         '\\Filter\\Pre\\Ip'
     ],
@@ -24,7 +25,8 @@ $config = [
         '\\Filter\\Post\\Colors',
         '\\Filter\\Post\\HighlightPluginErrors',
         '\\Filter\\Post\\HighlightFMLErrors',
-        '\\Filter\\Post\\LineBreaks'
+        '\\Filter\\Post\\LineBreaks',
+        '\\Filter\\Post\\LineNumbers',
     ]
 
 ];

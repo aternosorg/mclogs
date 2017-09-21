@@ -247,6 +247,34 @@ body {
     max-width: 1400px;
 }
 
+.row-notice {
+    font-size: 12px;
+    text-align: center;
+}
+
+.row-notice .row-inner {
+    color: #777;
+}
+
+.not-found {
+    min-height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.not-found-title {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 22px;
+}
+
+.not-found-buttons {
+    margin-top: 8px;
+    font-family: "Play", sans-serif;
+}
+
 @media all and (max-width: 800px) {
     .logo {
         width: 128px;
