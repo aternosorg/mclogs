@@ -21,17 +21,26 @@ class LogLevel implements PostFilterInterface
             '/((?:[0-9]{2,4}-?){3} (?:[0-9]{2}\:?){3} \[(\w+)\])/', // old,
         ];
 
+        $count = 0;
+
         foreach ($pattern as $p) {
+            $curCount = 0;
+
             $data = preg_replace(
                 $p,
                 '</span><span class="level level-$2"><span class="level-prefix">$1</span>',
-                $data
+                $data,
+                -1,
+                $curCount
             );
+
+            $count += $curCount;
         }
 
-        $data = substr($data, strlen('</span>'));
-        $data .= '</span>';
-
+        if($count > 0) {
+            $data = substr($data, strlen('</span>'));
+            $data .= '</span>';
+        }
         return $data;
     }
 }

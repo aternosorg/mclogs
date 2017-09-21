@@ -43,7 +43,7 @@ function sendLog() {
     }
 
     $('.paste-save').addClass("btn-working");
-    $.post('http://api.mclogs.dev/1/log', {content: $('#paste').val()}, function(data){
+    $.post('http://api.'+location.host+'/1/log', {content: $('#paste').val()}, function(data){
         location.href = "/" + data.id;
     });
 }
