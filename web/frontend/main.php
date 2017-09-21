@@ -154,7 +154,7 @@
                         <div class="article-text">
                             Integrate <strong>mclo.gs</strong> directly into your server panel, your hosting software or anything else. This platform
                             was built for high performance automation and can easily be integrated into any existing software via our
-                            HTTP REST API.
+                            HTTP API.
                         </div>
                         <div class="article-buttons">
                             <a href="https://api.mclo.gs" class="btn btn-blue btn-no-margin">
