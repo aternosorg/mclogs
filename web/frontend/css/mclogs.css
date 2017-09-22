@@ -277,6 +277,70 @@ body {
     font-family: "Play", sans-serif;
 }
 
+.docs .row-inner {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.docs-text {
+    width: 60%;
+    margin-right: auto;
+}
+
+.docs-icon {
+    font-size: 90px;
+}
+
+.endpoint {
+    padding: 8px 0px;
+}
+
+.method {
+    background: #2d3943;
+    color: #f0f0f0;
+    padding: 2px 5px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+.endpoint-url {
+    padding-left: 8px;
+    font-weight: bold;
+}
+
+.endpoint-table {
+    margin: 12px 0 20px;
+    background: #2d3943;
+    color: #f0f0f0;
+    border-radius: 2px;
+}
+
+.endpoint-table td {
+    padding: 0px 12px 8px 8px;
+}
+
+.endpoint-table th {
+    padding: 8px 12px 0px 8px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.answer {
+    margin: 8px 0 16px;
+    background: #2d3943;
+    color: #f0f0f0;
+    border-radius: 2px;
+    padding: 16px 4px;
+}
+
+.method,
+.endpoint-url,
+.endpoint-field,
+.endpoint-type {
+    font-family: "Roboto Mono", monospace;
+}
+
 @media all and (max-width: 800px) {
     .logo {
         width: 128px;
@@ -330,8 +394,20 @@ body {
     }
 }
 
+.notes-buttons {
+    margin-top: 8px;
+}
+
 @media all and (max-width: 400px) {
     .menu-item {
+        display: none;
+    }
+
+    .docs-text {
+        width: 100%;
+    }
+
+    .docs-icon {
         display: none;
     }
 }
