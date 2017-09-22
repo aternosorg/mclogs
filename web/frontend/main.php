@@ -142,8 +142,11 @@
                             hidden to ensure safety and privacy.
                         </div>
                         <div class="article-buttons">
-                            <a href="#" class="btn btn-blue btn-no-margin">
-                                <i class="fa fa-link"></i> Get our plugin
+                            <a href="https://dev.bukkit.org/projects/mclogs" target="_blank" class="btn btn-blue btn-no-margin">
+                                <i class="fa fa-download"></i> dev.bukkit.org
+                            </a>
+                            <a href="https://www.spigotmc.org/resources/mclo-gs.47502/" target="_blank" class="btn btn-blue btn-no-margin">
+                                <i class="fa fa-download"></i> spigotmc.org
                             </a>
                         </div>
                     </div>
