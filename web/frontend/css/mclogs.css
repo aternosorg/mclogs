@@ -296,6 +296,13 @@ body {
     padding: 8px 0px;
 }
 
+.content-type {
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 12px;
+    color: #777;
+}
+
 .method {
     background: #2d3943;
     color: #f0f0f0;
@@ -337,7 +344,8 @@ body {
 .method,
 .endpoint-url,
 .endpoint-field,
-.endpoint-type {
+.endpoint-type,
+.content-type {
     font-family: "Roboto Mono", monospace;
 }
 

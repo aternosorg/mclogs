@@ -53,7 +53,7 @@
                 <h2>Endpoint(s)</h2>
 
                 <div class="endpoint">
-                    <span class="method">POST</span> <span class="endpoint-url">https://api.mclo.gs/1/log</span>
+                    <span class="method">POST</span> <span class="endpoint-url">https://api.mclo.gs/1/log</span> <span class="content-type">application/x-www-form-urlencoded</span>
                 </div>
                 <table class="endpoint-table">
                     <tr>
