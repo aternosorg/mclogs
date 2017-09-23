@@ -1,9 +1,9 @@
 <?php
 
+/* This will be delivered by cloudflare */
+
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
-
-http_response_code(429);
 
 $out = new stdClass();
 $out->success = false;
