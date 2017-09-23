@@ -88,7 +88,7 @@
             <div class="row-inner">
                 <div class="docs-text">
                     <h2>Notes</h2>
-                    The API has currently a rate limit of 3600 requests per hour per IP address. This is set to ensure the
+                    The API has currently a rate limit of 60 requests per minute per IP address. This is set to ensure the
                     operability of this service. If you have any use case that requires a higher limit, feel free to contact us.
                     This platform is pretty new and is still under heavy development, so if you have any suggestions, how we
                     could improve our service, let us know. :)

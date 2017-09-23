@@ -10,6 +10,9 @@ switch ($_SERVER['REQUEST_URI']) {
     case "/1/log/":
         require_once("endpoints/log.php");
         break;
+    case "/1/errors/rate":
+        require_once("endpoints/rate-error.php");
+        break;
     default:
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json');
