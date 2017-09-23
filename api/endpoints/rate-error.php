@@ -7,5 +7,5 @@ http_response_code(429);
 
 $out = new stdClass();
 $out->success = false;
-$out->error = "You have exceeded the rate limit. Please try again later.";
+$out->error = "Unfortunately you have exceeded the rate limit for the current time period. Please try again later.";
 echo json_encode($out);
