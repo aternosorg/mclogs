@@ -99,7 +99,7 @@
                 </div>
                 <div class="info-item info-green">
                     <div class="info-icon">
-                        <i class="fa fa-share"></i>
+                        <i class="fa fa-share-alt"></i>
                     </div>
                     <div class="info-details">
                         <div class="info-title">
@@ -112,7 +112,7 @@
                 </div>
                 <div class="info-item info-red">
                     <div class="info-icon">
-                        <i class="fa fa-cogs"></i>
+                        <i class="fa fa-search"></i>
                     </div>
                     <div class="info-details">
                         <div class="info-title">
