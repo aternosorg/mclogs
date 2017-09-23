@@ -24,7 +24,7 @@ class IndentMultiline implements PostFilterInterface
 
         foreach ($pattern as $p) {
 
-            $search = '/('.$p.'.*\n)((?:(?!'.$p.').+\n)+)/m';
+            $search = '/('.$p.'.*\n)((?:(?!'.$p.').*\n)+)/m';
 
             $data = preg_replace(
                 $search,
