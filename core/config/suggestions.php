@@ -19,7 +19,7 @@ $config = [
     [
         "id" => 'suggestion-plugin-dependency-%1$s-%2$s',
         "pattern" => '/Could not load \'plugins\/((?!\.jar).*)\.jar\' in folder \'[^\']+\'\norg\.bukkit\.plugin\.UnknownDependencyException\: (\w+)/',
-        "answer" => 'The plugin %1$s requires the plugin %2$s to be installed.',
+        "answer" => 'Install the plugin %2$s, because it is required by the plugin %1$s.',
         "remove" => [
             'suggestion-plugin-major-error-%1$s',
             'suggestion-plugin-minor-error-%1$s'
