@@ -27,6 +27,7 @@ $config = [
         '\\Filter\\Post\\HighlightFMLErrors',
         '\\Filter\\Post\\LineBreaks',
         '\\Filter\\Post\\LineNumbers',
+        '\\Filter\\Post\\AddSuggestions'
     ]
 
 ];

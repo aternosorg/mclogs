@@ -64,6 +64,23 @@ if(!$log->exists()) {
         <div class="row dark log-row">
             <div class="row-inner">
                 <?php if($log->exists()): ?>
+                <?php $suggestions = $log->getSuggestions(); ?>
+                <?php if(count($suggestions) > 0): ?>
+                    <div class="suggestions-container">
+                        <div class="show-suggestions btn btn-blue btn-no-margin">
+                            <i class="fa fa-info-circle"></i> <span id="suggestion-toggle-text">Show suggestions</span>
+                        </div>
+                        <div class="suggestions">
+                            <?php foreach($suggestions as $suggestionId=>$suggestion): ?>
+                                <div class="suggestion">
+                                    <div class="suggestion-answer">
+                                        <i class="fa fa-info-circle"></i> <?=$suggestion["answer"]; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <div class="log">
                     <?php
                         $log->renew();

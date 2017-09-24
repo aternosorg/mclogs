@@ -349,6 +349,28 @@ body {
     font-family: "Roboto Mono", monospace;
 }
 
+.suggestions-container {
+    margin-bottom: 18px;
+}
+
+.suggestions {
+    display: none;
+    padding: 10px 4px 8px 8px;
+    margin-top: -2px;
+    border-left: 3px solid #2d87d3;
+}
+
+.suggestion {
+    padding: 5px;
+}
+
+.suggestion-answer {
+    color: #1FD78D;
+    font-weight: bold;
+    font-size: 18px;
+    padding-right: 8px;
+}
+
 @media all and (max-width: 800px) {
     .logo {
         width: 128px;
@@ -399,6 +421,14 @@ body {
     .article-info {
         width: 100%;
         padding: 24px 24px 12px;
+    }
+
+    .show-suggestions {
+        font-size: 16px;
+    }
+
+    .suggestion-answer {
+        font-size: 14px;
     }
 }
 

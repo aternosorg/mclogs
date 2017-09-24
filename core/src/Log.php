@@ -24,6 +24,11 @@ class Log
     private $filtered = null;
 
     /**
+     * @var array
+     */
+    private $meta = null;
+
+    /**
      * Log constructor.
      *
      * @param Id|null $id
@@ -81,11 +86,20 @@ class Log
      */
     public function get()
     {
-        if($this->filtered === null) {
+        if ($this->filtered === null) {
             $this->filtered = $this->postFilter();
         }
 
         return $this->filtered;
+    }
+
+    public function getSuggestions(): array
+    {
+        if($this->meta === null) {
+            $this->get();
+        }
+
+        return $this->meta["suggestions"];
     }
 
     /**
@@ -160,14 +174,18 @@ class Log
     private function postFilter(): string
     {
         $config = Config::Get('filter');
-        $meta = ['id' => $this->id];
+        $this->meta = [
+            'id' => $this->id,
+            'raw' => $this->data,
+            'suggestions' => []
+        ];
         $data = $this->data;
         foreach ($config['post'] as $postFilterClass) {
             /**
              * @var \Filter\Post\PostFilterInterface $postFilterClass
              */
 
-            $data = $postFilterClass::Filter($data, $meta);
+            $data = $postFilterClass::Filter($data, $this->meta);
         }
 
         return $data;
