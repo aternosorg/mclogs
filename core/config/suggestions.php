@@ -24,5 +24,10 @@ $config = [
             'suggestion-plugin-major-error-%1$s',
             'suggestion-plugin-minor-error-%1$s'
         ]
+    ],
+    [
+        "id" => 'suggestion-fml-confirm',
+        "pattern" => '/Run the command \/fml confirm or or \/fml cancel to proceed\./',
+        "answer" => 'Run the command /fml confirm or or /fml cancel to proceed.',
     ]
 ];
