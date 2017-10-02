@@ -3,7 +3,7 @@
 $config = [
     [
         "id" => 'suggestion-plugin-major-error-%s',
-        "pattern" => '/Could not load \'plugins\/([^\.]+)\.jar\' in folder \'[^\']+\'/',
+        "pattern" => '/Could not load \'plugins[\/\\\\]([^\.]+)\.jar\' in folder \'[^\']+\'/',
         "answer" => 'Remove or use another version of the plugin %s, because it throws major errors.',
     ],
     [
@@ -18,7 +18,7 @@ $config = [
     ],
     [
         "id" => 'suggestion-plugin-dependency-%1$s-%2$s',
-        "pattern" => '/Could not load \'plugins\/((?!\.jar).*)\.jar\' in folder \'[^\']+\'\norg\.bukkit\.plugin\.UnknownDependencyException\: (\w+)/',
+        "pattern" => '/Could not load \'plugins[\/\\\\]((?!\.jar).*)\.jar\' in folder \'[^\']+\'\norg\.bukkit\.plugin\.UnknownDependencyException\: (\w+)/',
         "answer" => 'Install the plugin %2$s, because it is required by the plugin %1$s.',
         "remove" => [
             'suggestion-plugin-major-error-%1$s',
