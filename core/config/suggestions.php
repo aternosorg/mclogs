@@ -29,5 +29,10 @@ $config = [
         "id" => 'suggestion-fml-confirm',
         "pattern" => '/Run the command \/fml confirm or or \/fml cancel to proceed\./',
         "answer" => 'Run the command /fml confirm or or /fml cancel to proceed.',
+    ],
+    [
+        "id" => 'suggestion-world-invalid-playerdir',
+        "pattern" => '/\*\*\*\* DETECTED OLD PLAYER DIRECTORY IN THE WORLD SAVE/',
+        "answer" => 'Remove the directory \'world/players\'.'
     ]
 ];
