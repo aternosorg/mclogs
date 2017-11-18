@@ -34,5 +34,10 @@ $config = [
         "id" => 'suggestion-world-invalid-playerdir',
         "pattern" => '/\*\*\*\* DETECTED OLD PLAYER DIRECTORY IN THE WORLD SAVE/',
         "answer" => 'Remove the directory \'world/players\'.'
+    ],
+    [
+        "id" => 'suggestion-authme-shutdown',
+        "pattern" => '/\[AuthMe\] THE SERVER IS GOING TO SHUT DOWN AS DEFINED IN THE CONFIGURATION\!/',
+        "answer" => 'Remove or use another version of the plugin AuthMe, because it fails to load and therefore shuts the server down.'
     ]
 ];
