@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo sed -i '1 s/^.*$/mclogs.dev/' /etc/hostname
+sudo sed -i '1 s/^.*$/mclogs.local/' /etc/hostname
 sudo hostname aternos.dev
 
 sudo apt-get update

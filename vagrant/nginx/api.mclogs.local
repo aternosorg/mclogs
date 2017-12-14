@@ -2,12 +2,12 @@ server {
     listen 80;
     sendfile off;
 
-    server_name mclogs.dev;
+    server_name api.mclogs.local;
 
-    root /web/mclogs/web;
+    root /web/mclogs/api;
     index index.php;
 
-    error_log /var/log/nginx/mclogs-error.log error;
+    error_log /var/log/nginx/api-mclogs-error.log error;
 
     client_max_body_size 210m;
 
