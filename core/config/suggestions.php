@@ -3,7 +3,7 @@
 $config = [
     [
         "id" => 'suggestion-plugin-major-error-%s',
-        "pattern" => '/Could not load \'plugins[\/\\\\]([^\.]+)\.jar\' in folder \'[^\']+\'/',
+        "pattern" => '/Could not load \'plugins[\/\\\\]((?!\.jar).*)\.jar\' in folder \'[^\']+\'/',
         "answer" => 'Remove or use another version of the plugin %s, because it throws major errors.',
     ],
     [
