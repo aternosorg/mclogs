@@ -110,7 +110,7 @@ if(!$log->exists()) {
         <?php endif; ?>
         <div class="row footer">
             <div class="row-inner">
-                &copy; 2017 by mclo.gs - a service by <a href="https://aternos.org">Aternos</a> | <a href="https://aternos.org/impressum/">Imprint</a>
+                &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a href="https://aternos.org">Aternos</a> | <a href="https://aternos.org/impressum/">Imprint</a>
             </div>
         </div>
         <script src="js/logview.js"></script>
