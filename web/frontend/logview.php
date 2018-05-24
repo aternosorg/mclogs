@@ -36,7 +36,7 @@ if(!$log->exists()) {
             function gtag(){dataLayer.push(arguments)};
             gtag('js', new Date());
 
-            gtag('config', 'UA-43611107-4');
+            gtag('config', 'UA-43611107-4', { 'anonymize_ip': true });
         </script>
     </head>
     <body class="log-body">

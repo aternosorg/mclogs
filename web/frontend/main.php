@@ -28,15 +28,8 @@
             function gtag(){dataLayer.push(arguments)};
             gtag('js', new Date());
 
-            gtag('config', 'UA-43611107-4');
+            gtag('config', 'UA-43611107-4', { 'anonymize_ip': true });
         </script>
-      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-5110740041063067",
-          enable_page_level_ads: true
-        });
-      </script>
     </head>
     <body>
         <header class="row navigation">
