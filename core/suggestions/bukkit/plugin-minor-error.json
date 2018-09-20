@@ -1,0 +1,7 @@
+{
+  "id": "suggestion-plugin-minor-error-%s",
+  "patterns": [
+    "/Could not pass event \\w+ to (\\w+) .*/"
+  ],
+  "answer": "Use another version of the plugin %s, because it throws minor errors."
+}

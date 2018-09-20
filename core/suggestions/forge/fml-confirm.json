@@ -1,0 +1,7 @@
+{
+  "id": "suggestion-fml-confirm",
+  "patterns": [
+    "/Run the command \\/fml confirm or or \\/fml cancel to proceed\\./"
+  ],
+  "answer": "Run the command /fml confirm or or /fml cancel to proceed."
+}

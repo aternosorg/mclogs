@@ -8,6 +8,7 @@
         }
     ],
     "require": {
-        "mongodb/mongodb": "^1.1"
+        "mongodb/mongodb": "^1.1",
+        "ext-json": "*"
     }
 }
