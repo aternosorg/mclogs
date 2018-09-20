@@ -2,7 +2,7 @@
 **Paste, share & analyse your Minecraft server logs**
 
 ## About
-The project mclo.gs was created in 2017 by the Aternos team after more 
+The project [mclo.gs](https://mclo.gs) was created in 2017 by the Aternos team after more 
 than 4 years of running free Minecraft servers and supporting users with 
 their problems. One of the main issues was the impossibility to easily share 
 the main source of errors: The Minecraft server log file. mclo.gs solves this 
