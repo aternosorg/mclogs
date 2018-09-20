@@ -1,0 +1,8 @@
+{
+  "id": "suggestion-mod-major-error-%s",
+  "patterns": [
+    "/\\n\\s*UCE (\\w+)\\{[^\\}]+\\} \\[[^\\]]+\\] \\([^\\)]+\\)/",
+    "/Caught exception from (\\w+)/"
+  ],
+  "answer": "Remove or use another version of the mod %s, because it throws major errors."
+}

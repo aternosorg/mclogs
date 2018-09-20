@@ -1,7 +1,9 @@
 {
   "id": "suggestion-plugin-minor-error-%s",
   "patterns": [
-    "/Could not pass event \\w+ to (\\w+) .*/"
+    "/Could not pass event \\w+ to (\\w+) .*/",
+    "/Error occurred while disabling (\\w+) [^\\(]*\\(Is it up to date\\?\\)/",
+    "/Task \\S+ for (\\S+) \\S+ generated an exception/"
   ],
   "answer": "Use another version of the plugin %s, because it throws minor errors."
 }

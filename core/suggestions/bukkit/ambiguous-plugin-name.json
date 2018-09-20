@@ -1,0 +1,7 @@
+{
+  "id": "suggestion-ambiguous-plugin-name-%1$s",
+  "patterns": [
+    "/Ambiguous plugin name `(\\w+)' for files `plugins\\/([^']+)' and `plugins\\/([^']+)' in `plugins'/"
+  ],
+  "answer": "Remove either '%2$s' or '%3$s' from your plugins folder, because they both use the plugin name '%1$s'"
+}
