@@ -19,7 +19,7 @@ suggestions based on the log content to simply solve common errors.
 
 ## Adding suggestions
 You can add suggestions as simple JSON files (No PHP knowledge necessary, only RegEx and JSON).
-All suggestions are located in [core/suggestions](core/suggestions). Use one of the existing folder
+All suggestions are located in [core/suggestions](core/suggestions). Use one of the existing folders
 or create a new one (this requires enabling it in the [config](core/config/suggestions.php)).
 A suggestion has 4 different properties:
 
