@@ -47,8 +47,8 @@
                     <a class="menu-item" href="/#api">
                         <i class="fa fa-code"></i> API
                     </a>
-                    <a class="menu-social btn btn-blue btn-notext btn-large btn-no-margin" href="https://twitter.com/Aternos" target="_blank">
-                        <i class="fa fa-twitter"></i>
+                    <a class="menu-social btn btn-black btn-notext btn-large btn-no-margin" href="https://github.com/aternosorg/mclogs" target="_blank">
+                        <i class="fa fa-github"></i>
                     </a>
                 </div>
             </div>
