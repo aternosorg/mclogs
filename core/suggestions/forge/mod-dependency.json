@@ -1,7 +1,7 @@
 {
   "id": "suggestion-mod-dependency-%1%s-%2$s",
   "patterns": [
-    "/The mod (\\w+) \\S+ requires mods \\[([^\\]]+)\\] to be available/"
+    "/The mod \\S+ \\(([^\\)]+)\\) requires mods \\[([^\\]]+)\\] to be available/"
   ],
   "answer": "Install the mod %2$s, because it is required by the mod %1$s."
 }
