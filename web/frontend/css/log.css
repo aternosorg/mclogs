@@ -18,7 +18,8 @@
     color: #FF6625;
 }
 .level-ERROR,
-.level-SEVERE {
+.level-SEVERE,
+.level-FATAL {
     color: #F62451;
 }
 
