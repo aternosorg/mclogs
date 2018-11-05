@@ -1,0 +1,7 @@
+{
+  "id": "suggestion-plugin-incompatible-%s",
+  "patterns": [
+    "/Could not load plugin \\'([^\\']+)\\'\\: Incompatible API version/"
+  ],
+  "answer": "Remove or use another version of the plugin %s, because it is incompatible with your current server version."
+}

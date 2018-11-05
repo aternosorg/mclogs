@@ -9,6 +9,7 @@
 }
 
 .level-INFO .level-prefix,
+.level-NOTICE .level-prefix,
 .level-DEBUG .level-prefix,
 .level-TRACE .level-prefix {
     color: #2d87d3;

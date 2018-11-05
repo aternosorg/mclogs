@@ -17,6 +17,7 @@ class IndentMultiline implements PostFilterInterface
     public static function Filter(string $data, array &$meta): string
     {
         $pattern = [
+            '(?:[0-9]{2,4}-?){3} \[(?:[0-9]{2}\:?){3}\] \[[^\/]+\/(?:\w+)\]\:', // pocketmine
             '(?:\[(?:[0-9]{2}\:?){3}\] \[[^\/]+\/(?:\w+)\](?: \[[^\]]+\])?\:)', // regular
             '(?:(?:[0-9]{2,4}-?){3} (?:[0-9]{2}\:?){3} \[(?:\w+)\])', // old
             '(?:(?:[0-9]{2,4}\/?){3} (?:[0-9]{2}\:?){3} \[(?:\w+)\])' // glowstone
@@ -24,13 +25,20 @@ class IndentMultiline implements PostFilterInterface
 
         foreach ($pattern as $p) {
 
-            $search = '/('.$p.'.*\n)((?:(?!'.$p.').*\n)+)/m';
+            $search = '/(' . $p . '.*\n)((?:(?!' . $p . ').*\n)+)/m';
 
+            $count = 0;
             $data = preg_replace(
                 $search,
                 '$1<span class="log-multiline">$2</span>',
-                $data
+                $data,
+                -1,
+                $count
             );
+
+            if ($count > 0) {
+                break;
+            }
         }
 
         return $data;

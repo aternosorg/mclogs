@@ -6,6 +6,7 @@ $config = [
         "bukkit",
         "forge",
         "vanilla",
-        "plugins"
+        "plugins",
+        "pocketmine"
     ]
 ];

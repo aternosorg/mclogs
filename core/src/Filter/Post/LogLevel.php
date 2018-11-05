@@ -17,9 +17,10 @@ class LogLevel implements PostFilterInterface
     public static function Filter(string $data, array &$meta): string
     {
         $pattern = [
+            '/((?:[0-9]{2,4}-?){3} \[(?:[0-9]{2}\:?){3}\] \[[^\/]+\/(\w+)\]\:)/', // pocketmine
             '/(\[(?:[0-9]{2}\:?){3}\] \[[^\/]+\/(\w+)\](?: \[[^\]]+\])?\:)/', // regular
             '/((?:[0-9]{2,4}-?){3} (?:[0-9]{2}\:?){3} \[(\w+)\])/', // old,
-            '/((?:(?:[0-9]{2,4}\/?){3} )?(?:[0-9]{2}\:?){3} \[(\w+)\])/' // glowstone
+            '/((?:(?:[0-9]{2,4}\/?){3} )?(?:[0-9]{2}\:?){3} \[(\w+)\])/', // glowstone,
         ];
 
         $count = 0;
