@@ -90,7 +90,7 @@ if(!$log->exists()) {
                 <?php else: ?>
                 <div class="not-found">
                     <div class="not-found-title">404 - Log not found.</div>
-                    <div class="not-found-text">The log you try to open does not exist (anymore).<br />We automatically delete all logs that weren't opened in the last 72 hours.</div>
+                    <div class="not-found-text">The log you try to open does not exist (anymore).<br />We automatically delete all logs that weren't opened in the last 7 days.</div>
                     <div class="not-found-buttons">
                         <a href="/" class="btn btn-no-margin btn-blue btn-small">
                             <i class="fa fa-home"></i> Paste a new log
@@ -103,7 +103,7 @@ if(!$log->exists()) {
         <?php if($log->exists()): ?>
         <div class="row row-notice dark">
             <div class="row-inner">
-                This log will be saved for 72 hours from their last view.<br />
+                This log will be saved for 7 days from their last view.<br />
                 <a href="mailto:abuse@aternos.org?subject=Report%20mclo.gs/<?=$id->get(); ?>">Report abuse</a>
             </div>
         </div>
