@@ -112,16 +112,8 @@
     text-decoration: line-through;
 }
 
-.log-multiline {
-    padding-left: 32px;
-}
-
-.log-multiline .line-number {
-    margin-right: 64px;
-}
-
-.log-multiline .line-number:last-child {
-    margin-right: 4px;
+.multiline {
+    padding-left: 64px;
 }
 
 .highlight-error {
@@ -142,11 +134,13 @@
     display: inline-block;
 }
 
-.line-number {
+.line-number-container {
     text-align: right;
-    width: 50px;
-    display: inline-block;
-    padding: 0 4px;
+    vertical-align: top;
+}
+
+.line-number {
+    padding: 0 4px 0 6px;
     margin-right: 4px;
     color: #777;
     font-weight: bold;
@@ -157,6 +151,7 @@
     -ms-user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
+    word-break: keep-all;
 }
 
 .line-number:hover {

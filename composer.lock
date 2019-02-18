@@ -4,21 +4,100 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ea74f1615ef3538c5ff30acf2968533e",
-    "content-hash": "81b009994f8eb777a154bede9d95ccbb",
+    "hash": "7b53ef26653697a2f3c58c0e4a688f6a",
+    "content-hash": "290e8d4f3667afb357fb4fe4dcbd0c26",
     "packages": [
         {
-            "name": "mongodb/mongodb",
-            "version": "1.1.2",
+            "name": "aternos/codex",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mongodb/mongo-php-library.git",
-                "reference": "a307dd60e71e1291c60927ea4f3a1905146063f5"
+                "url": "https://github.com/aternosorg/codex.git",
+                "reference": "1b6119a2f5f298223aa2788e93b46c7e37a457ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/a307dd60e71e1291c60927ea4f3a1905146063f5",
-                "reference": "a307dd60e71e1291c60927ea4f3a1905146063f5",
+                "url": "https://api.github.com/repos/aternosorg/codex/zipball/1b6119a2f5f298223aa2788e93b46c7e37a457ad",
+                "reference": "1b6119a2f5f298223aa2788e93b46c7e37a457ad",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aternos\\Codex\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Neid",
+                    "email": "matthias@aternos.org"
+                }
+            ],
+            "description": "PHP library to read, parse, print and analyse log files.",
+            "time": "2019-02-16 00:19:43"
+        },
+        {
+            "name": "aternos/codex-minecraft",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aternosorg/codex-minecraft.git",
+                "reference": "96a97c3823ee53897cd55d998128b9562409bf08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/96a97c3823ee53897cd55d998128b9562409bf08",
+                "reference": "96a97c3823ee53897cd55d998128b9562409bf08",
+                "shasum": ""
+            },
+            "require": {
+                "aternos/codex": "^0.2.0",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aternos\\Codex\\Minecraft\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias",
+                    "email": "matthias@aternos.org"
+                }
+            ],
+            "description": "PHP library to read, parse, print and analyse Minecraft server log files.",
+            "time": "2019-02-18 13:54:22"
+        },
+        {
+            "name": "mongodb/mongodb",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mongodb/mongo-php-library.git",
+                "reference": "9dfb2c5fc917d7438b44eb8f4d247ba3e3984e75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/9dfb2c5fc917d7438b44eb8f4d247ba3e3984e75",
+                "reference": "9dfb2c5fc917d7438b44eb8f4d247ba3e3984e75",
                 "shasum": ""
             },
             "require": {
@@ -29,6 +108,11 @@
                 "phpunit/phpunit": "^4.8"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "MongoDB\\": "src/"
@@ -63,15 +147,19 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2017-02-16 18:40:32"
+            "time": "2016-12-06 14:54:33"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "aternos/codex-minecraft": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-json": "*"
+    },
     "platform-dev": []
 }

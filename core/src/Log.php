@@ -1,5 +1,11 @@
 <?php
 
+use Aternos\Codex\Analysis\Analysis;
+use Aternos\Codex\Log\AnalysableLogInterface;
+use Aternos\Codex\Log\File\StringLogFile;
+use Aternos\Codex\Minecraft\Detective\Detective;
+use Printer\Printer;
+
 class Log
 {
 
@@ -19,14 +25,19 @@ class Log
     private $data = null;
 
     /**
-     * @var string
+     * @var \Aternos\Codex\Log\Log
      */
-    private $filtered = null;
+    protected $log;
 
     /**
-     * @var array
+     * @var Analysis
      */
-    private $meta = null;
+    protected $analysis;
+
+    /**
+     * @var Printer
+     */
+    protected $printer;
 
     /**
      * Log constructor.
@@ -67,6 +78,15 @@ class Log
             $this->data = $data;
             $this->exists = true;
         }
+
+        $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
+        $this->log->parse();
+        $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
+        if ($this->log instanceof AnalysableLogInterface) {
+            $this->analysis = $this->log->analyse();
+        } else {
+            $this->analysis = new Analysis();
+        }
     }
 
     /**
@@ -82,24 +102,29 @@ class Log
     /**
      * Get the log
      *
-     * @return string
+     * @return \Aternos\Codex\Log\Log
      */
-    public function get()
+    public function get(): \Aternos\Codex\Log\Log
     {
-        if ($this->filtered === null) {
-            $this->filtered = $this->postFilter();
-        }
-
-        return $this->filtered;
+        return $this->log;
     }
 
-    public function getSuggestions(): array
+    /**
+     * Get the log analysis
+     *
+     * @return Analysis
+     */
+    public function getAnalysis(): Analysis
     {
-        if($this->meta === null) {
-            $this->get();
-        }
+        return $this->analysis;
+    }
 
-        return $this->meta["suggestions"];
+    /**
+     * @return Printer
+     */
+    public function getPrinter(): Printer
+    {
+        return $this->printer;
     }
 
     /**
@@ -164,30 +189,5 @@ class Log
 
             $this->data = $preFilterClass::Filter($this->data);
         }
-    }
-
-    /**
-     * Apply post filters to data string
-     *
-     * @return string
-     */
-    private function postFilter(): string
-    {
-        $config = Config::Get('filter');
-        $this->meta = [
-            'id' => $this->id,
-            'raw' => $this->data,
-            'suggestions' => []
-        ];
-        $data = $this->data;
-        foreach ($config['post'] as $postFilterClass) {
-            /**
-             * @var \Filter\Post\PostFilterInterface $postFilterClass
-             */
-
-            $data = $postFilterClass::Filter($data, $this->meta);
-        }
-
-        return $data;
     }
 }

@@ -8,7 +8,8 @@
         }
     ],
     "require": {
-        "mongodb/mongodb": "^1.1",
-        "ext-json": "*"
+        "mongodb/mongodb": "1.1",
+        "ext-json": "*",
+        "aternos/codex-minecraft": "dev-master"
     }
 }

@@ -349,26 +349,75 @@ body {
     font-family: "Roboto Mono", monospace;
 }
 
-.suggestions-container {
-    margin-bottom: 18px;
+.analysis {
+    background: #2b87d3;
+    color: #f0f0f0;
+    padding: 16px 24px 6px;
+    border-radius: 3px;
+    margin-bottom: 12px;
 }
 
-.suggestions {
-    display: none;
-    padding: 10px 4px 8px 8px;
-    margin-top: -2px;
-    border-left: 3px solid #2d87d3;
-}
-
-.suggestion {
-    padding: 5px;
-}
-
-.suggestion-answer {
-    color: #1FD78D;
+.analysis-headline {
+    font-size: 28px;
     font-weight: bold;
+    margin: 6px 0 18px;
+}
+
+.information {
+    display: flex;
+}
+
+.information-label {
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.problem-header {
+    background: #f0f0f0;
+    color: #2b87d3;
+    font-weight: bold;
+    padding: 8px 14px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+}
+
+.problem-header .btn {
+    margin-left: auto;
+}
+
+.problem-list {
+    margin-top: 22px;
+}
+
+.problem-solution-list {
+    padding-left: 10px;
+    border-left: 3px solid #f0f0f0;
+}
+
+.information-value {
+    background: #f0f0f0;
+    color: #2b87d3;
+    font-weight: bold;
+    padding: 0 4px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+}
+
+.problem-body {
+    display: flex;
+    align-items: center;
+    margin: 6px 0 22px 12px;
+}
+
+.problem-solution {
+    word-break: break-word;
+}
+
+.problem-solution-headline {
     font-size: 18px;
-    padding-right: 8px;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 @media all and (max-width: 800px) {
@@ -423,12 +472,40 @@ body {
         padding: 24px 24px 12px;
     }
 
-    .show-suggestions {
+    .hide-mobile {
+        display: none;
+    }
+
+    .analysis {
+        padding: 8px 12px 4px;
+    }
+
+    .problem-message {
+        font-size: 14px;
+        padding-right: 4px;
+    }
+
+    .problem-solution-headline {
         font-size: 16px;
     }
 
-    .suggestion-answer {
+    .problem-solution {
         font-size: 14px;
+    }
+
+    .analysis-headline {
+        margin: 6px 0 10px;
+        font-size: 24px;
+    }
+
+    .problem-body {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .problem-solution-list {
+        border-left: none;
+        padding-left: 0;
     }
 }
 
