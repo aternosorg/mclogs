@@ -152,6 +152,7 @@
     -moz-user-select: none;
     -webkit-user-select: none;
     word-break: keep-all;
+    white-space: nowrap;
 }
 
 .line-number:hover {
