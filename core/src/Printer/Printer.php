@@ -79,6 +79,6 @@ class Printer extends ModifiableDefaultPrinter
      */
     protected function printLine(LineInterface $line)
     {
-        return htmlentities(parent::printLine($line));
+        return $this->runModifications(htmlentities($line->getText())) . PHP_EOL;
     }
 }

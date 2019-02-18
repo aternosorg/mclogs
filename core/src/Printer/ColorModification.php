@@ -13,6 +13,16 @@ use Aternos\Codex\Printer\Modification;
 class ColorModification extends Modification
 {
     /**
+     * @var array
+     */
+    protected $colors;
+
+    public function __construct()
+    {
+        $this->colors = \Config::Get('colors');
+    }
+
+    /**
      * Modify the given string and return it
      *
      * @param string $text
@@ -20,11 +30,9 @@ class ColorModification extends Modification
      */
     public function modify(string $text): string
     {
-        $colors = \Config::Get('colors');
-
         $search = array();
         $replace = array();
-        foreach ($colors as $code => $color) {
+        foreach ($this->colors as $code => $color) {
             $search[] = "\e[" . $code;
             $replace[] = '<span class="format format-' . $color . '">';
         }
