@@ -52,12 +52,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "b52a7b0b8bb74832d36a7de20eed7ec59dfe1881"
+                "reference": "4487d472230cfa159a5bfcff8b648ab1941ce95c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/b52a7b0b8bb74832d36a7de20eed7ec59dfe1881",
-                "reference": "b52a7b0b8bb74832d36a7de20eed7ec59dfe1881",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/4487d472230cfa159a5bfcff8b648ab1941ce95c",
+                "reference": "4487d472230cfa159a5bfcff8b648ab1941ce95c",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +85,7 @@
                 }
             ],
             "description": "PHP library to read, parse, print and analyse Minecraft server log files.",
-            "time": "2019-02-20 08:44:45"
+            "time": "2019-02-20 10:12:06"
         },
         {
             "name": "mongodb/mongodb",

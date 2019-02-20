@@ -19,7 +19,7 @@ class Printer extends ModifiableDefaultPrinter
 
     public function __construct()
     {
-        $this->addModification(new ColorModification());
+        $this->addModification(new FormatModification());
     }
 
     /**
