@@ -4,7 +4,7 @@ $log = new Log($id);
 
 $title = "mclo.gs - Paste, share & analyse your Minecraft server logs";
 $description = "Easily paste your Minecraft server logs to share and analyse them.";
-if(!$log->exists()) {
+if (!$log->exists()) {
     $title = "Log not found - mclo.gs";
     http_response_code(404);
 } else {
@@ -12,13 +12,19 @@ if(!$log->exists()) {
     $codexLog = $log->get();
     $information = $analysis->getInformation();
     $problems = $analysis->getProblems();
-    if($codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog) {
+    if ($codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog) {
         $software = $codexLog->getServerSoftware();
     } else {
         $software = "Unknown";
     }
-    $title =  $software . " server log [#".$id->get()."] - mclo.gs";
-    $description = $log->getLineNumbers() . " lines | " . count($problems) . " problems detected";
+    $title = $software . " server log [#" . $id->get() . "] - mclo.gs";
+    $lineNumbers = $log->getLineNumbers();
+    if ($lineNumbers === 1) {
+        $lineString = "line";
+    } else {
+        $lineString = "lines";
+    }
+    $description = $lineNumbers . " " . $lineString . " | " . count($problems) . " problems detected";
 }
 ?><!DOCTYPE html>
 <html>
