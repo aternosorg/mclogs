@@ -134,7 +134,7 @@ class Log
      */
     public function getLineNumbers(): int
     {
-        return count(explode("\n", $this->get()));
+        return count(explode("\n", $this->data));
     }
 
     /**

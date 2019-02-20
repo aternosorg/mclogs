@@ -2,8 +2,23 @@
 $id = new Id(substr($_SERVER['REQUEST_URI'], 1));
 $log = new Log($id);
 
+$title = "mclo.gs - Paste, share & analyse your Minecraft server logs";
+$description = "Easily paste your Minecraft server logs to share and analyse them.";
 if(!$log->exists()) {
+    $title = "Log not found - mclo.gs";
     http_response_code(404);
+} else {
+    $analysis = $log->getAnalysis();
+    $codexLog = $log->get();
+    $information = $analysis->getInformation();
+    $problems = $analysis->getProblems();
+    if($codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog) {
+        $software = $codexLog->getServerSoftware();
+    } else {
+        $software = "Unknown";
+    }
+    $title =  $software . " server log [#".$id->get()."] - mclo.gs";
+    $description = $log->getLineNumbers() . " lines | " . count($problems) . " problems detected";
 }
 ?><!DOCTYPE html>
 <html>
@@ -15,7 +30,7 @@ if(!$log->exists()) {
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Play:400,700">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet" />
 
-        <title>mclo.gs - Paste, share & analyse your Minecraft server logs</title>
+        <title><?=$title; ?></title>
 
         <base href="/frontend/" />
 
@@ -27,7 +42,7 @@ if(!$log->exists()) {
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
-        <meta name="description" content="Easily paste your Minecraft server logs to share and analyse them.">
+        <meta name="description" content="<?=$description; ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43611107-4"></script>
@@ -64,12 +79,6 @@ if(!$log->exists()) {
         <div class="row dark log-row">
             <div class="row-inner">
                 <?php if($log->exists()): ?>
-                <?php
-                $analysis = $log->getAnalysis();
-                $codexLog = $log->get();
-                $information = $analysis->getInformation();
-                $problems = $analysis->getProblems();
-                ?>
                 <?php if(count($analysis) > 0 || $codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog): ?>
                     <div class="analysis">
                         <div class="analysis-headline"><i class="fa fa-info-circle"></i> Analysis</div>
