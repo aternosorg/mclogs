@@ -14,27 +14,8 @@ suggestions based on the log content to simply solve common errors.
 * Simple API for easy integration
 * Syntax highlighting
 * Line numbers
-* Suggestions (based on RegEx patterns)
+* Analysis and parsing using [codex](https://github.com/aternosorg/codex-minecraft)
 * Different storage backends (mongodb, redis, filesystem)
-
-## Adding suggestions
-You can add suggestions as simple JSON files (No PHP knowledge necessary, only RegEx and JSON).
-All suggestions are located in [core/suggestions](core/suggestions). Use one of the existing folders
-or create a new one (this requires enabling it in the [config](core/config/suggestions.php)).
-A suggestion has 4 different properties:
-
-* **id** (required): Unique ID for this suggestion, suggestions with the same ID are overwritten, can contain 
-references from a pattern (see answer). Usually starts with "suggestion-".
-* **patterns** (required): Array with multiple RegEx pattern, should be as specific as possible.
-* **answer** (required): Answer/Suggestion for the problem, don't state the problem but suggest
-a possible solution with the problem as explanation (e.g. "Delete the plugin XXX, because it 
-throws errors.", not "Plugin XXX throws errors."). You can use all references from the
-pattern here. If there is only one reference `%s` is enough, otherwise use `%1$s`, `%2$s` and so on.
-* **remove** (optional): Only necessary in specific cases. Can list multiple IDs in an array
-that should be removed, because this suggestion makes the other ones useless. Can also use references.
-
-IDs and file names should be lower case, separated by `-`. Nested directories are currently
-not possible, but might be possible in the future.
 
 ## Development setup
 * Install Vagrant: https://www.vagrantup.com/downloads.html
