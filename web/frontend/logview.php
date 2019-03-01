@@ -24,7 +24,10 @@ if (!$log->exists()) {
     } else {
         $lineString = "lines";
     }
-    $description = $lineNumbers . " " . $lineString . " | " . count($problems) . " problems detected";
+    $description = $lineNumbers . " " . $lineString;
+    if (count($problems) > 0) {
+        $description .= " | " . count($problems) . " problems automatically detected";
+    }
 }
 ?><!DOCTYPE html>
 <html>
