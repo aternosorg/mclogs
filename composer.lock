@@ -9,16 +9,16 @@
     "packages": [
         {
             "name": "aternos/codex",
-            "version": "v0.2.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex.git",
-                "reference": "1b6119a2f5f298223aa2788e93b46c7e37a457ad"
+                "reference": "415f251407045f3427a8ff4e88b47e4b88d0d030"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex/zipball/1b6119a2f5f298223aa2788e93b46c7e37a457ad",
-                "reference": "1b6119a2f5f298223aa2788e93b46c7e37a457ad",
+                "url": "https://api.github.com/repos/aternosorg/codex/zipball/415f251407045f3427a8ff4e88b47e4b88d0d030",
+                "reference": "415f251407045f3427a8ff4e88b47e4b88d0d030",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,7 @@
                 }
             ],
             "description": "PHP library to read, parse, print and analyse log files.",
-            "time": "2019-02-16 00:19:43"
+            "time": "2019-03-20 14:36:55"
         },
         {
             "name": "aternos/codex-minecraft",
@@ -52,16 +52,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "147b92d24d33bd05dd9333086c488119d532af88"
+                "reference": "74e15e75526315f9eb7b69fcb64046b8be212b21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/147b92d24d33bd05dd9333086c488119d532af88",
-                "reference": "147b92d24d33bd05dd9333086c488119d532af88",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/74e15e75526315f9eb7b69fcb64046b8be212b21",
+                "reference": "74e15e75526315f9eb7b69fcb64046b8be212b21",
                 "shasum": ""
             },
             "require": {
-                "aternos/codex": "^0.2.0",
+                "aternos/codex": "^1.0.1",
                 "ext-json": "*",
                 "php": ">=7.1.0"
             },
@@ -85,7 +85,7 @@
                 }
             ],
             "description": "PHP library to read, parse, print and analyse Minecraft server log files.",
-            "time": "2019-03-12 12:18:45"
+            "time": "2019-03-20 14:46:02"
         },
         {
             "name": "mongodb/mongodb",
