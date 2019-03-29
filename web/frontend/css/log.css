@@ -14,14 +14,17 @@
 .level-TRACE .level-prefix {
     color: #2d87d3;
 }
+
 .level-WARN,
 .level-WARNING {
     color: #FF6625;
 }
+
 .level-ERROR,
 .level-SEVERE,
 .level-FATAL,
-.level-CRITICAL {
+.level-CRITICAL,
+.level-EMERGENCY {
     color: #F62451;
 }
 
