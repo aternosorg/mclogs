@@ -26,7 +26,11 @@ if (!$log->exists()) {
     }
     $description = $lineNumbers . " " . $lineString;
     if (count($problems) > 0) {
-        $description .= " | " . count($problems) . " problems automatically detected";
+        $problemString = "problems";
+        if (count($problems) === 1) {
+            $problemString = "problem";
+        }
+        $description .= " | " . count($problems) . " " . $problemString . " automatically detected";
     }
 }
 ?><!DOCTYPE html>
