@@ -24,7 +24,8 @@
 .level-SEVERE,
 .level-FATAL,
 .level-CRITICAL,
-.level-EMERGENCY {
+.level-EMERGENCY,
+.level-STDERR {
     color: #F62451;
 }
 
