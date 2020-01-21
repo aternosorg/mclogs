@@ -1,24 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "7b53ef26653697a2f3c58c0e4a688f6a",
     "content-hash": "290e8d4f3667afb357fb4fe4dcbd0c26",
     "packages": [
         {
             "name": "aternos/codex",
-            "version": "v1.0.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex.git",
-                "reference": "415f251407045f3427a8ff4e88b47e4b88d0d030"
+                "reference": "08cccf3447961f7ab08c409dafffb720ea2dad59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex/zipball/415f251407045f3427a8ff4e88b47e4b88d0d030",
-                "reference": "415f251407045f3427a8ff4e88b47e4b88d0d030",
+                "url": "https://api.github.com/repos/aternosorg/codex/zipball/08cccf3447961f7ab08c409dafffb720ea2dad59",
+                "reference": "08cccf3447961f7ab08c409dafffb720ea2dad59",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +43,7 @@
                 }
             ],
             "description": "PHP library to read, parse, print and analyse log files.",
-            "time": "2019-03-20 14:36:55"
+            "time": "2020-01-21T15:43:20+00:00"
         },
         {
             "name": "aternos/codex-minecraft",
@@ -52,16 +51,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "368b3672e2d243d867c6653698becdb121f93026"
+                "reference": "5e6a2bccb5789d972a155af6c8e829e6078e4e52"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/368b3672e2d243d867c6653698becdb121f93026",
-                "reference": "368b3672e2d243d867c6653698becdb121f93026",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/5e6a2bccb5789d972a155af6c8e829e6078e4e52",
+                "reference": "5e6a2bccb5789d972a155af6c8e829e6078e4e52",
                 "shasum": ""
             },
             "require": {
-                "aternos/codex": "^1.0.1",
+                "aternos/codex": "^1.1.0",
                 "ext-json": "*",
                 "php": ">=7.1.0"
             },
@@ -85,7 +84,7 @@
                 }
             ],
             "description": "PHP library to read, parse, print and analyse Minecraft server log files.",
-            "time": "2019-08-29 16:52:01"
+            "time": "2020-01-21T16:20:48+00:00"
         },
         {
             "name": "mongodb/mongodb",
@@ -148,7 +147,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "time": "2016-12-06 14:54:33"
+            "time": "2016-12-06T14:54:33+00:00"
         }
     ],
     "packages-dev": [],
