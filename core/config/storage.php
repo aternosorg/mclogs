@@ -39,6 +39,6 @@ $config = [
      *
      * Will be cutted by \Filter\Pre\Length
      */
-    "maxLength" => 1048576
+    "maxLength" => 10485760
 
 ];
