@@ -37,7 +37,7 @@ $config = [
     /**
      * Maximum string length to store
      *
-     * Will be cutted by \Filter\Pre\Length
+     * Will be cut by \Filter\Pre\Length
      */
     "maxLength" => 10485760
 
