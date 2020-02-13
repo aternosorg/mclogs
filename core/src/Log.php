@@ -8,6 +8,10 @@ use Printer\Printer;
 
 class Log
 {
+    /**
+     * @var array
+     */
+    public static $errorLogLevels = ["ERROR", "SEVERE", "FATAL", "CRITICAL", "EMERGENCY", "STDERR"];
 
     /**
      * @var bool
@@ -135,6 +139,28 @@ class Log
     public function getLineNumbers(): int
     {
         return count(explode("\n", $this->data));
+    }
+
+    /**
+     * Get the amount of error entries in the log
+     *
+     * @return int
+     */
+    public function getErrorCount(): int
+    {
+        $errorCount = 0;
+
+        if (!$this->log) {
+            return $errorCount;
+        }
+
+        foreach ($this->log as $entry) {
+            if (in_array(strtoupper($entry->getLevel()), static::$errorLogLevels)) {
+                $errorCount++;
+            }
+        }
+
+        return $errorCount;
     }
 
     /**

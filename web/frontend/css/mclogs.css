@@ -349,6 +349,29 @@ body {
     font-family: "Roboto Mono", monospace;
 }
 
+.log-info {
+    display: flex;
+}
+
+.log-info-actions {
+    margin-left: auto;
+}
+
+.log-info-actions .btn:last-child {
+    margin-right: 0;
+}
+
+.collapsed-lines-count {
+    text-align: center;
+    color: #777;
+    font-weight: bold;
+}
+
+.collapsed-lines-count:hover {
+    cursor:  pointer;
+    color: #2d87d3;
+}
+
 .analysis {
     background: #2b87d3;
     color: #f0f0f0;
@@ -358,9 +381,9 @@ body {
 }
 
 .analysis-headline {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
-    margin: 6px 0 18px;
+    margin: 0px 0 12px;
 }
 
 .information {

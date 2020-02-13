@@ -57,7 +57,11 @@ class Printer extends ModifiableDefaultPrinter
         $return = '';
         $first = true;
         foreach ($entry as $line) {
-            $return .= '<tr>';
+            $trClass = "entry-no-error";
+            if (in_array($entry->getLevel(), \Log::$errorLogLevels)) {
+                $trClass = "entry-error";
+            }
+            $return .= '<tr class="' . $trClass . '">';
             $return .= '<td class="line-number-container"><a href="/' . $this->id->get() . '#L' . $line->getNumber() . '" id="L' . $line->getNumber() . '" class="line-number">' . $line->getNumber() . '</a></td>';
             $return .= '<td><span class="level level-' . $entry->getLevel() . ((!$first) ? " multiline" : "") . '">';
             $lineString = $this->printLine($line);

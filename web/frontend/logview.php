@@ -19,12 +19,16 @@ if (!$log->exists()) {
     }
     $title = $software . " server log [#" . $id->get() . "] - mclo.gs";
     $lineNumbers = $log->getLineNumbers();
-    if ($lineNumbers === 1) {
-        $lineString = "line";
-    } else {
-        $lineString = "lines";
-    }
+    $lineString = $lineNumbers === 1 ? "line" : "lines";
+
+    $errorCount = $log->getErrorCount();
+    $errorString = $errorCount === 1 ? "error" : "errors";
+
     $description = $lineNumbers . " " . $lineString;
+    if ($errorCount > 0) {
+       $description .= " | " . $errorCount . " " . $errorString;
+    }
+
     if (count($problems) > 0) {
         $problemString = "problems";
         if (count($problems) === 1) {
@@ -49,7 +53,7 @@ if (!$log->exists()) {
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
-        <link rel="stylesheet" href="css/mclogs.css?v=180219" />
+        <link rel="stylesheet" href="css/mclogs.css?v=130220" />
         <link rel="stylesheet" href="css/log.css?v=180219" />
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
@@ -92,6 +96,20 @@ if (!$log->exists()) {
         <div class="row dark log-row">
             <div class="row-inner">
                 <?php if($log->exists()): ?>
+                <div class="log-info">
+                    <div class="log-info-actions">
+                        <?php if($errorCount): ?>
+                        <div class="btn btn-red btn-small error-toggle">
+                            <i class="fa fa-exclamation-circle"></i>
+                            <?=$errorCount . " " . $errorString; ?>
+                        </div>
+                        <?php endif; ?>
+                        <div class="btn btn-blue btn-small down-button">
+                            <i class="fa fa-arrow-circle-down"></i>
+                            <?=$lineNumbers . " " . $lineString; ?>
+                        </div>
+                    </div>
+                </div>
                 <?php if(count($analysis) > 0 || $codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog): ?>
                     <div class="analysis">
                         <div class="analysis-headline"><i class="fa fa-info-circle"></i> Analysis</div>
@@ -161,6 +179,13 @@ if (!$log->exists()) {
                         echo $log->getPrinter()->print();
                     ?>
                 </div>
+                <div class="log-info">
+                    <div class="log-info-actions">
+                        <div class="btn btn-blue btn-small btn-notext up-button">
+                            <i class="fa fa-arrow-circle-up"></i>
+                        </div>
+                    </div>
+                </div>
                 <?php else: ?>
                 <div class="not-found">
                     <div class="not-found-title">404 - Log not found.</div>
@@ -187,6 +212,6 @@ if (!$log->exists()) {
                 &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a href="https://aternos.org">Aternos</a> | <a href="https://aternos.org/impressum/">Imprint</a>
             </div>
         </div>
-        <script src="js/logview.js"></script>
+        <script src="js/logview.js?v=130220"></script>
     </body>
 </html>
