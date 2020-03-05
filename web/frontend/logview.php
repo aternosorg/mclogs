@@ -146,7 +146,7 @@ if (!$log->exists()) {
                                         <div class="problem">
                                             <div class="problem-header">
                                                 <div class="problem-message">
-                                                    <i class="fa fa-exclamation-triangle"></i> <?=$problem->getMessage(); ?>
+                                                    <i class="fa fa-exclamation-triangle"></i> <?=htmlspecialchars($problem->getMessage()); ?>
                                                 </div>
                                                 <?php $number = $problem->getEntry()[0]->getNumber(); ?>
                                                 <a href="/<?=$id->get() . "#L" . $number; ?>" class="btn btn-blue btn-no-margin btn-small" onclick="updateLineNumber('#L<?=$number; ?>');">
@@ -161,7 +161,7 @@ if (!$log->exists()) {
                                                     <?php foreach($problem->getSolutions() as $solution): ?>
                                                         <?php /** @var \Aternos\Codex\Minecraft\Analysis\Solution\MinecraftSolution $solution */ ?>
                                                         <div class="problem-solution">
-                                                            <?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", $solution->getMessage()); ?>
+                                                            <?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", htmlspecialchars($solution->getMessage())); ?>
                                                         </div>
                                                     <?php endforeach; ?>
                                                 </div>
