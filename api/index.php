@@ -14,6 +14,10 @@ switch ($_SERVER['REQUEST_URI']) {
         require_once("endpoints/rate-error.php");
         break;
     default:
+        if (strpos($_SERVER['REQUEST_URI'], "/1/raw/") === 0) {
+            require_once("endpoints/raw.php");
+            break;
+        }
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json');
         http_response_code(404);

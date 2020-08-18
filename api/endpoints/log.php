@@ -25,5 +25,6 @@ $id = $log->put($content);
 $out->success = true;
 $out->id = $id->get();
 $out->url = "https://mclo.gs/".$out->id;
+$out->raw = "https://api.mclo.gs/1/raw/".$out->id;
 
 echo json_encode($out);
