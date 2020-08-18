@@ -1,7 +1,0 @@
-{
-  "id": "suggestion-forge-incompatible-world-%s",
-  "patterns": [
-    "/This world was saved with mod (\\w+) which appears to be missing, things may not work well/"
-  ],
-  "answer": "Install the mod %s, because the world was saved with that mod."
-}

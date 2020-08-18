@@ -1,7 +1,0 @@
-{
-  "id": "suggestion-mod-duplicate-%s",
-  "patterns": [
-    "/Found a duplicate mod (\\w+) at/"
-  ],
-  "answer": "Remove one of the mod files for the mod %s, because it's duplicated."
-}

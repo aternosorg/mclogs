@@ -1,8 +1,0 @@
-{
-  "id": "suggestion-plugin-major-error-%s",
-  "patterns": [
-    "/Could not load 'plugins[\\/\\\\]((?!\\.jar).*)\\.jar' in folder '[^']+'/",
-    "/Error occurred while enabling (\\w+) [^\\(]*\\(Is it up to date\\?\\)/"
-  ],
-  "answer": "Remove or use another version of the plugin %s, because it throws major errors."
-}

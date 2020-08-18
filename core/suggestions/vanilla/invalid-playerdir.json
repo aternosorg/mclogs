@@ -1,7 +1,0 @@
-{
-  "id": "suggestion-world-invalid-playerdir",
-  "patterns": [
-    "/\\*\\*\\*\\* DETECTED OLD PLAYER DIRECTORY IN THE WORLD SAVE/"
-  ],
-  "answer": "Remove the directory 'world/players'."
-}

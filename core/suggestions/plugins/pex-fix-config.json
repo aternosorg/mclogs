@@ -1,7 +1,0 @@
-{
-  "id": "suggestion-pex-fix-config",
-  "patterns": [
-    "/Your configuration must be fixed before PEX will enable/"
-  ],
-  "answer": "Fix your PermissionsEx configuration, a YML validator might help with that."
-}
