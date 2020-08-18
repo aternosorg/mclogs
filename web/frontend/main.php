@@ -41,9 +41,6 @@
                     <a class="menu-item" href="/#info">
                         <i class="fa fa-info-circle"></i> Info
                     </a>
-                    <a class="menu-item" href="/#plugin">
-                        <i class="fa fa-database"></i> Plugin
-                    </a>
                     <a class="menu-item" href="/#api">
                         <i class="fa fa-code"></i> API
                     </a>
@@ -125,35 +122,7 @@
                 </div>
             </div>
         </div>
-        <div class="row dark plugin" id="plugin">
-            <div class="row-inner">
-                <div class="article left">
-                    <div class="article-icon">
-                        <i class="fa fa-database"></i>
-                    </div>
-                    <div class="article-info">
-                        <div class="article-title">
-                            Use our plugin.
-                        </div>
-                        <div class="article-text">
-                            With our plugin you can share your Minecraft server log directly from your server with one simple command.
-                            Use permissions to share the power with other team members and solve problems together. It's even possible
-                            to export old server log files, e.g. after a crash. Critical information like IP addresses are automatically
-                            hidden to ensure safety and privacy.
-                        </div>
-                        <div class="article-buttons">
-                            <a href="https://dev.bukkit.org/projects/mclogs" target="_blank" class="btn btn-blue btn-no-margin">
-                                <i class="fa fa-download"></i> dev.bukkit.org
-                            </a>
-                            <a href="https://www.spigotmc.org/resources/mclo-gs.47502/" target="_blank" class="btn btn-blue btn-no-margin">
-                                <i class="fa fa-download"></i> spigotmc.org
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row api" id="api">
+        <div class="row dark api" id="api">
             <div class="row-inner">
                 <div class="article right">
                     <div class="article-icon">
@@ -177,7 +146,7 @@
                 </div>
             </div>
         </div>
-        <div class="row dark footer">
+        <div class="row footer">
             <div class="row-inner">
                 &copy; 2017-<?=date("Y"); ?>  by mclo.gs - a service by <a href="https://aternos.org">Aternos</a> | <a href="https://aternos.org/impressum/">Imprint</a>
             </div>
