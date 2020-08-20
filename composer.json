@@ -10,6 +10,6 @@
     "require": {
         "mongodb/mongodb": "1.1",
         "ext-json": "*",
-        "aternos/codex-minecraft": "dev-master"
+        "aternos/codex-minecraft": "^1.4.2"
     }
 }
