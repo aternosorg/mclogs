@@ -84,6 +84,9 @@ if (!$log->exists()) {
                     <a class="menu-item" href="/#plugin">
                         <i class="fa fa-database"></i> Plugin
                     </a>
+                    <a class="menu-item" href="/#mod">
+                        <i class="fa fa-puzzle-piece"></i> Mod
+                    </a>
                     <a class="menu-item" href="/#api">
                         <i class="fa fa-code"></i> API
                     </a>

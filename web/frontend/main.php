@@ -44,6 +44,9 @@
                     <a class="menu-item" href="/#plugin">
                         <i class="fa fa-database"></i> Plugin
                     </a>
+                    <a class="menu-item" href="/#mod">
+                        <i class="fa fa-puzzle-piece"></i> Mod
+                    </a>
                     <a class="menu-item" href="/#api">
                         <i class="fa fa-code"></i> API
                     </a>
@@ -156,9 +159,38 @@
                 </div>
             </div>
         </div>
-        <div class="row api" id="api">
+        <div class="row mod" id="mod">
             <div class="row-inner">
                 <div class="article right">
+                    <div class="article-icon">
+                        <i class="fa fa-puzzle-piece"></i>
+                    </div>
+                    <div class="article-info">
+                        <div class="article-title">
+                            Use our mod.
+                        </div>
+                        <div class="article-text">
+                            We also have a mod for Forge and Fabric so you can use it with your favorite mods. It is fully server-sided
+                            and has the same features as the plugin.
+                        </div>
+                        <div class="article-buttons">
+                            <a href="https://www.curseforge.com/minecraft/mc-mods/mclo-gs" target="_blank" class="btn btn-blue btn-no-margin">
+                                <i class="fa fa-download"></i> curseforge.com
+                            </a>
+                            <a href="https://github.com/aternosorg/mclogs-forge" target="_blank" class="btn btn-blue btn-no-margin">
+                                <i class="fa fa-github"></i> Forge
+                            </a>
+                            <a href="https://github.com/aternosorg/mclogs-fabric" target="_blank" class="btn btn-blue btn-no-margin">
+                                <i class="fa fa-github"></i> Fabric
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row dark api" id="api">
+            <div class="row-inner">
+                <div class="article left">
                     <div class="article-icon">
                         <i class="fa fa-code"></i>
                     </div>
@@ -180,7 +212,7 @@
                 </div>
             </div>
         </div>
-        <div class="row dark footer">
+        <div class="row footer">
             <div class="row-inner">
                 &copy; 2017-<?=date("Y"); ?>  by mclo.gs - a service by <a href="https://aternos.org">Aternos</a> | <a href="https://aternos.org/impressum/">Imprint</a>
             </div>
