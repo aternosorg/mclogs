@@ -536,7 +536,7 @@ body {
     margin-top: 8px;
 }
 
-@media all and (max-width: 400px) {
+@media all and (max-width: 500px) {
     .menu-item {
         display: none;
     }
