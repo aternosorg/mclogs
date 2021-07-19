@@ -40,6 +40,7 @@ if (!$log->exists()) {
 ?><!DOCTYPE html>
 <html>
     <head>
+        <meta name="robots" content="noindex,nofollow">
         <meta charset="utf-8" />
         <meta http-equiv="content-language" content="en" />
         <meta name="theme-color" content="#2d3943" />
