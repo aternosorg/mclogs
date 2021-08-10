@@ -51,16 +51,16 @@
         },
         {
             "name": "aternos/codex-minecraft",
-            "version": "v1.5.7",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "ca61bc4542a6ac89bc323272beb6163ea3a7a21b"
+                "reference": "aed644dc47538e7eedd2462213a2db89c0ec94e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/ca61bc4542a6ac89bc323272beb6163ea3a7a21b",
-                "reference": "ca61bc4542a6ac89bc323272beb6163ea3a7a21b",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/aed644dc47538e7eedd2462213a2db89c0ec94e4",
+                "reference": "aed644dc47538e7eedd2462213a2db89c0ec94e4",
                 "shasum": ""
             },
             "require": {
@@ -90,9 +90,9 @@
             "description": "PHP library to read, parse, print and analyse Minecraft server log files.",
             "support": {
                 "issues": "https://github.com/aternosorg/codex-minecraft/issues",
-                "source": "https://github.com/aternosorg/codex-minecraft/tree/v1.5.7"
+                "source": "https://github.com/aternosorg/codex-minecraft/tree/v1.6.0"
             },
-            "time": "2021-05-03T15:20:36+00:00"
+            "time": "2021-08-10T13:00:22+00:00"
         },
         {
             "name": "mongodb/mongodb",
@@ -172,5 +172,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
