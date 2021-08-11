@@ -32,7 +32,7 @@ $config = [
     /**
      * Time in seconds to store data after put or last renew
      */
-    "storageTime" => 7 * 24 * 60 * 60,
+    "storageTime" => 90 * 24 * 60 * 60,
 
     /**
      * Maximum string length to store
