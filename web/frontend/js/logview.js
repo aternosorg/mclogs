@@ -54,8 +54,16 @@ $('.error-toggle').click(function () {
     }
 
     $('.collapsed-lines-count').click(function () {
+        let positionElement = $('#L' + ($(this).data("end") + 1));
+        let position;
+        if (positionElement.length > 0) {
+            position = positionElement.position().top - $(window).scrollTop();
+        }
         for (var i = $(this).data("start"); i <= $(this).data("end"); i++) {
             $('#L' + i).parent().parent().show();
+        }
+        if (positionElement.length > 0) {
+            $(window).scrollTop(positionElement.position().top - position - $(this).outerHeight());
         }
         $(this).remove();
     });
@@ -64,5 +72,5 @@ $('.error-toggle').click(function () {
 function generateCollapsedLines(start, end) {
     var count = end - start + 1;
     var string = count === 1 ? "line" : "lines";
-    return $('<tr class="collapsed-lines"><td></td><td class="collapsed-lines-count" data-start="' + start + '" data-end="' + end + '"><i class="fa fa-angle-down"></i> ' + count + " " + string + ' <i class="fa fa-angle-down"></i></td></tr>');
+    return $('<tr class="collapsed-lines"><td></td><td class="collapsed-lines-count" data-start="' + start + '" data-end="' + end + '"><i class="fa fa-angle-up"></i> ' + count + " " + string + ' <i class="fa fa-angle-up"></i></td></tr>');
 }
