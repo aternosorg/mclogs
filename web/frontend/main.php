@@ -10,7 +10,7 @@
 
         <title>mclo.gs - Paste, share & analyse your Minecraft server logs</title>
 
-        <base href="/frontend/" />
+        <base href="/" />
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
