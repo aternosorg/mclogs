@@ -4,15 +4,14 @@ server {
 
     server_name api.mclogs.local;
 
-    root /web/mclogs/api;
-    index index.php;
+    root /web/mclogs/api/public;
 
     error_log /var/log/nginx/api-mclogs-error.log error;
 
     client_max_body_size 210m;
 
     location / {
-        try_files $uri $uri/ /index.php;
+        try_files $uri /index.php;
     }
 
     location ~ \.php$ {
