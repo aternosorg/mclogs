@@ -14,9 +14,9 @@ class Mongo implements StorageInterface
      */
     private static function Connect()
     {
-
         if (self::$collection === null) {
-            $connection = new \MongoDB\Client();
+            $config = \Config::Get("mongo");
+            $connection = new \MongoDB\Client($config['url'] ?? 'mongodb://127.0.0.1/');
             self::$collection = $connection->mclogs->logs;
         }
     }
@@ -62,7 +62,7 @@ class Mongo implements StorageInterface
 
         $result = self::$collection->findOne(["_id" => $id->getRaw()]);
 
-        if($result === null) {
+        if ($result === null) {
             return false;
         }
 

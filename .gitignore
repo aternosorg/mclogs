@@ -3,3 +3,4 @@
 .vagrant
 config.php
 /vendor/
+mongo.php
