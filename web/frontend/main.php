@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta http-equiv="content-language" content="en" />
         <meta name="theme-color" content="#2d3943" />
 
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Play:400,700">
