@@ -13,11 +13,13 @@ if (!$log->exists()) {
     $information = $analysis->getInformation();
     $problems = $analysis->getProblems();
     if ($codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog) {
-        $software = $codexLog->getServerSoftware();
+        $software = $codexLog->getServerSoftware() . " server log";
+    } elseif ($codexLog instanceof \Aternos\Codex\Minecraft\Log\CrashReport\MinecraftCrashReportLog) {
+        $software = $codexLog->getSoftware() . " crash report";
     } else {
-        $software = "Unknown";
+        $software = "Unknown log";
     }
-    $title = $software . " server log [#" . $id->get() . "] - mclo.gs";
+    $title = $software . " [#" . $id->get() . "] - mclo.gs";
     $lineNumbers = $log->getLineNumbers();
     $lineString = $lineNumbers === 1 ? "line" : "lines";
 
@@ -54,7 +56,7 @@ if (!$log->exists()) {
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
         <link rel="stylesheet" href="css/mclogs.css?v=130220" />
-        <link rel="stylesheet" href="css/log.css?v=180219" />
+        <link rel="stylesheet" href="css/log.css?v=100222" />
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />

@@ -1,4 +1,8 @@
 
+.level {
+    white-space: pre-wrap;
+    tab-size: 4;
+}
 
 .level-prefix {
     font-weight: bold;
@@ -6,6 +10,14 @@
 
 .level-info {
     color: #f0f0f0;
+}
+
+.level-TITLE {
+    font-weight: bold;
+    color: #f0f0f0;
+    background-color: #2d87d3;
+    padding: 0 8px;
+    border-radius: 2px;
 }
 
 .level-INFO .level-prefix,
@@ -25,8 +37,13 @@
 .level-FATAL,
 .level-CRITICAL,
 .level-EMERGENCY,
-.level-STDERR {
+.level-STDERR,
+.level-STACKTRACE {
     color: #F62451;
+}
+
+.level-COMMENT {
+    color: #A4A4A4;
 }
 
 .format-black {
