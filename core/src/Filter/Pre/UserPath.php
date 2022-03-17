@@ -6,6 +6,7 @@ class UserPath implements PreFilterInterface
 {
     protected const USER_PATH_PATTERNS = [
         "/C:\\\\Users\\\\([^\\\\]+)\\\\/" => "C:\\Users\\********\\",
+        "/C:\\/Users\\/([^\\/]+)\\//" => "C:/Users/********/",
         "/\\/home\\/[^\\/]+\\//" => "/home/********/"
     ];
 
