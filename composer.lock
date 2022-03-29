@@ -8,20 +8,20 @@
     "packages": [
         {
             "name": "aternos/codex",
-            "version": "v1.3.2",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex.git",
-                "reference": "1a732943076d197e668831098f351074e36330d2"
+                "reference": "f015e290c5d118f4b7368c99c641bf887154cb60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex/zipball/1a732943076d197e668831098f351074e36330d2",
-                "reference": "1a732943076d197e668831098f351074e36330d2",
+                "url": "https://api.github.com/repos/aternosorg/codex/zipball/f015e290c5d118f4b7368c99c641bf887154cb60",
+                "reference": "f015e290c5d118f4b7368c99c641bf887154cb60",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.0"
+                "php": ">=7.4"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
@@ -45,28 +45,28 @@
             "description": "PHP library to read, parse, print and analyse log files.",
             "support": {
                 "issues": "https://github.com/aternosorg/codex/issues",
-                "source": "https://github.com/aternosorg/codex/tree/v1.3.2"
+                "source": "https://github.com/aternosorg/codex/tree/v1.5.0"
             },
-            "time": "2022-02-10T11:52:10+00:00"
+            "time": "2022-03-24T10:04:09+00:00"
         },
         {
             "name": "aternos/codex-minecraft",
-            "version": "v1.10.1",
+            "version": "v1.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "a1ef404e46417e776280c678681b7388877ad263"
+                "reference": "a16bb3eb822bde3b0dccb3f8eaf4a56b90b95521"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/a1ef404e46417e776280c678681b7388877ad263",
-                "reference": "a1ef404e46417e776280c678681b7388877ad263",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/a16bb3eb822bde3b0dccb3f8eaf4a56b90b95521",
+                "reference": "a16bb3eb822bde3b0dccb3f8eaf4a56b90b95521",
                 "shasum": ""
             },
             "require": {
-                "aternos/codex": "^1.3.2",
+                "aternos/codex": "^1.5.0",
                 "ext-json": "*",
-                "php": ">=7.1.0"
+                "php": ">=7.4.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5.13"
@@ -90,9 +90,9 @@
             "description": "PHP library to read, parse, print and analyse Minecraft server log files.",
             "support": {
                 "issues": "https://github.com/aternosorg/codex-minecraft/issues",
-                "source": "https://github.com/aternosorg/codex-minecraft/tree/v1.10.1"
+                "source": "https://github.com/aternosorg/codex-minecraft/tree/v1.11.1"
             },
-            "time": "2022-03-18T09:31:01+00:00"
+            "time": "2022-03-29T09:58:50+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
