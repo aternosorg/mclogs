@@ -25,13 +25,13 @@ class Printer extends ModifiableDefaultPrinter
     /**
      * @var \Id
      */
-    protected $id;
+    protected \Id $id;
 
     /**
      * @param \Id $id
      * @return Printer
      */
-    public function setId(\Id $id)
+    public function setId(\Id $id): static
     {
         $this->id = $id;
         return $this;
@@ -41,7 +41,7 @@ class Printer extends ModifiableDefaultPrinter
      * @param LogInterface $log
      * @return string
      */
-    protected function printLog(LogInterface $log)
+    protected function printLog(LogInterface $log): string
     {
         return '<table>' . parent::printLog($log) . '</table>';
     }
@@ -51,7 +51,7 @@ class Printer extends ModifiableDefaultPrinter
      * @return string
      * @throws \Exception
      */
-    protected function printEntry(EntryInterface $entry)
+    protected function printEntry(EntryInterface $entry): string
     {
         /** @var Entry $entry */
         $return = '';
@@ -81,7 +81,7 @@ class Printer extends ModifiableDefaultPrinter
      * @param LineInterface $line
      * @return string
      */
-    protected function printLine(LineInterface $line)
+    protected function printLine(LineInterface $line): string
     {
         return $this->runModifications(htmlentities($line->getText())) . PHP_EOL;
     }

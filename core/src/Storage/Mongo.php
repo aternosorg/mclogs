@@ -2,12 +2,14 @@
 
 namespace Storage;
 
+use MongoDB\Collection;
+
 class Mongo implements StorageInterface
 {
     /**
-     * @var null|\MongoDB\Collection
+     * @var null|Collection
      */
-    private static $collection = null;
+    private static ?Collection $collection = null;
 
     /**
      * Connect to MongoDB
@@ -56,7 +58,7 @@ class Mongo implements StorageInterface
      * @param \Id $id
      * @return string|false Data or false, e.g. if it doesn't exist
      */
-    public static function Get(\Id $id)
+    public static function Get(\Id $id): bool|string
     {
         self::Connect();
 

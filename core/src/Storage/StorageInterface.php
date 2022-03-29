@@ -18,7 +18,7 @@ interface StorageInterface
      * @param \Id $id
      * @return string|false Data or false, e.g. if it doesn't exist
      */
-    public static function Get(\Id $id);
+    public static function Get(\Id $id): bool|string;
 
     /**
      * Renew the data to reset the time to live

@@ -11,44 +11,44 @@ class Log
     /**
      * @var array
      */
-    public static $errorLogLevels = ["ERROR", "SEVERE", "FATAL", "CRITICAL", "EMERGENCY", "STDERR"];
+    public static array $errorLogLevels = ["ERROR", "SEVERE", "FATAL", "CRITICAL", "EMERGENCY", "STDERR"];
 
     /**
      * @var bool
      */
-    private $exists = false;
+    private bool $exists = false;
 
     /**
-     * @var \Id
+     * @var ?Id
      */
-    private $id = null;
+    private ?Id $id = null;
 
     /**
      * @var string
      */
-    private $data = null;
+    private ?string $data = null;
 
     /**
      * @var \Aternos\Codex\Log\Log
      */
-    protected $log;
+    protected \Aternos\Codex\Log\Log $log;
 
     /**
      * @var Analysis
      */
-    protected $analysis;
+    protected Analysis $analysis;
 
     /**
      * @var Printer
      */
-    protected $printer;
+    protected Printer $printer;
 
     /**
      * Log constructor.
      *
      * @param Id|null $id
      */
-    public function __construct(\Id $id = null)
+    public function __construct(Id $id = null)
     {
         if ($id) {
             $this->id = $id;
@@ -169,7 +169,7 @@ class Log
      * @param string $data
      * @return bool|Id
      */
-    public function put(string $data)
+    public function put(string $data): Id|bool
     {
         $this->data = $data;
         $this->preFilter();

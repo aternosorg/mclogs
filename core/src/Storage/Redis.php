@@ -5,9 +5,9 @@ namespace Storage;
 class Redis implements StorageInterface {
 
     /**
-     * @var \Redis
+     * @var ?\Redis
      */
-    private static $connection = null;
+    private static ?\Redis $connection = null;
 
     /**
      * Connect to redis
@@ -48,7 +48,7 @@ class Redis implements StorageInterface {
      * @param \Id $id
      * @return string|false Data or false, e.g. if it doesn't exist
      */
-    public static function Get(\Id $id)
+    public static function Get(\Id $id): bool|string
     {
         self::Connect();
 
@@ -66,7 +66,7 @@ class Redis implements StorageInterface {
         self::Connect();
         $config = \Config::Get("storage");
 
-        self::$connection->setTimeout($id->getRaw(), $config['storageTime']);
+        self::$connection->expire($id->getRaw(), $config['storageTime']);
         return true;
     }
 }
