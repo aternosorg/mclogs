@@ -27,9 +27,9 @@ class Mongo implements StorageInterface
      * Put some data in the storage, returns the (new) id for the data
      *
      * @param string $data
-     * @return \Id|boolean ID or false
+     * @return ?\Id ID or false
      */
-    public static function Put(string $data): \Id
+    public static function Put(string $data): ?\Id
     {
         self::Connect();
 
@@ -56,16 +56,16 @@ class Mongo implements StorageInterface
      * Get some data from the storage by id
      *
      * @param \Id $id
-     * @return string|false Data or false, e.g. if it doesn't exist
+     * @return ?string Data or null, e.g. if it doesn't exist
      */
-    public static function Get(\Id $id): bool|string
+    public static function Get(\Id $id): ?string
     {
         self::Connect();
 
         $result = self::$collection->findOne(["_id" => $id->getRaw()]);
 
         if ($result === null) {
-            return false;
+            return null;
         }
 
         return $result->data;

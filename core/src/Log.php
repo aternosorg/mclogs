@@ -167,9 +167,9 @@ class Log
      * Put data into the log
      *
      * @param string $data
-     * @return bool|Id
+     * @return ?Id
      */
-    public function put(string $data): Id|bool
+    public function put(string $data): ?Id
     {
         $this->data = $data;
         $this->preFilter();

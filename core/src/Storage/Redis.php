@@ -24,9 +24,9 @@ class Redis implements StorageInterface {
      * Put some data in the storage, returns the (new) id for the data
      *
      * @param string $data
-     * @return \Id|boolean ID or false
+     * @return ?\Id ID or null
      */
-    public static function Put(string $data): \Id
+    public static function Put(string $data): ?\Id
     {
         self::Connect();
         $config = \Config::Get("storage");
@@ -46,13 +46,13 @@ class Redis implements StorageInterface {
      * Get some data from the storage by id
      *
      * @param \Id $id
-     * @return string|false Data or false, e.g. if it doesn't exist
+     * @return ?string Data or false, e.g. if it doesn't exist
      */
-    public static function Get(\Id $id): bool|string
+    public static function Get(\Id $id): ?string
     {
         self::Connect();
 
-        return self::$connection->get($id->getRaw());
+        return self::$connection->get($id->getRaw()) ?: null;
     }
 
     /**
