@@ -36,7 +36,7 @@ class Redis implements StorageInterface {
 
         do {
             $id->regenerate();
-        } while(self::Get($id) !== false);
+        } while(self::Get($id) !== null);
 
         self::$connection->setEx($id->getRaw(), $config['storageTime'], $data);
         return $id;

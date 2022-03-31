@@ -39,7 +39,7 @@ class Mongo implements StorageInterface
 
         do {
             $id->regenerate();
-        } while (self::Get($id) !== false);
+        } while (self::Get($id) !== null);
 
         $date = new \MongoDB\BSON\UTCDateTime((time() + $config['storageTime']) * 1000);
 
