@@ -3,9 +3,21 @@
 use Aternos\Codex\Analysis\Analysis;
 use Aternos\Codex\Log\AnalysableLogInterface;
 use Aternos\Codex\Log\File\StringLogFile;
+use Aternos\Codex\Minecraft\Analysis\Information\Vanilla\VanillaVersionInformation;
 use Aternos\Codex\Log\LogInterface;
 use Aternos\Codex\Minecraft\Detective\Detective;
+use Aternos\Codex\Minecraft\Log\FabricLog;
+use Aternos\Codex\Minecraft\Log\VanillaLog;
+use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
+use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
+use Aternos\Sherlock\Maps\GZURLYarnMap;
+use Aternos\Sherlock\Maps\URLVanillaObfuscationMap;
+use Aternos\Sherlock\Maps\VanillaObfuscationMap;
+use Aternos\Sherlock\Maps\YarnMap;
+use Aternos\Sherlock\ObfuscatedString;
+use Cache\CacheInterface;
 use Printer\Printer;
+use Storage\StorageInterface;
 
 class Log
 {
@@ -14,6 +26,7 @@ class Log
     private ?Id $id = null;
     private ?string $data = null;
     protected LogInterface $log;
+    protected ?ObfuscatedString $obfuscatedContent = null;
 
     /**
      * @var Analysis
@@ -51,7 +64,7 @@ class Log
         }
 
         /**
-         * @var \Storage\StorageInterface $storage
+         * @var StorageInterface $storage
          */
         $storage = $config['storages'][$this->id->getStorage()]['class'];
 
@@ -65,13 +78,87 @@ class Log
             $this->exists = true;
         }
 
+        $this->analyse();
+    }
+
+    /**
+     * analyze this log
+     * @return void
+     */
+    protected function analyse() {
         $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
         $this->log->parse();
         $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
         if ($this->log instanceof AnalysableLogInterface) {
             $this->analysis = $this->log->analyse();
+            $this->deobfuscateContent();
         } else {
             $this->analysis = new Analysis();
+        }
+    }
+
+    /**
+     * deobfuscate the content of this log
+     * @return void
+     */
+    protected function deobfuscateContent()
+    {
+        $codexLog = $this->get();
+        $map = null;
+        $information = $this->analysis->getInformation();
+        $version = null;
+        foreach ($information as $info) {
+            if ($info instanceof VanillaVersionInformation) {
+                $version = $info->getValue();
+            }
+        }
+        if (!$version) {
+            return;
+        }
+
+        $config = Config::Get('cache');
+        /**
+         * @var CacheInterface $storage
+         */
+        $storage = $config['caches'][$config['cacheId']]['class'];
+
+        if (get_class($codexLog) === VanillaLog::class) {
+            $mapURL = (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
+            try {
+                if ($mapContent = $storage::Get("sherlock:$mapURL")) {
+                    $map = new VanillaObfuscationMap($mapContent);
+                }
+                else {
+                    $map = new URLVanillaObfuscationMap($mapURL);
+                    $storage::Set("sherlock:$mapURL", $map->getContent());
+                }
+            } catch (Exception) {
+            }
+        }
+        elseif ($codexLog instanceof FabricLog) {
+            $mapURL = (new FabricMavenMapLocator($version))->findMappingURL();
+
+            try {
+                if ($mapContent = $storage::Get("sherlock:$mapURL")) {
+                    $map = new YarnMap($mapContent);
+                }
+                else {
+                    $map = new GZURLYarnMap($mapURL);
+                    $storage::Set("sherlock:$mapURL", $map->getContent());
+                }
+            } catch (Exception) {
+            }
+        }
+
+        if ($map !== null) {
+            $this->obfuscatedContent = new ObfuscatedString($this->data, $map);
+            $deobfuscatedContent = $this->obfuscatedContent->getMappedContent();
+            if ($deobfuscatedContent) {
+                $this->data = $deobfuscatedContent;
+                $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
+                $this->log->parse();
+                $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
+            }
         }
     }
 
@@ -159,7 +246,7 @@ class Log
         $config = Config::Get('storage');
 
         /**
-         * @var \Storage\StorageInterface $storage
+         * @var StorageInterface $storage
          */
         $storage = $config['storages'][$config['storageId']]['class'];
 
@@ -177,7 +264,7 @@ class Log
         $config = Config::Get('storage');
 
         /**
-         * @var \Storage\StorageInterface $storage
+         * @var StorageInterface $storage
          */
         $storage = $config['storages'][$this->id->getStorage()]['class'];
 

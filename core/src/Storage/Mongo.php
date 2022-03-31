@@ -2,27 +2,10 @@
 
 namespace Storage;
 
-use MongoDB\Collection;
+use MongoDB\BSON\UTCDateTime;
 
-class Mongo implements StorageInterface
+class Mongo extends \Client\MongoDBClient implements StorageInterface
 {
-    /**
-     * @var null|Collection
-     */
-    private static ?Collection $collection = null;
-
-    /**
-     * Connect to MongoDB
-     */
-    private static function Connect()
-    {
-        if (self::$collection === null) {
-            $config = \Config::Get("mongo");
-            $connection = new \MongoDB\Client($config['url'] ?? 'mongodb://127.0.0.1/');
-            self::$collection = $connection->mclogs->logs;
-        }
-    }
-
     /**
      * Put some data in the storage, returns the (new) id for the data
      *
@@ -41,7 +24,7 @@ class Mongo implements StorageInterface
             $id->regenerate();
         } while (self::Get($id) !== null);
 
-        $date = new \MongoDB\BSON\UTCDateTime((time() + $config['storageTime']) * 1000);
+        $date = new UTCDateTime((time() + $config['storageTime']) * 1000);
 
         self::$collection->insertOne([
             "_id" => $id->getRaw(),
@@ -82,7 +65,7 @@ class Mongo implements StorageInterface
         $config = \Config::Get("storage");
         self::Connect();
 
-        $date = new \MongoDB\BSON\UTCDateTime((time() + $config['storageTime']) * 1000);
+        $date = new UTCDateTime((time() + $config['storageTime']) * 1000);
 
         self::$collection->updateOne(["_id" => $id->getRaw()], ['$set' => ['expires' => $date]]);
 
