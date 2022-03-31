@@ -3,35 +3,17 @@
 use Aternos\Codex\Analysis\Analysis;
 use Aternos\Codex\Log\AnalysableLogInterface;
 use Aternos\Codex\Log\File\StringLogFile;
+use Aternos\Codex\Log\LogInterface;
 use Aternos\Codex\Minecraft\Detective\Detective;
 use Printer\Printer;
 
 class Log
 {
-    /**
-     * @var array
-     */
     public static array $errorLogLevels = ["ERROR", "SEVERE", "FATAL", "CRITICAL", "EMERGENCY", "STDERR"];
-
-    /**
-     * @var bool
-     */
     private bool $exists = false;
-
-    /**
-     * @var ?Id
-     */
     private ?Id $id = null;
-
-    /**
-     * @var string
-     */
     private ?string $data = null;
-
-    /**
-     * @var \Aternos\Codex\Log\Log
-     */
-    protected \Aternos\Codex\Log\Log $log;
+    protected LogInterface $log;
 
     /**
      * @var Analysis
@@ -75,7 +57,7 @@ class Log
 
         $data = $storage::Get($this->id);
 
-        if ($data === false) {
+        if ($data === null) {
             $this->exists = false;
             return;
         } else {
@@ -106,9 +88,9 @@ class Log
     /**
      * Get the log
      *
-     * @return \Aternos\Codex\Log\Log
+     * @return LogInterface
      */
-    public function get(): \Aternos\Codex\Log\Log
+    public function get(): LogInterface
     {
         return $this->log;
     }
