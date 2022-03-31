@@ -10,10 +10,10 @@ class Filesystem implements StorageInterface
      * Put some data in the storage, returns the (new) id for the data
      *
      * @param string $data
-     * @return \Id ID or false
+     * @return ?\Id ID or false
      * @throws \Exception
      */
-    public static function Put(string $data): \Id
+    public static function Put(string $data): ?\Id
     {
         $config = \Config::Get("filesystem");
         $basePath = CORE_PATH . $config['path'];
@@ -37,9 +37,9 @@ class Filesystem implements StorageInterface
      * Get some data from the storage by id
      *
      * @param \Id $id
-     * @return string|false Data or false, e.g. if it doesn't exist
+     * @return ?string Data or null, e.g. if it doesn't exist
      */
-    public static function Get(\Id $id)
+    public static function Get(\Id $id): ?string
     {
         $config = \Config::Get("filesystem");
         $basePath = CORE_PATH . $config['path'];
@@ -48,7 +48,7 @@ class Filesystem implements StorageInterface
             return false;
         }
 
-        return file_get_contents($basePath . $id->getRaw());
+        return file_get_contents($basePath . $id->getRaw()) ?: null;
     }
 
     /**

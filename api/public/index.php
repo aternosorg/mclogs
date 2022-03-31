@@ -14,7 +14,7 @@ switch ($_SERVER['REQUEST_URI']) {
         require_once("../endpoints/rate-error.php");
         break;
     default:
-        if (strpos($_SERVER['REQUEST_URI'], "/1/raw/") === 0) {
+        if (str_starts_with($_SERVER['REQUEST_URI'], "/1/raw/")) {
             require_once("../endpoints/raw.php");
             break;
         }
