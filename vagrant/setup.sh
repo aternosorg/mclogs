@@ -9,7 +9,9 @@ sudo apt-get upgrade -y
 sudo add-apt-repository -y ppa:ondrej/php
 sudo apt-get update
 
-sudo apt-get install php8.0-fpm php8.0-mongodb php8.0-xml php8.0-redis nginx mongodb composer redis-server -y
+sudo apt-get install php8.0-fpm php8.0-mongodb php8.0-xml php8.0-redis nginx mongodb redis-server -y
+
+bash /web/mclogs/vagrant/setup-composer.sh
 
 cp /web/mclogs/vagrant/nginx/* /etc/nginx/sites-enabled/
 sudo service nginx restart
