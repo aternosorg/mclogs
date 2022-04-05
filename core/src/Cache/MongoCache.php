@@ -3,6 +3,7 @@
 namespace Cache;
 
 use Client\MongoDBClient;
+use MongoDB\BSON\UTCDateTime;
 
 class MongoCache extends MongoDBClient implements CacheInterface
 {
@@ -11,15 +12,20 @@ class MongoCache extends MongoDBClient implements CacheInterface
     /**
      * @inheritDoc
      */
-    public static function Set(string $key, string $value)
+    public static function Set(string $key, string $value, ?int $duration = null)
     {
         self::Connect();
 
+        $date = null;
+        if ($duration) {
+            $date = new UTCDateTime((time() + $duration) * 1000);
+        }
+
         if (self::Exists($key)) {
-            self::$collection->updateOne(["_id" => $key], ["data" => $value]);
+            self::$collection->updateOne(["_id" => $key], ["data" => $value, "expires" => $date]);
         }
         else {
-            self::$collection->insertOne(["_id" => $key, "data" => $value]);
+            self::$collection->insertOne(["_id" => $key, "data" => $value, "expires" => $date]);
         }
     }
 

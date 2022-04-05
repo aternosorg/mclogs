@@ -8,20 +8,21 @@ class RedisCache extends RedisClient implements CacheInterface
 {
 
     /**
-     * Set the cached value for this key
-     * @param string $key
-     * @param string $value
+     * @inheritDoc
      */
-    public static function Set(string $key, string $value)
+    public static function Set(string $key, string $value, ?int $duration = null)
     {
         self::Connect();
-        self::$connection->set($key, $value);
+        if ($duration) {
+            self::$connection->setEx($key, $duration, $value);
+        }
+        else {
+            self::$connection->set($key, $value);
+        }
     }
 
     /**
-     * Get the cached data
-     * @param string $key
-     * @return string
+     * @inheritDoc
      */
     public static function Get(string $key): ?string
     {
@@ -30,9 +31,7 @@ class RedisCache extends RedisClient implements CacheInterface
     }
 
     /**
-     * Is this key used
-     * @param string $key
-     * @return bool
+     * @inheritDoc
      */
     public static function Exists(string $key): bool
     {

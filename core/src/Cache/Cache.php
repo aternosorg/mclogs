@@ -46,9 +46,10 @@ class Cache
      * set this cache value
      * @param string $key
      * @param string $value
+     * @param int|null $duration cache time (in seconds) null means the value will be cached forever
      * @return void
      */
-    public function set(string $key, string $value)
+    public function set(string $key, string $value, ?int $duration = null)
     {
         if (!$this->cache) {
             return;
