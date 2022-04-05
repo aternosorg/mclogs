@@ -6,6 +6,7 @@ use Client\MongoDBClient;
 
 class MongoCache extends MongoDBClient implements CacheInterface
 {
+    protected const COLLECTION_NAME = "cache";
 
     /**
      * @inheritDoc

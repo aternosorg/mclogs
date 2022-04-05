@@ -15,6 +15,7 @@ use Aternos\Sherlock\Maps\URLVanillaObfuscationMap;
 use Aternos\Sherlock\Maps\VanillaObfuscationMap;
 use Aternos\Sherlock\Maps\YarnMap;
 use Aternos\Sherlock\ObfuscatedString;
+use Cache\Cache;
 use Cache\CacheInterface;
 use Printer\Printer;
 use Storage\StorageInterface;
@@ -78,14 +79,6 @@ class Log
             $this->exists = true;
         }
 
-        $this->analyse();
-    }
-
-    /**
-     * analyze this log
-     * @return void
-     */
-    protected function analyse() {
         $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
         $this->log->parse();
         $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
@@ -116,21 +109,17 @@ class Log
             return;
         }
 
-        $config = Config::Get('cache');
-        /**
-         * @var CacheInterface $storage
-         */
-        $storage = $config['caches'][$config['cacheId']]['class'];
+        $cache = new Cache();
 
         if (get_class($codexLog) === VanillaLog::class) {
             $mapURL = (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
             try {
-                if ($mapContent = $storage::Get("sherlock:$mapURL")) {
+                if ($mapContent = $cache->get("sherlock:$mapURL")) {
                     $map = new VanillaObfuscationMap($mapContent);
                 }
                 else {
                     $map = new URLVanillaObfuscationMap($mapURL);
-                    $storage::Set("sherlock:$mapURL", $map->getContent());
+                    $cache->set("sherlock:$mapURL", $map->getContent());
                 }
             } catch (Exception) {
             }
@@ -139,12 +128,12 @@ class Log
             $mapURL = (new FabricMavenMapLocator($version))->findMappingURL();
 
             try {
-                if ($mapContent = $storage::Get("sherlock:$mapURL")) {
+                if ($mapContent = $cache->get("sherlock:$mapURL")) {
                     $map = new YarnMap($mapContent);
                 }
                 else {
                     $map = new GZURLYarnMap($mapURL);
-                    $storage::Set("sherlock:$mapURL", $map->getContent());
+                    $cache->Set("sherlock:$mapURL", $map->getContent());
                 }
             } catch (Exception) {
             }
@@ -152,9 +141,8 @@ class Log
 
         if ($map !== null) {
             $this->obfuscatedContent = new ObfuscatedString($this->data, $map);
-            $deobfuscatedContent = $this->obfuscatedContent->getMappedContent();
-            if ($deobfuscatedContent) {
-                $this->data = $deobfuscatedContent;
+            if ($content = $this->obfuscatedContent->getMappedContent()) {
+                $this->data = $content;
                 $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
                 $this->log->parse();
                 $this->printer = (new Printer())->setLog($this->log)->setId($this->id);

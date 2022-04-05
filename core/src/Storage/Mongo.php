@@ -6,6 +6,8 @@ use MongoDB\BSON\UTCDateTime;
 
 class Mongo extends \Client\MongoDBClient implements StorageInterface
 {
+    protected const COLLECTION_NAME = "logs";
+
     /**
      * Put some data in the storage, returns the (new) id for the data
      *
