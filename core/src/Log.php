@@ -112,7 +112,10 @@ class Log
         $cache = new Cache();
 
         if (get_class($codexLog) === VanillaLog::class) {
-            $mapURL = (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
+            $mapURL = $cache->getOrGenerateAndSet("sherlock:vanilla:$version:server", function ($version) {
+                return (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
+            }, 24*60*60 , $version);
+
             try {
                 if ($mapContent = $cache->get("sherlock:$mapURL")) {
                     $map = new VanillaObfuscationMap($mapContent);
@@ -125,7 +128,9 @@ class Log
             }
         }
         elseif ($codexLog instanceof FabricLog) {
-            $mapURL = (new FabricMavenMapLocator($version))->findMappingURL();
+            $mapURL = $cache->getOrGenerateAndSet("sherlock:vanilla:$version:server", function ($version) {
+                return (new FabricMavenMapLocator($version))->findMappingURL();
+            }, 24*60*60 , $version);
 
             try {
                 if ($mapContent = $cache->get("sherlock:$mapURL")) {

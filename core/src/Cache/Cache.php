@@ -57,4 +57,24 @@ class Cache
 
         $this->cache::Set($key, $value);
     }
+
+    /**
+     * get this value from the cache or generate it if it doesn't exist
+     * @param string $key cache key
+     * @param callable $generate function to generate value
+     * @param int|null $duration cache duration
+     * @param mixed ...$args arguments passed to the generate function
+     * @return string
+     */
+    public function getOrGenerateAndSet(string $key, callable $generate, ?int $duration = null, ...$args): string
+    {
+        if ($result = $this->get($key)) {
+            return $key;
+        }
+        else {
+            $data = $generate(...$args);
+            $this->set($key, $data, $duration);
+            return $data;
+        }
+    }
 }
