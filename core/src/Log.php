@@ -115,7 +115,6 @@ class Log
             $mapURL = $cache->getOrGenerateAndSet("sherlock:vanilla:$version:server", function ($version) {
                 return (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
             }, 24*60*60 , $version);
-
             try {
                 if ($mapContent = $cache->get("sherlock:$mapURL")) {
                     $map = new VanillaObfuscationMap($mapContent);
@@ -128,7 +127,7 @@ class Log
             }
         }
         elseif ($codexLog instanceof FabricLog) {
-            $mapURL = $cache->getOrGenerateAndSet("sherlock:vanilla:$version:server", function ($version) {
+            $mapURL = $cache->getOrGenerateAndSet("sherlock:yarn:$version:server", function ($version) {
                 return (new FabricMavenMapLocator($version))->findMappingURL();
             }, 24*60*60 , $version);
 

@@ -71,7 +71,7 @@ class Cache
     public function getOrGenerateAndSet(string $key, callable $generate, ?int $duration = null, ...$args): string
     {
         if ($result = $this->get($key)) {
-            return $key;
+            return $result;
         }
         else {
             $data = $generate(...$args);
