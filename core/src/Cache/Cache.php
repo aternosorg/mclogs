@@ -6,12 +6,14 @@ use Config;
 
 class Cache
 {
-    protected ?CacheInterface $cache;
+    protected ?CacheInterface $cache = null;
 
     public function __construct()
     {
         $config = Config::Get('cache');
-        $this->cache = $config['cacheId'] ?? null;
+        if (isset($config['cacheId'])) {
+            $this->cache = new $config['cacheId']();
+        }
     }
 
     /**
