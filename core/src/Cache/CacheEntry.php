@@ -4,12 +4,17 @@ namespace Cache;
 
 use Config;
 
-class Cache
+class CacheEntry
 {
     protected ?CacheInterface $cache = null;
+    protected string $key;
 
-    public function __construct()
+    /**
+     * @param string $key cache key
+     */
+    public function __construct(string $key)
     {
+        $this->key = $key;
         $config = Config::Get('cache');
         if (isset($config['cacheId'])) {
             $this->cache = new $config['cacheId']();
@@ -17,65 +22,61 @@ class Cache
     }
 
     /**
-     * get a value
-     * @param string $key
+     * get the value of this entry
      * @return string|null
      */
-    public function get(string $key): ?string
+    public function get(): ?string
     {
         if (!$this->cache) {
             return null;
         }
 
-        return $this->cache::Get($key);
+        return $this->cache::Get($this->key);
     }
 
     /**
-     * Is this key used
-     * @param string $key
+     * Does this entry exist
      * @return bool
      */
-    public function exists(string $key): bool
+    public function exists(): bool
     {
         if (!$this->cache) {
             return false;
         }
 
-        return $this->cache::Exists($key);
+        return $this->cache::Exists($this->key);
     }
 
     /**
-     * set this cache value
-     * @param string $key
+     * Set the value of this entry
      * @param string $value
      * @param int|null $duration cache time (in seconds) null means the value will be cached forever
      * @return void
      */
-    public function set(string $key, string $value, ?int $duration = null)
+    public function set(string $value, ?int $duration = null)
     {
         if (!$this->cache) {
             return;
         }
 
-        $this->cache::Set($key, $value);
+        $this->cache::Set($this->key, $value, $duration);
     }
 
     /**
-     * get this value from the cache or generate it if it doesn't exist
-     * @param string $key cache key
+     * Get this value from the cache or generate it if it doesn't exist
      * @param callable $generate function to generate value
      * @param int|null $duration cache duration
      * @param mixed ...$args arguments passed to the generate function
      * @return string
      */
-    public function getOrGenerateAndSet(string $key, callable $generate, ?int $duration = null, ...$args): string
+    public function getOrGenerateAndSet(callable $generate, ?int $duration = null, ...$args): string
     {
-        if ($result = $this->get($key)) {
+        if ($result = $this->get()) {
             return $result;
         }
         else {
             $data = $generate(...$args);
-            $this->set($key, $data, $duration);
+            $this->set($data, $duration);
             return $data;
         }
     }

@@ -15,7 +15,7 @@ use Aternos\Sherlock\Maps\URLVanillaObfuscationMap;
 use Aternos\Sherlock\Maps\VanillaObfuscationMap;
 use Aternos\Sherlock\Maps\YarnMap;
 use Aternos\Sherlock\ObfuscatedString;
-use Cache\Cache;
+use Cache\CacheEntry;
 use Cache\CacheInterface;
 use Printer\Printer;
 use Storage\StorageInterface;
@@ -109,35 +109,37 @@ class Log
             return;
         }
 
-        $cache = new Cache();
-
         if (get_class($codexLog) === VanillaLog::class) {
-            $mapURL = $cache->getOrGenerateAndSet("sherlock:vanilla:$version:server", function ($version) {
+            $urlCache = new CacheEntry("sherlock:vanilla:$version:server");
+            $mapURL = $urlCache->getOrGenerateAndSet(function ($version) {
                 return (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
             }, 24*60*60 , $version);
             try {
-                if ($mapContent = $cache->get("sherlock:$mapURL")) {
+                $mapCache = new CacheEntry("sherlock:$mapURL");
+                if ($mapContent = $mapCache->get()) {
                     $map = new VanillaObfuscationMap($mapContent);
                 }
                 else {
                     $map = new URLVanillaObfuscationMap($mapURL);
-                    $cache->set("sherlock:$mapURL", $map->getContent());
+                    $mapCache->set($map->getContent());
                 }
             } catch (Exception) {
             }
         }
         elseif ($codexLog instanceof FabricLog) {
-            $mapURL = $cache->getOrGenerateAndSet("sherlock:yarn:$version:server", function ($version) {
+            $urlCache = new CacheEntry("sherlock:yarn:$version:server");
+            $mapURL = $urlCache->getOrGenerateAndSet(function ($version) {
                 return (new FabricMavenMapLocator($version))->findMappingURL();
             }, 24*60*60 , $version);
 
             try {
-                if ($mapContent = $cache->get("sherlock:$mapURL")) {
+                $mapCache = new CacheEntry("sherlock:$mapURL");
+                if ($mapContent = $mapCache->get()) {
                     $map = new YarnMap($mapContent);
                 }
                 else {
                     $map = new GZURLYarnMap($mapURL);
-                    $cache->Set("sherlock:$mapURL", $map->getContent());
+                    $mapCache->set($map->getContent());
                 }
             } catch (Exception) {
             }
