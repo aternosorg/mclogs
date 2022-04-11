@@ -22,10 +22,10 @@ class MongoCache extends MongoDBClient implements CacheInterface
         }
 
         if (self::Exists($key)) {
-            self::$collection->updateOne(["_id" => $key], ["data" => $value, "expires" => $date]);
+            self::getCollection()->updateOne(["_id" => $key], ["data" => $value, "expires" => $date]);
         }
         else {
-            self::$collection->insertOne(["_id" => $key, "data" => $value, "expires" => $date]);
+            self::getCollection()->insertOne(["_id" => $key, "data" => $value, "expires" => $date]);
         }
     }
 
@@ -36,7 +36,7 @@ class MongoCache extends MongoDBClient implements CacheInterface
     {
         self::Connect();
 
-        return self::$collection->findOne(["_id" => $key])?->data;
+        return self::getCollection()->findOne(["_id" => $key])?->data;
     }
 
     /**
@@ -46,6 +46,6 @@ class MongoCache extends MongoDBClient implements CacheInterface
     {
         self::Connect();
 
-        return self::$collection->findOne(["_id" => $key]) !== null;
+        return self::getCollection()->findOne(["_id" => $key]) !== null;
     }
 }

@@ -28,7 +28,7 @@ class Mongo extends \Client\MongoDBClient implements StorageInterface
 
         $date = new UTCDateTime((time() + $config['storageTime']) * 1000);
 
-        self::$collection->insertOne([
+        self::getCollection()->insertOne([
             "_id" => $id->getRaw(),
             "expires" => $date,
             "data" => $data
@@ -47,7 +47,7 @@ class Mongo extends \Client\MongoDBClient implements StorageInterface
     {
         self::Connect();
 
-        $result = self::$collection->findOne(["_id" => $id->getRaw()]);
+        $result = self::getCollection()->findOne(["_id" => $id->getRaw()]);
 
         if ($result === null) {
             return null;
@@ -69,7 +69,7 @@ class Mongo extends \Client\MongoDBClient implements StorageInterface
 
         $date = new UTCDateTime((time() + $config['storageTime']) * 1000);
 
-        self::$collection->updateOne(["_id" => $id->getRaw()], ['$set' => ['expires' => $date]]);
+        self::getCollection()->updateOne(["_id" => $id->getRaw()], ['$set' => ['expires' => $date]]);
 
         return true;
     }

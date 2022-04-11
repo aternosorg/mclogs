@@ -61,23 +61,4 @@ class CacheEntry
 
         $this->cache::Set($this->key, $value, $duration);
     }
-
-    /**
-     * Get this value from the cache or generate it if it doesn't exist
-     * @param callable $generate function to generate value
-     * @param int|null $duration cache duration
-     * @param mixed ...$args arguments passed to the generate function
-     * @return string
-     */
-    public function getOrGenerateAndSet(callable $generate, ?int $duration = null, ...$args): string
-    {
-        if ($result = $this->get()) {
-            return $result;
-        }
-        else {
-            $data = $generate(...$args);
-            $this->set($data, $duration);
-            return $data;
-        }
-    }
 }

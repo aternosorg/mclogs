@@ -11,6 +11,7 @@ use Aternos\Codex\Minecraft\Log\VanillaLog;
 use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
 use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
 use Aternos\Sherlock\Maps\GZURLYarnMap;
+use Aternos\Sherlock\Maps\ObfuscationMap;
 use Aternos\Sherlock\Maps\URLVanillaObfuscationMap;
 use Aternos\Sherlock\Maps\VanillaObfuscationMap;
 use Aternos\Sherlock\Maps\YarnMap;
@@ -91,29 +92,21 @@ class Log
     }
 
     /**
-     * deobfuscate the content of this log
-     * @return void
+     * get the obfuscation map matching this log
+     * @param $version
+     * @return ObfuscationMap|null
      */
-    protected function deobfuscateContent()
+    protected function getObfuscationMap($version): ?ObfuscationMap
     {
-        $codexLog = $this->get();
-        $map = null;
-        $information = $this->analysis->getInformation();
-        $version = null;
-        foreach ($information as $info) {
-            if ($info instanceof VanillaVersionInformation) {
-                $version = $info->getValue();
-            }
-        }
-        if (!$version) {
-            return;
-        }
-
-        if (get_class($codexLog) === VanillaLog::class) {
+        if (get_class($this->get()) === VanillaLog::class) {
             $urlCache = new CacheEntry("sherlock:vanilla:$version:server");
-            $mapURL = $urlCache->getOrGenerateAndSet(function ($version) {
-                return (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
-            }, 24*60*60 , $version);
+
+            $mapURL = $urlCache->get();
+            if (!$mapURL) {
+                $mapURL = (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
+                $urlCache->set($mapURL, 24*60*60);
+            }
+
             try {
                 $mapCache = new CacheEntry("sherlock:$mapURL");
                 if ($mapContent = $mapCache->get()) {
@@ -125,12 +118,17 @@ class Log
                 }
             } catch (Exception) {
             }
+            return $map ?? null;
         }
-        elseif ($codexLog instanceof FabricLog) {
+
+        if ($this->get() instanceof FabricLog) {
             $urlCache = new CacheEntry("sherlock:yarn:$version:server");
-            $mapURL = $urlCache->getOrGenerateAndSet(function ($version) {
-                return (new FabricMavenMapLocator($version))->findMappingURL();
-            }, 24*60*60 , $version);
+
+            $mapURL = $urlCache->get();
+            if (!$mapURL) {
+                $mapURL = (new FabricMavenMapLocator($version))->findMappingURL();
+                $urlCache->set($mapURL, 24*60*60);
+            }
 
             try {
                 $mapCache = new CacheEntry("sherlock:$mapURL");
@@ -143,7 +141,30 @@ class Log
                 }
             } catch (Exception) {
             }
+            return $map ?? null;
         }
+
+        return null;
+    }
+
+    /**
+     * deobfuscate the content of this log
+     * @return void
+     */
+    protected function deobfuscateContent()
+    {
+        $information = $this->analysis->getInformation();
+        $version = null;
+        foreach ($information as $info) {
+            if ($info instanceof VanillaVersionInformation) {
+                $version = $info->getValue();
+            }
+        }
+        if (!$version) {
+            return;
+        }
+
+        $map = $this->getObfuscationMap($version);
 
         if ($map !== null) {
             $this->obfuscatedContent = new ObfuscatedString($this->data, $map);

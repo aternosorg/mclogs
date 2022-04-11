@@ -2,6 +2,7 @@
 
 namespace Client;
 
+use MongoDB\Client;
 use MongoDB\Collection;
 
 class MongoDBClient
@@ -12,9 +13,9 @@ class MongoDBClient
     protected const COLLECTION_NAME = "logs";
 
     /**
-     * @var null|Collection
+     * @var null|Client
      */
-    protected static ?Collection $collection = null;
+    protected static ?Client $connection = null;
 
     /**
      * Connect to MongoDB
@@ -23,8 +24,16 @@ class MongoDBClient
     {
         if (self::$collection === null) {
             $config = \Config::Get("mongo");
-            $connection = new \MongoDB\Client($config['url'] ?? 'mongodb://127.0.0.1/');
-            self::$collection = $connection->mclogs->{static::COLLECTION_NAME};
+            $connection = new Client($config['url'] ?? 'mongodb://127.0.0.1/');
         }
+    }
+
+    /**
+     * get the collection specified by {{@link COLLECTION_NAME}}
+     * @return Collection
+     */
+    protected static function getCollection(): Collection
+    {
+        return self::$connection->mclogs->{static::COLLECTION_NAME};
     }
 }
