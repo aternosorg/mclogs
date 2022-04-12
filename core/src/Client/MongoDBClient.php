@@ -22,9 +22,9 @@ class MongoDBClient
      */
     protected static function Connect()
     {
-        if (self::$collection === null) {
+        if (self::$connection === null) {
             $config = \Config::Get("mongo");
-            $connection = new Client($config['url'] ?? 'mongodb://127.0.0.1/');
+            self::$connection = new Client($config['url'] ?? 'mongodb://127.0.0.1/');
         }
     }
 
@@ -34,6 +34,7 @@ class MongoDBClient
      */
     protected static function getCollection(): Collection
     {
+        static::Connect();
         return self::$connection->mclogs->{static::COLLECTION_NAME};
     }
 }

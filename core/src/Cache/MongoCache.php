@@ -14,8 +14,6 @@ class MongoCache extends MongoDBClient implements CacheInterface
      */
     public static function Set(string $key, string $value, ?int $duration = null)
     {
-        self::Connect();
-
         $date = null;
         if ($duration) {
             $date = new UTCDateTime((time() + $duration) * 1000);
@@ -34,8 +32,6 @@ class MongoCache extends MongoDBClient implements CacheInterface
      */
     public static function Get(string $key): ?string
     {
-        self::Connect();
-
         return self::getCollection()->findOne(["_id" => $key])?->data;
     }
 
@@ -44,8 +40,6 @@ class MongoCache extends MongoDBClient implements CacheInterface
      */
     public static function Exists(string $key): bool
     {
-        self::Connect();
-
         return self::getCollection()->findOne(["_id" => $key]) !== null;
     }
 }

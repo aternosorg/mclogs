@@ -104,7 +104,7 @@ class Log
             $mapURL = $urlCache->get();
             if (!$mapURL) {
                 $mapURL = (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
-                $urlCache->set($mapURL, 24*60*60);
+                $urlCache->set($mapURL, 30*24*60*60);
             }
 
             try {
@@ -166,14 +166,15 @@ class Log
 
         $map = $this->getObfuscationMap($version);
 
-        if ($map !== null) {
-            $this->obfuscatedContent = new ObfuscatedString($this->data, $map);
-            if ($content = $this->obfuscatedContent->getMappedContent()) {
-                $this->data = $content;
-                $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
-                $this->log->parse();
-                $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
-            }
+        if ($map === null) {
+            return;
+        }
+        $this->obfuscatedContent = new ObfuscatedString($this->data, $map);
+        if ($content = $this->obfuscatedContent->getMappedContent()) {
+            $this->data = $content;
+            $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
+            $this->log->parse();
+            $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
         }
     }
 

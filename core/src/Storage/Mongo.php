@@ -16,8 +16,6 @@ class Mongo extends \Client\MongoDBClient implements StorageInterface
      */
     public static function Put(string $data): ?\Id
     {
-        self::Connect();
-
         $config = \Config::Get("storage");
         $id = new \Id();
         $id->setStorage("m");
@@ -45,8 +43,6 @@ class Mongo extends \Client\MongoDBClient implements StorageInterface
      */
     public static function Get(\Id $id): ?string
     {
-        self::Connect();
-
         $result = self::getCollection()->findOne(["_id" => $id->getRaw()]);
 
         if ($result === null) {
@@ -65,8 +61,6 @@ class Mongo extends \Client\MongoDBClient implements StorageInterface
     public static function Renew(\Id $id): bool
     {
         $config = \Config::Get("storage");
-        self::Connect();
-
         $date = new UTCDateTime((time() + $config['storageTime']) * 1000);
 
         self::getCollection()->updateOne(["_id" => $id->getRaw()], ['$set' => ['expires' => $date]]);
