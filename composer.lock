@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14314a5c37238c7600b3ed90b423a89a",
+    "content-hash": "5f5efaf7d0468911a764592b301fceb2",
     "packages": [
         {
             "name": "aternos/codex",
@@ -96,16 +96,16 @@
         },
         {
             "name": "aternos/sherlock",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/sherlock.git",
-                "reference": "6b4ed68bb4c83b3cd406a4864f2fc0fe1c470ede"
+                "reference": "7b3c1c75183479d378ed32bcad9cfe794e4867bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/sherlock/zipball/6b4ed68bb4c83b3cd406a4864f2fc0fe1c470ede",
-                "reference": "6b4ed68bb4c83b3cd406a4864f2fc0fe1c470ede",
+                "url": "https://api.github.com/repos/aternosorg/sherlock/zipball/7b3c1c75183479d378ed32bcad9cfe794e4867bd",
+                "reference": "7b3c1c75183479d378ed32bcad9cfe794e4867bd",
                 "shasum": ""
             },
             "require": {
@@ -134,9 +134,9 @@
             "description": "PHP library to apply minecraft mappings to log files",
             "support": {
                 "issues": "https://github.com/aternosorg/sherlock/issues",
-                "source": "https://github.com/aternosorg/sherlock/tree/v1.0.0"
+                "source": "https://github.com/aternosorg/sherlock/tree/v1.0.1"
             },
-            "time": "2022-03-29T14:45:36+00:00"
+            "time": "2022-04-20T21:36:04+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -2460,5 +2460,5 @@
         "ext-zlib": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
