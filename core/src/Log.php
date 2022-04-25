@@ -1,6 +1,7 @@
 <?php
 
 use Aternos\Codex\Analysis\Analysis;
+use Aternos\Codex\Analysis\Information;
 use Aternos\Codex\Log\AnalysableLogInterface;
 use Aternos\Codex\Log\File\StringLogFile;
 use Aternos\Codex\Minecraft\Analysis\Information\Vanilla\VanillaVersionInformation;
@@ -153,18 +154,21 @@ class Log
      */
     protected function deobfuscateContent()
     {
-        $information = $this->analysis->getInformation();
-        $version = null;
-        foreach ($information as $info) {
-            if ($info instanceof VanillaVersionInformation) {
-                $version = $info->getValue();
-            }
-        }
+        /**
+         * @var ?Information
+         */
+        $version = $this->analysis->getFilteredInsights(VanillaVersionInformation::class)[0] ?? null;
         if (!$version) {
             return;
         }
+        $version = $version->getValue();
 
-        $map = $this->getObfuscationMap($version);
+        try {
+            $map = $this->getObfuscationMap($version);
+        }
+        catch (\Exception) {
+            $map = null;
+        }
 
         if ($map === null) {
             return;
