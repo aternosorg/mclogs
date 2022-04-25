@@ -1,11 +1,26 @@
 <?php
 
 use Aternos\Codex\Analysis\Analysis;
+use Aternos\Codex\Analysis\Information;
 use Aternos\Codex\Log\AnalysableLogInterface;
 use Aternos\Codex\Log\File\StringLogFile;
+use Aternos\Codex\Minecraft\Analysis\Information\Vanilla\VanillaVersionInformation;
 use Aternos\Codex\Log\LogInterface;
 use Aternos\Codex\Minecraft\Detective\Detective;
+use Aternos\Codex\Minecraft\Log\FabricLog;
+use Aternos\Codex\Minecraft\Log\VanillaLog;
+use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
+use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
+use Aternos\Sherlock\Maps\GZURLYarnMap;
+use Aternos\Sherlock\Maps\ObfuscationMap;
+use Aternos\Sherlock\Maps\URLVanillaObfuscationMap;
+use Aternos\Sherlock\Maps\VanillaObfuscationMap;
+use Aternos\Sherlock\Maps\YarnMap;
+use Aternos\Sherlock\ObfuscatedString;
+use Cache\CacheEntry;
+use Cache\CacheInterface;
 use Printer\Printer;
+use Storage\StorageInterface;
 
 class Log
 {
@@ -14,6 +29,7 @@ class Log
     private ?Id $id = null;
     private ?string $data = null;
     protected LogInterface $log;
+    protected ?ObfuscatedString $obfuscatedContent = null;
 
     /**
      * @var Analysis
@@ -51,7 +67,7 @@ class Log
         }
 
         /**
-         * @var \Storage\StorageInterface $storage
+         * @var StorageInterface $storage
          */
         $storage = $config['storages'][$this->id->getStorage()]['class'];
 
@@ -70,8 +86,99 @@ class Log
         $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
         if ($this->log instanceof AnalysableLogInterface) {
             $this->analysis = $this->log->analyse();
+            $this->deobfuscateContent();
         } else {
             $this->analysis = new Analysis();
+        }
+    }
+
+    /**
+     * get the obfuscation map matching this log
+     * @param $version
+     * @return ObfuscationMap|null
+     */
+    protected function getObfuscationMap($version): ?ObfuscationMap
+    {
+        if (get_class($this->get()) === VanillaLog::class) {
+            $urlCache = new CacheEntry("sherlock:vanilla:$version:server");
+
+            $mapURL = $urlCache->get();
+            if (!$mapURL) {
+                $mapURL = (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
+                $urlCache->set($mapURL, 30*24*60*60);
+            }
+
+            try {
+                $mapCache = new CacheEntry("sherlock:$mapURL");
+                if ($mapContent = $mapCache->get()) {
+                    $map = new VanillaObfuscationMap($mapContent);
+                }
+                else {
+                    $map = new URLVanillaObfuscationMap($mapURL);
+                    $mapCache->set($map->getContent());
+                }
+            } catch (Exception) {
+            }
+            return $map ?? null;
+        }
+
+        if ($this->get() instanceof FabricLog) {
+            $urlCache = new CacheEntry("sherlock:yarn:$version:server");
+
+            $mapURL = $urlCache->get();
+            if (!$mapURL) {
+                $mapURL = (new FabricMavenMapLocator($version))->findMappingURL();
+                $urlCache->set($mapURL, 24*60*60);
+            }
+
+            try {
+                $mapCache = new CacheEntry("sherlock:$mapURL");
+                if ($mapContent = $mapCache->get()) {
+                    $map = new YarnMap($mapContent);
+                }
+                else {
+                    $map = new GZURLYarnMap($mapURL);
+                    $mapCache->set($map->getContent());
+                }
+            } catch (Exception) {
+            }
+            return $map ?? null;
+        }
+
+        return null;
+    }
+
+    /**
+     * deobfuscate the content of this log
+     * @return void
+     */
+    protected function deobfuscateContent()
+    {
+        /**
+         * @var ?Information
+         */
+        $version = $this->analysis->getFilteredInsights(VanillaVersionInformation::class)[0] ?? null;
+        if (!$version) {
+            return;
+        }
+        $version = $version->getValue();
+
+        try {
+            $map = $this->getObfuscationMap($version);
+        }
+        catch (\Exception) {
+            $map = null;
+        }
+
+        if ($map === null) {
+            return;
+        }
+        $this->obfuscatedContent = new ObfuscatedString($this->data, $map);
+        if ($content = $this->obfuscatedContent->getMappedContent()) {
+            $this->data = $content;
+            $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
+            $this->log->parse();
+            $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
         }
     }
 
@@ -159,7 +266,7 @@ class Log
         $config = Config::Get('storage');
 
         /**
-         * @var \Storage\StorageInterface $storage
+         * @var StorageInterface $storage
          */
         $storage = $config['storages'][$config['storageId']]['class'];
 
@@ -177,7 +284,7 @@ class Log
         $config = Config::Get('storage');
 
         /**
-         * @var \Storage\StorageInterface $storage
+         * @var StorageInterface $storage
          */
         $storage = $config['storages'][$this->id->getStorage()]['class'];
 

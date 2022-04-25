@@ -2,26 +2,11 @@
 
 namespace Storage;
 
-use MongoDB\Collection;
+use MongoDB\BSON\UTCDateTime;
 
-class Mongo implements StorageInterface
+class Mongo extends \Client\MongoDBClient implements StorageInterface
 {
-    /**
-     * @var null|Collection
-     */
-    private static ?Collection $collection = null;
-
-    /**
-     * Connect to MongoDB
-     */
-    private static function Connect()
-    {
-        if (self::$collection === null) {
-            $config = \Config::Get("mongo");
-            $connection = new \MongoDB\Client($config['url'] ?? 'mongodb://127.0.0.1/');
-            self::$collection = $connection->mclogs->logs;
-        }
-    }
+    protected const COLLECTION_NAME = "logs";
 
     /**
      * Put some data in the storage, returns the (new) id for the data
@@ -31,8 +16,6 @@ class Mongo implements StorageInterface
      */
     public static function Put(string $data): ?\Id
     {
-        self::Connect();
-
         $config = \Config::Get("storage");
         $id = new \Id();
         $id->setStorage("m");
@@ -41,9 +24,9 @@ class Mongo implements StorageInterface
             $id->regenerate();
         } while (self::Get($id) !== null);
 
-        $date = new \MongoDB\BSON\UTCDateTime((time() + $config['storageTime']) * 1000);
+        $date = new UTCDateTime((time() + $config['storageTime']) * 1000);
 
-        self::$collection->insertOne([
+        self::getCollection()->insertOne([
             "_id" => $id->getRaw(),
             "expires" => $date,
             "data" => $data
@@ -60,9 +43,7 @@ class Mongo implements StorageInterface
      */
     public static function Get(\Id $id): ?string
     {
-        self::Connect();
-
-        $result = self::$collection->findOne(["_id" => $id->getRaw()]);
+        $result = self::getCollection()->findOne(["_id" => $id->getRaw()]);
 
         if ($result === null) {
             return null;
@@ -80,11 +61,9 @@ class Mongo implements StorageInterface
     public static function Renew(\Id $id): bool
     {
         $config = \Config::Get("storage");
-        self::Connect();
+        $date = new UTCDateTime((time() + $config['storageTime']) * 1000);
 
-        $date = new \MongoDB\BSON\UTCDateTime((time() + $config['storageTime']) * 1000);
-
-        self::$collection->updateOne(["_id" => $id->getRaw()], ['$set' => ['expires' => $date]]);
+        self::getCollection()->updateOne(["_id" => $id->getRaw()], ['$set' => ['expires' => $date]]);
 
         return true;
     }

@@ -2,23 +2,9 @@
 
 namespace Storage;
 
-class Redis implements StorageInterface {
+use Client\RedisClient;
 
-    /**
-     * @var ?\Redis
-     */
-    private static ?\Redis $connection = null;
-
-    /**
-     * Connect to redis
-     */
-    private static function Connect()
-    {
-        if(self::$connection === null) {
-            self::$connection = new \Redis();
-            self::$connection->connect('127.0.0.1', 6379);
-        }
-    }
+class Redis extends RedisClient implements StorageInterface {
 
     /**
      * Put some data in the storage, returns the (new) id for the data
