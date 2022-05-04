@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f5efaf7d0468911a764592b301fceb2",
+    "content-hash": "ac7543d9477b01edce9d64acb4108361",
     "packages": [
         {
             "name": "aternos/codex",
@@ -96,16 +96,16 @@
         },
         {
             "name": "aternos/sherlock",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/sherlock.git",
-                "reference": "7b3c1c75183479d378ed32bcad9cfe794e4867bd"
+                "reference": "463d97993a47f9bd773b78e03e43e54973447cec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/sherlock/zipball/7b3c1c75183479d378ed32bcad9cfe794e4867bd",
-                "reference": "7b3c1c75183479d378ed32bcad9cfe794e4867bd",
+                "url": "https://api.github.com/repos/aternosorg/sherlock/zipball/463d97993a47f9bd773b78e03e43e54973447cec",
+                "reference": "463d97993a47f9bd773b78e03e43e54973447cec",
                 "shasum": ""
             },
             "require": {
@@ -134,9 +134,9 @@
             "description": "PHP library to apply minecraft mappings to log files",
             "support": {
                 "issues": "https://github.com/aternosorg/sherlock/issues",
-                "source": "https://github.com/aternosorg/sherlock/tree/v1.0.1"
+                "source": "https://github.com/aternosorg/sherlock/tree/v1.0.2"
             },
-            "time": "2022-04-20T21:36:04+00:00"
+            "time": "2022-05-04T15:13:11+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -269,22 +269,22 @@
         },
         {
             "name": "mongodb/mongodb",
-            "version": "1.11.0",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mongodb/mongo-php-library.git",
-                "reference": "e4aa59ab15b6fe00a0e56b6772f8b515a0f01bf0"
+                "reference": "e4a7594ac4b31635fa77455c4038a7013024ba28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/e4aa59ab15b6fe00a0e56b6772f8b515a0f01bf0",
-                "reference": "e4aa59ab15b6fe00a0e56b6772f8b515a0f01bf0",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/e4a7594ac4b31635fa77455c4038a7013024ba28",
+                "reference": "e4a7594ac4b31635fa77455c4038a7013024ba28",
                 "shasum": ""
             },
             "require": {
                 "ext-hash": "*",
                 "ext-json": "*",
-                "ext-mongodb": "^1.12.0",
+                "ext-mongodb": "^1.13.0",
                 "jean85/pretty-package-versions": "^1.2 || ^2.0.1",
                 "php": "^7.2 || ^8.0",
                 "symfony/polyfill-php80": "^1.19"
@@ -297,7 +297,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11.x-dev"
+                    "dev-master": "1.12.x-dev"
                 }
             },
             "autoload": {
@@ -332,9 +332,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mongodb/mongo-php-library/issues",
-                "source": "https://github.com/mongodb/mongo-php-library/tree/1.11.0"
+                "source": "https://github.com/mongodb/mongo-php-library/tree/1.12.0"
             },
-            "time": "2021-12-14T23:38:18+00:00"
+            "time": "2022-03-23T20:18:39+00:00"
         },
         {
             "name": "myclabs/deep-copy",
