@@ -105,6 +105,11 @@ class Log
             $mapURL = $urlCache->get();
             if (!$mapURL) {
                 $mapURL = (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
+
+                if (!$mapURL) {
+                    return null;
+                }
+
                 $urlCache->set($mapURL, 30*24*60*60);
             }
 
@@ -128,6 +133,11 @@ class Log
             $mapURL = $urlCache->get();
             if (!$mapURL) {
                 $mapURL = (new FabricMavenMapLocator($version))->findMappingURL();
+
+                if (!$mapURL) {
+                    return null;
+                }
+
                 $urlCache->set($mapURL, 24*60*60);
             }
 
@@ -173,6 +183,7 @@ class Log
         if ($map === null) {
             return;
         }
+
         $this->obfuscatedContent = new ObfuscatedString($this->data, $map);
         if ($content = $this->obfuscatedContent->getMappedContent()) {
             $this->data = $content;
