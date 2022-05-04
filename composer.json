@@ -12,7 +12,7 @@
         "mongodb/mongodb": "^1.10.1",
         "ext-json": "*",
         "aternos/codex-minecraft": "^1.11.3",
-        "aternos/sherlock": "^1.0.1",
+        "aternos/sherlock": "^1.0.2",
         "ext-zlib": "*"
     }
 }
