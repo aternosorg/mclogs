@@ -12,7 +12,9 @@ if (!$log->exists()) {
     $codexLog = $log->get();
     $information = $analysis->getInformation();
     $problems = $analysis->getProblems();
-    if ($codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog) {
+    if ($codexLog instanceof \Aternos\Codex\Minecraft\Log\BedrockContentLog) {
+        $software = $codexLog->getServerSoftware() . " content log";
+    } else if ($codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog) {
         $software = $codexLog->getServerSoftware() . " server log";
     } elseif ($codexLog instanceof \Aternos\Codex\Minecraft\Log\CrashReport\MinecraftCrashReportLog) {
         $software = $codexLog->getSoftware() . " crash report";
