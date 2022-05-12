@@ -5,9 +5,10 @@ namespace Filter\Pre;
 class UserPath implements PreFilterInterface
 {
     protected const USER_PATH_PATTERNS = [
-        "/C:\\\\Users\\\\([^\\\\]+)\\\\/" => "C:\\Users\\********\\",
-        "/C:\\/Users\\/([^\\/]+)\\//" => "C:/Users/********/",
-        "/\\/home\\/[^\\/]+\\//" => "/home/********/"
+        "/C:\\\\Users\\\\([^\\\\]+)\\\\/" => "C:\\Users\\********\\", // windows
+        "/C:\\/Users\\/([^\\/]+)\\//" => "C:/Users/********/", // windows with forward slashes
+        "/(?<!\\w)\\/home\\/[^\\/]+\\//" => "/home/********/", // linux
+        "/(?<!\\w)\\/Users\\/[^\\/]+\\//" => "/Users/********/" // macos
     ];
 
     /**
