@@ -51,16 +51,16 @@
         },
         {
             "name": "aternos/codex-minecraft",
-            "version": "v1.12.0",
+            "version": "v1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "ea3053a1addd5f737945dab92a83df8a3cc55bd7"
+                "reference": "7ee2ac5fa450afe7b68eb75d495a626401483ad1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/ea3053a1addd5f737945dab92a83df8a3cc55bd7",
-                "reference": "ea3053a1addd5f737945dab92a83df8a3cc55bd7",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/7ee2ac5fa450afe7b68eb75d495a626401483ad1",
+                "reference": "7ee2ac5fa450afe7b68eb75d495a626401483ad1",
                 "shasum": ""
             },
             "require": {
@@ -90,9 +90,9 @@
             "description": "PHP library to read, parse, print and analyse Minecraft server log files.",
             "support": {
                 "issues": "https://github.com/aternosorg/codex-minecraft/issues",
-                "source": "https://github.com/aternosorg/codex-minecraft/tree/v1.12.0"
+                "source": "https://github.com/aternosorg/codex-minecraft/tree/v1.12.1"
             },
-            "time": "2022-06-07T10:52:44+00:00"
+            "time": "2022-07-06T11:49:04+00:00"
         },
         {
             "name": "aternos/sherlock",
