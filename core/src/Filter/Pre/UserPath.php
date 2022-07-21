@@ -20,7 +20,6 @@ class UserPath implements PreFilterInterface
     public static function Filter(string $data): string
     {
         foreach (static::USER_PATH_PATTERNS as $pattern => $replacement) {
-            error_log($pattern . " => " . $replacement);
             $data = preg_replace($pattern, $replacement, $data);
         }
         return $data;
