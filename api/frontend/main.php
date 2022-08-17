@@ -67,7 +67,7 @@
                     </tr>
                 </table>
 
-                <h3>Success</h3>
+                <h3>Success <span class="content-type">application/json</span></h3>
                 <pre class="answer">
 {
     "success": true,
@@ -75,7 +75,7 @@
     "url": "https://mclo.gs/8FlTowW",
     "raw": "https://api.mclo.gs/1/raw/8FlTowW"
 }</pre>
-                <h3>Error</h3>
+                <h3>Error <span class="content-type">application/json</span></h3>
                 <pre class="answer">
 {
     "success": false,
@@ -102,14 +102,94 @@
                     </tr>
                 </table>
 
-                <h3>Success</h3>
+                <h3>Success <span class="content-type">text/plain</span></h3>
                 <pre class="answer">
 [18:25:33] [Server thread/INFO]: Starting minecraft server version 1.16.2
 [18:25:33] [Server thread/INFO]: Loading properties
 [18:25:34] [Server thread/INFO]: Default game type: SURVIVAL
 ...
 </pre>
-                <h3>Error</h3>
+                <h3>Error <span class="content-type">application/json</span></h3>
+                <pre class="answer">
+{
+    "success": false,
+    "error": "Log not found."
+}</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row-inner">
+                <h2>Get insights</h2>
+
+                <div class="endpoint">
+                    <span class="method">GET</span> <span class="endpoint-url">https://api.mclo.gs/1/insights/[id]</span>
+                </div>
+                <table class="endpoint-table">
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td class="endpoint-field">[id]</td>
+                        <td class="endpoint-type">string</td>
+                        <td class="endpoint-description">The log file id, received from the paste endpoint or from a URL (https://mclo.gs/[id]).</td>
+                    </tr>
+                </table>
+
+                <h3>Success <span class="content-type">application/json</span></h3>
+                <pre class="answer">
+{
+  "id": "name/type",
+  "name": "Software name, e.g. Vanilla",
+  "type": "Type name, e.g. Server Log",
+  "version": "Version, e.g. 1.12.2",
+  "title": "Combined title, e.g. Vanilla 1.12.2 Server Log",
+  "analysis": {
+    "problems": [
+      {
+        "message": "A message explaining the problem.",
+        "counter": 1,
+        "entry": {
+          "level": 6,
+          "time": null,
+          "prefix": "The prefix of this entry, usually the part containing time and loglevel.",
+          "lines": [
+            {
+              "number": 1,
+              "content": "The full content of the line."
+            }
+          ]
+        },
+        "solutions": [
+          {
+            "message": "A message explaining a possible solution."
+          }
+        ]
+      }
+    ],
+    "information": [
+      {
+        "message": "Label: value",
+        "counter": 1,
+        "label": "The label of this information, e.g. Minecraft version",
+        "value": "The value of this information, e.g. 1.12.2",
+        "entry": {
+          "level": 6,
+          "time": null,
+          "prefix": "The prefix of this entry, usually the part containing time and loglevel.",
+          "lines": [
+            {
+              "number": 6,
+              "content": "The full content of the line."
+            }
+          ]
+        }
+      }
+    ]
+  }
+}</pre>
+                <h3>Error <span class="content-type">application/json</span></h3>
                 <pre class="answer">
 {
     "success": false,

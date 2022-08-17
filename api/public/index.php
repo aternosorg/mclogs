@@ -18,6 +18,10 @@ switch ($_SERVER['REQUEST_URI']) {
             require_once("../endpoints/raw.php");
             break;
         }
+        if (str_starts_with($_SERVER['REQUEST_URI'], "/1/insights/")) {
+            require_once("../endpoints/insights.php");
+            break;
+        }
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json');
         http_response_code(404);
