@@ -18,7 +18,7 @@
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
-        <meta name="description" content="Easily paste your Minecraft server logs to share and analyse them.">
+        <meta name="description" content="Easily paste your Minecraft logs to share and analyse them.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     </head>
     <body>

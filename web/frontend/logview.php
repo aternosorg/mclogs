@@ -2,8 +2,8 @@
 $id = new Id(substr($_SERVER['REQUEST_URI'], 1));
 $log = new Log($id);
 
-$title = "mclo.gs - Paste, share & analyse your Minecraft server logs";
-$description = "Easily paste your Minecraft server logs to share and analyse them.";
+$title = "mclo.gs - Paste, share & analyse your Minecraft logs";
+$description = "Easily paste your Minecraft logs to share and analyse them.";
 if (!$log->exists()) {
     $title = "Log not found - mclo.gs";
     http_response_code(404);

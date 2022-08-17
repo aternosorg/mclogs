@@ -1,5 +1,5 @@
 # mclo.gs
-**Paste, share & analyse your Minecraft server logs**
+**Paste, share & analyse your Minecraft logs**
 
 ## About
 The project [mclo.gs](https://mclo.gs) was created in 2017 by the Aternos team after more 

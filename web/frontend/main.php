@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Play:400,700">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet" />
 
-        <title>mclo.gs - Paste, share & analyse your Minecraft server logs</title>
+        <title>mclo.gs - Paste, share & analyse your Minecraft logs</title>
 
         <base href="/" />
 
@@ -18,7 +18,7 @@
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
-        <meta name="description" content="Easily paste your Minecraft server logs to share and analyse them.">
+        <meta name="description" content="Easily paste your Minecraft logs to share and analyse them.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43611107-4"></script>
@@ -58,7 +58,7 @@
         <div class="row dark title">
             <div class="row-inner">
                 <h1 class="title-container">
-                    <span class="title-verb">Paste</span> your Minecraft server logs.
+                    <span class="title-verb">Paste</span> your Minecraft logs.
                 </h1>
             </div>
         </div>
@@ -95,7 +95,7 @@
                             Paste
                         </div>
                         <div class="info-text">
-                            Easily paste your Minecraft server log file here from any source. Critical information e.g. IP addresses are automatically hidden.
+                            Easily paste your Minecraft log file here from any source. Critical information e.g. IP addresses are automatically hidden.
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                             Share
                         </div>
                         <div class="info-text">
-                            Use your personal short URL to share your Minecraft server log with others and find solutions together.
+                            Use your personal short URL to share your Minecraft log with others and find solutions together.
                         </div>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
                             Analyse
                         </div>
                         <div class="info-text">
-                            Find problems in your Minecraft server log through intelligent syntax highlighting and analysis.
+                            Find problems in your Minecraft log through intelligent syntax highlighting and analysis.
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                             Use our plugin.
                         </div>
                         <div class="article-text">
-                            With our plugin you can share your Minecraft server log directly from your server with one simple command.
+                            With our plugin you can share your Minecraft log directly from your server with one simple command.
                             Use permissions to share the power with other team members and solve problems together. It's even possible
                             to export old server log files, e.g. after a crash. Critical information like IP addresses are automatically
                             hidden to ensure safety and privacy.
