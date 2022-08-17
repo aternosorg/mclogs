@@ -151,7 +151,7 @@
                                 <i class="fa fa-download"></i> spigotmc.org
                             </a>
                             <a href="https://github.com/aternosorg/mclogs-bukkit" target="_blank" class="btn btn-blue btn-no-margin">
-                                <i class="fa fa-github"></i> github.com
+                                <i class="fab fa-github"></i> github.com
                             </a>
                         </div>
                     </div>
@@ -177,10 +177,10 @@
                                 <i class="fa fa-download"></i> curseforge.com
                             </a>
                             <a href="https://github.com/aternosorg/mclogs-forge" target="_blank" class="btn btn-blue btn-no-margin">
-                                <i class="fa fa-github"></i> Forge
+                                <i class="fab fa-github"></i> Forge
                             </a>
                             <a href="https://github.com/aternosorg/mclogs-fabric" target="_blank" class="btn btn-blue btn-no-margin">
-                                <i class="fa fa-github"></i> Fabric
+                                <i class="fab fa-github"></i> Fabric
                             </a>
                         </div>
                     </div>
