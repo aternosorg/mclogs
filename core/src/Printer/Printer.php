@@ -64,7 +64,8 @@ class Printer extends ModifiableDefaultPrinter
             $return .= '<td><span class="level level-' . $entry->getLevel()->asString() . ((!$first) ? " multiline" : "") . '">';
             $lineString = $this->printLine($line);
             if ($entry instanceof \Aternos\Codex\Minecraft\Log\Entry) {
-                $lineString = str_replace($entry->getPrefix(), '<span class="level-prefix">' . $entry->getPrefix() . '</span>', $lineString);
+                $prefix = htmlentities($entry->getPrefix());
+                $lineString = str_replace($prefix, '<span class="level-prefix">' . $prefix . '</span>', $lineString);
             }
             $return .= $lineString;
             $return .= '</span></td>';

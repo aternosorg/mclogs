@@ -55,12 +55,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "7d4ebd2707c4373c7bef17e3b4e5a4245fcb2f8c"
+                "reference": "3f8ee69b44f04507254af37f7932a5ab03ff8889"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/7d4ebd2707c4373c7bef17e3b4e5a4245fcb2f8c",
-                "reference": "7d4ebd2707c4373c7bef17e3b4e5a4245fcb2f8c",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/3f8ee69b44f04507254af37f7932a5ab03ff8889",
+                "reference": "3f8ee69b44f04507254af37f7932a5ab03ff8889",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +92,7 @@
                 "issues": "https://github.com/aternosorg/codex-minecraft/issues",
                 "source": "https://github.com/aternosorg/codex-minecraft/tree/2.0"
             },
-            "time": "2022-08-17T10:57:10+00:00"
+            "time": "2022-08-17T13:34:07+00:00"
         },
         {
             "name": "aternos/sherlock",
