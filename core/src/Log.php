@@ -2,13 +2,14 @@
 
 use Aternos\Codex\Analysis\Analysis;
 use Aternos\Codex\Analysis\Information;
-use Aternos\Codex\Log\AnalysableLogInterface;
 use Aternos\Codex\Log\File\StringLogFile;
+use Aternos\Codex\Log\Level;
 use Aternos\Codex\Minecraft\Analysis\Information\Vanilla\VanillaVersionInformation;
-use Aternos\Codex\Log\LogInterface;
 use Aternos\Codex\Minecraft\Detective\Detective;
-use Aternos\Codex\Minecraft\Log\FabricLog;
-use Aternos\Codex\Minecraft\Log\VanillaLog;
+use Aternos\Codex\Minecraft\Log\Minecraft\MinecraftLog;
+use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\Fabric\FabricLog;
+use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaClientLog;
+use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaServerLog;
 use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
 use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
 use Aternos\Sherlock\Maps\GZURLYarnMap;
@@ -18,17 +19,15 @@ use Aternos\Sherlock\Maps\VanillaObfuscationMap;
 use Aternos\Sherlock\Maps\YarnMap;
 use Aternos\Sherlock\ObfuscatedString;
 use Cache\CacheEntry;
-use Cache\CacheInterface;
 use Printer\Printer;
 use Storage\StorageInterface;
 
 class Log
 {
-    public static array $errorLogLevels = ["ERROR", "SEVERE", "FATAL", "CRITICAL", "EMERGENCY", "STDERR"];
     private bool $exists = false;
     private ?Id $id = null;
     private ?string $data = null;
-    protected LogInterface $log;
+    protected MinecraftLog $log;
     protected ?ObfuscatedString $obfuscatedContent = null;
 
     /**
@@ -84,12 +83,8 @@ class Log
         $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
         $this->log->parse();
         $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
-        if ($this->log instanceof AnalysableLogInterface) {
-            $this->analysis = $this->log->analyse();
-            $this->deobfuscateContent();
-        } else {
-            $this->analysis = new Analysis();
-        }
+        $this->analysis = $this->log->analyse();
+        $this->deobfuscateContent();
     }
 
     /**
@@ -99,7 +94,7 @@ class Log
      */
     protected function getObfuscationMap($version): ?ObfuscationMap
     {
-        if (get_class($this->get()) === VanillaLog::class) {
+        if (get_class($this->get()) === VanillaServerLog::class || get_class($this->get()) === VanillaClientLog::class) {
             $urlCache = new CacheEntry("sherlock:vanilla:$version:server");
 
             $mapURL = $urlCache->get();
@@ -110,15 +105,14 @@ class Log
                     return null;
                 }
 
-                $urlCache->set($mapURL, 30*24*60*60);
+                $urlCache->set($mapURL, 30 * 24 * 60 * 60);
             }
 
             try {
                 $mapCache = new CacheEntry("sherlock:$mapURL");
                 if ($mapContent = $mapCache->get()) {
                     $map = new VanillaObfuscationMap($mapContent);
-                }
-                else {
+                } else {
                     $map = new URLVanillaObfuscationMap($mapURL);
                     $mapCache->set($map->getContent());
                 }
@@ -138,15 +132,14 @@ class Log
                     return null;
                 }
 
-                $urlCache->set($mapURL, 24*60*60);
+                $urlCache->set($mapURL, 24 * 60 * 60);
             }
 
             try {
                 $mapCache = new CacheEntry("sherlock:$mapURL");
                 if ($mapContent = $mapCache->get()) {
                     $map = new YarnMap($mapContent);
-                }
-                else {
+                } else {
                     $map = new GZURLYarnMap($mapURL);
                     $mapCache->set($map->getContent());
                 }
@@ -175,8 +168,7 @@ class Log
 
         try {
             $map = $this->getObfuscationMap($version);
-        }
-        catch (\Exception) {
+        } catch (\Exception) {
             $map = null;
         }
 
@@ -206,9 +198,9 @@ class Log
     /**
      * Get the log
      *
-     * @return LogInterface
+     * @return MinecraftLog
      */
-    public function get(): LogInterface
+    public function get(): MinecraftLog
     {
         return $this->log;
     }
@@ -255,7 +247,7 @@ class Log
         }
 
         foreach ($this->log as $entry) {
-            if (in_array(strtoupper($entry->getLevel()), static::$errorLogLevels)) {
+            if ($entry->getLevel()->asInt() <= Level::ERROR) {
                 $errorCount++;
             }
         }

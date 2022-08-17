@@ -4,24 +4,24 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "db1619afcae7ea52b22d0121a9fb4339",
+    "content-hash": "db5e4267a5038fdd2961cd4b71863c73",
     "packages": [
         {
             "name": "aternos/codex",
-            "version": "v1.5.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex.git",
-                "reference": "f015e290c5d118f4b7368c99c641bf887154cb60"
+                "reference": "18639f0ce4610e4227cf82c9088002a35fc563c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex/zipball/f015e290c5d118f4b7368c99c641bf887154cb60",
-                "reference": "f015e290c5d118f4b7368c99c641bf887154cb60",
+                "url": "https://api.github.com/repos/aternosorg/codex/zipball/18639f0ce4610e4227cf82c9088002a35fc563c1",
+                "reference": "18639f0ce4610e4227cf82c9088002a35fc563c1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.4"
+                "php": ">=8.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5"
@@ -45,28 +45,28 @@
             "description": "PHP library to read, parse, print and analyse log files.",
             "support": {
                 "issues": "https://github.com/aternosorg/codex/issues",
-                "source": "https://github.com/aternosorg/codex/tree/v1.5.0"
+                "source": "https://github.com/aternosorg/codex/tree/v2.0.0"
             },
-            "time": "2022-03-24T10:04:09+00:00"
+            "time": "2022-08-17T14:18:04+00:00"
         },
         {
             "name": "aternos/codex-minecraft",
-            "version": "v1.13.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "63c4dc88c96886df7a2853d1e0af96c5cb2eec17"
+                "reference": "cf70d1bdd43a0650b3a948bc8a117e749c1d7e6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/63c4dc88c96886df7a2853d1e0af96c5cb2eec17",
-                "reference": "63c4dc88c96886df7a2853d1e0af96c5cb2eec17",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/cf70d1bdd43a0650b3a948bc8a117e749c1d7e6c",
+                "reference": "cf70d1bdd43a0650b3a948bc8a117e749c1d7e6c",
                 "shasum": ""
             },
             "require": {
-                "aternos/codex": "^1.5.0",
+                "aternos/codex": "^2.0.0",
                 "ext-json": "*",
-                "php": ">=7.4.0"
+                "php": ">=8.1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^9.5.13"
@@ -90,9 +90,9 @@
             "description": "PHP library to read, parse, print and analyse Minecraft server log files.",
             "support": {
                 "issues": "https://github.com/aternosorg/codex-minecraft/issues",
-                "source": "https://github.com/aternosorg/codex-minecraft/tree/v1.13.0"
+                "source": "https://github.com/aternosorg/codex-minecraft/tree/v2.0.0"
             },
-            "time": "2022-07-14T12:50:09+00:00"
+            "time": "2022-08-17T14:24:36+00:00"
         },
         {
             "name": "aternos/sherlock",
@@ -269,22 +269,22 @@
         },
         {
             "name": "mongodb/mongodb",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mongodb/mongo-php-library.git",
-                "reference": "e4a7594ac4b31635fa77455c4038a7013024ba28"
+                "reference": "a9d82890fe0c104cf795e6c759c92484d12c027a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/e4a7594ac4b31635fa77455c4038a7013024ba28",
-                "reference": "e4a7594ac4b31635fa77455c4038a7013024ba28",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/a9d82890fe0c104cf795e6c759c92484d12c027a",
+                "reference": "a9d82890fe0c104cf795e6c759c92484d12c027a",
                 "shasum": ""
             },
             "require": {
                 "ext-hash": "*",
                 "ext-json": "*",
-                "ext-mongodb": "^1.13.0",
+                "ext-mongodb": "^1.14.0",
                 "jean85/pretty-package-versions": "^1.2 || ^2.0.1",
                 "php": "^7.2 || ^8.0",
                 "symfony/polyfill-php80": "^1.19"
@@ -297,7 +297,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12.x-dev"
+                    "dev-master": "1.13.x-dev"
                 }
             },
             "autoload": {
@@ -332,9 +332,9 @@
             ],
             "support": {
                 "issues": "https://github.com/mongodb/mongo-php-library/issues",
-                "source": "https://github.com/mongodb/mongo-php-library/tree/1.12.0"
+                "source": "https://github.com/mongodb/mongo-php-library/tree/1.13.0"
             },
-            "time": "2022-03-23T20:18:39+00:00"
+            "time": "2022-07-14T05:07:37+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -1109,16 +1109,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "9.5.20",
+            "version": "9.5.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "12bc8879fb65aef2138b26fc633cb1e3620cffba"
+                "reference": "0e32b76be457de00e83213528f6bb37e2a38fcb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/12bc8879fb65aef2138b26fc633cb1e3620cffba",
-                "reference": "12bc8879fb65aef2138b26fc633cb1e3620cffba",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0e32b76be457de00e83213528f6bb37e2a38fcb1",
+                "reference": "0e32b76be457de00e83213528f6bb37e2a38fcb1",
                 "shasum": ""
             },
             "require": {
@@ -1152,7 +1152,6 @@
                 "sebastian/version": "^3.0.2"
             },
             "require-dev": {
-                "ext-pdo": "*",
                 "phpspec/prophecy-phpunit": "^2.0.1"
             },
             "suggest": {
@@ -1196,7 +1195,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.20"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.5.21"
             },
             "funding": [
                 {
@@ -1208,7 +1207,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-04-01T12:37:26+00:00"
+            "time": "2022-06-19T12:14:25+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -2373,7 +2372,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "ext-json": "*",
         "ext-zlib": "*"
     },

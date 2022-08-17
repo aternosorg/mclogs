@@ -8,20 +8,11 @@ if (!$log->exists()) {
     $title = "Log not found - mclo.gs";
     http_response_code(404);
 } else {
-    $analysis = $log->getAnalysis();
     $codexLog = $log->get();
+    $analysis = $log->getAnalysis();
     $information = $analysis->getInformation();
     $problems = $analysis->getProblems();
-    if ($codexLog instanceof \Aternos\Codex\Minecraft\Log\BedrockContentLog) {
-        $software = $codexLog->getServerSoftware() . " content log";
-    } else if ($codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog) {
-        $software = $codexLog->getServerSoftware() . " server log";
-    } elseif ($codexLog instanceof \Aternos\Codex\Minecraft\Log\CrashReport\MinecraftCrashReportLog) {
-        $software = $codexLog->getSoftware() . " crash report";
-    } else {
-        $software = "Unknown log";
-    }
-    $title = $software . " [#" . $id->get() . "] - mclo.gs";
+    $title = $codexLog->getTitle() . " [#" . $id->get() . "] - mclo.gs";
     $lineNumbers = $log->getLineNumbers();
     $lineString = $lineNumbers === 1 ? "line" : "lines";
 
@@ -55,7 +46,7 @@ if (!$log->exists()) {
 
         <base href="/" />
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
         <link rel="stylesheet" href="css/mclogs.css?v=130220" />
         <link rel="stylesheet" href="css/log.css?v=100222" />
@@ -95,7 +86,7 @@ if (!$log->exists()) {
                         <i class="fa fa-code"></i> API
                     </a>
                     <a class="menu-social btn btn-black btn-notext btn-large btn-no-margin" href="https://github.com/aternosorg/mclogs" target="_blank">
-                        <i class="fa fa-github"></i>
+                        <i class="fab fa-github"></i>
                     </a>
                 </div>
             </div>
@@ -104,6 +95,10 @@ if (!$log->exists()) {
             <div class="row-inner">
                 <?php if($log->exists()): ?>
                 <div class="log-info">
+                    <div class="log-title">
+                        <h1><i class="fas fa-file-lines"></i> <?=$codexLog->getTitle(); ?></h1>
+                        <div class="log-id">#<?=$id->get(); ?></div>
+                    </div>
                     <div class="log-info-actions">
                         <?php if($errorCount): ?>
                         <div class="btn btn-red btn-small error-toggle">
@@ -117,23 +112,12 @@ if (!$log->exists()) {
                         </div>
                     </div>
                 </div>
-                <?php if(count($analysis) > 0 || $codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog): ?>
+                <?php if(count($analysis) > 0): ?>
                     <div class="analysis">
                         <div class="analysis-headline"><i class="fa fa-info-circle"></i> Analysis</div>
-                        <?php if($codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog || count($information) > 0): ?>
+                        <?php if(count($information) > 0): ?>
                             <div class="information-list">
-                                <?php if($codexLog instanceof \Aternos\Codex\Minecraft\Log\MinecraftServerLog): ?>
-                                <div class="information">
-                                    <div class="information-label">
-                                        Server software:
-                                    </div>
-                                    <div class="information-value">
-                                        <?=$codexLog->getServerSoftware(); ?>
-                                    </div>
-                                </div>
-                                <?php endif; ?>
                                 <?php foreach($information as $info): ?>
-                                    <?php /** @var \Aternos\Codex\Minecraft\Analysis\Information\MinecraftInformation $info */ ?>
                                     <div class="information">
                                         <div class="information-label">
                                             <?=$info->getLabel(); ?>:
@@ -148,7 +132,6 @@ if (!$log->exists()) {
                         <?php if(count($problems) > 0): ?>
                             <div class="problem-list">
                                 <?php foreach($problems as $problem): ?>
-                                    <?php /** @var \Aternos\Codex\Minecraft\Analysis\Problem\MinecraftProblem $problem */ ?>
                                     <div class="problem">
                                         <div class="problem">
                                             <div class="problem-header">
@@ -166,7 +149,6 @@ if (!$log->exists()) {
                                                 </div>
                                                 <div class="problem-solution-list">
                                                     <?php foreach($problem->getSolutions() as $solution): ?>
-                                                        <?php /** @var \Aternos\Codex\Minecraft\Analysis\Solution\MinecraftSolution $solution */ ?>
                                                         <div class="problem-solution">
                                                             <?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", htmlspecialchars($solution->getMessage())); ?>
                                                         </div>
