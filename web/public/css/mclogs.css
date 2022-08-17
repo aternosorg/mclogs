@@ -359,6 +359,10 @@ body {
     align-items: baseline;
 }
 
+.log-title h1 {
+    font-size: 22px;
+}
+
 .log-title h1 i {
     margin-right: 8px;
 }
@@ -367,10 +371,9 @@ body {
     color: #777;
     font-weight: bold;
     margin-left: 8px;
-    font-size: 16px;
+    font-size: 12px;
     font-family: "Roboto Mono", monospace;
 }
-
 
 .log-info-actions {
     margin-left: auto;
