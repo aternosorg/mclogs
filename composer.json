@@ -7,11 +7,12 @@
             "email": "matthias@aternos.org"
         }
     ],
+    "minimum-stability": "dev",
     "require": {
-        "php": ">=8.0",
-        "mongodb/mongodb": "^1.10.1",
+        "php": ">=8.1",
+        "mongodb/mongodb": "^1.12.0",
         "ext-json": "*",
-        "aternos/codex-minecraft": "^1.12.0",
+        "aternos/codex-minecraft": "2.0.x-dev",
         "aternos/sherlock": "^1.0.2",
         "ext-zlib": "*"
     }
