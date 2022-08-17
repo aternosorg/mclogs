@@ -11,7 +11,7 @@
 
         <base href="/" />
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
         <link rel="stylesheet" href="css/mclogs.css" />
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
@@ -50,7 +50,7 @@
                         <i class="fa fa-code"></i> API
                     </a>
                     <a class="menu-social btn btn-black btn-notext btn-large btn-no-margin" href="https://github.com/aternosorg/mclogs" target="_blank">
-                        <i class="fa fa-github"></i>
+                        <i class="fab fa-github"></i>
                     </a>
                 </div>
             </div>

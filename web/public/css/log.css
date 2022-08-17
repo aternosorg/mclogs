@@ -12,7 +12,7 @@
     color: #f0f0f0;
 }
 
-.level-TITLE {
+.level-title {
     font-weight: bold;
     color: #f0f0f0;
     background-color: #2d87d3;
@@ -20,30 +20,24 @@
     border-radius: 2px;
 }
 
-.level-INFO .level-prefix,
-.level-INFORM .level-prefix,
-.level-NOTICE .level-prefix,
-.level-DEBUG .level-prefix,
-.level-TRACE .level-prefix {
+.level-info .level-prefix,
+.level-notice .level-prefix,
+.level-debug .level-prefix {
     color: #2d87d3;
 }
 
-.level-WARN,
-.level-WARNING {
+.level-warning {
     color: #FF6625;
 }
 
-.level-ERROR,
-.level-SEVERE,
-.level-FATAL,
-.level-CRITICAL,
-.level-EMERGENCY,
-.level-STDERR,
-.level-STACKTRACE {
+.level-error,
+.level-critical,
+.level-emergency,
+.level-stacktrace {
     color: #F62451;
 }
 
-.level-COMMENT {
+.level-comment {
     color: #A4A4A4;
 }
 

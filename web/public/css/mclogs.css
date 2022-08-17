@@ -353,6 +353,25 @@ body {
     display: flex;
 }
 
+.log-title {
+    padding: 8px;
+    display: flex;
+    align-items: baseline;
+}
+
+.log-title h1 i {
+    margin-right: 8px;
+}
+
+.log-id {
+    color: #777;
+    font-weight: bold;
+    margin-left: 8px;
+    font-size: 16px;
+    font-family: "Roboto Mono", monospace;
+}
+
+
 .log-info-actions {
     margin-left: auto;
 }

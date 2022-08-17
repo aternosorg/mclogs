@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex.git",
-                "reference": "c8715d8d29dc10744b7221b705b90c2a53eab57c"
+                "reference": "cee752fbaf83b3b8078b5ef2bc39287282620cc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex/zipball/c8715d8d29dc10744b7221b705b90c2a53eab57c",
-                "reference": "c8715d8d29dc10744b7221b705b90c2a53eab57c",
+                "url": "https://api.github.com/repos/aternosorg/codex/zipball/cee752fbaf83b3b8078b5ef2bc39287282620cc7",
+                "reference": "cee752fbaf83b3b8078b5ef2bc39287282620cc7",
                 "shasum": ""
             },
             "require": {
@@ -47,7 +47,7 @@
                 "issues": "https://github.com/aternosorg/codex/issues",
                 "source": "https://github.com/aternosorg/codex/tree/2.0"
             },
-            "time": "2022-08-16T16:33:26+00:00"
+            "time": "2022-08-17T10:56:43+00:00"
         },
         {
             "name": "aternos/codex-minecraft",
@@ -55,12 +55,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "9a8cbed1fa7ce2cbb596fd79b001ba27838bbf57"
+                "reference": "7d4ebd2707c4373c7bef17e3b4e5a4245fcb2f8c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/9a8cbed1fa7ce2cbb596fd79b001ba27838bbf57",
-                "reference": "9a8cbed1fa7ce2cbb596fd79b001ba27838bbf57",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/7d4ebd2707c4373c7bef17e3b4e5a4245fcb2f8c",
+                "reference": "7d4ebd2707c4373c7bef17e3b4e5a4245fcb2f8c",
                 "shasum": ""
             },
             "require": {
@@ -92,7 +92,7 @@
                 "issues": "https://github.com/aternosorg/codex-minecraft/issues",
                 "source": "https://github.com/aternosorg/codex-minecraft/tree/2.0"
             },
-            "time": "2022-08-17T10:15:48+00:00"
+            "time": "2022-08-17T10:57:10+00:00"
         },
         {
             "name": "aternos/sherlock",

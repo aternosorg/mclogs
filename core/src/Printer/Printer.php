@@ -4,8 +4,8 @@ namespace Printer;
 
 use Aternos\Codex\Log\Entry;
 use Aternos\Codex\Log\EntryInterface;
+use Aternos\Codex\Log\Level;
 use Aternos\Codex\Log\LineInterface;
-use Aternos\Codex\Log\LogInterface;
 use Aternos\Codex\Printer\ModifiableDefaultPrinter;
 
 /**
@@ -15,8 +15,6 @@ use Aternos\Codex\Printer\ModifiableDefaultPrinter;
  */
 class Printer extends ModifiableDefaultPrinter
 {
-    protected $modifications = [];
-
     public function __construct()
     {
         $this->addModification(new FormatModification());
@@ -38,32 +36,32 @@ class Printer extends ModifiableDefaultPrinter
     }
 
     /**
-     * @param LogInterface $log
      * @return string
      */
-    protected function printLog(LogInterface $log): string
+    protected function printLog(): string
     {
-        return '<table>' . parent::printLog($log) . '</table>';
+        return '<table>' . parent::printLog() . '</table>';
     }
 
     /**
-     * @param EntryInterface $entry
+     * @param EntryInterface|null $entry
      * @return string
      * @throws \Exception
      */
-    protected function printEntry(EntryInterface $entry): string
+    protected function printEntry(?EntryInterface $entry = null): string
     {
+        $entry = $entry ?? $this->entry;
         /** @var Entry $entry */
         $return = '';
         $first = true;
         foreach ($entry as $line) {
             $trClass = "entry-no-error";
-            if (in_array($entry->getLevel(), \Log::$errorLogLevels)) {
+            if ($entry->getLevel() <= Level::ERROR) {
                 $trClass = "entry-error";
             }
             $return .= '<tr class="' . $trClass . '">';
             $return .= '<td class="line-number-container"><a href="/' . $this->id->get() . '#L' . $line->getNumber() . '" id="L' . $line->getNumber() . '" class="line-number">' . $line->getNumber() . '</a></td>';
-            $return .= '<td><span class="level level-' . $entry->getLevel() . ((!$first) ? " multiline" : "") . '">';
+            $return .= '<td><span class="level level-' . $entry->getLevel()->asString() . ((!$first) ? " multiline" : "") . '">';
             $lineString = $this->printLine($line);
             if ($entry instanceof \Aternos\Codex\Minecraft\Log\Entry) {
                 $lineString = str_replace($entry->getPrefix(), '<span class="level-prefix">' . $entry->getPrefix() . '</span>', $lineString);
