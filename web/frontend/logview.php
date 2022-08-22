@@ -57,6 +57,12 @@ if (!$log->exists()) {
         <meta name="description" content="<?=$description; ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="mclo.gs" />
+        <meta property="og:title" content="<?=$title; ?>" />
+        <meta property="og:description" content="<?=$description; ?>" />
+        <meta property="og:url" content="https://mclo.gs/<?=$id->get(); ?>" />
+
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43611107-4"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
