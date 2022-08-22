@@ -12,7 +12,7 @@ if (!$log->exists()) {
     $analysis = $log->getAnalysis();
     $information = $analysis->getInformation();
     $problems = $analysis->getProblems();
-    $title = $codexLog->getTitle() . " [#" . $id->get() . "] - mclo.gs";
+    $title = $codexLog->getTitle() . " [#" . $id->get() . "]";
     $lineNumbers = $log->getLineNumbers();
     $lineString = $lineNumbers === 1 ? "line" : "lines";
 
@@ -42,7 +42,7 @@ if (!$log->exists()) {
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Play:400,700">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet" />
 
-        <title><?=$title; ?></title>
+        <title><?=$title; ?> - mclo.gs</title>
 
         <base href="/" />
 
