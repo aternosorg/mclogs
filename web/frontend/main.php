@@ -73,7 +73,7 @@
                             <i class="fa fa-save"></i> Save
                         </div>
                     </div>
-                    <div class="paste-body">
+                    <div id="dropzone" class="paste-body">
                         <textarea id="paste" autocomplete="off" spellcheck="false"></textarea>
                     </div>
                     <div class="paste-footer">
