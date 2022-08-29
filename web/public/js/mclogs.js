@@ -107,11 +107,32 @@ async function handleDropEvent(e) {
     pasteArea.value = new TextDecoder().decode(content);
 }
 
+function loadScript(url) {
+    return new Promise((resolve, reject) => {
+        let elem = document.createElement('script');
+        elem.addEventListener('load', resolve);
+        elem.addEventListener('error', reject);
+        elem.src = url;
+        document.head.appendChild(elem);
+    });
+}
+
+async function loadFflate() {
+    if(typeof fflate === 'undefined') {
+        await loadScript('https://unpkg.com/fflate');
+    }
+}
+
 /**
  * @param {Uint8Array} data
  * @return {Promise<Uint8Array>}
  */
 async function unpackGz(data) {
+    if(typeof DecompressionStream === 'undefined') {
+        await loadFflate();
+        return fflate.gunzipSync(data);
+    }
+
     let inputStream = new ReadableStream({
         start: (controller) => {
             controller.enqueue(data);
