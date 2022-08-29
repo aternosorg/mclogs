@@ -111,6 +111,10 @@ body {
     border-bottom: 3px solid #f0f0f0;
 }
 
+.paste-header .btn {
+    margin-left: 8px;
+}
+
 .paste-footer {
     background: #f0f0f0;
     padding: 6px 10px;

@@ -50,6 +50,7 @@ function sendLog() {
 }
 
 let dropZone = document.getElementById('dropzone');
+let fileSelectButton = document.getElementById('paste-select-file');
 let windowDragCount = 0;
 let dropZoneDragCount = 0;
 
@@ -90,8 +91,11 @@ async function handleDropEvent(e) {
     if (files.length !== 1) {
         return;
     }
-    let file = files[0];
 
+    await loadFileContents(files[0]);
+}
+
+async function loadFileContents(file) {
     if (file.size > 1024 * 1024 * 100) {
         return;
     }
@@ -121,6 +125,20 @@ async function loadFflate() {
     if(typeof fflate === 'undefined') {
         await loadScript('https://unpkg.com/fflate');
     }
+}
+
+function selectLogFile() {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.style.display = 'none';
+    document.body.appendChild(input);
+    input.onchange = async () => {
+        if(input.files.length) {
+            await loadFileContents(input.files[0]);
+        }
+    }
+    input.click();
+    document.body.removeChild(input);
 }
 
 /**
@@ -171,4 +189,6 @@ dropZone.addEventListener('drop', async e => {
     updateDropZoneDragCount(-1);
     await handleDropEvent(e);
 });
+
+fileSelectButton.addEventListener('click', selectLogFile);
 
