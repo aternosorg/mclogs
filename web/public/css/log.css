@@ -2,6 +2,7 @@
 .level {
     white-space: pre-wrap;
     tab-size: 4;
+    max-width: 100vw;
 }
 
 .level-prefix {

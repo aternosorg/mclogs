@@ -49,7 +49,7 @@ if (!$log->exists()) {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
         <link rel="stylesheet" href="css/mclogs.css?v=170822" />
-        <link rel="stylesheet" href="css/log.css?v=170822" />
+        <link rel="stylesheet" href="css/log.css?v=170823" />
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
