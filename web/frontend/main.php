@@ -69,11 +69,14 @@
                         <div class="paste-header-text">
                             Paste your log here.
                         </div>
+                        <div id="paste-select-file" class="btn btn-orange btn-no-margin">
+                            <i class="fa fa-file-import"></i> Select
+                        </div>
                         <div class="paste-save btn btn-green btn-no-margin">
                             <i class="fa fa-save"></i> Save
                         </div>
                     </div>
-                    <div class="paste-body">
+                    <div id="dropzone" class="paste-body">
                         <textarea id="paste" autocomplete="off" spellcheck="false"></textarea>
                     </div>
                     <div class="paste-footer">

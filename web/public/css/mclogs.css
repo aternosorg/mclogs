@@ -111,6 +111,10 @@ body {
     border-bottom: 3px solid #f0f0f0;
 }
 
+.paste-header .btn {
+    margin-left: 8px;
+}
+
 .paste-footer {
     background: #f0f0f0;
     padding: 6px 10px;
@@ -125,6 +129,17 @@ body {
 
 .paste-body {
     height: 600px;
+    outline-offset: -10px;
+    outline: transparent dashed 2px;
+    transition: outline-color .2s;
+}
+
+.paste-body.window-dragover {
+    outline-color: rgba(240, 240, 240, 0.5);
+}
+
+.paste-body.dragover {
+    outline-color: rgba(240, 240, 240, 1);
 }
 
 .info .row-inner {
