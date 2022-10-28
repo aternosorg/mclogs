@@ -67,10 +67,7 @@
                 <div class="paste-box">
                     <div class="paste-header">
                         <div class="paste-header-text">
-                            Paste your log here.
-                        </div>
-                        <div id="paste-select-file" class="btn btn-orange btn-no-margin">
-                            <i class="fa fa-file-import"></i> Select
+                            Paste your log here or <span class="btn btn-small btn-no-margin" id="paste-select-file"><i class="fa fa-file-import"></i> Select a file</span>
                         </div>
                         <div class="paste-save btn btn-green btn-no-margin">
                             <i class="fa fa-save"></i> Save
