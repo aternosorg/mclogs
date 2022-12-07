@@ -372,10 +372,17 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0 12px;
+    margin-bottom: 20px;
+}
+
+.log-bottom {
+    padding: 0 12px;
 }
 
 .log-title {
-    padding: 8px;
     display: flex;
     align-items: baseline;
 }
@@ -487,6 +494,10 @@ body {
         width: 128px;
     }
 
+    .row {
+        padding: 28px 0;
+    }
+
     .menu-item,
     .menu-social {
         font-size: 16px;
@@ -501,6 +512,14 @@ body {
         font-size: 32px;
         text-align: center;
         padding: 40px 8px;
+    }
+
+    .paste-box {
+        border-radius: 0;
+    }
+
+    .log-row {
+        padding-bottom: 0;
     }
 
     .paste-body {

@@ -96,12 +96,12 @@ if (!$log->exists()) {
                     </div>
                     <div class="log-info-actions">
                         <?php if($errorCount): ?>
-                        <div class="btn btn-red btn-small error-toggle">
+                        <div class="btn btn-red btn-small error-toggle btn-no-margin">
                             <i class="fa fa-exclamation-circle"></i>
                             <?=$errorCount . " " . $errorString; ?>
                         </div>
                         <?php endif; ?>
-                        <div class="btn btn-blue btn-small down-button">
+                        <div class="btn btn-blue btn-small down-button btn-no-margin">
                             <i class="fa fa-arrow-circle-down"></i>
                             <?=$lineNumbers . " " . $lineString; ?>
                         </div>
@@ -163,11 +163,9 @@ if (!$log->exists()) {
                         echo $log->getPrinter()->print();
                     ?>
                 </div>
-                <div class="log-info">
-                    <div class="log-info-actions">
-                        <div class="btn btn-blue btn-small btn-notext up-button">
-                            <i class="fa fa-arrow-circle-up"></i>
-                        </div>
+                <div class="log-bottom">
+                    <div class="btn btn-blue btn-small btn-notext up-button">
+                        <i class="fa fa-arrow-circle-up"></i>
                     </div>
                 </div>
                 <?php else: ?>
