@@ -4,31 +4,20 @@
         <meta charset="utf-8" />
         <meta name="theme-color" content="#2d3943" />
 
-        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Play:400,700">
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet" />
-
         <title>mclo.gs - Paste, share & analyse your Minecraft logs</title>
 
         <base href="/" />
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+        <link rel="stylesheet" href="vendor/fonts/fonts.css" />
+        <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
-        <link rel="stylesheet" href="css/mclogs.css" />
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <link rel="stylesheet" href="css/mclogs.css?v=170822" />
+        <script src="vendor/jquery/jquery-3.6.1.min.js"></script>
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
         <meta name="description" content="Easily paste your Minecraft logs to share and analyse them.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43611107-4"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments)};
-            gtag('js', new Date());
-
-            gtag('config', 'UA-43611107-4', { 'anonymize_ip': true });
-        </script>
     </head>
     <body>
         <header class="row navigation">
@@ -213,7 +202,9 @@
         </div>
         <div class="row footer">
             <div class="row-inner">
-                &copy; 2017-<?=date("Y"); ?>  by mclo.gs - a service by <a href="https://aternos.org">Aternos</a> | <a href="https://aternos.org/impressum/">Imprint</a>
+                &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a target="_blank" href="https://aternos.org">Aternos</a> |
+                <a target="_blank" href="https://aternos.gmbh/imprint">Imprint</a> |
+                <a target="_blank" href="https://aternos.gmbh/en/mclogs/privacy">Privacy</a>
             </div>
         </div>
         <script src="js/mclogs.js"></script>

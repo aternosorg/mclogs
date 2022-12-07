@@ -231,6 +231,10 @@ body {
     text-align: center;
 }
 
+.footer a:hover {
+    text-decoration: underline;
+}
+
 .paste-body textarea {
     background: none;
     border: none;
