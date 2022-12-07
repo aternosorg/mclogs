@@ -190,3 +190,9 @@
 .entry {
     overflow-wrap: anywhere;
 }
+
+@media all and (max-width: 800px) {
+    .multiline {
+        padding-left: 0;
+    }
+}

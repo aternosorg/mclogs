@@ -46,8 +46,8 @@ if (!$log->exists()) {
         <link rel="stylesheet" href="vendor/fonts/fonts.css" />
         <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
-        <link rel="stylesheet" href="css/mclogs.css?v=170822" />
-        <link rel="stylesheet" href="css/log.css?v=170822" />
+        <link rel="stylesheet" href="css/mclogs.css?v=071222" />
+        <link rel="stylesheet" href="css/log.css?v=071222" />
         <script src="vendor/jquery/jquery-3.6.1.min.js"></script>
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
