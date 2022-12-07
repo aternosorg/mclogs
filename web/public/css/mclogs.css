@@ -370,6 +370,8 @@ body {
 
 .log-info {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .log-title {
@@ -392,10 +394,6 @@ body {
     margin-left: 8px;
     font-size: 12px;
     font-family: "Roboto Mono", monospace;
-}
-
-.log-info-actions {
-    margin-left: auto;
 }
 
 .log-info-actions .btn:last-child {
