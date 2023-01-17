@@ -10,6 +10,7 @@ $config = [
     'pre' => [
         '\\Filter\\Pre\\Trim',
         '\\Filter\\Pre\\Length',
+        '\\Filter\\Pre\\Lines',
         '\\Filter\\Pre\\Ip',
         '\\Filter\\Pre\\UserPath'
     ],
