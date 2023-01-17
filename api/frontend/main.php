@@ -63,7 +63,7 @@
                     <tr>
                         <td class="endpoint-field">content</td>
                         <td class="endpoint-type">string</td>
-                        <td class="endpoint-description">The raw log file content as string. Maximum length is around 10MB, will be shortened if necessary.</td>
+                        <td class="endpoint-description">The raw log file content as string. Maximum length is 10MiB and 25k lines, will be shortened if necessary.</td>
                     </tr>
                 </table>
 

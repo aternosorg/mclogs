@@ -39,6 +39,13 @@ $config = [
      *
      * Will be cut by \Filter\Pre\Length
      */
-    "maxLength" => 10485760
+    "maxLength" => 10 * 1024 * 1024,
+
+    /**
+     * Maximum number of lines to store
+     *
+     * Will be cut by \Filter\Pre\Lines
+     */
+    "maxLines" => 25_000
 
 ];
