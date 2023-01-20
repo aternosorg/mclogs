@@ -1,76 +1,101 @@
 updateLineNumber(location.hash);
 
-$('.line-number').click(function () {
-    updateLineNumber('#' + $(this).attr('id'));
-});
+for (let line of document.querySelectorAll('.line-number')) {
+    line.addEventListener("click", () =>
+        updateLineNumber(line.attributes.getNamedItem("id").value));
+}
 
-$('.down-button').click(function () {
-    $("html, body").scrollTop($(document).height());
-});
+const downButton = document.getElementById("down-button");
+if (downButton) {
+    downButton.addEventListener("click", () => window.scrollTo(0, document.body.scrollHeight));
+}
 
-$('.up-button').click(function () {
-    $("html, body").scrollTop(0);
-});
+const upButton = document.getElementById("up-button");
+if (upButton) {
+    upButton.addEventListener("click", () => window.scrollTo(0, 0));
+}
 
 function updateLineNumber(id) {
-    var element = $(id);
-    if (element.length === 1 && element.hasClass("line-number")) {
-        $('.line-active').removeClass('line-active');
-        element.addClass('line-active');
+    if (id && id.startsWith('#')) {
+        id = id.substring(1);
+    }
+
+    if (!id) {
+        return;
+    }
+
+    let element = document.getElementById(id);
+    if (element.classList.contains("line-number")) {
+        for (const line of document.querySelectorAll(".line-active")) {
+            line.classList.remove("line-active");
+        }
+        element.classList.add('line-active');
     }
 }
 
-var errorsToggled = false;
-$('.error-toggle').click(function () {
-    $(this).removeClass("btn-red").addClass("btn-black");
-    var firstNoErrorLine = false;
-    if (!errorsToggled) {
-        errorsToggled = true;
-        var totalLines = $('.log tr').length;
-        $('.log tr').each(function (i, line) {
-            var lineNumber = $(line).find(".line-number").text();
-            if ($(line).hasClass("entry-no-error")) {
-                $(line).hide();
+let showOnlyErrors = false;
+const toggleErrorsButton = document.getElementById("error-toggle");
+if (toggleErrorsButton) {
+    toggleErrorsButton.addEventListener("click", () => {
+        if (showOnlyErrors) {
+            toggleErrorsButton.classList.replace("btn-black", "btn-red");
+            document.querySelectorAll('.entry-no-error').forEach(line => line.hidden = false);
+            document.querySelectorAll('.collapsed-lines').forEach(collapsed => collapsed.remove());
+        } else {
+            let firstNoErrorLine = false;
+            toggleErrorsButton.classList.replace("btn-red", "btn-black");
+            let lines = document.querySelectorAll('.log tr');
+            let totalLines = lines.length;
+            for (const [i, line] of lines.entries()) {
+                let lineNumber = line.querySelector(".line-number").innerHTML;
+                if (line.classList.contains("entry-no-error")) {
+                    line.hidden = true;
 
-                if (firstNoErrorLine === false) {
-                    firstNoErrorLine = lineNumber;
-                }
+                    if (firstNoErrorLine === false) {
+                        firstNoErrorLine = lineNumber;
+                    }
 
-                if (i + 1 === totalLines && firstNoErrorLine) {
-                    generateCollapsedLines(firstNoErrorLine, lineNumber).insertAfter(line);
-                }
-            } else {
-                if (firstNoErrorLine) {
-                    generateCollapsedLines(firstNoErrorLine, lineNumber - 1).insertBefore(line);
-                    firstNoErrorLine = false;
+                    if (i + 1 === totalLines && firstNoErrorLine) {
+                        line.insertAdjacentHTML("afterend", generateCollapsedLines(firstNoErrorLine, lineNumber));
+                    }
+                } else {
+                    if (firstNoErrorLine) {
+                        line.insertAdjacentHTML("beforebegin", generateCollapsedLines(firstNoErrorLine, lineNumber - 1));
+                        firstNoErrorLine = false;
+                    }
                 }
             }
-        });
-    } else {
-        errorsToggled = false;
-        $(this).removeClass("btn-black").addClass("btn-red");
-        $('.entry-no-error').show();
-        $('.collapsed-lines').remove();
-    }
+        }
+        showOnlyErrors = !showOnlyErrors;
 
-    $('.collapsed-lines-count').click(function () {
-        let positionElement = $('#L' + ($(this).data("end") + 1));
-        let position;
-        if (positionElement.length > 0) {
-            position = positionElement.position().top - $(window).scrollTop();
+        for (const collapsed of document.querySelectorAll('.collapsed-lines-count')) {
+            collapsed.addEventListener("click", () => {
+                let positionElement = document.getElementById(`L${parseInt(collapsed.dataset.end) + 1}`);
+                let position;
+                if (positionElement) {
+                    position = positionElement.getBoundingClientRect().top - window.scrollY;
+                }
+                for (let i = parseInt(collapsed.dataset.start); i <= parseInt(collapsed.dataset.end); i++) {
+                    document.getElementById(`L${i}`).parentElement.parentElement.hidden = false;
+                }
+                if (positionElement) {
+                    window.scrollTo(0, positionElement.getBoundingClientRect().top - position - collapsed.offsetHeight);
+                }
+                collapsed.remove();
+            })
         }
-        for (var i = $(this).data("start"); i <= $(this).data("end"); i++) {
-            $('#L' + i).parent().parent().show();
-        }
-        if (positionElement.length > 0) {
-            $(window).scrollTop(positionElement.position().top - position - $(this).outerHeight());
-        }
-        $(this).remove();
     });
-});
+}
 
 function generateCollapsedLines(start, end) {
-    var count = end - start + 1;
-    var string = count === 1 ? "line" : "lines";
-    return $('<tr class="collapsed-lines"><td></td><td class="collapsed-lines-count" data-start="' + start + '" data-end="' + end + '"><i class="fa fa-angle-up"></i> ' + count + " " + string + ' <i class="fa fa-angle-up"></i></td></tr>');
+    let count = end - start + 1;
+    let string = count === 1 ? "line" : "lines";
+    return '<tr class="collapsed-lines">' +
+            '<td></td>' +
+            '<td class="collapsed-lines-count" data-start="' + start + '" data-end="' + end + '">' +
+                '<i class="fa fa-angle-up"></i> ' +
+                count + " " + string +
+                ' <i class="fa fa-angle-up"></i>' +
+            '</td>'+
+        '</tr>';
 }

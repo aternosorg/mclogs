@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
         <link rel="stylesheet" href="css/mclogs.css?v=071222" />
-        <script src="vendor/jquery/jquery-3.6.1.min.js"></script>
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
@@ -207,6 +206,6 @@
                 <a target="_blank" href="https://aternos.gmbh/en/mclogs/privacy">Privacy</a>
             </div>
         </div>
-        <script src="js/mclogs.js"></script>
+        <script src="js/mclogs.js?v=130221"></script>
     </body>
 </html>

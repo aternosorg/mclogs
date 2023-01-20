@@ -1,8 +1,10 @@
-var titles = ["Paste", "Share", "Analyse"];
-var currentTitle = 0;
-var speed = 30;
-var pause = 3000;
+const titles = ["Paste", "Share", "Analyse"];
+let currentTitle = 0;
+let speed = 30;
+let pause = 3000;
 const pasteArea = document.getElementById('paste');
+const titleElement = document.querySelector('.title-verb');
+const pasteSaveButtons = document.querySelectorAll('.paste-save');
 
 setTimeout(nextTitle, pause);
 function nextTitle() {
@@ -11,42 +13,66 @@ function nextTitle() {
         currentTitle = 0;
     }
 
-    var title = $('.title-verb').text();
-    for (var i = 0; i < title.length - 1; i++) {
+    const title = titleElement.innerHTML;
+    for (let i = 0; i < title.length - 1; i++) {
         setTimeout(function() {
-            $('.title-verb').text($('.title-verb').text().substr(0, $('.title-verb').text().length - 1));
+            titleElement.innerHTML = titleElement.innerHTML.substring(0, titleElement.innerHTML.length - 1);
         }, i * speed);
     }
 
-    var newTitle = titles[currentTitle];
-    for (var i = 1; i <= newTitle.length; i++) {
+    const newTitle = titles[currentTitle];
+    for (let i = 1; i <= newTitle.length; i++) {
         setTimeout(function(){
-            $('.title-verb').text(newTitle.substr(0, $('.title-verb').text().length + 1));
+            titleElement.innerHTML = newTitle.substring(0, titleElement.innerHTML.length + 1);
         }, title.length * speed + i * speed);
     }
 
     setTimeout(nextTitle, title.length * speed + newTitle.length * speed + pause);
 }
 
-$(pasteArea).focus();
+pasteArea.focus();
 
-$('.paste-save').click(sendLog);
-$(document).keydown(function(event) {
-    if (!(String.fromCharCode(event.which).toLowerCase() === 's' && event.ctrlKey) && !(event.which === 19)) return true;
-    sendLog();
-    event.preventDefault();
-    return false;
-});
+pasteSaveButtons.forEach(button => button.addEventListener('click', sendLog));
 
-function sendLog() {
-    if($(pasteArea).val() === "") {
+document.addEventListener('keydown', event => {
+    if ((event.key.toLowerCase() === 's' && event.ctrlKey) || event.key.codePointAt(0) === 19) {
+        void sendLog();
+        event.preventDefault();
         return false;
     }
 
-    $('.paste-save').addClass("btn-working");
-    $.post('http'+((location.protocol === "https:") ? "s" : "")+'://api.'+location.host+'/1/log', {content: $('#paste').val()}, function(data){
-        location.href = "/" + data.id;
-    });
+    return true;
+})
+
+async function sendLog() {
+    if (pasteArea.value === "") {
+        return;
+    }
+
+    pasteSaveButtons.forEach(button => button.classList.add("btn-working"));
+
+    try {
+        const response = await fetch(`${location.protocol}//api.${location.host}/1/log`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({
+                "content": pasteArea.value
+            })
+        });
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error("Uploading log was unsuccessful: " + data.error);
+        }
+
+        location.href = `/${data.id}`;
+    }
+    catch (e) {
+        console.error("Failed to upload log: ", e);
+        pasteSaveButtons.forEach(button => button.classList.remove("btn-working"));
+    }
 }
 
 let dropZone = document.getElementById('dropzone');

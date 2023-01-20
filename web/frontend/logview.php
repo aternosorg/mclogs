@@ -48,7 +48,6 @@ if (!$log->exists()) {
         <link rel="stylesheet" href="css/btn.css" />
         <link rel="stylesheet" href="css/mclogs.css?v=071222" />
         <link rel="stylesheet" href="css/log.css?v=071222" />
-        <script src="vendor/jquery/jquery-3.6.1.min.js"></script>
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
@@ -96,12 +95,12 @@ if (!$log->exists()) {
                     </div>
                     <div class="log-info-actions">
                         <?php if($errorCount): ?>
-                        <div class="btn btn-red btn-small error-toggle btn-no-margin">
+                        <div class="btn btn-red btn-small btn-no-margin" id="error-toggle">
                             <i class="fa fa-exclamation-circle"></i>
                             <?=$errorCount . " " . $errorString; ?>
                         </div>
                         <?php endif; ?>
-                        <div class="btn btn-blue btn-small down-button btn-no-margin">
+                        <div class="btn btn-blue btn-small btn-no-margin" id="down-button">
                             <i class="fa fa-arrow-circle-down"></i>
                             <?=$lineNumbers . " " . $lineString; ?>
                         </div>
@@ -164,7 +163,7 @@ if (!$log->exists()) {
                     ?>
                 </div>
                 <div class="log-bottom">
-                    <div class="btn btn-blue btn-small btn-notext up-button">
+                    <div class="btn btn-blue btn-small btn-notext" id="up-button">
                         <i class="fa fa-arrow-circle-up"></i>
                     </div>
                 </div>
@@ -196,6 +195,6 @@ if (!$log->exists()) {
                 <a target="_blank" href="https://aternos.gmbh/en/mclogs/privacy">Privacy</a>
             </div>
         </div>
-        <script src="js/logview.js?v=130220"></script>
+        <script src="js/logview.js?v=130221"></script>
     </body>
 </html>
