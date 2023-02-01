@@ -5,6 +5,8 @@ let pause = 3000;
 const pasteArea = document.getElementById('paste');
 const titleElement = document.querySelector('.title-verb');
 const pasteSaveButtons = document.querySelectorAll('.paste-save');
+const pasteHeader = document.querySelector('.paste-header');
+const pasteFooter = document.querySelector('.paste-footer');
 
 setTimeout(nextTitle, pause);
 function nextTitle() {
@@ -44,6 +46,10 @@ document.addEventListener('keydown', event => {
     return true;
 })
 
+/**
+ * Save the log to the API
+ * @returns {Promise<void>}
+ */
 async function sendLog() {
     if (pasteArea.value === "") {
         return;
@@ -61,17 +67,67 @@ async function sendLog() {
                 "content": pasteArea.value
             })
         });
-        const data = await response.json();
 
-        if (!data.success) {
-            throw new Error("Uploading log was unsuccessful: " + data.error);
+        if (!response.ok) {
+            handleUploadError(`${response.status} (${response.statusText})`);
+            return;
+        }
+
+        let data = null;
+        try {
+            data = await response.json();
+        }
+        catch (e) {
+            console.error("Failed to parse JSON returned by API", e);
+            handleUploadError("API returned invalid JSON");
+            return;
+        }
+
+        if (typeof data === 'object' && !data.success && data.error) {
+            console.error(new Error("API returned an error"), data.error);
+            handleUploadError(data.error);
+            return;
+        }
+
+        if (typeof data !== 'object' || !data.success || !data.id) {
+            console.error(new Error("API returned an invalid response"), data);
+            handleUploadError("API returned an invalid response");
+            return;
         }
 
         location.href = `/${data.id}`;
     }
     catch (e) {
-        console.error("Failed to upload log: ", e);
-        pasteSaveButtons.forEach(button => button.classList.remove("btn-working"));
+        handleUploadError("Network error");
+    }
+}
+
+/**
+ * Show an error message and stop the loading animation
+ * @param {string|null} reason
+ * @return {void}
+ */
+function handleUploadError(reason = null) {
+    showPasteError(reason ?? "Unknown error");
+    pasteSaveButtons.forEach(button => button.classList.remove("btn-working"));
+}
+
+/**
+ * show an error message in the paste header and footer
+ * @param {string|null} message
+ * @return {void}
+ */
+function showPasteError(message) {
+    for (const pasteError of document.querySelectorAll('.paste-error')) {
+        pasteError.remove();
+    }
+
+    for (const parent of [pasteHeader, pasteFooter]) {
+        const pasteError = document.createElement('div');
+        pasteError.classList.add('paste-error');
+        pasteError.innerText = `Failed to save log: ${message}`;
+
+        parent.insertBefore(pasteError, parent.querySelector('.paste-save'));
     }
 }
 
