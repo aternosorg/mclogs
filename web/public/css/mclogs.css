@@ -111,11 +111,12 @@ body {
     border-bottom: 3px solid #f0f0f0;
 }
 
-.paste-header .btn {
+.paste-box .btn {
     margin-left: 8px;
 }
 
 .paste-footer {
+    font-size: 18px;
     background: #f0f0f0;
     padding: 6px 10px;
     display: flex;
@@ -140,6 +141,15 @@ body {
 
 .paste-body.dragover {
     outline-color: rgba(240, 240, 240, 1);
+}
+
+.paste-error {
+    background: #f62451;
+    color: #f0f0f0;
+    font-weight: bold;
+    line-height: 1;
+    border-radius: 2px;
+    padding: 8px 15px 8px 10px;
 }
 
 .info .row-inner {
