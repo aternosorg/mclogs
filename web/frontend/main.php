@@ -132,6 +132,12 @@
                             hidden to ensure safety and privacy.
                         </div>
                         <div class="article-buttons">
+                            <a href="https://modrinth.com/plugin/mclogs" target="_blank" class="btn btn-blue btn-no-margin">
+                                <i class="fa fa-download"></i> modrinth.com
+                            </a>
+                            <a href="https://hangar.papermc.io/Aternos/mclogs" target="_blank" class="btn btn-blue btn-no-margin">
+                                <i class="fa fa-download"></i> hangar.papermc.io
+                            </a>
                             <a href="https://dev.bukkit.org/projects/mclogs" target="_blank" class="btn btn-blue btn-no-margin">
                                 <i class="fa fa-download"></i> dev.bukkit.org
                             </a>
@@ -157,10 +163,13 @@
                             Use our mod.
                         </div>
                         <div class="article-text">
-                            We also have a mod for Forge and Fabric so you can use it with your favorite mods. It is fully server-sided
+                            We also have a mod for Forge and Fabric, so you can use it with your favorite mods. It is fully server-sided
                             and has the same features as the plugin.
                         </div>
                         <div class="article-buttons">
+                            <a href="https://modrinth.com/mod/mclogs" target="_blank" class="btn btn-blue btn-no-margin">
+                                <i class="fa fa-download"></i> modrinth.com
+                            </a>
                             <a href="https://www.curseforge.com/minecraft/mc-mods/mclo-gs" target="_blank" class="btn btn-blue btn-no-margin">
                                 <i class="fa fa-download"></i> curseforge.com
                             </a>
