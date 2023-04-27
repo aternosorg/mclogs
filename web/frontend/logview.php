@@ -59,6 +59,19 @@ if (!$log->exists()) {
         <meta property="og:title" content="<?=$title; ?>" />
         <meta property="og:description" content="<?=$description; ?>" />
         <meta property="og:url" content="https://mclo.gs/<?=$id->get(); ?>" />
+
+        <script>
+            let _paq = window._paq = window._paq || [];
+            _paq.push(['disableCookies']);
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
+            (function() {
+                _paq.push(['setTrackerUrl', '/data']);
+                _paq.push(['setSiteId', '5']);
+                let d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                g.async=true; g.src='/data.js'; s.parentNode.insertBefore(g,s);
+            })();
+        </script>
     </head>
     <body class="log-body">
         <header class="row navigation">
