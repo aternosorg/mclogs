@@ -1,4 +1,6 @@
 <?php
+$urls = Config::Get('urls');
+$legal = Config::Get('legal');
 $id = new Id(substr($_SERVER['REQUEST_URI'], 1));
 $log = new Log($id);
 
@@ -58,7 +60,7 @@ if (!$log->exists()) {
         <meta property="og:site_name" content="mclo.gs" />
         <meta property="og:title" content="<?=$title; ?>" />
         <meta property="og:description" content="<?=$description; ?>" />
-        <meta property="og:url" content="https://mclo.gs/<?=$id->get(); ?>" />
+        <meta property="og:url" content="<?=$urls['baseUrl'] . "/" . $id->get(); ?>" />
 
         <script>
             let _paq = window._paq = window._paq || [];
@@ -197,15 +199,15 @@ if (!$log->exists()) {
         <div class="row row-notice dark">
             <div class="row-inner">
                 This log will be saved for 90 days from their last view.<br />
-                <a href="mailto:abuse@aternos.org?subject=Report%20mclo.gs/<?=$id->get(); ?>">Report abuse</a>
+                <a href="mailto:<?=$legal['abuseEmail']?>?subject=Report%20/<?=$urls['baseUrl'] . "/" . $id->get(); ?>">Report abuse</a>
             </div>
         </div>
         <?php endif; ?>
         <div class="row footer">
             <div class="row-inner">
                 &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a target="_blank" href="https://aternos.org">Aternos</a> |
-                <a target="_blank" href="https://aternos.gmbh/imprint">Imprint</a> |
-                <a target="_blank" href="https://aternos.gmbh/en/mclogs/privacy">Privacy</a>
+                <a target="_blank" href="<?=$legal['imprint']?>">Imprint</a> |
+                <a target="_blank" href="<?=$legal['privacy']?>">Privacy</a>
             </div>
         </div>
         <script src="js/logview.js?v=130221"></script>

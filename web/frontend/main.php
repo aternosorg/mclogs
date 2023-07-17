@@ -1,3 +1,7 @@
+<?php
+$urls = Config::Get('urls');
+$legal = Config::Get('legal');
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -213,7 +217,7 @@
                             HTTP API.
                         </div>
                         <div class="article-buttons">
-                            <a href="https://api.mclo.gs" class="btn btn-blue btn-no-margin">
+                            <a href="<?=$urls['apiBaseUrl']?>" class="btn btn-blue btn-no-margin">
                                 <i class="fa fa-book"></i> API Documentation
                             </a>
                         </div>
@@ -224,8 +228,8 @@
         <div class="row footer">
             <div class="row-inner">
                 &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a target="_blank" href="https://aternos.org">Aternos</a> |
-                <a target="_blank" href="https://aternos.gmbh/imprint">Imprint</a> |
-                <a target="_blank" href="https://aternos.gmbh/en/mclogs/privacy">Privacy</a>
+                <a target="_blank" href="<?=$legal['imprint']?>">Imprint</a> |
+                <a target="_blank" href="<?=$legal['privacy']?>>">Privacy</a>
             </div>
         </div>
         <script src="js/mclogs.js?v=130221"></script>
