@@ -119,8 +119,8 @@ if (!$log->exists()) {
                             <i class="fa fa-arrow-circle-down"></i>
                             <?=$lineNumbers . " " . $lineString; ?>
                         </div>
-                        <a class="btn btn-white btn-small btn-no-margin" id="raw" href="<?=$urls['apiBaseUrl'] . "/1/raw/". $id->get()?>">
-                            <i class="fa fa-font"></i>
+                        <a class="btn btn-white btn-small btn-no-margin" id="raw" target="_blank" href="<?=$urls['apiBaseUrl'] . "/1/raw/". $id->get()?>">
+                            <i class="fa fa-arrow-up-right-from-square"></i>
                             Raw
                         </a>
                     </div>
