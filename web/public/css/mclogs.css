@@ -35,7 +35,7 @@ body {
 }
 
 .row-inner {
-    max-width: 1200px;
+    max-width: 1400px;
     width: 100%;
 }
 
@@ -272,10 +272,6 @@ body {
 
 .log-row {
     flex-grow: 1;
-}
-
-.log-row .row-inner {
-    max-width: 1400px;
 }
 
 .row-notice {
