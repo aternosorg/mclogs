@@ -22,9 +22,11 @@ $content = $_POST['content'];
 $log = new Log();
 $id = $log->put($content);
 
+$urls = Config::Get('urls');
+
 $out->success = true;
 $out->id = $id->get();
-$out->url = "https://mclo.gs/".$out->id;
-$out->raw = "https://api.mclo.gs/1/raw/".$out->id;
+$out->url = $urls['baseUrl'] . "/" . $out->id;
+$out->raw = $urls['apiBaseUrl'] . "/" . $out->id;
 
 echo json_encode($out);

@@ -1,3 +1,7 @@
+<?php
+$urls = Config::Get("urls");
+$legal = Config::Get('legal');
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -64,7 +68,7 @@
                 <h2>Paste a log file</h2>
 
                 <div class="endpoint">
-                    <span class="method">POST</span> <span class="endpoint-url">https://api.mclo.gs/1/log</span> <span class="content-type">application/x-www-form-urlencoded</span>
+                    <span class="method">POST</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/log</span> <span class="content-type">application/x-www-form-urlencoded</span>
                 </div>
                 <table class="endpoint-table">
                     <tr>
@@ -84,8 +88,8 @@
 {
     "success": true,
     "id": "8FlTowW",
-    "url": "https://mclo.gs/8FlTowW",
-    "raw": "https://api.mclo.gs/1/raw/8FlTowW"
+    "url": "<?=$urls['baseUrl']?>/8FlTowW",
+    "raw": "<?=$urls['apiBaseUrl']?>/1/raw/8FlTowW"
 }</pre>
                 <h3>Error <span class="content-type">application/json</span></h3>
                 <pre class="answer">
@@ -99,7 +103,7 @@
             <div class="row-inner">
                 <h2>Get the raw log file content</h2>
                 <div class="endpoint">
-                    <span class="method">GET</span> <span class="endpoint-url">https://api.mclo.gs/1/raw/[id]</span>
+                    <span class="method">GET</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/raw/[id]</span>
                 </div>
                 <table class="endpoint-table">
                     <tr>
@@ -110,7 +114,7 @@
                     <tr>
                         <td class="endpoint-field">[id]</td>
                         <td class="endpoint-type">string</td>
-                        <td class="endpoint-description">The log file id, received from the paste endpoint or from a URL (https://mclo.gs/[id]).</td>
+                        <td class="endpoint-description">The log file id, received from the paste endpoint or from a URL (<?=$urls['baseUrl']?>/[id]).</td>
                     </tr>
                 </table>
 
@@ -134,7 +138,7 @@
                 <h2>Get insights</h2>
 
                 <div class="endpoint">
-                    <span class="method">GET</span> <span class="endpoint-url">https://api.mclo.gs/1/insights/[id]</span>
+                    <span class="method">GET</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/insights/[id]</span>
                 </div>
                 <table class="endpoint-table">
                     <tr>
@@ -145,7 +149,7 @@
                     <tr>
                         <td class="endpoint-field">[id]</td>
                         <td class="endpoint-type">string</td>
-                        <td class="endpoint-description">The log file id, received from the paste endpoint or from a URL (https://mclo.gs/[id]).</td>
+                        <td class="endpoint-description">The log file id, received from the paste endpoint or from a URL (<?=$urls['baseUrl']?>/[id]).</td>
                     </tr>
                 </table>
 
@@ -231,7 +235,7 @@
         </div>
         <div class="row footer">
             <div class="row-inner">
-                &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a href="https://aternos.org">Aternos</a> | <a href="https://aternos.org/impressum/">Imprint</a>
+                &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a href="https://aternos.org">Aternos</a> | <a href="<?=$legal['imprint']?>">Imprint</a>
             </div>
         </div>
     </body>
