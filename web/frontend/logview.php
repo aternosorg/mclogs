@@ -49,7 +49,7 @@ if (!$log->exists()) {
         <link rel="stylesheet" href="vendor/fonts/fonts.css" />
         <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
-        <link rel="stylesheet" href="css/mclogs.css?v=071223" />
+        <link rel="stylesheet" href="css/mclogs.css?v=071224" />
         <link rel="stylesheet" href="css/log.css?v=071222" />
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -191,6 +191,10 @@ if (!$log->exists()) {
                         <label for="wrap-checkbox">Wrap log lines</label>
                     </div>
                 </div>
+                <div class="log-notice">
+                    This log will be saved for 90 days from their last view.<br />
+                    <a href="mailto:<?=$legal['abuseEmail']?>?subject=Report%20mclo.gs/<?=$id->get(); ?>">Report abuse</a>
+                </div>
                 <?php else: ?>
                 <div class="not-found">
                     <div class="not-found-title">404 - Log not found.</div>
@@ -204,14 +208,6 @@ if (!$log->exists()) {
                 <?php endif; ?>
             </div>
         </div>
-        <?php if($log->exists()): ?>
-        <div class="row row-notice dark">
-            <div class="row-inner">
-                This log will be saved for 90 days from their last view.<br />
-                <a href="mailto:<?=$legal['abuseEmail']?>?subject=Report%20/<?=$urls['baseUrl'] . "/" . $id->get(); ?>">Report abuse</a>
-            </div>
-        </div>
-        <?php endif; ?>
         <div class="row footer">
             <div class="row-inner">
                 &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a target="_blank" href="https://aternos.org">Aternos</a> |
