@@ -23,7 +23,7 @@ body {
 }
 
 .row {
-    width: 100%;
+    min-width: 100%;
     display: flex;
     justify-content: center;
     padding: 42px 12px;
@@ -274,6 +274,20 @@ body {
     flex-grow: 1;
 }
 
+.log-row .no-wrap {
+    width: unset;
+    min-width: 100%;
+}
+
+.log-row .no-wrap .log {
+    max-width: unset;
+    overflow-x: scroll;
+}
+
+.log-row .no-wrap .level {
+    white-space: nowrap;
+}
+
 .row-notice {
     font-size: 12px;
     text-align: center;
@@ -386,6 +400,40 @@ body {
 
 .log-bottom {
     padding: 0 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.log-bottom .checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.log-bottom .checkbox-container label {
+    cursor: pointer;
+}
+
+.log-bottom .checkbox-container input[type="checkbox"] {
+    cursor: pointer;
+    display: block;
+    appearance: none;
+    background: transparent;
+    font-size: 16px;
+    margin-right: 7px;
+    color: #fff;
+}
+
+.log-bottom .checkbox-container input[type="checkbox"]:after {
+    content: "\f0c8";
+    font-family: "Font Awesome 6 Free";
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.log-bottom .checkbox-container input[type="checkbox"]:checked:after {
+    content: "\f14a";
 }
 
 .log-title {

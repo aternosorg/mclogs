@@ -99,3 +99,16 @@ function generateCollapsedLines(start, end) {
             '</td>'+
         '</tr>';
 }
+
+const wrapCheckbox = document.getElementById("wrap-checkbox");
+if (wrapCheckbox) {
+    wrapCheckbox.addEventListener("change", () => {
+        if (wrapCheckbox.checked) {
+            document.querySelector(".log-row .row-inner").classList.remove("no-wrap");
+        } else {
+            document.querySelector(".log-row .row-inner").classList.add("no-wrap");
+        }
+        wrapCheckbox.scrollIntoView();
+        document.cookie = "WRAP_LOG_LINES=" + wrapCheckbox.checked + ";path=/";
+    })
+}
