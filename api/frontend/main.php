@@ -17,7 +17,7 @@ $legal = Config::Get('legal');
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
-        <link rel="stylesheet" href="css/mclogs.css?v=071223" />
+        <link rel="stylesheet" href="css/mclogs.css?v=071224" />
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
