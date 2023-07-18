@@ -3,6 +3,7 @@ $urls = Config::Get('urls');
 $legal = Config::Get('legal');
 $id = new Id(substr($_SERVER['REQUEST_URI'], 1));
 $log = new Log($id);
+$shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VALIDATE_BOOLEAN);
 
 $title = "mclo.gs - Paste, share & analyse your Minecraft logs";
 $description = "Easily paste your Minecraft logs to share and analyse them.";
@@ -48,7 +49,7 @@ if (!$log->exists()) {
         <link rel="stylesheet" href="vendor/fonts/fonts.css" />
         <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
-        <link rel="stylesheet" href="css/mclogs.css?v=071222" />
+        <link rel="stylesheet" href="css/mclogs.css?v=071223" />
         <link rel="stylesheet" href="css/log.css?v=071222" />
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -101,7 +102,7 @@ if (!$log->exists()) {
             </div>
         </header>
         <div class="row dark log-row">
-            <div class="row-inner">
+            <div class="row-inner<?= $shouldWrapLogLines ? "" : " no-wrap"?>">
                 <?php if($log->exists()): ?>
                 <div class="log-info">
                     <div class="log-title">
@@ -184,6 +185,10 @@ if (!$log->exists()) {
                 <div class="log-bottom">
                     <div class="btn btn-blue btn-small btn-notext" id="up-button">
                         <i class="fa fa-arrow-circle-up"></i>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="wrap-checkbox"<?=$shouldWrapLogLines ? " checked" : ""?>/>
+                        <label for="wrap-checkbox">Wrap log lines</label>
                     </div>
                 </div>
                 <?php else: ?>
