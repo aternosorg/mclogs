@@ -274,12 +274,9 @@ body {
     flex-grow: 1;
 }
 
-.row-notice {
+.log-notice {
     font-size: 12px;
     text-align: center;
-}
-
-.row-notice .row-inner {
     color: #777;
 }
 

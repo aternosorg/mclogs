@@ -186,6 +186,10 @@ if (!$log->exists()) {
                         <i class="fa fa-arrow-circle-up"></i>
                     </div>
                 </div>
+                <div class="log-notice">
+                    This log will be saved for 90 days from their last view.<br />
+                    <a href="mailto:<?=$legal['abuseEmail']?>?subject=Report%20mclo.gs/<?=$id->get(); ?>">Report abuse</a>
+                </div>
                 <?php else: ?>
                 <div class="not-found">
                     <div class="not-found-title">404 - Log not found.</div>
@@ -199,14 +203,6 @@ if (!$log->exists()) {
                 <?php endif; ?>
             </div>
         </div>
-        <?php if($log->exists()): ?>
-        <div class="row row-notice dark">
-            <div class="row-inner">
-                This log will be saved for 90 days from their last view.<br />
-                <a href="mailto:<?=$legal['abuseEmail']?>?subject=Report%20/<?=$urls['baseUrl'] . "/" . $id->get(); ?>">Report abuse</a>
-            </div>
-        </div>
-        <?php endif; ?>
         <div class="row footer">
             <div class="row-inner">
                 &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a target="_blank" href="https://aternos.org">Aternos</a> |
