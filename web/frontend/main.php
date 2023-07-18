@@ -15,7 +15,7 @@ $legal = Config::Get('legal');
         <link rel="stylesheet" href="vendor/fonts/fonts.css" />
         <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
         <link rel="stylesheet" href="css/btn.css" />
-        <link rel="stylesheet" href="css/mclogs.css?v=071222" />
+        <link rel="stylesheet" href="css/mclogs.css?v=071223" />
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
