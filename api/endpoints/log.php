@@ -27,6 +27,6 @@ $urls = Config::Get('urls');
 $out->success = true;
 $out->id = $id->get();
 $out->url = $urls['baseUrl'] . "/" . $out->id;
-$out->raw = $urls['apiBaseUrl'] . "/" . $out->id;
+$out->raw = $urls['apiBaseUrl'] . "/1/raw/" . $out->id;
 
 echo json_encode($out);
