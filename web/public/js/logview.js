@@ -91,7 +91,11 @@ if (toggleErrorsButton) {
                     document.getElementById(`L${i}`).parentElement.parentElement.hidden = false;
                 }
                 if (positionElement) {
-                    window.scrollTo(0, positionElement.getBoundingClientRect().top - position - collapsed.offsetHeight);
+                    window.scrollTo({
+                        left: 0,
+                        top: positionElement.getBoundingClientRect().top - position - collapsed.offsetHeight,
+                        behavior: "instant"
+                    });
                 }
                 collapsed.remove();
             })
@@ -120,7 +124,7 @@ if (wrapCheckbox) {
         } else {
             document.querySelector(".log-row .row-inner").classList.add("no-wrap");
         }
-        wrapCheckbox.scrollIntoView();
+        wrapCheckbox.scrollIntoView({behavior: "instant"});
         document.cookie = "WRAP_LOG_LINES=" + wrapCheckbox.checked + ";path=/";
     })
 }
