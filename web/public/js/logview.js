@@ -7,12 +7,24 @@ for (let line of document.querySelectorAll('.line-number')) {
 
 const downButton = document.getElementById("down-button");
 if (downButton) {
-    downButton.addEventListener("click", () => window.scrollTo(0, document.body.scrollHeight));
+    downButton.addEventListener("click", () => scrollToHeight(document.body.scrollHeight));
 }
 
 const upButton = document.getElementById("up-button");
 if (upButton) {
-    upButton.addEventListener("click", () => window.scrollTo(0, 0));
+    upButton.addEventListener("click", () => scrollToHeight(0));
+}
+
+/**
+ * Scroll to a specific height
+ * Disable smooth scrolling for large pages
+ * @param {number} top height to scroll to
+ * @param {number} [smoothScrollLimit] only use smooth scrolling if the distance is less than this value
+ */
+function scrollToHeight(top, smoothScrollLimit = 10000) {
+    const distance = Math.abs(document.documentElement.scrollTop - top);
+    const behavior = (distance < smoothScrollLimit) ? "smooth" : "instant";
+    window.scrollTo({left: 0, top, behavior});
 }
 
 function updateLineNumber(id) {
