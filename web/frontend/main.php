@@ -1,6 +1,7 @@
 <?php
 $urls = Config::Get('urls');
 $legal = Config::Get('legal');
+$storage = \Config::Get('storage');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +80,7 @@ $legal = Config::Get('legal');
                         </div>
                     </div>
                     <div id="dropzone" class="paste-body">
-                        <textarea id="paste" autocomplete="off" spellcheck="false"></textarea>
+                        <textarea id="paste" autocomplete="off" spellcheck="false" data-max-length="<?=$storage['maxLength']?>" data-max-lines="<?=$storage['maxLines']?>"></textarea>
                     </div>
                     <div class="paste-footer">
                         <div class="paste-save btn btn-green btn-no-margin">
@@ -232,6 +233,6 @@ $legal = Config::Get('legal');
                 <a target="_blank" href="<?=$legal['privacy']?>>">Privacy</a>
             </div>
         </div>
-        <script src="js/mclogs.js?v=130221"></script>
+        <script src="js/mclogs.js?v=130222"></script>
     </body>
 </html>
