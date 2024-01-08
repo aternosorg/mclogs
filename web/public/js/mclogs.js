@@ -58,13 +58,17 @@ async function sendLog() {
     pasteSaveButtons.forEach(button => button.classList.add("btn-working"));
 
     try {
+        let log = pasteArea.value
+            .substring(0, parseInt(pasteArea.dataset.maxLength))
+            .split('\n').slice(0, parseInt(pasteArea.dataset.maxLines)).join('\n');
+
         const response = await fetch(`${location.protocol}//api.${location.host}/1/log`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
             },
             body: new URLSearchParams({
-                "content": pasteArea.value
+                "content": log
             })
         });
 
