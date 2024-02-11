@@ -20,7 +20,7 @@ $storage = \Config::Get('storage');
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
-        <meta name="description" content="Easily paste your Minecraft logs to share and analyse them.">
+        <meta name="description" content="Easily paste your Minecraft logs to share and analyze them.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
         <script>
@@ -230,7 +230,7 @@ $storage = \Config::Get('storage');
             <div class="row-inner">
                 &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a target="_blank" href="https://aternos.org">Aternos</a> |
                 <a target="_blank" href="<?=$legal['imprint']?>">Imprint</a> |
-                <a target="_blank" href="<?=$legal['privacy']?>>">Privacy</a>
+                <a target="_blank" href="<?=$legal['privacy']?>">Privacy</a>
             </div>
         </div>
         <script src="js/mclogs.js?v=130222"></script>
