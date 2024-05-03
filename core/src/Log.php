@@ -9,6 +9,7 @@ use Aternos\Codex\Minecraft\Detective\Detective;
 use Aternos\Codex\Minecraft\Log\Minecraft\MinecraftLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\Fabric\FabricLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaClientLog;
+use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaCrashReportLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaServerLog;
 use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
 use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
@@ -94,7 +95,11 @@ class Log
      */
     protected function getObfuscationMap($version): ?ObfuscationMap
     {
-        if (get_class($this->get()) === VanillaServerLog::class || get_class($this->get()) === VanillaClientLog::class) {
+        if (in_array(get_class($this->get()), [
+            VanillaServerLog::class,
+            VanillaClientLog::class,
+            VanillaCrashReportLog::class,
+        ])){
             $urlCache = new CacheEntry("sherlock:vanilla:$version:server");
 
             $mapURL = $urlCache->get();
