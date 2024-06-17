@@ -102,11 +102,11 @@ class Log
             VanillaCrashReportLog::class,
             VanillaNetworkProtocolErrorReportLog::class
         ])){
-            $urlCache = new CacheEntry("sherlock:vanilla:$version:server");
+            $urlCache = new CacheEntry("sherlock:vanilla:$version:client");
 
             $mapURL = $urlCache->get();
             if (!$mapURL) {
-                $mapURL = (new LauncherMetaMapLocator($version, "server"))->findMappingURL();
+                $mapURL = (new LauncherMetaMapLocator($version, "client"))->findMappingURL();
 
                 if (!$mapURL) {
                     return null;
