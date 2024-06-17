@@ -10,6 +10,7 @@ use Aternos\Codex\Minecraft\Log\Minecraft\MinecraftLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\Fabric\FabricLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaClientLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaCrashReportLog;
+use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaNetworkProtocolErrorReportLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaServerLog;
 use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
 use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
@@ -99,6 +100,7 @@ class Log
             VanillaServerLog::class,
             VanillaClientLog::class,
             VanillaCrashReportLog::class,
+            VanillaNetworkProtocolErrorReportLog::class
         ])){
             $urlCache = new CacheEntry("sherlock:vanilla:$version:server");
 
