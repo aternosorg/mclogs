@@ -12,6 +12,7 @@ $config = [
         '\\Filter\\Pre\\Length',
         '\\Filter\\Pre\\Lines',
         '\\Filter\\Pre\\Ip',
-        '\\Filter\\Pre\\UserPath'
+        '\\Filter\\Pre\\UserPath',
+        '\\Filter\\Pre\\SessionId'
     ],
 ];
