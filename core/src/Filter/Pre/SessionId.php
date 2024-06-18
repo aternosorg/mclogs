@@ -9,6 +9,8 @@ class SessionId implements PreFilterInterface
      */
     public static function Filter(string $data): string
     {
-        return preg_replace('/\(Session ID is token:[^:]+\:[^)]+\)/', '(Session ID is token:****************:****************)', $data);
+        $data = preg_replace('/\(Session ID is token:[^:]+\:[^)]+\)/', '(Session ID is token:****************:****************)', $data);
+        $data = preg_replace('/--accessToken [^ ]+/', '--accessToken ****************:****************', $data);
+        return $data;
     }
 }
