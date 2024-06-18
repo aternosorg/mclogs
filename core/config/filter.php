@@ -13,6 +13,6 @@ $config = [
         '\\Filter\\Pre\\Lines',
         '\\Filter\\Pre\\Ip',
         '\\Filter\\Pre\\Username',
-        '\\Filter\\Pre\\SessionId'
+        '\\Filter\\Pre\\AccessToken'
     ],
 ];
