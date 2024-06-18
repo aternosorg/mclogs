@@ -2,13 +2,14 @@
 
 namespace Filter\Pre;
 
-class UserPath implements PreFilterInterface
+class Username implements PreFilterInterface
 {
-    protected const USER_PATH_PATTERNS = [
+    protected const USERNAME_PATTERNS = [
         "/C:\\\\Users\\\\([^\\\\]+)\\\\/" => "C:\\Users\\********\\", // windows
         "/C:\\/Users\\/([^\\/]+)\\//" => "C:/Users/********/", // windows with forward slashes
         "/(?<!\\w)\\/home\\/[^\\/]+\\//" => "/home/********/", // linux
-        "/(?<!\\w)\\/Users\\/[^\\/]+\\//" => "/Users/********/" // macos
+        "/(?<!\\w)\\/Users\\/[^\\/]+\\//" => "/Users/********/", // macos
+        "/^USERNAME=.+$/m" => "USERNAME=********", // environment variable
     ];
 
     /**
@@ -19,7 +20,7 @@ class UserPath implements PreFilterInterface
      */
     public static function Filter(string $data): string
     {
-        foreach (static::USER_PATH_PATTERNS as $pattern => $replacement) {
+        foreach (static::USERNAME_PATTERNS as $pattern => $replacement) {
             $data = preg_replace($pattern, $replacement, $data);
         }
         return $data;
