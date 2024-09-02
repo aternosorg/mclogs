@@ -83,6 +83,9 @@ $legal = Config::Get('legal');
                     </tr>
                 </table>
 
+                <h3>cURL <span class="command-description">Upload log files from a shell</span></h3>
+                <pre class="answer">
+curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl']?>/1/log'</pre>
                 <h3>Success <span class="content-type">application/json</span></h3>
                 <pre class="answer">
 {
