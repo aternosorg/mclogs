@@ -218,7 +218,7 @@ $legal = Config::Get('legal');
                 <h2>Check storage limits</h2>
 
                 <div class="endpoint">
-                    <span class="method">GET</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/storage-limits</span>
+                    <span class="method">GET</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/limits</span>
                 </div>
                 <h3>Success <span class="content-type">application/json</span></h3>
                 <pre class="answer">

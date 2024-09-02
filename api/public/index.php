@@ -13,8 +13,8 @@ switch ($_SERVER['REQUEST_URI']) {
     case "/1/errors/rate":
         require_once("../endpoints/rate-error.php");
         break;
-    case "/1/storage-limits":
-        require_once("../endpoints/storage-limits.php");
+    case "/1/limits":
+        require_once("../endpoints/limits.php");
         break;
     default:
         if (str_starts_with($_SERVER['REQUEST_URI'], "/1/raw/")) {
