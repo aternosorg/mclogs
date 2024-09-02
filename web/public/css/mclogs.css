@@ -378,6 +378,13 @@ body {
     padding: 16px;
 }
 
+.command-description {
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 12px;
+    color: #777;
+}
+
 .method,
 .endpoint-url,
 .endpoint-field,
