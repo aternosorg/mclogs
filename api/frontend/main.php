@@ -213,6 +213,44 @@ $legal = Config::Get('legal');
 }</pre>
             </div>
         </div>
+        <div class="row">
+            <div class="row-inner">
+                <h2>Check storage limits</h2>
+
+                <div class="endpoint">
+                    <span class="method">GET</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/storage-limits</span>
+                </div>
+                <h3>Success <span class="content-type">application/json</span></h3>
+                <pre class="answer">
+{
+  "storageTime": 7776000,
+  "maxLength": 10485760,
+  "maxLines": 25000
+}</pre>
+                <table class="endpoint-table">
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td class="endpoint-field">storageTime</td>
+                        <td class="endpoint-type">integer</td>
+                        <td class="endpoint-description">The duration in seconds that a log is stored for after the last view.</td>
+                    </tr>
+                    <tr>
+                        <td class="endpoint-field">maxLength</td>
+                        <td class="endpoint-type">integer</td>
+                        <td class="endpoint-description">Maximum file length in bytes. Logs over this limit will be truncated to this length.</td>
+                    </tr>
+                    <tr>
+                        <td class="endpoint-field">maxLines</td>
+                        <td class="endpoint-type">integer</td>
+                        <td class="endpoint-description">Maximum number of lines. Additional lines will be removed.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
         <div class="row dark api-notes docs">
             <div class="row-inner">
                 <div class="docs-text">
