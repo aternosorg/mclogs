@@ -286,7 +286,7 @@ body {
 }
 
 .log-row .no-wrap .level {
-    white-space: nowrap;
+    text-wrap: nowrap;
 }
 
 .log-notice {
