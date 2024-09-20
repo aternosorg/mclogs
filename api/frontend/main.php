@@ -264,9 +264,6 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
                         <a class="btn btn-small btn-no-margin btn-blue" href="mailto:matthias@aternos.org">
                             <i class="fa fa-envelope"></i> Contact via mail
                         </a>
-                        <a class="btn btn-small btn-no-margin btn-blue" target="_blank" href="https://twitter.com/Aternos">
-                            <i class="fa fa-twitter"></i> Contact via Twitter
-                        </a>
                     </div>
                 </div>
                 <div class="docs-icon">
