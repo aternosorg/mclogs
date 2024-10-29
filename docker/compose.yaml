@@ -1,0 +1,25 @@
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+        - 80:80
+    volumes:
+      - ../:/web/mclogs
+      - ./mclogs.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - php-fpm
+  php-fpm:
+    build:
+      dockerfile_inline: |
+        FROM php:8.1-fpm
+        COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+        RUN install-php-extensions mongodb
+        COPY mclogs.ini /usr/local/etc/php/conf.d/mclogs.ini
+    volumes:
+      - ../:/web/mclogs
+  mongo:
+    image: mongo
+    volumes:
+      - mongo:/data/db
+volumes:
+  mongo:

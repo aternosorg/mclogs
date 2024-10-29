@@ -18,13 +18,11 @@ suggestions based on the log content to simply solve common errors.
 * Different storage backends (mongodb, redis, filesystem)
 
 ## Development setup
-* Install Vagrant: https://www.vagrantup.com/downloads.html
-* Install VirtualBox: https://www.virtualbox.org/wiki/Linux_Downloads
+* Install Docker Compose: https://docs.docker.com/compose/install/
 * Clone repository: `git clone [URL]`
-* `cd mclogs/vagrant`
-* `vagrant up`
-* Modify local `/etc/hosts` file: `10.7.7.18 mclogs.local api.mclogs.local`
-* Open http://mclogs.local in browser and enjoy
+* `cd mclogs/docker`
+* `docker-compose up`
+* Open http://localhost in browser and enjoy
 
 ## License
 mclo.gs is open source software released under the MIT license, see [license](LICENSE).
