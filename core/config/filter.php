@@ -9,8 +9,8 @@ $config = [
      */
     'pre' => [
         '\\Filter\\Pre\\Trim',
-        '\\Filter\\Pre\\Length',
         '\\Filter\\Pre\\Lines',
+        '\\Filter\\Pre\\Length',
         '\\Filter\\Pre\\Ip',
         '\\Filter\\Pre\\Username',
         '\\Filter\\Pre\\AccessToken'
