@@ -4,3 +4,4 @@
 config.php
 /vendor/
 mongo.php
+push_image.bat
