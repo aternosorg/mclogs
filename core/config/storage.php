@@ -27,7 +27,7 @@ $config = [
      *
      * Should be a key in the $storages array
      */
-    "storageId" => "m",
+    "storageId" => "f",
 
     /**
      * Time in seconds to store data after put or last renew

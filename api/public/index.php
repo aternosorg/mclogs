@@ -2,7 +2,12 @@
 
 require_once("../../core/core.php");
 
+$_SERVER['REQUEST_URI'] = preg_replace('/^\/mclogs/m', '', $_SERVER['REQUEST_URI']);
+
 switch ($_SERVER['REQUEST_URI']) {
+    case "/_healthcheck":
+        http_response_code(200);
+        break;
     case "/":
         require_once("../frontend/main.php");
         break;
