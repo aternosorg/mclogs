@@ -47,7 +47,7 @@ class Log
      *
      * @param Id|null $id
      */
-    public function __construct(Id $id = null)
+    public function __construct(?Id $id = null)
     {
         if ($id) {
             $this->id = $id;

@@ -27,7 +27,7 @@ class Id
      *
      * @param string|null $fullId
      */
-    public function __construct(string $fullId = null)
+    public function __construct(?string $fullId = null)
     {
         if ($fullId === null) {
             $this->regenerate();
