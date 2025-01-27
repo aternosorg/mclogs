@@ -218,6 +218,86 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
         </div>
         <div class="row">
             <div class="row-inner">
+                <h2>Analyse a log without saving it</h2>
+
+                <div class="endpoint">
+                    <span class="method">POST</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/analyse</span>
+                </div>
+                <table class="endpoint-table">
+                    <tr>
+                        <th>Field</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td class="endpoint-field">content</td>
+                        <td class="endpoint-type">string</td>
+                        <td class="endpoint-description">The raw log file content as string. Maximum length is 10MiB and 25k lines, will be shortened if necessary.</td>
+                    </tr>
+                </table>
+
+                <h3>Success <span class="content-type">application/json</span></h3>
+                <pre class="answer">
+{
+  "id": "name/type",
+  "name": "Software name, e.g. Vanilla",
+  "type": "Type name, e.g. Server Log",
+  "version": "Version, e.g. 1.12.2",
+  "title": "Combined title, e.g. Vanilla 1.12.2 Server Log",
+  "analysis": {
+    "problems": [
+      {
+        "message": "A message explaining the problem.",
+        "counter": 1,
+        "entry": {
+          "level": 6,
+          "time": null,
+          "prefix": "The prefix of this entry, usually the part containing time and loglevel.",
+          "lines": [
+            {
+              "number": 1,
+              "content": "The full content of the line."
+            }
+          ]
+        },
+        "solutions": [
+          {
+            "message": "A message explaining a possible solution."
+          }
+        ]
+      }
+    ],
+    "information": [
+      {
+        "message": "Label: value",
+        "counter": 1,
+        "label": "The label of this information, e.g. Minecraft version",
+        "value": "The value of this information, e.g. 1.12.2",
+        "entry": {
+          "level": 6,
+          "time": null,
+          "prefix": "The prefix of this entry, usually the part containing time and loglevel.",
+          "lines": [
+            {
+              "number": 6,
+              "content": "The full content of the line."
+            }
+          ]
+        }
+      }
+    ]
+  }
+}</pre>
+                <h3>Error <span class="content-type">application/json</span></h3>
+                <pre class="answer">
+{
+    "success": false,
+    "error": "Required POST argument 'content' is empty."
+}</pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row-inner">
                 <h2>Check storage limits</h2>
 
                 <div class="endpoint">
