@@ -82,11 +82,21 @@ class Log
             $this->exists = true;
         }
 
+        $this->analyse();
+        $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
+    }
+
+    /**
+     * Analyse the log content
+     * @return Analysis
+     */
+    public function analyse(): Analysis
+    {
         $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
         $this->log->parse();
-        $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
         $this->analysis = $this->log->analyse();
         $this->deobfuscateContent();
+        return $this->analysis;
     }
 
     /**
@@ -260,6 +270,19 @@ class Log
         }
 
         return $errorCount;
+    }
+
+    /**
+     * Set the data of the log without saving it to storage
+     *
+     * @param string $data
+     * @return Log
+     */
+    public function setData(string $data): Log
+    {
+        $this->data = $data;
+        $this->preFilter();
+        return $this;
     }
 
     /**
