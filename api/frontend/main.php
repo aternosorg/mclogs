@@ -221,7 +221,7 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
                 <h2>Analyse a log without saving it</h2>
 
                 <div class="endpoint">
-                    <span class="method">POST</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/analyse</span>
+                    <span class="method">POST</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/analyse</span> <span class="content-type">application/x-www-form-urlencoded</span>
                 </div>
                 <table class="endpoint-table">
                     <tr>
