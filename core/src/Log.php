@@ -175,7 +175,7 @@ class Log
     protected function deobfuscateContent()
     {
         /**
-         * @var ?Information
+         * @var ?Information $version
          */
         $version = $this->analysis->getFilteredInsights(VanillaVersionInformation::class)[0] ?? null;
         if (!$version) {
@@ -198,7 +198,6 @@ class Log
             $this->data = $content;
             $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
             $this->log->parse();
-            $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
         }
     }
 
