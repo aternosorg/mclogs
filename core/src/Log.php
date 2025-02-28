@@ -67,6 +67,11 @@ class Log
             return;
         }
 
+        if (!$config['storages'][$this->id->getStorage()]['enabled']) {
+            $this->exists = false;
+            return;
+        }
+
         /**
          * @var StorageInterface $storage
          */

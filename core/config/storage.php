@@ -10,15 +10,18 @@ $config = [
     "storages" => [
         "m" => [
             "name" => "MongoDB",
-            "class" => "\\Storage\\Mongo"
+            "class" => "\\Storage\\Mongo",
+            "enabled" => true
         ],
         "f" => [
             "name" => "Filesystem",
-            "class" => "\\Storage\\Filesystem"
+            "class" => "\\Storage\\Filesystem",
+            "enabled" => false
         ],
         "r" => [
             "name" => "Redis",
-            "class" => "\\Storage\\Redis"
+            "class" => "\\Storage\\Redis",
+            "enabled" => false
         ]
     ],
 
