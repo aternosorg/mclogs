@@ -162,7 +162,7 @@ $storage = \Config::Get('storage');
                             <a href="https://www.spigotmc.org/resources/mclo-gs.47502/" target="_blank" class="btn btn-blue btn-no-margin">
                                 <i class="fa fa-download"></i> spigotmc.org
                             </a>
-                            <a href="https://github.com/aternosorg/mclogs-bukkit" target="_blank" class="btn btn-blue btn-no-margin">
+                            <a href="https://github.com/aternosorg/mclogs-integration" target="_blank" class="btn btn-blue btn-no-margin">
                                 <i class="fab fa-github"></i> github.com
                             </a>
                         </div>
@@ -181,8 +181,8 @@ $storage = \Config::Get('storage');
                             Use our mod.
                         </div>
                         <div class="article-text">
-                            We also have a mod for Forge and Fabric, so you can use it with your favorite mods. It is fully server-sided
-                            and has the same features as the plugin.
+                            We also have a mod for Forge, Fabric and NeoForge, so you can use it with your favorite mods. It can be installed on
+                            your server with the same features <br /> as the plugin or on your client to share the logs from your client.
                         </div>
                         <div class="article-buttons">
                             <a href="https://modrinth.com/mod/mclogs" target="_blank" class="btn btn-blue btn-no-margin">
@@ -191,11 +191,8 @@ $storage = \Config::Get('storage');
                             <a href="https://www.curseforge.com/minecraft/mc-mods/mclo-gs" target="_blank" class="btn btn-blue btn-no-margin">
                                 <i class="fa fa-download"></i> curseforge.com
                             </a>
-                            <a href="https://github.com/aternosorg/mclogs-forge" target="_blank" class="btn btn-blue btn-no-margin">
-                                <i class="fab fa-github"></i> Forge
-                            </a>
-                            <a href="https://github.com/aternosorg/mclogs-fabric" target="_blank" class="btn btn-blue btn-no-margin">
-                                <i class="fab fa-github"></i> Fabric
+                            <a href="https://github.com/aternosorg/mclogs-integration" target="_blank" class="btn btn-blue btn-no-margin">
+                                <i class="fab fa-github"></i> github.com
                             </a>
                         </div>
                     </div>
