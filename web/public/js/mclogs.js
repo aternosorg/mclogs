@@ -47,6 +47,40 @@ document.addEventListener('keydown', event => {
 })
 
 /**
+ * Limit the number of characters in a string by removing the end
+ * @param {string} string
+ * @param {number} limit
+ * @returns {string}
+ */
+function limitLength(string, limit = parseInt(pasteArea.dataset.maxLength)) {
+    return string.substring(0, limit);
+}
+
+/**
+ * Limit the number of lines in a string by truncating the middle
+ * @param {string} string
+ * @param {number} limit
+ * @returns {string}
+ */
+function limitLines(string, limit = parseInt(pasteArea.dataset.maxLines)) {
+    let lines = string.split('\n');
+    if (lines.length <= limit) {
+        return string;
+    }
+
+    let removed = lines.length - limit + 3;
+    let message = 'Truncated ' + removed + ' line' + (removed > 1 ? 's' : '');
+
+    lines.splice(limit / 2, removed,
+        "=".repeat(message.length),
+        message,
+        "=".repeat(message.length)
+    );
+
+    return lines.join('\n')
+}
+
+/**
  * Save the log to the API
  * @returns {Promise<void>}
  */
@@ -58,9 +92,9 @@ async function sendLog() {
     pasteSaveButtons.forEach(button => button.classList.add("btn-working"));
 
     try {
-        let log = pasteArea.value
-            .substring(0, parseInt(pasteArea.dataset.maxLength))
-            .split('\n').slice(0, parseInt(pasteArea.dataset.maxLines)).join('\n');
+        let log = pasteArea.value;
+        log = limitLines(log);
+        log = limitLength(log);
 
         const response = await fetch(`${location.protocol}//api.${location.host}/1/log`, {
             method: "POST",

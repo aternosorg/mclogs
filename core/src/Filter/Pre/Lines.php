@@ -15,6 +15,24 @@ class Lines implements PreFilterInterface {
     public static function Filter(string $data): string
     {
         $config = \Config::Get('storage');
-        return implode("\n", array_slice(explode("\n", $data), 0, $config["maxLines"]));
+        $limit = $config["maxLines"];
+
+        $lines = explode("\n", $data);
+        $count = count($lines);
+
+        if ($count <= $limit) {
+            return $data;
+        }
+
+        $removed = $count - $limit + 3;
+        $message = "Truncated " . $removed . " line" . ($removed > 1 ? "s" : "");
+
+        array_splice($lines, $limit / 2, $removed, [
+            str_repeat("=", strlen($message)),
+            $message,
+            str_repeat("=", strlen($message)),
+        ]);
+
+        return implode("\n", $lines);
     }
 }
