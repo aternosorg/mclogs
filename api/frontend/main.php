@@ -1,6 +1,9 @@
 <?php
 $urls = Config::Get("urls");
 $legal = Config::Get('legal');
+$maxlines = Config::Get('storage')['maxLines'];
+$maxlength = Config::Get('storage')['maxLength'];
+$storagetime = Config::Get('storage')['storageTime'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -306,9 +309,10 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
                 <h3>Success <span class="content-type">application/json</span></h3>
                 <pre class="answer">
 {
-  "storageTime": 7776000,
-  "maxLength": 10485760,
-  "maxLines": 25000
+  "storageTime": <?=$storagetime?>,
+  "maxLength": <?=$maxlength?>,
+  "maxLines": <?=$maxlines?>
+
 }</pre>
                 <table class="endpoint-table">
                     <tr>
