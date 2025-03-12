@@ -306,9 +306,10 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
                 <h3>Success <span class="content-type">application/json</span></h3>
                 <pre class="answer">
 {
-  "storageTime": 7776000,
-  "maxLength": 10485760,
-  "maxLines": 25000
+  "storageTime": <?php echo Config::Get('storage')['storageTime']; ?>,
+  "maxLength": <?php echo Config::Get('storage')['maxLength']; ?>,
+  "maxLines": <?php echo Config::Get('storage')['maxLines']; ?>
+
 }</pre>
                 <table class="endpoint-table">
                     <tr>
