@@ -1,5 +1,13 @@
 <?php
+// ✅ CORS headers for all responses
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
 
+// ✅ Handle preflight (OPTIONS) requests
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
 require_once("../../core/core.php");
 
 switch ($_SERVER['REQUEST_URI']) {

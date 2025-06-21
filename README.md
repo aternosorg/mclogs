@@ -24,5 +24,16 @@ suggestions based on the log content to simply solve common errors.
 * `docker-compose up`
 * Open http://localhost in browser and enjoy
 
+## Shared CPanel/Shared Webhosting setup
+* Set your domain on [`./core/config/urls.php`](core/config/urls.php)
+* Copy [`./core/config/example.mongo.php`](core/config/example.mongo.php) into `./core/config/mongo.php` then set Mongo credentials.
+* On Web Hoting use 2 domain to pointing below
+* Web => [`./web/public`](web/public/)
+* Api => [`./api/public`](api/public)
+* Install PHP dependencies via Composer
+```bash
+composer update && composer install
+```
+
 ## License
 mclo.gs is open source software released under the MIT license, see [license](LICENSE).
