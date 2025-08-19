@@ -15,6 +15,10 @@ switch ($_SERVER['REQUEST_URI']) {
     case "/1/log/":
         require_once("../endpoints/log.php");
         break;
+    case "/1/analyse":
+    case "/1/analyse/":
+        require_once("../endpoints/analyse.php");
+        break;
     case "/1/errors/rate":
         require_once("../endpoints/rate-error.php");
         break;

@@ -6,6 +6,7 @@ class Username implements PreFilterInterface
 {
     protected const USERNAME_PATTERNS = [
         "/C:\\\\Users\\\\([^\\\\]+)\\\\/" => "C:\\Users\\********\\", // windows
+        "/C:\\\\\\\\Users\\\\\\\\([^\\\\]+)\\\\\\\\/" => "C:\\\\Users\\\\********\\\\", // windows with double backslashes
         "/C:\\/Users\\/([^\\/]+)\\//" => "C:/Users/********/", // windows with forward slashes
         "/(?<!\\w)\\/home\\/[^\\/]+\\//" => "/home/********/", // linux
         "/(?<!\\w)\\/Users\\/[^\\/]+\\//" => "/Users/********/", // macos

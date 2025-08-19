@@ -11,12 +11,12 @@ class Id
     /**
      * @var string Id of the storage, one character long
      */
-    private string $storageId;
+    private string $storageId = "";
 
     /**
      * @var string Id without storage part, used by storage class
      */
-    private string $rawId;
+    private string $rawId = "";
 
 
     /**
@@ -27,7 +27,7 @@ class Id
      *
      * @param string|null $fullId
      */
-    public function __construct(string $fullId = null)
+    public function __construct(?string $fullId = null)
     {
         if ($fullId === null) {
             $this->regenerate();
@@ -123,6 +123,9 @@ class Id
      */
     private function decode(): bool
     {
+        if (!$this->isValid()) {
+            return false;
+        }
         $config = Config::Get("id");
         $chars = str_split($config['characters']);
 
@@ -139,4 +142,27 @@ class Id
         return true;
     }
 
+    /**
+     * Check if the id matches the expected format
+     *
+     * @return bool
+     */
+    protected function isValid(): bool
+    {
+        $config = Config::Get("id");
+
+        $expectedLength = $config['length'] + 1;
+        if (strlen($this->fullId) !== $expectedLength) {
+            return false;
+        }
+
+        $expectedChars = str_split($config['characters']);
+        $chars = str_split($this->fullId);
+        foreach ($chars as $char) {
+            if (!in_array($char, $expectedChars)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
