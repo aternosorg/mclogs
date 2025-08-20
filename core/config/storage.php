@@ -11,7 +11,7 @@ $config = [
         "m" => [
             "name" => "MongoDB",
             "class" => "\\Storage\\Mongo",
-            "enabled" => true
+            "enabled" => false
         ],
         "f" => [
             "name" => "Filesystem",

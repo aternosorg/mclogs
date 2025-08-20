@@ -2,23 +2,23 @@
 
 namespace Cache;
 
-use Client\RedisClient;
-
-class RedisCache extends RedisClient implements CacheInterface
+class RedisCache implements CacheInterface
 {
+    /**
+     * Storage array.
+     * Format: key => [value, expiresAt|null]
+     *
+     * @var array<string, array{0: string, 1: ?int}>
+     */
+    private static array $store = [];
 
     /**
      * @inheritDoc
      */
-    public static function Set(string $key, string $value, ?int $duration = null)
+    public static function Set(string $key, string $value, ?int $duration = null): void
     {
-        self::Connect();
-        if ($duration) {
-            self::$connection->setEx($key, $duration, $value);
-        }
-        else {
-            self::$connection->set($key, $value);
-        }
+        $expiresAt = $duration ? time() + $duration : null;
+        self::$store[$key] = [$value, $expiresAt];
     }
 
     /**
@@ -26,8 +26,19 @@ class RedisCache extends RedisClient implements CacheInterface
      */
     public static function Get(string $key): ?string
     {
-        self::Connect();
-        return self::$connection->get($key) ?: null;
+        if (!isset(self::$store[$key])) {
+            return null;
+        }
+
+        [$value, $expiresAt] = self::$store[$key];
+
+        // Expired?
+        if ($expiresAt !== null && $expiresAt < time()) {
+            unset(self::$store[$key]);
+            return null;
+        }
+
+        return $value;
     }
 
     /**
@@ -35,7 +46,17 @@ class RedisCache extends RedisClient implements CacheInterface
      */
     public static function Exists(string $key): bool
     {
-        self::Connect();
-        return (bool)self::$connection->exists($key);
+        if (!isset(self::$store[$key])) {
+            return false;
+        }
+
+        [, $expiresAt] = self::$store[$key];
+
+        if ($expiresAt !== null && $expiresAt < time()) {
+            unset(self::$store[$key]);
+            return false;
+        }
+
+        return true;
     }
 }
