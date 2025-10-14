@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6c04c155b784fe4c9b97f07aad8e3cb",
+    "content-hash": "72f248d75c3d2b4baf383420b12c830c",
     "packages": [
         {
             "name": "aternos/codex",
@@ -431,7 +431,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.1",
+        "php": ">=8.3",
         "ext-json": "*",
         "ext-zlib": "*",
         "ext-mbstring": "*"
