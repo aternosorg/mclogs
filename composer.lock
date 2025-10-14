@@ -4,27 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d5c7556fa03fa0012d7174a434b5fb9",
+    "content-hash": "d6c04c155b784fe4c9b97f07aad8e3cb",
     "packages": [
         {
             "name": "aternos/codex",
-            "version": "v2.2.0",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex.git",
-                "reference": "8f7615e98ff001cc7e268165c1daf717e2fdc9cb"
+                "reference": "12ad4c2e3e317ed06614d03b1bcca1c1212bac33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex/zipball/8f7615e98ff001cc7e268165c1daf717e2fdc9cb",
-                "reference": "8f7615e98ff001cc7e268165c1daf717e2fdc9cb",
+                "url": "https://api.github.com/repos/aternosorg/codex/zipball/12ad4c2e3e317ed06614d03b1bcca1c1212bac33",
+                "reference": "12ad4c2e3e317ed06614d03b1bcca1c1212bac33",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.1"
+                "php": ">=8.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "^10.5"
+                "phpunit/phpunit": "^12.3"
             },
             "type": "library",
             "autoload": {
@@ -45,31 +45,31 @@
             "description": "PHP library to read, parse, print and analyse log files.",
             "support": {
                 "issues": "https://github.com/aternosorg/codex/issues",
-                "source": "https://github.com/aternosorg/codex/tree/v2.2.0"
+                "source": "https://github.com/aternosorg/codex/tree/v3.0.0"
             },
-            "time": "2024-09-11T12:33:08+00:00"
+            "time": "2025-08-06T13:14:18+00:00"
         },
         {
             "name": "aternos/codex-minecraft",
-            "version": "v3.8.0",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "edd8476ec20088b69707f1f6f6c60a441adbc460"
+                "reference": "6af70c0e9c9fd0e758c9a83f6f50da82accdf06f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/edd8476ec20088b69707f1f6f6c60a441adbc460",
-                "reference": "edd8476ec20088b69707f1f6f6c60a441adbc460",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/6af70c0e9c9fd0e758c9a83f6f50da82accdf06f",
+                "reference": "6af70c0e9c9fd0e758c9a83f6f50da82accdf06f",
                 "shasum": ""
             },
             "require": {
-                "aternos/codex": "^2.2.0",
+                "aternos/codex": "^3.0.0",
                 "ext-json": "*",
-                "php": ">=8.1.0"
+                "php": ">=8.3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^10.2"
+                "phpunit/phpunit": "^12.4"
             },
             "type": "library",
             "autoload": {
@@ -90,9 +90,9 @@
             "description": "PHP library to read, parse, print and analyse Minecraft log files.",
             "support": {
                 "issues": "https://github.com/aternosorg/codex-minecraft/issues",
-                "source": "https://github.com/aternosorg/codex-minecraft/tree/v3.8.0"
+                "source": "https://github.com/aternosorg/codex-minecraft/tree/v4.0.0"
             },
-            "time": "2025-03-07T11:18:41+00:00"
+            "time": "2025-10-13T16:06:31+00:00"
         },
         {
             "name": "aternos/sherlock",
