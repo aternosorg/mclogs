@@ -17,6 +17,7 @@ services:
         COPY mclogs.ini /usr/local/etc/php/conf.d/mclogs.ini
     volumes:
       - ../:/web/mclogs
+      - ./mongo.php:/web/mclogs/core/config/mongo.php
   mongo:
     image: mongo
     volumes:
