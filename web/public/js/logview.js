@@ -125,6 +125,6 @@ if (wrapCheckbox) {
             document.querySelector(".log-row .row-inner").classList.add("no-wrap");
         }
         wrapCheckbox.scrollIntoView({behavior: "instant"});
-        document.cookie = "WRAP_LOG_LINES=" + wrapCheckbox.checked + ";path=/";
+        document.cookie = "WRAP_LOG_LINES=" + wrapCheckbox.checked + ";path=/;expires=" + new Date(new Date().getTime() + 365*24*60*60*1000).toUTCString();
     })
 }
