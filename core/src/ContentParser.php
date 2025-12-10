@@ -30,7 +30,7 @@ class ContentParser
         if ($encodingHeader) {
             $encodingSteps = explode(',', $encodingHeader);
             foreach (array_reverse($encodingSteps) as $step) {
-                switch (strtolower($step)) {
+                switch (trim(strtolower($step))) {
                     case "deflate":
                         $body = gzinflate($body);
                         break;
