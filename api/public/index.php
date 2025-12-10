@@ -1,14 +1,14 @@
 <?php
 
+require_once("../../core/core.php");
+
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
-header("Accept-Encoding: " . implode(",", $this->getSupportedEncodings()));
+header("Accept-Encoding: " . implode(",", ContentParser::getSupportedEncodings()));
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
-
-require_once("../../core/core.php");
 
 switch ($_SERVER['REQUEST_URI']) {
     case "/":
