@@ -9,7 +9,7 @@ class ContentParser
      * Get all supported content encodings
      * @return string[]
      */
-    public function getSupportedEncodings(): array
+    public static function getSupportedEncodings(): array
     {
         return ["deflate", "gzip", "x-gzip"];
     }
@@ -21,8 +21,6 @@ class ContentParser
      */
     public function getContent(): string|ApiError
     {
-        header("Accept-Encoding: " . implode(", ", $this->getSupportedEncodings()));
-
         $body = file_get_contents('php://input');
         if ($body === false) {
             return new ApiError(500, "Failed to read request body.");
