@@ -1,5 +1,11 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: *');
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    exit;
+}
+
 require_once("../../core/core.php");
 
 switch ($_SERVER['REQUEST_URI']) {
@@ -29,14 +35,7 @@ switch ($_SERVER['REQUEST_URI']) {
             require_once("../endpoints/insights.php");
             break;
         }
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/json');
-        http_response_code(404);
 
-        $out = new stdClass();
-        $out->success = false;
-        $out->error = "Could not find endpoint.";
-
-        echo json_encode($out);
-        break;
+        $error = new ApiError(404, "Could not find endpoint.");
+        $error->output();
 }
