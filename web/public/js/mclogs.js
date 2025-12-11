@@ -9,22 +9,23 @@ const pasteHeader = document.querySelector('.paste-header');
 const pasteFooter = document.querySelector('.paste-footer');
 
 setTimeout(nextTitle, pause);
+
 function nextTitle() {
     currentTitle++;
-    if(typeof(titles[currentTitle]) === "undefined") {
+    if (typeof (titles[currentTitle]) === "undefined") {
         currentTitle = 0;
     }
 
     const title = titleElement.innerHTML;
     for (let i = 0; i < title.length - 1; i++) {
-        setTimeout(function() {
+        setTimeout(function () {
             titleElement.innerHTML = titleElement.innerHTML.substring(0, titleElement.innerHTML.length - 1);
         }, i * speed);
     }
 
     const newTitle = titles[currentTitle];
     for (let i = 1; i <= newTitle.length; i++) {
-        setTimeout(function(){
+        setTimeout(function () {
             titleElement.innerHTML = newTitle.substring(0, titleElement.innerHTML.length + 1);
         }, title.length * speed + i * speed);
     }
@@ -62,14 +63,19 @@ async function sendLog() {
             .substring(0, parseInt(pasteArea.dataset.maxLength))
             .split('\n').slice(0, parseInt(pasteArea.dataset.maxLines)).join('\n');
 
+        const params = new URLSearchParams({
+            "content": log
+        });
+
+        const body = await packGz(new TextEncoder().encode(params.toString()));
+
         const response = await fetch(`${location.protocol}//api.${location.host}/1/log`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Content-Encoding": "gzip"
             },
-            body: new URLSearchParams({
-                "content": log
-            })
+            body
         });
 
         if (!response.ok) {
@@ -80,8 +86,7 @@ async function sendLog() {
         let data = null;
         try {
             data = await response.json();
-        }
-        catch (e) {
+        } catch (e) {
             console.error("Failed to parse JSON returned by API", e);
             handleUploadError("API returned invalid JSON");
             return;
@@ -100,8 +105,7 @@ async function sendLog() {
         }
 
         location.href = `/${data.id}`;
-    }
-    catch (e) {
+    } catch (e) {
         handleUploadError("Network error");
     }
 }
@@ -208,7 +212,7 @@ function loadScript(url) {
 }
 
 async function loadFflate() {
-    if(typeof fflate === 'undefined') {
+    if (typeof fflate === 'undefined') {
         await loadScript('https://unpkg.com/fflate');
     }
 }
@@ -219,7 +223,7 @@ function selectLogFile() {
     input.style.display = 'none';
     document.body.appendChild(input);
     input.onchange = async () => {
-        if(input.files.length) {
+        if (input.files.length) {
             await loadFileContents(input.files[0]);
         }
     }
@@ -229,10 +233,32 @@ function selectLogFile() {
 
 /**
  * @param {Uint8Array} data
+ * @returns {Promise<Uint8Array>}
+ */
+async function packGz(data) {
+    if (typeof CompressionStream === 'undefined') {
+        console.log("Using fflate for gzip compression");
+        await loadFflate();
+        return fflate.gzipSync(data);
+    }
+
+    let inputStream = new ReadableStream({
+        start: (controller) => {
+            controller.enqueue(data);
+            controller.close();
+        }
+    });
+    const cs = new CompressionStream('gzip');
+    const compressedStream = inputStream.pipeThrough(cs);
+    return new Uint8Array(await new Response(compressedStream).arrayBuffer());
+}
+
+/**
+ * @param {Uint8Array} data
  * @return {Promise<Uint8Array>}
  */
 async function unpackGz(data) {
-    if(typeof DecompressionStream === 'undefined') {
+    if (typeof DecompressionStream === 'undefined') {
         await loadFflate();
         return fflate.gunzipSync(data);
     }

@@ -2,6 +2,14 @@
 
 require_once("../../core/core.php");
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: *');
+header("Accept-Encoding: " . implode(",", ContentParser::getSupportedEncodings()));
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    exit;
+}
+
 switch ($_SERVER['REQUEST_URI']) {
     case "/":
         require_once("../frontend/main.php");
@@ -29,14 +37,7 @@ switch ($_SERVER['REQUEST_URI']) {
             require_once("../endpoints/insights.php");
             break;
         }
-        header('Access-Control-Allow-Origin: *');
-        header('Content-Type: application/json');
-        http_response_code(404);
 
-        $out = new stdClass();
-        $out->success = false;
-        $out->error = "Could not find endpoint.";
-
-        echo json_encode($out);
-        break;
+        $error = new ApiError(404, "Could not find endpoint.");
+        $error->output();
 }

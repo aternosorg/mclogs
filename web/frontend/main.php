@@ -230,6 +230,6 @@ $storage = \Config::Get('storage');
                 <a target="_blank" href="<?=$legal['privacy']?>">Privacy</a>
             </div>
         </div>
-        <script src="js/mclogs.js?v=130222"></script>
+        <script src="js/mclogs.js?v=130223"></script>
     </body>
 </html>
