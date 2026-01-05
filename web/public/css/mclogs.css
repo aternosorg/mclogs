@@ -283,6 +283,7 @@ body {
 .log-row .no-wrap .log {
     max-width: unset;
     overflow-x: scroll;
+    scroll-behavior: auto;
 }
 
 .log-row .no-wrap .level {
