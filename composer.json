@@ -9,11 +9,12 @@
     ],
     "require": {
         "php": ">=8.1",
-        "mongodb/mongodb": "1.20.0",
+        "mongodb/mongodb": "2.1.2",
         "ext-json": "*",
-        "aternos/codex-minecraft": "^3.5.0",
+        "aternos/codex-minecraft": "^5.0.1",
         "aternos/sherlock": "^1.0.2",
         "ext-zlib": "*",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "aternos/codex-hytale": "^1.0"
     }
 }

@@ -5,8 +5,6 @@ use Aternos\Codex\Analysis\Information;
 use Aternos\Codex\Log\File\StringLogFile;
 use Aternos\Codex\Log\Level;
 use Aternos\Codex\Minecraft\Analysis\Information\Vanilla\VanillaVersionInformation;
-use Aternos\Codex\Minecraft\Detective\Detective;
-use Aternos\Codex\Minecraft\Log\Minecraft\MinecraftLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\Fabric\FabricLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaClientLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaCrashReportLog;
@@ -29,7 +27,7 @@ class Log
     private bool $exists = false;
     private ?Id $id = null;
     private ?string $data = null;
-    protected MinecraftLog $log;
+    protected \Aternos\Codex\Log\Log $log;
     protected ?ObfuscatedString $obfuscatedContent = null;
 
     /**
@@ -219,9 +217,9 @@ class Log
     /**
      * Get the log
      *
-     * @return MinecraftLog
+     * @return \Aternos\Codex\Log\Log
      */
-    public function get(): MinecraftLog
+    public function get(): \Aternos\Codex\Log\Log
     {
         return $this->log;
     }
@@ -262,10 +260,6 @@ class Log
     public function getErrorCount(): int
     {
         $errorCount = 0;
-
-        if (!$this->log) {
-            return $errorCount;
-        }
 
         foreach ($this->log as $entry) {
             if ($entry->getLevel() <= Level::ERROR) {
