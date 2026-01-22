@@ -1,0 +1,25 @@
+{
+    "storage": {
+        "type": "mongodb",
+        "time": 7776000,
+        "limit": {
+            "bytes": 10485760,
+            "lines": 25000
+        }
+    },
+    "redis": {
+        "host": "127.0.0.1",
+        "port": 6379
+    },
+    "mongodb": {
+        "url": "mongodb://127.0.0.1:27017"
+    },
+    "filesystem": {
+        "path": "/storage/logs"
+    },
+    "legal": {
+        "abuse": "abuse@aternos.org",
+        "imprint": "https://aternos.gmbh/imprint/",
+        "privacy": "https://aternos.gmbh/en/mclogs/privacy"
+    }
+}

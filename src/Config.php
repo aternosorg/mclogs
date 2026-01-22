@@ -1,6 +1,7 @@
 <?php
 
 namespace Aternos\Mclogs;
+
 class Config
 {
     /**

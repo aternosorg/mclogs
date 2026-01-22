@@ -15,7 +15,11 @@
         "aternos/sherlock": "^1.0.2",
         "ext-zlib": "*",
         "ext-mbstring": "*",
+        "ext-redis": "*",
         "aternos/codex-hytale": "^1.0"
+    },
+    "suggest": {
+        "ext-mongodb": "Required for MongoDB log storage"
     },
     "autoload": {
         "psr-4": {

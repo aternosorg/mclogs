@@ -1,3 +1,4 @@
+name: "mclogs"
 services:
   nginx:
     image: nginx:latest
@@ -19,10 +20,11 @@ services:
         COPY mclogs.ini /usr/local/etc/php/conf.d/mclogs.ini
     volumes:
       - ../:/web/mclogs
-      - ./mongo.php:/web/mclogs/core/config/mongo.php
+      - filesystem:/storage
     depends_on:
       - mongo
       - redis
+
   mongo:
     image: mongo
     volumes:
@@ -36,3 +38,4 @@ services:
 volumes:
   mongo:
   redis:
+  filesystem:
