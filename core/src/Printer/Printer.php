@@ -56,7 +56,7 @@ class Printer extends ModifiableDefaultPrinter
         $first = true;
         foreach ($entry as $line) {
             $trClass = "entry-no-error";
-            if ($entry->getLevel() <= Level::ERROR) {
+            if ($entry->getLevel()->asInt() <= Level::ERROR->asInt()) {
                 $trClass = "entry-error";
             }
             $return .= '<tr class="entry ' . $trClass . '">';

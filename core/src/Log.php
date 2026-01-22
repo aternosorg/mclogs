@@ -262,7 +262,7 @@ class Log
         $errorCount = 0;
 
         foreach ($this->log as $entry) {
-            if ($entry->getLevel() <= Level::ERROR) {
+            if ($entry->getLevel()->asInt() <= Level::ERROR->asInt()) {
                 $errorCount++;
             }
         }
