@@ -13,6 +13,7 @@ enum ConfigKey
     case REDIS_PORT;
 
     case MONGODB_URL;
+    case MONGODB_DATABASE;
 
     case FILESYSTEM_PATH;
 
@@ -37,6 +38,7 @@ enum ConfigKey
             ConfigKey::REDIS_PORT => 6379,
 
             ConfigKey::MONGODB_URL => 'mongodb://mongo:27017',
+            ConfigKey::MONGODB_DATABASE => 'mclogs',
 
             ConfigKey::FILESYSTEM_PATH => '/storage/logs',
 

@@ -2,39 +2,41 @@
 
 namespace Aternos\Mclogs\Client;
 
+use Aternos\Mclogs\Config\Config;
+use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Util\Singleton;
 use MongoDB\Client;
 use MongoDB\Collection;
 
 class MongoDBClient
 {
-    /**
-     * MongoDB Collection name
-     */
-    protected const COLLECTION_NAME = "logs";
+    use Singleton;
 
-    /**
-     * @var null|Client
-     */
-    protected static ?Client $connection = null;
+    protected const string COLLECTION_NAME = "logs";
+
+    protected ?Client $connection = null;
+    protected Collection $collection;
 
     /**
      * Connect to MongoDB
      */
-    protected static function Connect()
+    protected function connect(): void
     {
-        if (self::$connection === null) {
-            $config = \Aternos\Mclogs\Config::Get("mongo");
-            self::$connection = new Client($config['url'] ?? 'mongodb://127.0.0.1/');
+        if ($this->connection === null) {
+            $config = Config::getInstance();
+            $this->connection = new Client($config->get(ConfigKey::MONGODB_URL));
+            $this->collection = $this->connection->getCollection($config->get(ConfigKey::MONGODB_DATABASE), static::COLLECTION_NAME);
         }
     }
 
     /**
-     * get the collection specified by {{@link COLLECTION_NAME}}
+     * Get the collection specified by {{@link COLLECTION_NAME}}
+     *
      * @return Collection
      */
-    protected static function getCollection(): Collection
+    public function getCollection(): Collection
     {
-        static::Connect();
-        return self::$connection->mclogs->{static::COLLECTION_NAME};
+        $this->connect();
+        return $this->collection;
     }
 }

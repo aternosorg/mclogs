@@ -2,23 +2,36 @@
 
 namespace Aternos\Mclogs\Client;
 
+use Aternos\Mclogs\Config\Config;
+use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Util\Singleton;
 use Redis;
 
 class RedisClient
 {
+    use Singleton;
+
     /**
      * @var ?Redis
      */
-    protected static ?Redis $connection = null;
+    protected ?Redis $connection = null;
+
+    protected function connect(): void
+    {
+        if($this->connection === null) {
+            $config = Config::getInstance();
+            $this->connection = new Redis();
+            $this->connection->connect($config->get(ConfigKey::REDIS_HOST), $config->get(ConfigKey::REDIS_PORT));
+        }
+    }
 
     /**
-     * Connect to redis
+     * Get Redis connection
+     *
+     * @return Redis|null
      */
-    protected static function Connect()
+    public function getConnection(): ?Redis
     {
-        if(self::$connection === null) {
-            self::$connection = new Redis();
-            self::$connection->connect('127.0.0.1', 6379);
-        }
+        return $this->connection;
     }
 }

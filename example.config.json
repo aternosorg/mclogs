@@ -12,7 +12,8 @@
         "port": 6379
     },
     "mongodb": {
-        "url": "mongodb://127.0.0.1:27017"
+        "url": "mongodb://127.0.0.1:27017",
+        "database": "mclogs"
     },
     "filesystem": {
         "path": "/storage/logs"

@@ -23,6 +23,8 @@ class Config
     }
 
     /**
+     * Get config value by checking environment variable, then config file, then default value
+     *
      * @param ConfigKey $key
      * @return mixed
      */
@@ -42,6 +44,8 @@ class Config
     }
 
     /**
+     * Recursively get a value from the json data by path
+     *
      * @param array $path
      * @param array|null $data
      * @return mixed
