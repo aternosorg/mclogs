@@ -1,5 +1,9 @@
 <?php
 
+use Aternos\Mclogs\ApiError;
+use Aternos\Mclogs\Id;
+use Aternos\Mclogs\Log;
+
 $urlId = substr($_SERVER['REQUEST_URI'], strlen("/1/insights/"));
 $id = new Id($urlId);
 $log = new Log($id);

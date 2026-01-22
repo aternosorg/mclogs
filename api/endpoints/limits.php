@@ -2,7 +2,7 @@
 
 header('Content-Type: application/json');
 
-$config = \Config::Get('storage');
+$config = \Aternos\Mclogs\Config::Get('storage');
 
 echo json_encode([
     'storageTime' => $config['storageTime'],

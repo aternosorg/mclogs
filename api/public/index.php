@@ -1,5 +1,8 @@
 <?php
 
+use Aternos\Mclogs\ApiError;
+use Aternos\Mclogs\ContentParser;
+
 require_once("../../core/core.php");
 
 header('Access-Control-Allow-Origin: *');

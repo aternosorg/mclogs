@@ -1,7 +1,10 @@
 <?php
+
+use Aternos\Mclogs\Config;
+
 $urls = Config::Get('urls');
 $legal = Config::Get('legal');
-$storage = \Config::Get('storage');
+$storage = \Aternos\Mclogs\Config::Get('storage');
 ?>
 <!DOCTYPE html>
 <html lang="en">

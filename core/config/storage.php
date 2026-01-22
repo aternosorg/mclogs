@@ -10,17 +10,17 @@ $config = [
     "storages" => [
         "m" => [
             "name" => "MongoDB",
-            "class" => "\\Storage\\Mongo",
+            "class" => "\\Aternos\\Mclogs\\Storage\\Mongo",
             "enabled" => true
         ],
         "f" => [
             "name" => "Filesystem",
-            "class" => "\\Storage\\Filesystem",
+            "class" => "\\Aternos\\Mclogs\\Storage\\Filesystem",
             "enabled" => false
         ],
         "r" => [
             "name" => "Redis",
-            "class" => "\\Storage\\Redis",
+            "class" => "\\Aternos\\Mclogs\\Storage\\Redis",
             "enabled" => false
         ]
     ],

@@ -1,4 +1,7 @@
 <?php
+
+use Aternos\Mclogs\Config;
+
 $urls = Config::Get("urls");
 $legal = Config::Get('legal');
 ?>

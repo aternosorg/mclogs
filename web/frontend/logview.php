@@ -1,5 +1,5 @@
 <?php
-$urls = Config::Get('urls');
+use Aternos\Mclogs\Config;use Aternos\Mclogs\Id;use Aternos\Mclogs\Log;$urls = Config::Get('urls');
 $legal = Config::Get('legal');
 $id = new Id(substr($_SERVER['REQUEST_URI'], 1));
 $log = new Log($id);

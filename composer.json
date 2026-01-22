@@ -16,5 +16,10 @@
         "ext-zlib": "*",
         "ext-mbstring": "*",
         "aternos/codex-hytale": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aternos\\Mclogs\\": "src/"
+        }
     }
 }
