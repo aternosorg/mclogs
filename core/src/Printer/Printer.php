@@ -56,14 +56,14 @@ class Printer extends ModifiableDefaultPrinter
         $first = true;
         foreach ($entry as $line) {
             $trClass = "entry-no-error";
-            if ($entry->getLevel() <= Level::ERROR) {
+            if ($entry->getLevel()->asInt() <= Level::ERROR->asInt()) {
                 $trClass = "entry-error";
             }
             $return .= '<tr class="entry ' . $trClass . '">';
             $return .= '<td class="line-number-container"><a href="/' . $this->id->get() . '#L' . $line->getNumber() . '" id="L' . $line->getNumber() . '" class="line-number">' . $line->getNumber() . '</a></td>';
             $return .= '<td><span class="level level-' . $entry->getLevel()->asString() . ((!$first) ? " multiline" : "") . '">';
             $lineString = $this->printLine($line);
-            if ($entry instanceof \Aternos\Codex\Minecraft\Log\Entry && $entry->getPrefix() !== null) {
+            if ($entry->getPrefix() !== null) {
                 $prefix = htmlentities($entry->getPrefix());
                 $lineString = str_replace($prefix, '<span class="level-prefix">' . $prefix . '</span>', $lineString);
             }

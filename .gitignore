@@ -1,6 +1,4 @@
 *.log
 .idea
-.vagrant
-config.php
 /vendor/
-mongo.php
+core/config/mongo.php

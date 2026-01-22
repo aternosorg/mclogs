@@ -13,16 +13,16 @@ services:
   php-fpm:
     build:
       dockerfile_inline: |
-        FROM php:8.1-fpm
+        FROM php:8.5-fpm
         COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
         RUN install-php-extensions mongodb redis
         COPY mclogs.ini /usr/local/etc/php/conf.d/mclogs.ini
     volumes:
       - ../:/web/mclogs
+      - ./mongo.php:/web/mclogs/core/config/mongo.php
     depends_on:
       - mongo
       - redis
-
   mongo:
     image: mongo
     volumes:
