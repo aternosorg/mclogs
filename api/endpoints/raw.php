@@ -1,19 +1,18 @@
 <?php
 
-use Aternos\Mclogs\ApiError;
+use Aternos\Mclogs\Api\Response\ApiError;
 use Aternos\Mclogs\Id;
 use Aternos\Mclogs\Log;
 
 $urlId = substr($_SERVER['REQUEST_URI'], strlen("/1/raw/"));
 $id = new Id($urlId);
-$log = new Log($id);
+$log = Log::find($id);
 
-if(!$log->exists()) {
+if(!$log) {
     $error = new ApiError(404, "Log not found.");
     $error->output();
+    exit;
 }
 
-$log->renew();
-
 header('Content-Type: text/plain');
-echo $log->getCodexLog()->getLogfile()->getContent();
+echo $log->getContent();

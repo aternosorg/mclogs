@@ -1,9 +1,9 @@
 <?php
 
-use Aternos\Mclogs\ApiError;
-use Aternos\Mclogs\ContentParser;
+use Aternos\Mclogs\Api\ContentParser;
+use Aternos\Mclogs\Api\Response\ApiError;
 
-require_once("../../core/core.php");
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');

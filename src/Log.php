@@ -14,7 +14,9 @@ use Aternos\Mclogs\Data\Token;
 use Aternos\Mclogs\Filter\Filter;
 use Aternos\Mclogs\Printer\Printer;
 use Aternos\Mclogs\Storage\MongoDBClient;
+use Aternos\Mclogs\Util\URL;
 use MongoDB\BSON\UTCDateTime;
+use Uri\Rfc3986\Uri;
 
 class Log
 {
@@ -55,6 +57,8 @@ class Log
     }
 
     /**
+     * Create and save a new log
+     *
      * @param string $content
      * @param MetadataEntry[] $metadata
      * @param string|null $source
@@ -321,5 +325,37 @@ class Log
             $this->expires = $expires;
         }
         return $result;
+    }
+
+    /**
+     * @return Uri
+     */
+    public function getURL(): Uri
+    {
+        return URL::getBase()->withPath($this->id->get());
+    }
+
+    /**
+     * @return Uri
+     */
+    public function getRawURL(): Uri
+    {
+        return URL::getApi()->withPath("1/raw/" . $this->id->get());
+    }
+
+    /**
+     * @return Id|null
+     */
+    public function getId(): ?Id
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return Token|null
+     */
+    public function getToken(): ?Token
+    {
+        return $this->token;
     }
 }

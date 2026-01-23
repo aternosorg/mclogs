@@ -1,26 +1,28 @@
 <?php
 
-use Aternos\Mclogs\ApiError;
-use Aternos\Mclogs\Config;
-use Aternos\Mclogs\ContentParser;
+use Aternos\Mclogs\Api\ContentParser;
+use Aternos\Mclogs\Api\Response\ApiError;
+use Aternos\Mclogs\Api\Response\LogCreatedResponse;
 use Aternos\Mclogs\Log;
 
-$content = (new ContentParser())->getContent();
+$data = new ContentParser()->getContent();
 
-if ($content instanceof ApiError) {
-    $content->output();
+if ($data instanceof ApiError) {
+    $data->output();
+    exit;
 }
 
-$log = new Log();
-$id = $log->put($content);
+$content = $data['content'];
+$metadata = [];
+if (isset($data['metadata']) && is_array($data['metadata'])) {
+    $metadata = $data['metadata'];
+}
+$source = null;
+if (isset($data['source']) && is_string($data['source'])) {
+    $source = $data['source'];
+}
 
-$urls = Config::Get('urls');
+$log = Log::create($content, $metadata, $source);
 
-$out = new stdClass();
-$out->success = true;
-$out->id = $id->get();
-$out->url = $urls['baseUrl'] . "/" . $out->id;
-$out->raw = $urls['apiBaseUrl'] . "/1/raw/" . $out->id;
-
-header('Content-Type: application/json');
-echo json_encode($out);
+$response = new LogCreatedResponse($log);
+$response->output();

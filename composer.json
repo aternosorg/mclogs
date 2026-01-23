@@ -8,10 +8,11 @@
         }
     ],
     "require": {
-        "php": ">=8.4",
+        "php": ">=8.5",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-mongodb": "*",
+        "ext-uri": "*",
         "ext-zlib": "*",
         "aternos/codex-hytale": "^2.0",
         "aternos/codex-minecraft": "^5.0.1",

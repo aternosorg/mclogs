@@ -1,6 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs;
+namespace Aternos\Mclogs\Api;
+
+use Aternos\Mclogs\Api\Response\ApiError;
 
 /**
  * Utility class for reading log content from the http request
@@ -21,7 +23,7 @@ class ContentParser
      *
      * @return string|ApiError The content string or an ApiError on failure
      */
-    public function getContent(): string|ApiError
+    public function getContent(): array|ApiError
     {
         $body = file_get_contents('php://input');
         if ($body === false) {
@@ -46,15 +48,29 @@ class ContentParser
             }
         }
 
-        parse_str($body, $data);
+        $contentTypeHeader = $_SERVER['CONTENT_TYPE'] ?? '';
+        switch ($contentTypeHeader) {
+            case "application/x-www-form-urlencoded":
+                parse_str($body, $data);
+                break;
+            case "application/json":
+                $data = json_decode($body, true);
+                if (!is_array($data)) {
+                    return new ApiError(400, "Failed to parse JSON body.");
+                }
+                break;
+            default:
+                return new ApiError(415, "Unsupported Content-Type: " . htmlspecialchars($contentTypeHeader));
+        }
+
         if (!isset($data['content'])) {
-            return new ApiError(400, "Required POST argument 'content' not found.");
+            return new ApiError(400, "Required field 'content' not found.");
         }
 
         if (empty($data['content'])) {
-            return new ApiError(400, "Required POST argument 'content' is empty.");
+            return new ApiError(400, "Required field 'content' is empty.");
         }
 
-        return $data['content'];
+        return $data;
     }
 }

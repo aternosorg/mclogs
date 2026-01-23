@@ -1,12 +1,6 @@
 <?php
 
-header('Content-Type: application/json');
+use Aternos\Mclogs\Api\Response\LimitsResponse;
 
-$config = \Aternos\Mclogs\Config::Get('storage');
-
-echo json_encode([
-    'storageTime' => $config['storageTime'],
-    'maxLength' => $config['maxLength'],
-    'maxLines' => $config['maxLines']
-]);
+new LimitsResponse()->output();
 

@@ -1,9 +1,9 @@
 <?php
 
-use Aternos\Mclogs\Config;
+use Aternos\Mclogs\Config\Config;
+use Aternos\Mclogs\Util\URL;
 
-$urls = Config::Get("urls");
-$legal = Config::Get('legal');
+$config = Config::getInstance();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +14,11 @@ $legal = Config::Get('legal');
         <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Play:400,700">
         <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet" />
 
-        <title>API Documentation - mclo.gs</title>
+        <title>API Documentation - <?= URL::getBase()->getHost(); ?></title>
 
-        <base href="//<?=str_replace("api.", "", $_SERVER['HTTP_HOST']); ?>/" />
+        <base href="<?= URL::getBase()->withPath("/")->toString(); ?>" />
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="css/btn.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />        <link rel="stylesheet" href="css/btn.css" />
         <link rel="stylesheet" href="css/mclogs.css?v=071224" />
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
@@ -71,7 +70,7 @@ $legal = Config::Get('legal');
                 <h2>Paste a log file</h2>
 
                 <div class="endpoint">
-                    <span class="method">POST</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/log</span> <span class="content-type">application/x-www-form-urlencoded</span>
+                    <span class="method">POST</span> <span class="endpoint-url"><?= URL::getApi()->withPath("/1/log")->toString(); ?></span> <span class="content-type">application/x-www-form-urlencoded</span>
                 </div>
                 <table class="endpoint-table">
                     <tr>
@@ -88,20 +87,20 @@ $legal = Config::Get('legal');
 
                 <h3>cURL <span class="command-description">Upload log files from a shell</span></h3>
                 <pre class="answer">
-curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl']?>/1/log'</pre>
+curl -X POST --data-urlencode 'content@path/to/latest.log' '<?= URL::getApi()->withPath("/1/log")->toString(); ?>'</pre>
                 <h3>Success <span class="content-type">application/json</span></h3>
                 <pre class="answer">
 {
     "success": true,
     "id": "8FlTowW",
-    "url": "<?=$urls['baseUrl']?>/8FlTowW",
-    "raw": "<?=$urls['apiBaseUrl']?>/1/raw/8FlTowW"
+    "url": "<?= URL::getBase()->withPath("/8FlTowW")->toString(); ?>",
+    "raw": "<?= URL::getApi()->withPath("/1/raw/8FlTowW")->toString(); ?>"
 }</pre>
                 <h3>Error <span class="content-type">application/json</span></h3>
                 <pre class="answer">
 {
     "success": false,
-    "error": "Required POST argument 'content' is empty."
+    "error": "Required field 'content' is empty."
 }</pre>
             </div>
         </div>
@@ -109,7 +108,7 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
             <div class="row-inner">
                 <h2>Get the raw log file content</h2>
                 <div class="endpoint">
-                    <span class="method">GET</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/raw/[id]</span>
+                    <span class="method">GET</span> <span class="endpoint-url"><?= URL::getApi()->toString(); ?>/1/raw/[id]</span>
                 </div>
                 <table class="endpoint-table">
                     <tr>
@@ -120,7 +119,7 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
                     <tr>
                         <td class="endpoint-field">[id]</td>
                         <td class="endpoint-type">string</td>
-                        <td class="endpoint-description">The log file id, received from the paste endpoint or from a URL (<?=$urls['baseUrl']?>/[id]).</td>
+                        <td class="endpoint-description">The log file id, received from the paste endpoint or from a URL (<?= URL::getBase()->toString(); ?>/[id]).</td>
                     </tr>
                 </table>
 
@@ -144,7 +143,7 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
                 <h2>Get insights</h2>
 
                 <div class="endpoint">
-                    <span class="method">GET</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/insights/[id]</span>
+                    <span class="method">GET</span> <span class="endpoint-url"><?= URL::getApi()->toString(); ?>/1/insights/[id]</span>
                 </div>
                 <table class="endpoint-table">
                     <tr>
@@ -155,7 +154,7 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
                     <tr>
                         <td class="endpoint-field">[id]</td>
                         <td class="endpoint-type">string</td>
-                        <td class="endpoint-description">The log file id, received from the paste endpoint or from a URL (<?=$urls['baseUrl']?>/[id]).</td>
+                        <td class="endpoint-description">The log file id, received from the paste endpoint or from a URL (<?= URL::getBase()->toString(); ?>/[id]).</td>
                     </tr>
                 </table>
 
@@ -224,7 +223,7 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
                 <h2>Analyse a log without saving it</h2>
 
                 <div class="endpoint">
-                    <span class="method">POST</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/analyse</span> <span class="content-type">application/x-www-form-urlencoded</span>
+                    <span class="method">POST</span> <span class="endpoint-url"><?= URL::getApi()->withPath("/1/analyse")->toString(); ?></span> <span class="content-type">application/x-www-form-urlencoded</span>
                 </div>
                 <table class="endpoint-table">
                     <tr>
@@ -295,7 +294,7 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
                 <pre class="answer">
 {
     "success": false,
-    "error": "Required POST argument 'content' is empty."
+    "error": "Required field 'content' is empty."
 }</pre>
             </div>
         </div>
@@ -304,7 +303,7 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
                 <h2>Check storage limits</h2>
 
                 <div class="endpoint">
-                    <span class="method">GET</span> <span class="endpoint-url"><?=$urls['apiBaseUrl']?>/1/limits</span>
+                    <span class="method">GET</span> <span class="endpoint-url"><?= URL::getApi()->withPath("/1/limits")->toString(); ?></span>
                 </div>
                 <h3>Success <span class="content-type">application/json</span></h3>
                 <pre class="answer">
@@ -356,7 +355,7 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?=$urls['apiBaseUrl
         </div>
         <div class="row footer">
             <div class="row-inner">
-                &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a href="https://aternos.org">Aternos</a> | <a href="<?=$legal['imprint']?>">Imprint</a>
+                &copy; 2017-<?=date("Y"); ?> by mclo.gs - developed by <a href="https://aternos.org">Aternos</a> | <a href="<?=$config->get(\Aternos\Mclogs\Config\ConfigKey::LEGAL_IMPRINT); ?>">Imprint</a>
             </div>
         </div>
     </body>

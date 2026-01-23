@@ -2,7 +2,7 @@
 
 /* This will be delivered by cloudflare */
 
-use Aternos\Mclogs\ApiError;
+use Aternos\Mclogs\Api\Response\ApiError;
 
 $error = new ApiError(
     429,
