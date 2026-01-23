@@ -47,7 +47,6 @@ class Log
         if ($data === null) {
             return null;
         }
-        var_dump($data);
         return new static($id)
             ->setContent($data->data ?? null)
             ->setToken($data->token ? new Token($data->token) : null)
