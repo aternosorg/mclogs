@@ -3,197 +3,186 @@
 namespace Aternos\Mclogs;
 
 use Aternos\Codex\Analysis\Analysis;
-use Aternos\Codex\Analysis\Information;
 use Aternos\Codex\Log\AnalysableLogInterface;
 use Aternos\Codex\Log\File\StringLogFile;
 use Aternos\Codex\Log\Level;
 use Aternos\Codex\Log\LogInterface;
-use Aternos\Codex\Minecraft\Analysis\Information\Vanilla\VanillaVersionInformation;
-use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\Fabric\FabricLog;
-use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaClientLog;
-use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaCrashReportLog;
-use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaNetworkProtocolErrorReportLog;
-use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaServerLog;
+use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Data\Deobfuscator;
+use Aternos\Mclogs\Data\MetadataEntry;
+use Aternos\Mclogs\Data\Token;
+use Aternos\Mclogs\Filter\Filter;
 use Aternos\Mclogs\Printer\Printer;
-use Aternos\Mclogs\Storage\Backend\StorageBackendInterface;
-use Aternos\Mclogs\Storage\LogsStorage;
-use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
-use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
-use Aternos\Sherlock\Maps\GZURLYarnMap;
-use Aternos\Sherlock\Maps\ObfuscationMap;
-use Aternos\Sherlock\Maps\URLVanillaObfuscationMap;
-use Aternos\Sherlock\Maps\VanillaObfuscationMap;
-use Aternos\Sherlock\Maps\YarnMap;
-use Aternos\Sherlock\ObfuscatedString;
-use Exception;
+use Aternos\Mclogs\Storage\MongoDBClient;
+use MongoDB\BSON\UTCDateTime;
 
 class Log
 {
-    protected bool $exists = false;
-    protected ?Id $id = null;
-    protected ?ObfuscatedString $obfuscatedContent = null;
-    protected ?LogsStorage $storage = null;
+    protected const int SOURCE_MAX_LENGTH = 64;
+
+    protected ?string $source = null;
+    protected ?UTCDateTime $expires = null;
+    protected ?UTCDateTime $created = null;
+    protected ?Token $token = null;
+
+    /**
+     * @var MetadataEntry[]
+     */
+    protected array $metadata = [];
 
     protected ?LogInterface $log = null;
     protected ?Printer $printer = null;
 
     /**
-     * Log constructor.
+     * Find a log by its id
      *
+     * @param Id $id
+     * @return static|null
+     */
+    public static function find(Id $id): ?static
+    {
+        $data = MongoDBClient::getInstance()->findLog($id);
+        if ($data === null) {
+            return null;
+        }
+        return new static($id)
+            ->setContent($data->data ?? null)
+            ->setToken($data->token ? new Token($data->token) : null)
+            ->setMetadata(MetadataEntry::allFromObjectArray($data->metadata ?? []))
+            ->setSource($data->source ?? null)
+            ->setCreated($data->created ?? null)
+            ->setExpires($data->expires ?? null);
+    }
+
+    /**
+     * @param string $content
+     * @param MetadataEntry[] $metadata
+     * @param string|null $source
+     * @return static
+     */
+    public static function create(string $content, array $metadata = [], ?string $source = null): static
+    {
+        return new static()
+            ->setMetadata($metadata)
+            ->setSource($source)
+            ->setToken(new Token())
+            ->save($content);
+    }
+
+    /**
      * @param Id|null $id
      */
-    public function __construct(?Id $id = null)
+    public function __construct(protected ?Id $id = null)
     {
-        if ($id) {
-            $this->id = $id;
-            $this->load();
-        }
     }
 
     /**
-     * Load the log from storage
+     * @param Token|null $token
+     * @return $this
      */
-    protected function load(): void
+    public function setToken(?Token $token): static
     {
-        if ($this->id->getStorageBackendId() === null) {
-            return;
-        }
-        $storage = new LogsStorage()->setBackendId($this->id->getStorageBackendId());
-
-        $data = $storage->getLog($this->id);
-        if ($data === null) {
-            return;
-        }
-
-        $this->exists = true;
-
-        $this->processAndDeobfuscate($data);
+        $this->token = $token;
+        return $this;
     }
 
     /**
-     * Get the obfuscation map matching this log
-     *
-     * @param $version
-     * @return ObfuscationMap|null
-     * @throws Exception
+     * @param array $metadata
+     * @return $this
      */
-    protected function getObfuscationMap($version): ?ObfuscationMap
+    public function setMetadata(array $metadata): static
     {
-        if (in_array(get_class($this->getCodexLog()), [
-            VanillaServerLog::class,
-            VanillaClientLog::class,
-            VanillaCrashReportLog::class,
-            VanillaNetworkProtocolErrorReportLog::class
-        ])) {
-            $urlCache = new CacheEntry("sherlock:vanilla:$version:client");
-
-            $mapURL = $urlCache->get();
-            if (!$mapURL) {
-                $mapURL = (new LauncherMetaMapLocator($version, "client"))->findMappingURL();
-
-                if (!$mapURL) {
-                    return null;
-                }
-
-                $urlCache->set($mapURL, 30 * 24 * 60 * 60);
-            }
-
-            try {
-                $mapCache = new CacheEntry("sherlock:$mapURL");
-                if ($mapContent = $mapCache->get()) {
-                    $map = new VanillaObfuscationMap($mapContent);
-                } else {
-                    $map = new URLVanillaObfuscationMap($mapURL);
-                    $mapCache->set($map->getContent());
-                }
-            } catch (Exception) {
-            }
-            return $map ?? null;
-        }
-
-        if ($this->getCodexLog() instanceof FabricLog) {
-            $urlCache = new CacheEntry("sherlock:yarn:$version:server");
-
-            $mapURL = $urlCache->get();
-            if (!$mapURL) {
-                $mapURL = (new FabricMavenMapLocator($version))->findMappingURL();
-
-                if (!$mapURL) {
-                    return null;
-                }
-
-                $urlCache->set($mapURL, 24 * 60 * 60);
-            }
-
-            try {
-                $mapCache = new CacheEntry("sherlock:$mapURL");
-                if ($mapContent = $mapCache->get()) {
-                    $map = new YarnMap($mapContent);
-                } else {
-                    $map = new GZURLYarnMap($mapURL);
-                    $mapCache->set($map->getContent());
-                }
-            } catch (Exception) {
-            }
-            return $map ?? null;
-        }
-
-        return null;
+        $this->metadata = $metadata;
+        return $this;
     }
 
     /**
-     * Deobfuscate the content of this log
-     *
-     * @param LogInterface $codexLog
+     * @param MetadataEntry $metadataEntry
+     * @return $this
+     */
+    public function addMetadata(MetadataEntry $metadataEntry): static
+    {
+        $this->metadata[] = $metadataEntry;
+        return $this;
+    }
+
+    /**
+     * @param string|null $source
+     * @return $this
+     */
+    public function setSource(?string $source): static
+    {
+        if (is_string($source) && strlen($source) > static::SOURCE_MAX_LENGTH) {
+            $source = substr($source, 0, static::SOURCE_MAX_LENGTH);
+        }
+        $this->source = $source;
+        return $this;
+    }
+
+    /**
      * @return string|null
      */
-    protected function deobfuscateContent(LogInterface $codexLog): ?string
+    public function getSource(): ?string
     {
-        $analysis = $this->getAnalysis();
-        if ($analysis === null) {
-            return null;
-        }
-
-        /**
-         * @var ?Information $version
-         */
-        $version = $analysis->getFilteredInsights(VanillaVersionInformation::class)[0] ?? null;
-        if (!$version) {
-            return null;
-        }
-        $version = $version->getValue();
-
-        try {
-            $map = $this->getObfuscationMap($version);
-        } catch (Exception) {
-            $map = null;
-        }
-
-        if ($map === null) {
-            return null;
-        }
-
-        $this->obfuscatedContent = new ObfuscatedString($codexLog->getLogFile()->getContent(), $map);
-        if ($content = $this->obfuscatedContent->getMappedContent()) {
-            return $content;
-        }
-        return null;
+        return $this->source;
     }
 
     /**
-     * Checks if the log exists
-     *
-     * @return bool
+     * @param UTCDateTime|null $created
+     * @return $this
      */
-    public function exists(): bool
+    public function setCreated(?UTCDateTime $created): static
     {
-        return $this->exists;
+        $this->created = $created;
+        return $this;
+    }
+
+    /**
+     * @param UTCDateTime|null $expires
+     * @return $this
+     */
+    public function setExpires(?UTCDateTime $expires): static
+    {
+        $this->expires = $expires;
+        return $this;
+    }
+
+    /**
+     * @return UTCDateTime|null
+     */
+    public function getCreated(): ?UTCDateTime
+    {
+        return $this->created;
+    }
+
+    /**
+     * @return UTCDateTime|null
+     */
+    public function getExpires(): ?UTCDateTime
+    {
+        return $this->expires;
+    }
+
+    /**
+     * @param string $content
+     * @return $this
+     */
+    public function setContent(string $content): static
+    {
+        $this->processAndDeobfuscate($content);
+        return $this;
+    }
+
+    public function getContent(): string
+    {
+        return $this->log->getLogFile()->getContent();
     }
 
     protected function processAndDeobfuscate(string $data): void
     {
         $this->process($data);
-        if ($deobfuscatedData = $this->deobfuscateContent($this->log)) {
+        $deobfuscator = new Deobfuscator($this->getCodexLog());
+        if ($deobfuscatedData = $deobfuscator->deobfuscate()) {
             $this->process($deobfuscatedData);
         }
     }
@@ -275,70 +264,62 @@ class Log
         return $errorCount;
     }
 
-    /**
-     * Set the data of the log without saving it to storage
-     *
-     * @param string $data
-     * @return Log
-     */
-    public function setData(string $data): Log
+    protected function generateId(): Id
     {
-        $this->data = $data;
-        $this->preFilter();
-        return $this;
-    }
-
-    /**
-     * Put data into the log
-     *
-     * @param string $data
-     * @return ?Id
-     */
-    public function put(string $data): ?Id
-    {
-        $this->data = $data;
-        $this->preFilter();
-
-        $config = Config::Get('storage');
-
-        /**
-         * @var StorageBackendInterface $storage
-         */
-        $storage = $config['storages'][$config['storageId']]['class'];
-
-        $this->id = $storage::Put($this->data);
-        $this->exists = true;
-
+        do {
+            $this->id = new Id();
+        } while (MongoDBClient::getInstance()->hasLog($this->id));
         return $this->id;
     }
 
     /**
-     * Renew the expiry timestamp to expand the ttl
+     * Save the log to the database
+     *
+     * @return $this
      */
-    public function renew()
+    public function save(string $content): static
     {
-        $config = Config::Get('storage');
+        if ($this->id === null) {
+            $this->generateId();
+        }
 
-        /**
-         * @var StorageBackendInterface $storage
-         */
-        $storage = $config['storages'][$this->id->getStorageBackendId()]['class'];
+        $content = Filter::filterAll($content);
 
-        $storage::Renew($this->id);
+        MongoDBClient::getInstance()->getLogsCollection()->insertOne([
+            "_id" => $this->id,
+            "data" => $content,
+            "token" => $this->token?->get(),
+            "source" => $this->source,
+            "metadata" => $this->metadata,
+            "expires" => $this->expires = $this->getExpiryTimestamp(),
+            "created" => $this->created = new UTCDateTime()
+        ]);
+
+        return $this;
     }
 
     /**
-     * Apply pre filters to data string
+     * @return UTCDateTime
      */
-    private function preFilter()
+    protected function getExpiryTimestamp(): UTCDateTime
     {
-        $config = Config::Get('filter');
-        foreach ($config['pre'] as $preFilterClass) {
-            /**
-             * @var \Aternos\Mclogs\Filter\Filter $preFilterClass
-             */
+        $ttl = \Aternos\Mclogs\Config\Config::getInstance()->get(ConfigKey::STORAGE_TTL);
+        $expires = time() + $ttl;
+        return new UTCDateTime($expires * 1000);
+    }
 
-            $this->data = $preFilterClass::Filter($this->data);
+    /**
+     * Renew the expiry timestamp to expand the ttl
+     *
+     * @return bool
+     */
+    public function renew(): bool
+    {
+        $expires = $this->getExpiryTimestamp();
+        $result = MongoDBClient::getInstance()->setLogExpires($this->id, $expires);
+        if ($result) {
+            $this->expires = $expires;
         }
+        return $result;
     }
 }

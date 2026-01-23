@@ -1,35 +1,17 @@
 {
     "storage": {
-        "logs": {
-            "backend": "mongodb",
-            "ttl": 7776000
-        },
-        "cache": {
-            "backend": "mongodb",
-            "ttl": 86400
-        },
-        "token": {
-            "backend": "mongodb",
-            "ttl": 604800
+        "ttl": 7776000,
+        "limit": {
+            "bytes": 10485760,
+            "lines": 25000
         }
-    },
-    "redis": {
-        "host": "127.0.0.1",
-        "port": 6379
     },
     "mongodb": {
         "url": "mongodb://127.0.0.1:27017",
         "database": "mclogs"
     },
-    "filesystem": {
-        "path": "/storage"
-    },
     "id": {
-        "length": 6
-    },
-    "limit": {
-        "bytes": 10485760,
-        "lines": 25000
+        "length": 7
     },
     "legal": {
         "abuse": "abuse@aternos.org",

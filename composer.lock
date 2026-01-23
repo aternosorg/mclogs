@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "389ea43c41d05bd03a772dfb8194aa55",
+    "content-hash": "45d6a8d0698c2a9fa131caab2bb1cd48",
     "packages": [
         {
             "name": "aternos/codex",
@@ -141,16 +141,16 @@
         },
         {
             "name": "aternos/sherlock",
-            "version": "v1.1.1",
+            "version": "v1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/sherlock.git",
-                "reference": "a7eca54c1da6fc182ba0eee92c69f960b9639cbb"
+                "reference": "060228da4ff6319d5116d0395e09ec06f1ca2eb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/sherlock/zipball/a7eca54c1da6fc182ba0eee92c69f960b9639cbb",
-                "reference": "a7eca54c1da6fc182ba0eee92c69f960b9639cbb",
+                "url": "https://api.github.com/repos/aternosorg/sherlock/zipball/060228da4ff6319d5116d0395e09ec06f1ca2eb1",
+                "reference": "060228da4ff6319d5116d0395e09ec06f1ca2eb1",
                 "shasum": ""
             },
             "require": {
@@ -181,9 +181,9 @@
             "description": "PHP library to apply minecraft mappings to log files",
             "support": {
                 "issues": "https://github.com/aternosorg/sherlock/issues",
-                "source": "https://github.com/aternosorg/sherlock/tree/v1.1.1"
+                "source": "https://github.com/aternosorg/sherlock/tree/v1.1.2"
             },
-            "time": "2025-11-27T10:50:04+00:00"
+            "time": "2026-01-23T16:00:23+00:00"
         },
         {
             "name": "mongodb/mongodb",
@@ -403,9 +403,9 @@
         "php": ">=8.4",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "ext-redis": "*",
+        "ext-mongodb": "*",
         "ext-zlib": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.6.0"
 }

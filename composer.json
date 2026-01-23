@@ -11,15 +11,12 @@
         "php": ">=8.4",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "ext-redis": "*",
+        "ext-mongodb": "*",
         "ext-zlib": "*",
         "aternos/codex-hytale": "^2.0",
         "aternos/codex-minecraft": "^5.0.1",
         "aternos/sherlock": "^1.0.2",
         "mongodb/mongodb": "2.1.2"
-    },
-    "suggest": {
-        "ext-mongodb": "Required for MongoDB log storage"
     },
     "autoload": {
         "psr-4": {
