@@ -7,6 +7,7 @@ use Aternos\Mclogs\Config\ConfigKey;
 use Aternos\Mclogs\Util\Singleton;
 use MongoDB\Client;
 use MongoDB\Collection;
+use MongoDB\Database;
 
 class MongoDBClient
 {
@@ -15,7 +16,7 @@ class MongoDBClient
     protected const string COLLECTION_NAME = "logs";
 
     protected ?Client $connection = null;
-    protected Collection $collection;
+    protected Database $database;
 
     /**
      * Connect to MongoDB
@@ -25,18 +26,19 @@ class MongoDBClient
         if ($this->connection === null) {
             $config = Config::getInstance();
             $this->connection = new Client($config->get(ConfigKey::MONGODB_URL));
-            $this->collection = $this->connection->getCollection($config->get(ConfigKey::MONGODB_DATABASE), static::COLLECTION_NAME);
+            $this->database = $this->connection->getDatabase($config->get(ConfigKey::MONGODB_DATABASE));
         }
     }
 
     /**
-     * Get the collection specified by {{@link COLLECTION_NAME}}
+     * Get a collection
      *
+     * @param string $name
      * @return Collection
      */
-    public function getCollection(): Collection
+    public function getCollection(string $name): Collection
     {
         $this->connect();
-        return $this->collection;
+        return $this->database->getCollection($name);
     }
 }

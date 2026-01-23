@@ -3,14 +3,14 @@
 namespace Aternos\Mclogs;
 
 use Aternos\Mclogs\Config\ConfigKey;
-use Aternos\Mclogs\Storage\StorageId;
+use Aternos\Mclogs\Storage\Backend\StorageBackendId;
 
 class Id
 {
     protected const string CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
     protected ?string $fullId = null;
-    protected ?StorageId $storageId = null;
+    protected ?StorageBackendId $storageId = null;
     protected string $rawId;
 
     /**
@@ -20,9 +20,9 @@ class Id
      * to generate a new id, pass nothing
      *
      * @param string|null $fullId
-     * @param StorageId|null $storageId
+     * @param StorageBackendId|null $storageId
      */
-    public function __construct(?string $fullId = null, ?StorageId $storageId = null)
+    public function __construct(?string $fullId = null, ?StorageBackendId $storageId = null)
     {
         if ($storageId !== null) {
             $this->setStorageId($storageId);
@@ -59,10 +59,10 @@ class Id
     /**
      * Set the storage id
      *
-     * @param StorageId $storageId
+     * @param StorageBackendId $storageId
      * @return static
      */
-    public function setStorageId(StorageId $storageId): static
+    public function setStorageId(StorageBackendId $storageId): static
     {
         $this->storageId = $storageId;
         return $this;
@@ -71,9 +71,9 @@ class Id
     /**
      * Get the storage id
      *
-     * @return StorageId
+     * @return StorageBackendId
      */
-    public function getStorageId(): StorageId
+    public function getStorageId(): StorageBackendId
     {
         return $this->storageId;
     }
@@ -130,7 +130,7 @@ class Id
             $index -= array_search($rawIdPart, $chars);
         }
 
-        if ($storageId = StorageId::tryFrom($chars[$index % count($chars)])) {
+        if ($storageId = StorageBackendId::tryFrom($chars[$index % count($chars)])) {
             $this->storageId = $storageId;
         }
         return true;

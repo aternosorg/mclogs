@@ -2,24 +2,51 @@
 
 namespace Aternos\Mclogs\Storage;
 
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Storage\Backend\Filesystem;
+use Aternos\Mclogs\Storage\Backend\MongoDB;
+use Aternos\Mclogs\Storage\Backend\Redis;
+use Aternos\Mclogs\Storage\Backend\StorageBackendInterface;
 
-abstract class Storage implements StorageInterface
+abstract class Storage
 {
+    protected const array BACKENDS = [
+        "filesystem" => Filesystem::class,
+        "mongodb" => MongoDB::class,
+        "redis" => Redis::class
+    ];
+
+    protected ?StorageBackendInterface $storageBackend = null;
+
+    abstract public function getName(): StorageName;
+
+    abstract protected function getConfigBackendName(): string;
+    abstract protected function getConfigDefaultTTL(): int;
+
     /**
-     * @return int
+     * @return StorageBackendInterface
      */
-    protected function getStorageTime(): int
+    protected function getBackend(): StorageBackendInterface
     {
-        return Config::getInstance()->get(ConfigKey::STORAGE_TIME);
+        if ($this->storageBackend) {
+            return $this->storageBackend;
+        }
+
+        $backendClass = $this->getBackendClass($this->getConfigBackendName());
+        /** @var StorageBackendInterface $backend */
+        $backend = new $backendClass(StorageName::LOGS, $this->getConfigDefaultTTL());
+
+        return $this->storageBackend = $backend;
     }
 
     /**
-     * @return int
+     * @param string $name
+     * @return string
      */
-    protected function getStorageExpiryTimestamp(): int
+    protected function getBackendClass(string $name): string
     {
-        return time() + $this->getStorageTime();
+        if (!isset(self::BACKENDS[$name])) {
+            throw new \InvalidArgumentException("Storage backend '$name' is not defined.");
+        }
+        return self::BACKENDS[$name];
     }
 }

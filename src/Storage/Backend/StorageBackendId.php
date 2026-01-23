@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs\Storage;
+namespace Aternos\Mclogs\Storage\Backend;
 
-enum StorageId: string
+enum StorageBackendId: string
 {
     case MONGODB = 'm';
     case REDIS = 'r';

@@ -14,7 +14,7 @@ use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaNetworkProtocolErrorRep
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaServerLog;
 use Aternos\Mclogs\Cache\CacheEntry;
 use Aternos\Mclogs\Printer\Printer;
-use Aternos\Mclogs\Storage\StorageInterface;
+use Aternos\Mclogs\Storage\Backend\StorageBackendInterface;
 use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
 use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
 use Aternos\Sherlock\Maps\GZURLYarnMap;
@@ -73,7 +73,7 @@ class Log
         }
 
         /**
-         * @var StorageInterface $storage
+         * @var StorageBackendInterface $storage
          */
         $storage = $config['storages'][$this->id->getStorageId()]['class'];
 
@@ -299,7 +299,7 @@ class Log
         $config = Config::Get('storage');
 
         /**
-         * @var StorageInterface $storage
+         * @var StorageBackendInterface $storage
          */
         $storage = $config['storages'][$config['storageId']]['class'];
 
@@ -317,7 +317,7 @@ class Log
         $config = Config::Get('storage');
 
         /**
-         * @var StorageInterface $storage
+         * @var StorageBackendInterface $storage
          */
         $storage = $config['storages'][$this->id->getStorageId()]['class'];
 
