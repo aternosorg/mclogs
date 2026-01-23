@@ -12,6 +12,7 @@ use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaCrashReportLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaNetworkProtocolErrorReportLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaServerLog;
+use Aternos\Mclogs\Cache\CacheEntry;
 use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
 use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
 use Aternos\Sherlock\Maps\GZURLYarnMap;
@@ -79,7 +80,6 @@ class Deobfuscator
             VanillaCrashReportLog::class,
             VanillaNetworkProtocolErrorReportLog::class
         ])) {
-            // TODO: reimplement caching
             $urlCache = new CacheEntry("sherlock:vanilla:$version:client");
 
             $mapURL = $urlCache->get();
