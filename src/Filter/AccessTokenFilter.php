@@ -1,10 +1,13 @@
 <?php
 
-namespace Aternos\Mclogs\Filter\Pre;
+namespace Aternos\Mclogs\Filter;
 
-class AccessToken implements PreFilterInterface
+class AccessTokenFilter extends Filter
 {
-    protected const ACCESS_TOKEN_PATTERNS = [
+    /**
+     * @var array<string, string>
+     */
+    protected const array ACCESS_TOKEN_PATTERNS = [
         '/\(Session ID is token:[^:]+\:[^)]+\)/' => '(Session ID is token:****************:****************)',
         '/--accessToken [^ ]+/' => '--accessToken ****************:****************',
     ];
@@ -12,7 +15,7 @@ class AccessToken implements PreFilterInterface
     /**
      * @inheritDoc
      */
-    public static function Filter(string $data): string
+    public function filter(string $data): string
     {
         foreach (static::ACCESS_TOKEN_PATTERNS as $pattern => $replacement) {
             $data = preg_replace($pattern, $replacement, $data);

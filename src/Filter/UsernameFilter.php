@@ -1,10 +1,13 @@
 <?php
 
-namespace Aternos\Mclogs\Filter\Pre;
+namespace Aternos\Mclogs\Filter;
 
-class Username implements PreFilterInterface
+class UsernameFilter extends Filter
 {
-    protected const USERNAME_PATTERNS = [
+    /**
+     * @type array<string, string>
+     */
+    protected const array USERNAME_PATTERNS = [
         "/C:\\\\Users\\\\([^\\\\]+)\\\\/" => "C:\\Users\\********\\", // windows
         "/C:\\\\\\\\Users\\\\\\\\([^\\\\]+)\\\\\\\\/" => "C:\\\\Users\\\\********\\\\", // windows with double backslashes
         "/C:\\/Users\\/([^\\/]+)\\//" => "C:/Users/********/", // windows with forward slashes
@@ -19,7 +22,7 @@ class Username implements PreFilterInterface
      * @param string $data
      * @return string
      */
-    public static function Filter(string $data): string
+    public function filter(string $data): string
     {
         foreach (static::USERNAME_PATTERNS as $pattern => $replacement) {
             $data = preg_replace($pattern, $replacement, $data);

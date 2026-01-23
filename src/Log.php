@@ -332,7 +332,7 @@ class Log
         $config = Config::Get('filter');
         foreach ($config['pre'] as $preFilterClass) {
             /**
-             * @var \Aternos\Mclogs\Filter\Pre\PreFilterInterface $preFilterClass
+             * @var \Aternos\Mclogs\Filter\Filter $preFilterClass
              */
 
             $this->data = $preFilterClass::Filter($this->data);

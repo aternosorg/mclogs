@@ -7,6 +7,7 @@ use Aternos\Codex\Log\EntryInterface;
 use Aternos\Codex\Log\Level;
 use Aternos\Codex\Log\LineInterface;
 use Aternos\Codex\Printer\ModifiableDefaultPrinter;
+use Aternos\Mclogs\Id;
 
 /**
  * Class Printer
@@ -21,15 +22,15 @@ class Printer extends ModifiableDefaultPrinter
     }
 
     /**
-     * @var \Aternos\Mclogs\Id
+     * @var Id
      */
-    protected \Aternos\Mclogs\Id $id;
+    protected Id $id;
 
     /**
-     * @param \Aternos\Mclogs\Id $id
+     * @param Id $id
      * @return Printer
      */
-    public function setId(\Aternos\Mclogs\Id $id): static
+    public function setId(Id $id): static
     {
         $this->id = $id;
         return $this;

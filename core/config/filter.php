@@ -8,11 +8,11 @@ $config = [
      * The classes should implement \Filter\Pre\PreFilterInterface
      */
     'pre' => [
-        '\\Aternos\\Mclogs\\Filter\\Pre\\Trim',
-        '\\Aternos\\Mclogs\\Filter\\Pre\\Length',
-        '\\Aternos\\Mclogs\\Filter\\Pre\\Lines',
-        '\\Aternos\\Mclogs\\Filter\\Pre\\Ip',
-        '\\Aternos\\Mclogs\\Filter\\Pre\\Username',
-        '\\Aternos\\Mclogs\\Filter\\Pre\\AccessToken'
+        '\\Aternos\\Mclogs\\Filter\\TrimFilter',
+        '\\Aternos\\Mclogs\\Filter\\LengthFilter',
+        '\\Aternos\\Mclogs\\Filter\\LinesFilter',
+        '\\Aternos\\Mclogs\\Filter\\IpFilter',
+        '\\Aternos\\Mclogs\\Filter\\UsernameFilter',
+        '\\Aternos\\Mclogs\\Filter\\AccessTokenFilter'
     ],
 ];

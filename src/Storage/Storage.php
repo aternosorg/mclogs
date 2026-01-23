@@ -9,6 +9,9 @@ use Aternos\Mclogs\Storage\Backend\StorageBackendInterface;
 
 abstract class Storage
 {
+    /**
+     * @var array<string, class-string<StorageBackendInterface>>
+     */
     protected const array BACKENDS = [
         "filesystem" => Filesystem::class,
         "mongodb" => MongoDB::class,

@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs\Filter\Pre;
+namespace Aternos\Mclogs\Filter;
 
-class Trim implements PreFilterInterface {
+class TrimFilter extends Filter {
 
     /**
      * Filter the $data string and return it
@@ -12,7 +12,7 @@ class Trim implements PreFilterInterface {
      * @param string $data
      * @return string
      */
-    public static function Filter(string $data): string
+    public function filter(string $data): string
     {
         return trim($data);
     }
