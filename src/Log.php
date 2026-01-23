@@ -4,17 +4,19 @@ namespace Aternos\Mclogs;
 
 use Aternos\Codex\Analysis\Analysis;
 use Aternos\Codex\Analysis\Information;
+use Aternos\Codex\Log\AnalysableLogInterface;
 use Aternos\Codex\Log\File\StringLogFile;
 use Aternos\Codex\Log\Level;
+use Aternos\Codex\Log\LogInterface;
 use Aternos\Codex\Minecraft\Analysis\Information\Vanilla\VanillaVersionInformation;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\Fabric\FabricLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaClientLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaCrashReportLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaNetworkProtocolErrorReportLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaServerLog;
-use Aternos\Mclogs\Cache\CacheEntry;
 use Aternos\Mclogs\Printer\Printer;
 use Aternos\Mclogs\Storage\Backend\StorageBackendInterface;
+use Aternos\Mclogs\Storage\LogsStorage;
 use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
 use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
 use Aternos\Sherlock\Maps\GZURLYarnMap;
@@ -23,24 +25,17 @@ use Aternos\Sherlock\Maps\URLVanillaObfuscationMap;
 use Aternos\Sherlock\Maps\VanillaObfuscationMap;
 use Aternos\Sherlock\Maps\YarnMap;
 use Aternos\Sherlock\ObfuscatedString;
+use Exception;
 
 class Log
 {
-    private bool $exists = false;
-    private ?Id $id = null;
-    private ?string $data = null;
-    protected \Aternos\Codex\Log\Log $log;
+    protected bool $exists = false;
+    protected ?Id $id = null;
     protected ?ObfuscatedString $obfuscatedContent = null;
+    protected ?LogsStorage $storage = null;
 
-    /**
-     * @var Analysis
-     */
-    protected Analysis $analysis;
-
-    /**
-     * @var Printer
-     */
-    protected Printer $printer;
+    protected ?LogInterface $log = null;
+    protected ?Printer $printer = null;
 
     /**
      * Log constructor.
@@ -58,60 +53,33 @@ class Log
     /**
      * Load the log from storage
      */
-    private function load()
+    protected function load(): void
     {
-        $config = Config::Get('storage');
-
-        if (!isset($config['storages'][$this->id->getStorageId()])) {
-            $this->exists = false;
+        if ($this->id->getStorageBackendId() === null) {
             return;
         }
+        $storage = new LogsStorage()->setBackendId($this->id->getStorageBackendId());
 
-        if (!$config['storages'][$this->id->getStorageId()]['enabled']) {
-            $this->exists = false;
-            return;
-        }
-
-        /**
-         * @var StorageBackendInterface $storage
-         */
-        $storage = $config['storages'][$this->id->getStorageId()]['class'];
-
-        $data = $storage::Get($this->id);
-
+        $data = $storage->getLog($this->id);
         if ($data === null) {
-            $this->exists = false;
             return;
-        } else {
-            $this->data = $data;
-            $this->exists = true;
         }
 
-        $this->analyse();
-        $this->printer = (new Printer())->setLog($this->log)->setId($this->id);
+        $this->exists = true;
+
+        $this->processAndDeobfuscate($data);
     }
 
     /**
-     * Analyse the log content
-     * @return Analysis
-     */
-    public function analyse(): Analysis
-    {
-        $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
-        $this->log->parse();
-        $this->analysis = $this->log->analyse();
-        $this->deobfuscateContent();
-        return $this->analysis;
-    }
-
-    /**
-     * get the obfuscation map matching this log
+     * Get the obfuscation map matching this log
+     *
      * @param $version
      * @return ObfuscationMap|null
+     * @throws Exception
      */
     protected function getObfuscationMap($version): ?ObfuscationMap
     {
-        if (in_array(get_class($this->get()), [
+        if (in_array(get_class($this->getCodexLog()), [
             VanillaServerLog::class,
             VanillaClientLog::class,
             VanillaCrashReportLog::class,
@@ -143,7 +111,7 @@ class Log
             return $map ?? null;
         }
 
-        if ($this->get() instanceof FabricLog) {
+        if ($this->getCodexLog() instanceof FabricLog) {
             $urlCache = new CacheEntry("sherlock:yarn:$version:server");
 
             $mapURL = $urlCache->get();
@@ -174,36 +142,42 @@ class Log
     }
 
     /**
-     * deobfuscate the content of this log
-     * @return void
+     * Deobfuscate the content of this log
+     *
+     * @param LogInterface $codexLog
+     * @return string|null
      */
-    protected function deobfuscateContent()
+    protected function deobfuscateContent(LogInterface $codexLog): ?string
     {
+        $analysis = $this->getAnalysis();
+        if ($analysis === null) {
+            return null;
+        }
+
         /**
          * @var ?Information $version
          */
-        $version = $this->analysis->getFilteredInsights(VanillaVersionInformation::class)[0] ?? null;
+        $version = $analysis->getFilteredInsights(VanillaVersionInformation::class)[0] ?? null;
         if (!$version) {
-            return;
+            return null;
         }
         $version = $version->getValue();
 
         try {
             $map = $this->getObfuscationMap($version);
-        } catch (\Exception) {
+        } catch (Exception) {
             $map = null;
         }
 
         if ($map === null) {
-            return;
+            return null;
         }
 
-        $this->obfuscatedContent = new ObfuscatedString($this->data, $map);
+        $this->obfuscatedContent = new ObfuscatedString($codexLog->getLogFile()->getContent(), $map);
         if ($content = $this->obfuscatedContent->getMappedContent()) {
-            $this->data = $content;
-            $this->log = (new Detective())->setLogFile(new StringLogFile($this->data))->detect();
-            $this->log->parse();
+            return $content;
         }
+        return null;
     }
 
     /**
@@ -216,12 +190,29 @@ class Log
         return $this->exists;
     }
 
+    protected function processAndDeobfuscate(string $data): void
+    {
+        $this->process($data);
+        if ($deobfuscatedData = $this->deobfuscateContent($this->log)) {
+            $this->process($deobfuscatedData);
+        }
+    }
+
+    protected function process($data): void
+    {
+        $this->log = new Detective()->setLogFile(new StringLogFile($data))->detect();
+        $this->log->parse();
+        if ($this->log instanceof AnalysableLogInterface) {
+            $this->log->analyse();
+        }
+    }
+
     /**
-     * Get the log
+     * Get the codex log object
      *
-     * @return \Aternos\Codex\Log\Log
+     * @return LogInterface
      */
-    public function get(): \Aternos\Codex\Log\Log
+    public function getCodexLog(): LogInterface
     {
         return $this->log;
     }
@@ -229,11 +220,15 @@ class Log
     /**
      * Get the log analysis
      *
-     * @return Analysis
+     * @return Analysis|null
      */
-    public function getAnalysis(): Analysis
+    public function getAnalysis(): ?Analysis
     {
-        return $this->analysis;
+        $log = $this->getCodexLog();
+        if ($log instanceof AnalysableLogInterface) {
+            return $log->analyse();
+        }
+        return null;
     }
 
     /**
@@ -241,6 +236,9 @@ class Log
      */
     public function getPrinter(): Printer
     {
+        if ($this->printer === null) {
+            $this->printer = new Printer()->setLog($this->log)->setId($this->id);
+        }
         return $this->printer;
     }
 
@@ -251,7 +249,12 @@ class Log
      */
     public function getLineNumbers(): int
     {
-        return count(explode("\n", $this->data));
+        $codexLog = $this->getCodexLog();
+        $lines = 0;
+        foreach ($codexLog as $entry) {
+            $lines += count($entry);
+        }
+        return $lines;
     }
 
     /**
@@ -319,7 +322,7 @@ class Log
         /**
          * @var StorageBackendInterface $storage
          */
-        $storage = $config['storages'][$this->id->getStorageId()]['class'];
+        $storage = $config['storages'][$this->id->getStorageBackendId()]['class'];
 
         $storage::Renew($this->id);
     }

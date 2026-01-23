@@ -11,7 +11,7 @@ if (!$log->exists()) {
     $title = "Log not found - mclo.gs";
     http_response_code(404);
 } else {
-    $codexLog = $log->get();
+    $codexLog = $log->getCodexLog();
     $analysis = $log->getAnalysis();
     $information = $analysis->getInformation();
     $problems = $analysis->getProblems();

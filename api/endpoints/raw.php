@@ -16,4 +16,4 @@ if(!$log->exists()) {
 $log->renew();
 
 header('Content-Type: text/plain');
-echo $log->get()->getLogfile()->getContent();
+echo $log->getCodexLog()->getLogfile()->getContent();

@@ -22,31 +22,32 @@ abstract class Storage
 
     abstract public function getName(): StorageName;
 
-    abstract protected function getConfigBackendName(): string;
-    abstract protected function getConfigDefaultTTL(): int;
+    abstract protected function getBackendName(): string;
+    abstract protected function getDefaultTTL(): int;
 
     /**
      * @return StorageBackendInterface
      */
-    protected function getBackend(): StorageBackendInterface
+    public function getBackend(): StorageBackendInterface
     {
         if ($this->storageBackend) {
             return $this->storageBackend;
         }
 
-        $backendClass = $this->getBackendClass($this->getConfigBackendName());
+        $backendClass = $this->getBackendClass();
         /** @var StorageBackendInterface $backend */
-        $backend = new $backendClass(StorageName::LOGS, $this->getConfigDefaultTTL());
+        $backend = new $backendClass($this->getName(), $this->getDefaultTTL());
 
         return $this->storageBackend = $backend;
     }
 
     /**
-     * @param string $name
      * @return string
      */
-    protected function getBackendClass(string $name): string
+    protected function getBackendClass(): string
     {
+        $name = $this->getBackendName();
+
         if (!isset(self::BACKENDS[$name])) {
             throw new \InvalidArgumentException("Storage backend '$name' is not defined.");
         }

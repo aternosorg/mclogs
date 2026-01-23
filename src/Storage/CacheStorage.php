@@ -12,12 +12,12 @@ class CacheStorage extends Storage
         return StorageName::CACHE;
     }
 
-    protected function getConfigBackendName(): string
+    protected function getBackendName(): string
     {
         return Config::getInstance()->get(ConfigKey::STORAGE_CACHE_BACKEND);
     }
 
-    protected function getConfigDefaultTTL(): int
+    protected function getDefaultTTL(): int
     {
         return Config::getInstance()->get(ConfigKey::STORAGE_CACHE_TTL);
     }

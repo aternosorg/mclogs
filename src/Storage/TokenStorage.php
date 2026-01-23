@@ -12,12 +12,12 @@ class TokenStorage extends Storage
         return StorageName::TOKEN;
     }
 
-    protected function getConfigBackendName(): string
+    protected function getBackendName(): string
     {
         return Config::getInstance()->get(ConfigKey::STORAGE_TOKEN_BACKEND);
     }
 
-    protected function getConfigDefaultTTL(): int
+    protected function getDefaultTTL(): int
     {
         return Config::getInstance()->get(ConfigKey::STORAGE_TOKEN_TTL);
     }

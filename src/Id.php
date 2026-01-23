@@ -10,7 +10,7 @@ class Id
     protected const string CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
     protected ?string $fullId = null;
-    protected ?StorageBackendId $storageId = null;
+    protected ?StorageBackendId $storageBackendId = null;
     protected string $rawId;
 
     /**
@@ -20,12 +20,12 @@ class Id
      * to generate a new id, pass nothing
      *
      * @param string|null $fullId
-     * @param StorageBackendId|null $storageId
+     * @param StorageBackendId|null $storageBackendId
      */
-    public function __construct(?string $fullId = null, ?StorageBackendId $storageId = null)
+    public function __construct(?string $fullId = null, ?StorageBackendId $storageBackendId = null)
     {
-        if ($storageId !== null) {
-            $this->setStorageId($storageId);
+        if ($storageBackendId !== null) {
+            $this->setStorageBackendId($storageBackendId);
         }
 
         if ($fullId === null) {
@@ -59,12 +59,12 @@ class Id
     /**
      * Set the storage id
      *
-     * @param StorageBackendId $storageId
+     * @param StorageBackendId $storageBackendId
      * @return static
      */
-    public function setStorageId(StorageBackendId $storageId): static
+    public function setStorageBackendId(StorageBackendId $storageBackendId): static
     {
-        $this->storageId = $storageId;
+        $this->storageBackendId = $storageBackendId;
         return $this;
     }
 
@@ -73,9 +73,9 @@ class Id
      *
      * @return StorageBackendId
      */
-    public function getStorageId(): StorageBackendId
+    public function getStorageBackendId(): StorageBackendId
     {
-        return $this->storageId;
+        return $this->storageBackendId;
     }
 
     /**
@@ -98,7 +98,7 @@ class Id
         $chars = str_split(static::CHARACTERS);
 
         if ($this->fullId === null) {
-            $index = array_search($this->storageId->value, $chars);
+            $index = array_search($this->storageBackendId->value, $chars);
             foreach (str_split($this->rawId) as $rawIdPart) {
                 $index += array_search($rawIdPart, $chars);
             }
@@ -131,7 +131,7 @@ class Id
         }
 
         if ($storageId = StorageBackendId::tryFrom($chars[$index % count($chars)])) {
-            $this->storageId = $storageId;
+            $this->storageBackendId = $storageId;
         }
         return true;
     }

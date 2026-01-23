@@ -12,9 +12,8 @@ if ($content instanceof ApiError) {
 
 $log = new Log();
 $log->setData($content);
-$log->analyse();
 
-$codexLog = $log->get();
+$codexLog = $log->getCodexLog();
 $codexLog->setIncludeEntries(false);
 
 header('Content-Type: application/json');

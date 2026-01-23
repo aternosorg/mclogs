@@ -15,7 +15,7 @@ if (!$log->exists()) {
 
 $log->renew();
 
-$codexLog = $log->get();
+$codexLog = $log->getCodexLog();
 $codexLog->setIncludeEntries(false);
 
 header('Content-Type: application/json');
