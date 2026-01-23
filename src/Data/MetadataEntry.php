@@ -2,6 +2,8 @@
 
 namespace Aternos\Mclogs\Data;
 
+use MongoDB\Model\BSONArray;
+
 class MetadataEntry implements \JsonSerializable
 {
     protected const int MAX_KEY_LENGTH = 64;
@@ -14,10 +16,10 @@ class MetadataEntry implements \JsonSerializable
     protected bool $visible = true;
 
     /**
-     * @param array|null $dataArray
+     * @param iterable|null $dataArray
      * @return MetadataEntry[]
      */
-    public static function allFromObjectArray(?array $dataArray): array
+    public static function allFromObjectArray(?iterable $dataArray): array
     {
         if ($dataArray === null) {
             return [];

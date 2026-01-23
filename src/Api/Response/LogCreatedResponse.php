@@ -6,6 +6,8 @@ use Aternos\Mclogs\Log;
 
 class LogCreatedResponse extends ApiResponse
 {
+    protected bool $success = true;
+
     public function __construct(protected Log $log)
     {
     }

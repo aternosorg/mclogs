@@ -17,7 +17,7 @@ class LengthFilter extends Filter {
      */
     public function filter(string $data): string
     {
-        $lengthLimit = Config::getInstance()->get(ConfigKey::LIMIT_BYTES);
+        $lengthLimit = Config::getInstance()->get(ConfigKey::STORAGE_LIMIT_BYTES);
         return mb_strcut($data, 0, $lengthLimit);
     }
 }

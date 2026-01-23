@@ -47,6 +47,7 @@ class Log
         if ($data === null) {
             return null;
         }
+        var_dump($data);
         return new static($id)
             ->setContent($data->data ?? null)
             ->setToken($data->token ? new Token($data->token) : null)
@@ -290,7 +291,7 @@ class Log
         $content = Filter::filterAll($content);
 
         MongoDBClient::getInstance()->getLogsCollection()->insertOne([
-            "_id" => $this->id,
+            "_id" => $this->id->get(),
             "data" => $content,
             "token" => $this->token?->get(),
             "source" => $this->source,
@@ -332,7 +333,7 @@ class Log
      */
     public function getURL(): Uri
     {
-        return URL::getBase()->withPath($this->id->get());
+        return URL::getBase()->withPath("/" . $this->id->get());
     }
 
     /**
@@ -340,7 +341,7 @@ class Log
      */
     public function getRawURL(): Uri
     {
-        return URL::getApi()->withPath("1/raw/" . $this->id->get());
+        return URL::getApi()->withPath("/1/raw/" . $this->id->get());
     }
 
     /**

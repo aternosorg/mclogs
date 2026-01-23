@@ -17,7 +17,7 @@ class LinesFilter extends Filter
      */
     public function filter(string $data): string
     {
-        $linesLimit = Config::getInstance()->get(ConfigKey::LIMIT_LINES);
+        $linesLimit = Config::getInstance()->get(ConfigKey::STORAGE_LIMIT_LINES);
         return implode("\n", array_slice(explode("\n", $data), 0, $linesLimit));
     }
 }

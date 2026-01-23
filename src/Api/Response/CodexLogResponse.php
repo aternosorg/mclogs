@@ -6,6 +6,8 @@ use Aternos\Codex\Log\LogInterface;
 
 class CodexLogResponse extends ApiResponse
 {
+    protected bool $success = true;
+
     public function __construct(protected LogInterface $codexLog)
     {
     }
