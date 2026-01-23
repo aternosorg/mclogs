@@ -64,7 +64,8 @@ async function sendLog() {
             .split('\n').slice(0, parseInt(pasteArea.dataset.maxLines)).join('\n');
 
         const params = new URLSearchParams({
-            "content": log
+            "content": log,
+            "source": location.host
         });
 
         const body = await packGz(new TextEncoder().encode(params.toString()));
