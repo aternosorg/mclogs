@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccbc545f1fcc8ae48936012996b01915",
+    "content-hash": "731ee63f90b670b7270fdad7b35e5aec",
     "packages": [
         {
             "name": "aternos/codex",
@@ -51,16 +51,16 @@
         },
         {
             "name": "aternos/codex-hytale",
-            "version": "v1.0.0",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-hytale.git",
-                "reference": "cf1431787a9fc88de2a3f522ba6b8cd03a56afe1"
+                "reference": "9b48e2d0fa4b82a3f10c8833a766b7e76e233271"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-hytale/zipball/cf1431787a9fc88de2a3f522ba6b8cd03a56afe1",
-                "reference": "cf1431787a9fc88de2a3f522ba6b8cd03a56afe1",
+                "url": "https://api.github.com/repos/aternosorg/codex-hytale/zipball/9b48e2d0fa4b82a3f10c8833a766b7e76e233271",
+                "reference": "9b48e2d0fa4b82a3f10c8833a766b7e76e233271",
                 "shasum": ""
             },
             "require": {
@@ -90,9 +90,9 @@
             "description": "PHP library to read, parse, print and analyse Hytale log files.",
             "support": {
                 "issues": "https://github.com/aternosorg/codex-hytale/issues",
-                "source": "https://github.com/aternosorg/codex-hytale/tree/v1.0.0"
+                "source": "https://github.com/aternosorg/codex-hytale/tree/v2.0.0"
             },
-            "time": "2026-01-21T14:14:04+00:00"
+            "time": "2026-01-23T12:25:09+00:00"
         },
         {
             "name": "aternos/codex-minecraft",
@@ -402,8 +402,8 @@
     "platform": {
         "php": ">=8.4",
         "ext-json": "*",
-        "ext-zlib": "*",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "ext-zlib": "*"
     },
     "platform-dev": {},
     "plugin-api-version": "2.9.0"
