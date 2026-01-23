@@ -20,9 +20,14 @@ class Id
      * to generate a new id, pass nothing
      *
      * @param string|null $fullId
+     * @param StorageId|null $storageId
      */
-    public function __construct(?string $fullId = null)
+    public function __construct(?string $fullId = null, ?StorageId $storageId = null)
     {
+        if ($storageId !== null) {
+            $this->setStorageId($storageId);
+        }
+
         if ($fullId === null) {
             $this->generateNew();
         } else {
@@ -55,12 +60,12 @@ class Id
      * Set the storage id
      *
      * @param StorageId $storageId
-     * @return bool
+     * @return static
      */
-    public function setStorageId(StorageId $storageId): bool
+    public function setStorageId(StorageId $storageId): static
     {
         $this->storageId = $storageId;
-        return true;
+        return $this;
     }
 
     /**

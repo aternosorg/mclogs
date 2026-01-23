@@ -2,29 +2,31 @@
 
 namespace Aternos\Mclogs\Storage;
 
+use Aternos\Mclogs\Id;
+
 interface StorageInterface
 {
     /**
      * Put some data in the storage, returns the (new) id for the data
      *
      * @param string $data
-     * @return ?\Aternos\Mclogs\Id ID or null
+     * @return Id|null
      */
-    public static function Put(string $data): ?\Aternos\Mclogs\Id;
+    public function put(string $data): ?Id;
 
     /**
      * Get some data from the storage by id
      *
-     * @param \Aternos\Mclogs\Id $id
-     * @return ?string Data or null, e.g. if it doesn't exist
+     * @param Id $id
+     * @return string|null
      */
-    public static function Get(\Aternos\Mclogs\Id $id): ?string;
+    public function get(Id $id): ?string;
 
     /**
      * Renew the data to reset the time to live
      *
-     * @param \Aternos\Mclogs\Id $id
-     * @return bool Success
+     * @param Id $id
+     * @return bool
      */
-    public static function Renew(\Aternos\Mclogs\Id $id): bool;
+    public function renew(Id $id): bool;
 }
