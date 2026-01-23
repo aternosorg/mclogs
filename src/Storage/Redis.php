@@ -18,10 +18,10 @@ class Redis extends RedisClient implements StorageInterface {
         $config = \Aternos\Mclogs\Config::Get("storage");
 
         $id = new \Aternos\Mclogs\Id();
-        $id->setStorage("r");
+        $id->setStorageId("r");
 
         do {
-            $id->regenerate();
+            $id->generateNew();
         } while(self::Get($id) !== null);
 
         self::$connection->setEx($id->getRaw(), $config['storageTime'], $data);

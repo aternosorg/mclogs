@@ -18,10 +18,10 @@ class Mongo extends \Aternos\Mclogs\Client\MongoDBClient implements StorageInter
     {
         $config = \Aternos\Mclogs\Config::Get("storage");
         $id = new \Aternos\Mclogs\Id();
-        $id->setStorage("m");
+        $id->setStorageId("m");
 
         do {
-            $id->regenerate();
+            $id->generateNew();
         } while (self::Get($id) !== null);
 
         $date = new UTCDateTime((time() + $config['storageTime']) * 1000);

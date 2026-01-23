@@ -23,10 +23,10 @@ class Filesystem implements StorageInterface
         }
 
         $id = new \Aternos\Mclogs\Id();
-        $id->setStorage("f");
+        $id->setStorageId("f");
 
         do {
-            $id->regenerate();
+            $id->generateNew();
         } while (file_exists($basePath . $id->getRaw()));
 
         file_put_contents($basePath . $id->getRaw(), $data);

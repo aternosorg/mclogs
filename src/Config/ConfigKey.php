@@ -9,6 +9,8 @@ enum ConfigKey
     case STORAGE_LIMIT_BYTES;
     case STORAGE_LIMIT_LINES;
 
+    case ID_LENGTH;
+
     case REDIS_HOST;
     case REDIS_PORT;
 
@@ -33,6 +35,8 @@ enum ConfigKey
             ConfigKey::STORAGE_TIME => 90 * 24 * 60 * 60,
             ConfigKey::STORAGE_LIMIT_BYTES => 10 * 1024 * 1024,
             ConfigKey::STORAGE_LIMIT_LINES => 25000,
+
+            ConfigKey::ID_LENGTH => 6,
 
             ConfigKey::REDIS_HOST => 'redis',
             ConfigKey::REDIS_PORT => 6379,

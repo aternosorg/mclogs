@@ -62,12 +62,12 @@ class Log
     {
         $config = Config::Get('storage');
 
-        if (!isset($config['storages'][$this->id->getStorage()])) {
+        if (!isset($config['storages'][$this->id->getStorageId()])) {
             $this->exists = false;
             return;
         }
 
-        if (!$config['storages'][$this->id->getStorage()]['enabled']) {
+        if (!$config['storages'][$this->id->getStorageId()]['enabled']) {
             $this->exists = false;
             return;
         }
@@ -75,7 +75,7 @@ class Log
         /**
          * @var StorageInterface $storage
          */
-        $storage = $config['storages'][$this->id->getStorage()]['class'];
+        $storage = $config['storages'][$this->id->getStorageId()]['class'];
 
         $data = $storage::Get($this->id);
 
@@ -319,7 +319,7 @@ class Log
         /**
          * @var StorageInterface $storage
          */
-        $storage = $config['storages'][$this->id->getStorage()]['class'];
+        $storage = $config['storages'][$this->id->getStorageId()]['class'];
 
         $storage::Renew($this->id);
     }
