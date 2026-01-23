@@ -1,6 +1,6 @@
 <?php
 
-require_once("../../core/core.php");
+require_once __DIR__ . '/../../vendor/autoload.php';
 
 switch ($_SERVER['REQUEST_URI']) {
     case "/":

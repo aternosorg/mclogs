@@ -1,10 +1,10 @@
 <?php
 
-use Aternos\Mclogs\Config;
+use Aternos\Mclogs\Config\Config;
+use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Util\URL;
 
-$urls = Config::Get('urls');
-$legal = Config::Get('legal');
-$storage = \Aternos\Mclogs\Config::Get('storage');
+$config = Config::getInstance();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@ $storage = \Aternos\Mclogs\Config::Get('storage');
         <meta charset="utf-8" />
         <meta name="theme-color" content="#2d3943" />
 
-        <title>mclo.gs - Paste, share & analyse your Minecraft logs</title>
+        <title><?= URL::getBase()->getHost(); ?> - Paste, share & analyse your Minecraft logs</title>
 
         <base href="/" />
 
@@ -83,7 +83,7 @@ $storage = \Aternos\Mclogs\Config::Get('storage');
                         </div>
                     </div>
                     <div id="dropzone" class="paste-body">
-                        <textarea id="paste" autocomplete="off" spellcheck="false" data-max-length="<?=$storage['maxLength']?>" data-max-lines="<?=$storage['maxLines']?>"></textarea>
+                        <textarea id="paste" autocomplete="off" spellcheck="false" data-max-length="<?=$config->get(ConfigKey::STORAGE_LIMIT_BYTES); ?>)?>" data-max-lines="<?=$config->get(ConfigKey::STORAGE_LIMIT_LINES); ?>"></textarea>
                     </div>
                     <div class="paste-footer">
                         <div class="paste-save btn btn-green btn-no-margin">
@@ -218,7 +218,7 @@ $storage = \Aternos\Mclogs\Config::Get('storage');
                             HTTP API.
                         </div>
                         <div class="article-buttons">
-                            <a href="<?=$urls['apiBaseUrl']?>" class="btn btn-blue btn-no-margin">
+                            <a href="<?=URL::getApi()->toString(); ?>" class="btn btn-blue btn-no-margin">
                                 <i class="fa fa-book"></i> API Documentation
                             </a>
                         </div>
@@ -229,8 +229,8 @@ $storage = \Aternos\Mclogs\Config::Get('storage');
         <div class="row footer">
             <div class="row-inner">
                 &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a target="_blank" href="https://aternos.org">Aternos</a> |
-                <a target="_blank" href="<?=$legal['imprint']?>">Imprint</a> |
-                <a target="_blank" href="<?=$legal['privacy']?>">Privacy</a>
+                <a target="_blank" href="<?=$config->get(ConfigKey::LEGAL_IMPRINT); ?>">Imprint</a> |
+                <a target="_blank" href="<?=$config->get(ConfigKey::LEGAL_PRIVACY); ?>">Privacy</a>
             </div>
         </div>
         <script src="js/mclogs.js?v=130223"></script>

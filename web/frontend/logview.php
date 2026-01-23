@@ -1,13 +1,19 @@
 <?php
-use Aternos\Mclogs\Config;use Aternos\Mclogs\Id;use Aternos\Mclogs\Log;$urls = Config::Get('urls');
-$legal = Config::Get('legal');
+
+use Aternos\Mclogs\Config\Config;
+use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Id;
+use Aternos\Mclogs\Log;
+
+$config = Config::getInstance();
+
 $id = new Id(substr($_SERVER['REQUEST_URI'], 1));
-$log = new Log($id);
+$log = Log::find($id);
 $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VALIDATE_BOOLEAN);
 
 $title = "mclo.gs - Paste, share & analyse your Minecraft logs";
 $description = "Easily paste your Minecraft logs to share and analyse them.";
-if (!$log->exists()) {
+if (!$log) {
     $title = "Log not found - mclo.gs";
     http_response_code(404);
 } else {
@@ -61,7 +67,7 @@ if (!$log->exists()) {
         <meta property="og:site_name" content="mclo.gs" />
         <meta property="og:title" content="<?=$title; ?>" />
         <meta property="og:description" content="<?=$description; ?>" />
-        <meta property="og:url" content="<?=$urls['baseUrl'] . "/" . $id->get(); ?>" />
+        <meta property="og:url" content="<?=$log->getURL()->toString(); ?>" />
 
         <script>
             let _paq = window._paq = window._paq || [];
@@ -103,7 +109,7 @@ if (!$log->exists()) {
         </header>
         <div class="row dark log-row">
             <div class="row-inner<?= $shouldWrapLogLines ? "" : " no-wrap"?>">
-                <?php if($log->exists()): ?>
+                <?php if($log): ?>
                 <div class="log-info">
                     <div class="log-title">
                         <h1><i class="fas fa-file-lines"></i> <?=$codexLog->getTitle(); ?></h1>
@@ -120,7 +126,7 @@ if (!$log->exists()) {
                             <i class="fa fa-arrow-circle-down"></i>
                             <?=$lineNumbers . " " . $lineString; ?>
                         </div>
-                        <a class="btn btn-white btn-small btn-no-margin" id="raw" target="_blank" href="<?=$urls['apiBaseUrl'] . "/1/raw/". $id->get()?>">
+                        <a class="btn btn-white btn-small btn-no-margin" id="raw" target="_blank" href="<?=$log->getRawURL()->toString(); ?>">
                             <i class="fa fa-arrow-up-right-from-square"></i>
                             Raw
                         </a>
@@ -193,7 +199,7 @@ if (!$log->exists()) {
                 </div>
                 <div class="log-notice">
                     This log will be saved for 90 days from their last view.<br />
-                    <a href="mailto:<?=$legal['abuseEmail']?>?subject=Report%20mclo.gs/<?=$id->get(); ?>">Report abuse</a>
+                    <a href="mailto:<?=$config->get(ConfigKey::LEGAL_ABUSE); ?>?subject=Report%20mclo.gs/<?=$id->get(); ?>">Report abuse</a>
                 </div>
                 <?php else: ?>
                 <div class="not-found">
@@ -211,8 +217,8 @@ if (!$log->exists()) {
         <div class="row footer">
             <div class="row-inner">
                 &copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a target="_blank" href="https://aternos.org">Aternos</a> |
-                <a target="_blank" href="<?=$legal['imprint']?>">Imprint</a> |
-                <a target="_blank" href="<?=$legal['privacy']?>">Privacy</a>
+                <a target="_blank" href="<?=$config->get(ConfigKey::LEGAL_IMPRINT); ?>">Imprint</a> |
+                <a target="_blank" href="<?=$config->get(ConfigKey::LEGAL_PRIVACY); ?>">Privacy</a>
             </div>
         </div>
         <script src="js/logview.js?v=130221"></script>
