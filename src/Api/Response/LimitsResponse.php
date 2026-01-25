@@ -7,8 +7,6 @@ use Aternos\Mclogs\Config\ConfigKey;
 
 class LimitsResponse extends ApiResponse
 {
-    protected bool $success = true;
-
     public function jsonSerialize(): array
     {
         $config = Config::getInstance();

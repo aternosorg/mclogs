@@ -358,4 +358,22 @@ class Log
     {
         return $this->token;
     }
+
+    /**
+     * @return bool
+     */
+    public function delete(): bool
+    {
+        return MongoDBClient::getInstance()->getLogsCollection()
+                ->deleteOne(['_id' => $this->id->get()])
+                ->getDeletedCount() === 1;
+    }
+
+    /**
+     * @return MetadataEntry[]
+     */
+    public function getMetadata(): array
+    {
+        return $this->metadata;
+    }
 }

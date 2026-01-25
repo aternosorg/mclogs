@@ -2,7 +2,7 @@
 
 use Aternos\Mclogs\Api\ContentParser;
 use Aternos\Mclogs\Api\Response\ApiError;
-use Aternos\Mclogs\Api\Response\LogCreatedResponse;
+use Aternos\Mclogs\Api\Response\LogResponse;
 use Aternos\Mclogs\Log;
 
 $data = new ContentParser()->getContent();
@@ -24,5 +24,5 @@ if (isset($data['source']) && is_string($data['source'])) {
 
 $log = Log::create($content, $metadata, $source);
 
-$response = new LogCreatedResponse($log);
+$response = new LogResponse($log, true);
 $response->output();

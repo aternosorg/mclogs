@@ -5,7 +5,7 @@ namespace Aternos\Mclogs\Api\Response;
 class ApiResponse implements \JsonSerializable
 {
     protected int $httpCode = 200;
-    protected bool $success = false;
+    protected bool $success = true;
 
     public function jsonSerialize(): array
     {

@@ -19,7 +19,7 @@ switch ($_SERVER['REQUEST_URI']) {
         break;
     case "/1/log":
     case "/1/log/":
-        require_once("../endpoints/log.php");
+        require_once("../endpoints/create.php");
         break;
     case "/1/analyse":
     case "/1/analyse/":
@@ -38,6 +38,14 @@ switch ($_SERVER['REQUEST_URI']) {
         }
         if (str_starts_with($_SERVER['REQUEST_URI'], "/1/insights/")) {
             require_once("../endpoints/insights.php");
+            break;
+        }
+        if (str_starts_with($_SERVER['REQUEST_URI'], "/1/log/")) {
+            if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+                require_once("../endpoints/delete.php");
+            } else {
+                require_once("../endpoints/info.php");
+            }
             break;
         }
 
