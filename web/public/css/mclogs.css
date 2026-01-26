@@ -62,16 +62,11 @@ header {
     margin-bottom: 2rem;
 }
 
-.logo {
-    font-size: 1.75rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--color-text);
+.logo img  {
+    height: 62px;
 }
 
-.logo-highlight {
-    color: var(--color-primary);
-}
+
 
 .tagline {
     font-size: 1.25rem;
