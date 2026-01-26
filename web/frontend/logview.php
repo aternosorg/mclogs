@@ -45,44 +45,17 @@ if (!$log) {
 <html lang="en">
     <head>
         <meta name="robots" content="noindex,nofollow">
-        <meta charset="utf-8" />
         <meta name="theme-color" content="#0a0a0b" />
-
+        <?php include __DIR__ . '/parts/head.php'; ?>
         <title><?=$title; ?> - mclo.gs</title>
-
-        <base href="/" />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
-        <link rel="stylesheet" href="css/btn.css" />
-        <link rel="stylesheet" href="css/mclogs.css?v=260126b" />
         <link rel="stylesheet" href="css/log.css?v=071222" />
-
-        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-
         <meta name="description" content="<?=$description; ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="mclo.gs" />
         <meta property="og:title" content="<?=$title; ?>" />
         <meta property="og:description" content="<?=$description; ?>" />
-        <meta property="og:url" content="<?=$log->getURL()->toString(); ?>" />
-
-        <script>
-            let _paq = window._paq = window._paq || [];
-            _paq.push(['disableCookies']);
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-                _paq.push(['setTrackerUrl', '/data']);
-                _paq.push(['setSiteId', '5']);
-                let d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-                g.async=true; g.src='/data.js'; s.parentNode.insertBefore(g,s);
-            })();
-        </script>
+        <meta property="og:url" content="<?=$log ? $log->getURL()->toString() : ''; ?>" />
     </head>
     <body class="log-body">
         
