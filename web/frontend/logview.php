@@ -89,7 +89,8 @@ if (!$log) {
         <div class="container">
             <header>
                 <a href="/" class="logo" >
-                    <img src="img/logo.svg" alt="mclo.gs" />
+                    <img src="img/logo-icon.svg" alt="" />
+                    <span class="logo-text">mclo.gs</span>
                 </a>
                 <div class="tagline"><span class="title-verb">Share</span> your Minecraft logs.</div>
             </header>

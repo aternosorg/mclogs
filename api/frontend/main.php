@@ -43,7 +43,8 @@ $config = Config::getInstance();
         <header class="row navigation">
             <div class="row-inner">
                 <a href="/" class="logo">
-                    <img src="img/logo.png" />
+                    <img src="img/logo-icon.svg" alt="" />
+                    <span class="logo-text">mclo.gs</span>
                 </a>
                 <div class="menu">
                     <a class="menu-social btn btn-black btn-notext btn-large btn-no-margin" href="https://github.com/aternosorg/mclogs" target="_blank">

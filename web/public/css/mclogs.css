@@ -58,12 +58,28 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0;
+    padding: 5px 0;
     margin-bottom: 2rem;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    text-decoration: none;
+}
+
 .logo img  {
-    height: 62px;
+    height: 28px;
+    width: auto;
+    margin-top: 3px;
+}
+
+.logo-text {
+    font-size: 37px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-top: -6px;
 }
 
 
