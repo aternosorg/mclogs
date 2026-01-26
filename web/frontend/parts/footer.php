@@ -5,5 +5,5 @@
         <a href="https://modrinth.com/plugin/mclogs" target="_blank"><i class="fa-solid fa-plug"></i> Plugin</a>
         <a href="/api"><i class="fa-solid fa-code"></i> API</a>
     </nav>
-    <span class="footer-text">&copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a href="https://aternos.org" target="_blank">Aternos</a></span>
+    <span class="footer-text">developed by<a href="https://aternos.org" target="_blank"> Aternos</a></span>
 </footer>

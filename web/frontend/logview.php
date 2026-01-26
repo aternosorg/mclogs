@@ -4,6 +4,7 @@ use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
 use Aternos\Mclogs\Id;
 use Aternos\Mclogs\Log;
+use Aternos\Mclogs\Util\URL;
 
 $config = Config::getInstance();
 
@@ -44,29 +45,14 @@ if (!$log) {
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta name="robots" content="noindex,nofollow">
-        <meta name="theme-color" content="#0a0a0b" />
         <?php include __DIR__ . '/parts/head.php'; ?>
-        <title><?=$title; ?> - mclo.gs</title>
-        <link rel="stylesheet" href="css/log.css?v=071222" />
-        <meta name="description" content="<?=$description; ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="mclo.gs" />
-        <meta property="og:title" content="<?=$title; ?>" />
-        <meta property="og:description" content="<?=$description; ?>" />
-        <meta property="og:url" content="<?=$log ? $log->getURL()->toString() : ''; ?>" />
+        <title><?= URL::getBase()->getHost(); ?> - Paste, share & analyse your Minecraft logs</title>
     </head>
     <body class="log-body">
         
         <div class="container">
-            <header>
-                <a href="/" class="logo" >
-                    <img src="img/logo-icon.svg" alt="" />
-                    <span class="logo-text">mclo.gs</span>
-                </a>
-                <div class="tagline"><span class="title-verb">Share</span> your Minecraft logs.</div>
-            </header>
+            <?php include __DIR__ . '/parts/header.php'; ?>
+
             <div class="row dark log-row">
                 <div class="row-inner<?= $shouldWrapLogLines ? "" : " no-wrap"?>">
                     <?php if($log): ?>
@@ -174,15 +160,8 @@ if (!$log) {
                     <?php endif; ?>
                 </div>
             </div>
-            <footer>
-                <nav class="footer-nav">
-                    <a href="https://github.com/aternosorg/mclogs" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
-                    <a href="https://modrinth.com/mod/mclogs" target="_blank"><i class="fa-solid fa-cube"></i> Mod</a>
-                    <a href="https://modrinth.com/plugin/mclogs" target="_blank"><i class="fa-solid fa-plug"></i> Plugin</a>
-                    <a href="/api"><i class="fa-solid fa-code"></i> API</a>
-                </nav>
-                <span class="footer-text">&copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a href="https://aternos.org" target="_blank">Aternos</a></span>
-            </footer>
+            <?php include __DIR__ . '/parts/footer.php'; ?>
+
         </div>
         <script src="js/logview.js?v=130221"></script>
     </body>
