@@ -240,7 +240,7 @@ class Log
      *
      * @return int
      */
-    public function getLineNumbers(): int
+    public function getLineCount(): int
     {
         $codexLog = $this->getCodexLog();
         $lines = 0;
@@ -248,6 +248,14 @@ class Log
             $lines += count($entry);
         }
         return $lines;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSize(): int
+    {
+        return strlen($this->getContent());
     }
 
     /**

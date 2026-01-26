@@ -10,6 +10,7 @@ class URL
 
     protected static ?Uri $base = null;
     protected static ?Uri $api = null;
+    protected static ?Uri $current = null;
 
     /**
      * Get base URL
@@ -40,5 +41,16 @@ class URL
         }
         $base = static::getBase();
         return static::$api = $base->withHost(static::API_SUBDOMAIN . $base->getHost());
+    }
+
+    public static function getCurrent(): Uri
+    {
+        if (static::$current) {
+            return static::$current;
+        }
+        $scheme = $_SERVER['REQUEST_SCHEME'];
+        $host = $_SERVER['HTTP_HOST'];
+        $requestUri = $_SERVER['REQUEST_URI'];
+        return static::$current = new Uri("$scheme://$host$requestUri");
     }
 }

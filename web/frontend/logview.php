@@ -22,7 +22,7 @@ if (!$log) {
     $information = $analysis->getInformation();
     $problems = $analysis->getProblems();
     $title = $codexLog->getTitle() . " [#" . $id->get() . "]";
-    $lineNumbers = $log->getLineNumbers();
+    $lineNumbers = $log->getLineCount();
     $lineString = $lineNumbers === 1 ? "line" : "lines";
 
     $errorCount = $log->getErrorCount();
