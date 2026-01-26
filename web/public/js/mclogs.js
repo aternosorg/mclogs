@@ -70,8 +70,9 @@ async function sendLog() {
 
         const body = await packGz(new TextEncoder().encode(params.toString()));
 
-        const response = await fetch(`${location.protocol}//api.${location.host}/1/log`, {
+        const response = await fetch(`/new`, {
             method: "POST",
+            credentials: "include",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
                 "Content-Encoding": "gzip"

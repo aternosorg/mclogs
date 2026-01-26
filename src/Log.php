@@ -307,7 +307,7 @@ class Log
             "created" => $this->created = new UTCDateTime()
         ]);
 
-        return $this;
+        return $this->setContent($content);
     }
 
     /**
@@ -383,5 +383,13 @@ class Log
     public function getMetadata(): array
     {
         return $this->metadata;
+    }
+
+    /**
+     * @return bool
+     */
+    public function setTokenCookie(): bool
+    {
+        return $this->getToken()?->setCookie($this);
     }
 }

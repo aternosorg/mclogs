@@ -2,10 +2,16 @@
 
 namespace Aternos\Mclogs\Data;
 
+use Aternos\Mclogs\Config\Config;
+use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Log;
+use Aternos\Mclogs\Util\URL;
 use Random\RandomException;
 
 class Token implements \JsonSerializable
 {
+    protected const string COOKIE_NAME = "MCLOGS_LOG_TOKEN";
+
     public function __construct(protected ?string $value = null)
     {
         if ($this->value === null) {
@@ -38,5 +44,30 @@ class Token implements \JsonSerializable
     public function get(): ?string
     {
         return $this->value;
+    }
+
+    /**
+     * @param Log $log
+     * @return bool
+     */
+    public function setCookie(Log $log): bool
+    {
+        $domain = URL::getBase()->getHost();
+        if ($domain === "localhost") {
+            $domain = false;
+        }
+
+        return setcookie(
+            static::COOKIE_NAME,
+            $this->get(),
+            [
+                'expires' => time() + Config::getInstance()->get(ConfigKey::STORAGE_TTL),
+                'path' => "/" . $log->getId()->get(),
+                'domain' => $domain,
+                'secure' => true,
+                'httponly' => true,
+                'samesite' => 'Lax'
+            ]
+        );
     }
 }

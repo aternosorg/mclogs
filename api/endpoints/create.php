@@ -24,5 +24,9 @@ if (isset($data['source']) && is_string($data['source'])) {
 
 $log = Log::create($content, $metadata, $source);
 
+if (isset($setTokenCookie) && $setTokenCookie === true) {
+    $log->setTokenCookie();
+}
+
 $response = new LogResponse($log, true);
 $response->output();
