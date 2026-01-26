@@ -412,6 +412,13 @@ class Log
         return $this->metadata;
     }
 
+    public function getVisibleMetadata(): array
+    {
+        return array_filter($this->metadata, function (MetadataEntry $entry) {
+            return $entry->isVisible();
+        });
+    }
+
     /**
      * @return bool
      */

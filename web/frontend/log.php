@@ -32,12 +32,18 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                                        <span class="log-id-tag">#<?=$log->getId()->get(); ?></span>
                                    </h1>
                                    <?php $information = $log->getAnalysis()->getInformation(); ?>
-                                   <?php if(count($information) > 0): ?>
+                                   <?php if(count($information) > 0 || count($log->getVisibleMetadata()) > 0): ?>
                                        <div class="log-versions">
                                            <?php foreach($information as $info): ?>
                                                <span class="version-item">
                                                    <span class="version-label"><?=$info->getLabel(); ?>:</span>
                                                    <span class="version-value"><?=$info->getValue(); ?></span>
+                                               </span>
+                                           <?php endforeach; ?>
+                                           <?php foreach($log->getVisibleMetadata() as $metadata): ?>
+                                               <span class="version-item">
+                                                   <span class="version-label"><?=$metadata->getDisplayLabel(); ?>:</span>
+                                                   <span class="version-value"><?=$metadata->getValue(); ?></span>
                                                </span>
                                            <?php endforeach; ?>
                                        </div>

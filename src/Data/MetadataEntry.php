@@ -116,6 +116,11 @@ class MetadataEntry implements \JsonSerializable
         return $this->label;
     }
 
+    public function getDisplayLabel(): ?string
+    {
+        return $this->label ?? $this->key;
+    }
+
     public function setLabel(?string $label): static
     {
         if ($label && strlen($label) > static::MAX_LABEL_LENGTH) {
