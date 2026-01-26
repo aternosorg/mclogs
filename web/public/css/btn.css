@@ -45,3 +45,81 @@
 .link-btn:hover {
     color: var(--color-primary);
 }
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+}
+
+.btn i {
+    font-size: 0.875rem;
+}
+
+.btn-small {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8125rem;
+}
+
+.btn-small i {
+    font-size: 0.8125rem;
+}
+
+.btn-notext {
+    padding: 0.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    justify-content: center;
+}
+
+.btn-no-margin {
+    margin: 0;
+}
+
+.btn-blue {
+    background-color: #3b82f6;
+    color: #ffffff;
+}
+
+.btn-blue:hover {
+    background-color: #2563eb;
+}
+
+.btn-red {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+.btn-red:hover {
+    background-color: #dc2626;
+}
+
+.btn-black {
+    background-color: #1f1f1f;
+    color: var(--color-text);
+}
+
+.btn-black:hover {
+    background-color: #2a2a2a;
+}
+
+.btn-white {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-white:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+}
