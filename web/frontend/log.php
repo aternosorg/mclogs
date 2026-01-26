@@ -2,59 +2,55 @@
 
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
-use Aternos\Mclogs\Id;
 use Aternos\Mclogs\Log;
 use Aternos\Mclogs\Util\URL;
 
+/** @var Log $log */
+
 $config = Config::getInstance();
 
-$id = new Id(substr($_SERVER['REQUEST_URI'], 1));
-$log = Log::find($id);
+$id = $log->getId();
 $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VALIDATE_BOOLEAN);
 
 $title = "mclo.gs - Paste, share & analyse your Minecraft logs";
 $description = "Easily paste your Minecraft logs to share and analyse them.";
-if (!$log) {
-    $title = "Log not found - mclo.gs";
-    http_response_code(404);
-} else {
-    $codexLog = $log->getCodexLog();
-    $analysis = $log->getAnalysis();
-    $allInformation = $analysis->getInformation();
 
-    $versionInfo = [];
-    $information = [];
-    $versionLabels = ['Minecraft version', 'Forge version', 'Java version'];
-    
-    foreach ($allInformation as $info) {
-        $label = $info->getLabel();
-        if (in_array($label, $versionLabels)) {
-            $versionInfo[] = $info;
-        } else {
-            $information[] = $info;
-        }
+$codexLog = $log->getCodexLog();
+$analysis = $log->getAnalysis();
+$allInformation = $analysis->getInformation();
+
+$versionInfo = [];
+$information = [];
+$versionLabels = ['Minecraft version', 'Forge version', 'Java version'];
+
+foreach ($allInformation as $info) {
+    $label = $info->getLabel();
+    if (in_array($label, $versionLabels)) {
+        $versionInfo[] = $info;
+    } else {
+        $information[] = $info;
     }
-    
-    $problems = $analysis->getProblems();
-    $title = $codexLog->getTitle() . " [#" . $id->get() . "]";
-    $lineNumbers = $log->getLineCount();
-    $lineString = $lineNumbers === 1 ? "line" : "lines";
+}
 
-    $errorCount = $log->getErrorCount();
-    $errorString = $errorCount === 1 ? "error" : "errors";
+$problems = $analysis->getProblems();
+$title = $codexLog->getTitle() . " [#" . $id->get() . "]";
+$lineNumbers = $log->getLineCount();
+$lineString = $lineNumbers === 1 ? "line" : "lines";
 
-    $description = $lineNumbers . " " . $lineString;
-    if ($errorCount > 0) {
-       $description .= " | " . $errorCount . " " . $errorString;
+$errorCount = $log->getErrorCount();
+$errorString = $errorCount === 1 ? "error" : "errors";
+
+$description = $lineNumbers . " " . $lineString;
+if ($errorCount > 0) {
+   $description .= " | " . $errorCount . " " . $errorString;
+}
+
+if (count($problems) > 0) {
+    $problemString = "problems";
+    if (count($problems) === 1) {
+        $problemString = "problem";
     }
-
-    if (count($problems) > 0) {
-        $problemString = "problems";
-        if (count($problems) === 1) {
-            $problemString = "problem";
-        }
-        $description .= " | " . count($problems) . " " . $problemString . " automatically detected";
-    }
+    $description .= " | " . count($problems) . " " . $problemString . " automatically detected";
 }
 ?><!DOCTYPE html>
 <html lang="en">

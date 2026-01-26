@@ -43,6 +43,9 @@ class URL
         return static::$api = $base->withHost(static::API_SUBDOMAIN . $base->getHost());
     }
 
+    /**
+     * @return Uri
+     */
     public static function getCurrent(): Uri
     {
         if (static::$current) {
@@ -52,5 +55,18 @@ class URL
         $host = $_SERVER['HTTP_HOST'];
         $requestUri = $_SERVER['REQUEST_URI'];
         return static::$current = new Uri("$scheme://$host$requestUri");
+    }
+
+    /**
+     * @return string
+     */
+    public static function getLastPathPart(): string
+    {
+        $path = static::getCurrent()->getPath();
+        $parts = explode("/", $path);
+        do {
+            $part = trim(array_pop($parts));
+        } while ($part === "" && count($parts) > 0);
+        return $part;
     }
 }

@@ -11,6 +11,7 @@ class ApiError extends ApiResponse
         protected string $message,
     )
     {
+        $this->setHttpCode($httpCode);
     }
 
     public function jsonSerialize(): array

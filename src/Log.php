@@ -12,6 +12,7 @@ use Aternos\Mclogs\Data\Deobfuscator;
 use Aternos\Mclogs\Data\MetadataEntry;
 use Aternos\Mclogs\Data\Token;
 use Aternos\Mclogs\Filter\Filter;
+use Aternos\Mclogs\Frontend\Cookie\TokenCookie;
 use Aternos\Mclogs\Printer\Printer;
 use Aternos\Mclogs\Storage\MongoDBClient;
 use Aternos\Mclogs\Util\URL;
@@ -390,6 +391,9 @@ class Log
      */
     public function setTokenCookie(): bool
     {
-        return $this->getToken()?->setCookie($this);
+        if (!$this->getToken()) {
+            return false;
+        }
+        return new TokenCookie($this)->set($this->getToken()->get());
     }
 }

@@ -6,6 +6,7 @@ use Aternos\Mclogs\Config\ConfigKey;
 
 class Id implements \JsonSerializable
 {
+    public const string PATTERN = '[a-zA-Z0-9]+';
     protected const string CHARACTERS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 
     /**

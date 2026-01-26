@@ -1,15 +1,16 @@
 <?php
 
+use Aternos\Mclogs\Frontend\Action;
+use Aternos\Mclogs\Id;
+use Aternos\Mclogs\Router\Method;
+use Aternos\Mclogs\Router\Router;
+
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-switch ($_SERVER['REQUEST_URI']) {
-    case "/":
-        require_once("../frontend/main.php");
-        break;
-    case "/new":
-        require_once("../frontend/new.php");
-        break;
-    default:
-        require_once("../frontend/logview.php");
-        break;
-}
+new Router()
+    ->register(Method::GET, "#^/$#", new Action\StartAction())
+    ->register(Method::GET, "#^/" . Id::PATTERN . "$#", new Action\ViewLogAction())
+    ->register(Method::POST, "#^/new$#", new Action\CreateLogAction())
+    ->register(Method::DELETE, "#^/" . Id::PATTERN . "$#", new Action\DeleteLogAction())
+    ->setDefaultAction(new Action\NotFoundAction())
+    ->run();
