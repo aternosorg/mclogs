@@ -3,11 +3,15 @@ let currentTitle = 0;
 let speed = 30;
 let pause = 3000;
 const pasteArea = document.getElementById('paste');
-const pasteHints = document.querySelector('.paste-hints');
+const pastePlaceholder = document.querySelector('.paste-placeholder');
 const titleElement = document.querySelector('.title-verb');
 const pasteSaveButtons = document.querySelectorAll('.paste-save');
 const pasteHeader = document.querySelector('.paste-header');
 const pasteFooter = document.querySelector('.paste-footer');
+const dropZone = document.getElementById('dropzone');
+let fileSelectButton = document.getElementById('paste-select-file');
+let windowDragCount = 0;
+let dropZoneDragCount = 0;
 
 setTimeout(nextTitle, pause);
 
@@ -143,11 +147,6 @@ function showPasteError(message) {
     }
 }
 
-let dropZone = document.getElementById('dropzone');
-let fileSelectButton = document.getElementById('paste-select-file');
-let windowDragCount = 0;
-let dropZoneDragCount = 0;
-
 function updateWindowDragCount(amount) {
     windowDragCount = Math.max(0, windowDragCount + amount);
     if (windowDragCount > 0) {
@@ -203,6 +202,7 @@ async function loadFileContents(file) {
     }
 
     pasteArea.value = new TextDecoder().decode(content);
+    reevaluateContentStatus();
 }
 
 function loadScript(url) {
@@ -308,3 +308,13 @@ dropZone.addEventListener('drop', async e => {
 
 fileSelectButton.addEventListener('click', selectLogFile);
 
+pasteArea.addEventListener('input', reevaluateContentStatus);
+function reevaluateContentStatus() {
+    if (pasteArea.value.length > 0) {
+        pastePlaceholder.style.display = 'none';
+        pasteSaveButtons.forEach(button => button.removeAttribute("disabled"));
+    } else {
+        pastePlaceholder.style.display = 'block';
+        pasteSaveButtons.forEach(button => button.setAttribute("disabled", "disabled"));
+    }
+}

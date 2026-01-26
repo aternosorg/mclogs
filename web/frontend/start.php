@@ -22,21 +22,15 @@ $config = Config::getInstance();
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         <p>Paste or drop your log here</p>
                         <div class="paste-hints">
-                            <span><kbd>Ctrl+V</kbd> paste</span>
-                            <span><i class="fa-solid fa-file-arrow-up"></i> drop</span>
-                            <button type="button" class="link-btn" id="paste-select-file"><i class="fa-solid fa-folder-open"></i> browse</button>
+                            <span><i class="fa-solid fa-paste"></i> Paste</span>
+                            <span><i class="fa-solid fa-file-arrow-up"></i> Drop</span>
+                            <button type="button" class="link-btn" id="paste-select-file"><i class="fa-solid fa-folder-open"></i> Browse</button>
                         </div>
                     </div>
                     <textarea spellcheck="false" data-enable-grammarly="false" id="paste" data-max-length="10000000" data-max-lines="25000"></textarea>
                     <button type="button" class="btn-save paste-save" disabled><i class="fa-solid fa-share"></i> Share</button>
                 </div>
             </main>
-            <script>
-                const paste = document.getElementById('paste');
-                const btn = document.querySelector('.btn-save');
-                paste.addEventListener('input', () => { btn.disabled = !paste.value; });
-            </script>
-
             <?php include __DIR__ . '/parts/footer.php'; ?>
         </div>
         <script src="js/start.js"></script>
