@@ -27,7 +27,7 @@ $config = Config::getInstance();
                             <button type="button" class="link-btn" id="paste-select-file"><i class="fa-solid fa-folder-open"></i> browse</button>
                         </div>
                     </div>
-                    <textarea id="paste" data-max-length="10000000" data-max-lines="25000"></textarea>
+                    <textarea spellcheck="false" data-enable-grammarly="false" id="paste" data-max-length="10000000" data-max-lines="25000"></textarea>
                     <button type="button" class="btn-save paste-save" disabled><i class="fa-solid fa-share"></i> Share</button>
                 </div>
             </main>
@@ -39,6 +39,6 @@ $config = Config::getInstance();
 
             <?php include __DIR__ . '/parts/footer.php'; ?>
         </div>
-        <script src="js/mclogs.js"></script>
+        <script src="js/start.js"></script>
     </body>
 </html>

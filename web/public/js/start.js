@@ -3,6 +3,7 @@ let currentTitle = 0;
 let speed = 30;
 let pause = 3000;
 const pasteArea = document.getElementById('paste');
+const pasteHints = document.querySelector('.paste-hints');
 const titleElement = document.querySelector('.title-verb');
 const pasteSaveButtons = document.querySelectorAll('.paste-save');
 const pasteHeader = document.querySelector('.paste-header');
@@ -38,7 +39,7 @@ pasteArea.focus();
 pasteSaveButtons.forEach(button => button.addEventListener('click', sendLog));
 
 document.addEventListener('keydown', event => {
-    if ((event.key.toLowerCase() === 's' && event.ctrlKey) || event.key.codePointAt(0) === 19) {
+    if (event.key.toLowerCase() === 's' && (event.ctrlKey || event.metaKey)) {
         void sendLog();
         event.preventDefault();
         return false;

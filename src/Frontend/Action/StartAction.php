@@ -8,7 +8,7 @@ class StartAction extends Action
 {
     public function run(): bool
     {
-        require_once __DIR__ . "/../../../web/frontend/main.php";
+        require_once __DIR__ . "/../../../web/frontend/start.php";
         return true;
     }
 }
