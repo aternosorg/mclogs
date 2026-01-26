@@ -48,6 +48,8 @@ class DeleteLogAction extends ApiAction
             return new ApiError(500, "Failed to delete log.");
         }
 
+        $this->handleDeletedLog($log);
+
         return new ApiResponse();
     }
 
