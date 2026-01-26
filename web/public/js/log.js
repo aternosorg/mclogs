@@ -107,12 +107,12 @@ function generateCollapsedLines(start, end) {
     let count = end - start + 1;
     let string = count === 1 ? "line" : "lines";
     return '<tr class="collapsed-lines">' +
-            '<td></td>' +
-            '<td class="collapsed-lines-count" data-start="' + start + '" data-end="' + end + '">' +
-                '<i class="fa fa-angle-up"></i> ' +
-                count + " " + string +
-                ' <i class="fa fa-angle-up"></i>' +
-            '</td>'+
+        '<td></td>' +
+        '<td class="collapsed-lines-count" data-start="' + start + '" data-end="' + end + '">' +
+        '<i class="fa fa-angle-up"></i> ' +
+        count + " " + string +
+        ' <i class="fa fa-angle-up"></i>' +
+        '</td>' +
         '</tr>';
 }
 
@@ -125,6 +125,16 @@ if (wrapCheckbox) {
             document.querySelector(".log-row .row-inner").classList.add("no-wrap");
         }
         wrapCheckbox.scrollIntoView({behavior: "instant"});
-        document.cookie = "WRAP_LOG_LINES=" + wrapCheckbox.checked + ";path=/;expires=" + new Date(new Date().getTime() + 365*24*60*60*1000).toUTCString();
+        document.cookie = "WRAP_LOG_LINES=" + wrapCheckbox.checked + ";path=/;expires=" + new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000).toUTCString();
     })
+}
+
+let timeElements = document.querySelectorAll('[data-time]');
+for (const element of timeElements) {
+    const timestamp = parseInt(element.dataset.time);
+    if (isNaN(timestamp)) {
+        continue;
+    }
+    const date = new Date(timestamp * 1000);
+    element.innerHTML = date.toLocaleString();
 }
