@@ -28,5 +28,9 @@ if (isset($setTokenCookie) && $setTokenCookie === true) {
     $log->setTokenCookie();
 }
 
-$response = new LogResponse($log, true);
+if (!isset($withToken)) {
+    $withToken = true;
+}
+
+$response = new LogResponse($log, $withToken);
 $response->output();

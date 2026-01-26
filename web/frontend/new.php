@@ -13,4 +13,5 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $setTokenCookie = true;
+$withToken = false;
 require_once("../../api/endpoints/create.php");
