@@ -43,7 +43,9 @@ $config = Config::getInstance();
     <body>
         <div class="container">
             <header>
-                <div class="logo"><span class="logo-highlight">mclo</span>.gs</div>
+                <a href="/" class="logo" style="text-decoration: none; display: flex; align-items: center; gap: 0.5rem;">
+                    <img src="img/logo.svg" alt="mclo.gs" style="height: 2.5rem;" />
+                </a>
                 <div class="tagline"><span class="title-verb">Paste</span> your Minecraft logs.</div>
             </header>
 
