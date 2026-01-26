@@ -106,7 +106,7 @@ async function sendLog() {
             return;
         }
 
-        location.href = `/${data.id}`;
+        location.href = data.url;
     } catch (e) {
         handleUploadError("Network error");
     }

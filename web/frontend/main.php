@@ -11,7 +11,7 @@ $config = Config::getInstance();
     <head>
         <meta charset="utf-8" />
 
-        <title><?= URL::getBase()->getHost(); ?> - Paste, share & analyse your Minecraft logs</title>
+        <title><?= URL::getBase()->getHost(); ?> - Paste, share & analyse your logs</title>
 
         <base href="/" />
 
@@ -24,7 +24,7 @@ $config = Config::getInstance();
 
         <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 
-        <meta name="description" content="Easily paste your Minecraft logs to share and analyse them.">
+        <meta name="description" content="Easily paste your logs to share and analyse them.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <script>
@@ -45,9 +45,9 @@ $config = Config::getInstance();
             <header>
                 <a href="/" class="logo" >
                     <img src="img/logo-icon.svg" alt="" />
-                    <span class="logo-text">mclo.gs</span>
+                    <span class="logo-text"><?= URL::getBase()->getHost(); ?></span>
                 </a>
-                <div class="tagline"><span class="title-verb">Paste</span> your Minecraft logs.</div>
+                <div class="tagline"><span class="title-verb">Paste</span> your logs.</div>
             </header>
 
             <main>
@@ -78,7 +78,7 @@ $config = Config::getInstance();
                     <a href="https://modrinth.com/plugin/mclogs" target="_blank"><i class="fa-solid fa-plug"></i> Plugin</a>
                     <a href="/api"><i class="fa-solid fa-code"></i> API</a>
                 </nav>
-                <span class="footer-text">&copy; 2017-<?=date("Y"); ?> by mclo.gs - a service by <a href="https://aternos.org" target="_blank">Aternos</a></span>
+                <span class="footer-text"><?= URL::getBase()->getHost(); ?> - developed by <a href="https://aternos.org" target="_blank">Aternos</a></span>
             </footer>
         </div>
         <script src="js/mclogs.js"></script>
