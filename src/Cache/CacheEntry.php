@@ -12,9 +12,9 @@ class CacheEntry
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function get(): string
+    public function get(): ?string
     {
         $result = MongoDBClient::getInstance()->getCacheCollection()->findOne([
             "_id" => $this->key

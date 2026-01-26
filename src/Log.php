@@ -241,7 +241,7 @@ class Log
      *
      * @return int
      */
-    public function getLineCount(): int
+    public function getLinesCount(): int
     {
         $codexLog = $this->getCodexLog();
         $lines = 0;
@@ -249,6 +249,15 @@ class Log
             $lines += count($entry);
         }
         return $lines;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLinesString(): string
+    {
+        $lineCount = $this->getLinesCount();
+        return $lineCount . ($lineCount === 1 ? " line" : " lines");
     }
 
     /**
@@ -264,7 +273,7 @@ class Log
      *
      * @return int
      */
-    public function getErrorCount(): int
+    public function getErrorsCount(): int
     {
         $errorCount = 0;
 
@@ -275,6 +284,23 @@ class Log
         }
 
         return $errorCount;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasErrors(): bool
+    {
+        return $this->getErrorsCount() > 0;
+    }
+
+    /**
+     * @return string
+     */
+    public function getErrorsString(): string
+    {
+        $errorCount = $this->getErrorsCount();
+        return $errorCount . ($errorCount === 1 ? " error" : " errors");
     }
 
     protected function generateId(): Id
@@ -395,5 +421,36 @@ class Log
             return false;
         }
         return new TokenCookie($this)->set($this->getToken()->get());
+    }
+
+    /**
+     * @return string
+     */
+    public function getPageTitle(): string
+    {
+        return $this->getCodexLog()?->getTitle() . " [#" . $this->getId()?->get() . "]";
+    }
+
+    /**
+     * @return string
+     */
+    public function getPageDescription(): string
+    {
+        $description = $this->getLinesString();
+        if ($this->hasErrors()) {
+            $description .= " | " . $this->getErrorsCount();
+        }
+
+        $problems = $this->getAnalysis()->getProblems();
+
+        if (count($problems) > 0) {
+            $problemString = "problems";
+            if (count($problems) === 1) {
+                $problemString = "problem";
+            }
+            $description .= " | " . count($problems) . " " . $problemString . " automatically detected";
+        }
+
+        return $description;
     }
 }

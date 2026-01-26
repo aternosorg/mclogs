@@ -17,6 +17,8 @@ class ViewLogAction extends Action
             return false;
         }
 
+        $log->renew();
+
         require_once __DIR__ . "/../../../web/frontend/log.php";
         return true;
     }

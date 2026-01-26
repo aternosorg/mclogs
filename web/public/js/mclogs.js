@@ -63,18 +63,19 @@ async function sendLog() {
             .substring(0, parseInt(pasteArea.dataset.maxLength))
             .split('\n').slice(0, parseInt(pasteArea.dataset.maxLines)).join('\n');
 
-        const params = new URLSearchParams({
+        const bodyData = {
             "content": log,
-            "source": location.host
-        });
+            "source": location.host,
+            "metadata": Array.isArray(self.METADATA) ? self.METADATA : []
+        };
 
-        const body = await packGz(new TextEncoder().encode(params.toString()));
+        const body = await packGz(new TextEncoder().encode(JSON.stringify(bodyData)));
 
         const response = await fetch(`/new`, {
             method: "POST",
             credentials: "include",
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
+                "Content-Type": "application/json",
                 "Content-Encoding": "gzip"
             },
             body

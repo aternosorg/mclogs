@@ -39,8 +39,8 @@ class LogResponse extends ApiResponse
         $data['created'] = $this->log->getCreated()?->toDateTime()->getTimestamp();
         $data['expires'] = $this->log->getExpires()?->toDateTime()->getTimestamp();
         $data['size'] = $this->log->getSize();
-        $data['lines'] = $this->log->getLineCount();
-        $data['errors'] = $this->log->getErrorCount();
+        $data['lines'] = $this->log->getLinesCount();
+        $data['errors'] = $this->log->getErrorsCount();
         $data['url'] = $this->log->getUrl()->toString();
         $data['raw'] = $this->log->getRawURL()->toString();
         if ($this->withToken) {

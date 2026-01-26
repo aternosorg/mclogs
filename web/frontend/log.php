@@ -3,60 +3,17 @@
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
 use Aternos\Mclogs\Log;
-use Aternos\Mclogs\Util\URL;
 
 /** @var Log $log */
 
-$config = Config::getInstance();
-
-$id = $log->getId();
 $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VALIDATE_BOOLEAN);
 
-$title = "mclo.gs - Paste, share & analyse your Minecraft logs";
-$description = "Easily paste your Minecraft logs to share and analyse them.";
-
-$codexLog = $log->getCodexLog();
-$analysis = $log->getAnalysis();
-$allInformation = $analysis->getInformation();
-
-$versionInfo = [];
-$information = [];
-$versionLabels = ['Minecraft version', 'Forge version', 'Java version'];
-
-foreach ($allInformation as $info) {
-    $label = $info->getLabel();
-    if (in_array($label, $versionLabels)) {
-        $versionInfo[] = $info;
-    } else {
-        $information[] = $info;
-    }
-}
-
-$problems = $analysis->getProblems();
-$title = $codexLog->getTitle() . " [#" . $id->get() . "]";
-$lineNumbers = $log->getLineCount();
-$lineString = $lineNumbers === 1 ? "line" : "lines";
-
-$errorCount = $log->getErrorCount();
-$errorString = $errorCount === 1 ? "error" : "errors";
-
-$description = $lineNumbers . " " . $lineString;
-if ($errorCount > 0) {
-   $description .= " | " . $errorCount . " " . $errorString;
-}
-
-if (count($problems) > 0) {
-    $problemString = "problems";
-    if (count($problems) === 1) {
-        $problemString = "problem";
-    }
-    $description .= " | " . count($problems) . " " . $problemString . " automatically detected";
-}
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
         <?php include __DIR__ . '/parts/head.php'; ?>
-        <title><?= URL::getBase()->getHost(); ?> - Paste, share & analyse your Minecraft logs</title>
+        <title><?=$log->getPageTitle(); ?></title>
+        <meta name="description" content="<?=$log->getPageDescription(); ?>" />
     </head>
     <body class="log-body">
         
@@ -71,15 +28,16 @@ if (count($problems) > 0) {
                                <div class="log-title">
                                    <h1>
                                        <i class="fas fa-file-lines"></i> 
-                                       <?=$codexLog->getTitle(); ?>
-                                       <span class="log-id-tag">#<?=$id->get(); ?></span>
+                                       <?=$log->getCodexLog()->getTitle(); ?>
+                                       <span class="log-id-tag">#<?=$log->getId()->get(); ?></span>
                                    </h1>
-                                   <?php if(count($versionInfo) > 0): ?>
+                                   <?php $information = $log->getAnalysis()->getInformation(); ?>
+                                   <?php if(count($information) > 0): ?>
                                        <div class="log-versions">
-                                           <?php foreach($versionInfo as $version): ?>
+                                           <?php foreach($information as $info): ?>
                                                <span class="version-item">
-                                                   <span class="version-label"><?=$version->getLabel(); ?>:</span>
-                                                   <span class="version-value"><?=$version->getValue(); ?></span>
+                                                   <span class="version-label"><?=$info->getLabel(); ?>:</span>
+                                                   <span class="version-value"><?=$info->getValue(); ?></span>
                                                </span>
                                            <?php endforeach; ?>
                                        </div>
@@ -89,15 +47,15 @@ if (count($problems) > 0) {
                            <div class="right">
                                <div class="details">
                                    <div class="log-info-actions">
-                                       <?php if($errorCount): ?>
+                                       <?php if($log->hasErrors()): ?>
                                            <div class="btn btn-red btn-small btn-no-margin" id="error-toggle">
                                                <i class="fa fa-exclamation-circle"></i>
-                                               <?=$errorCount . " " . $errorString; ?>
+                                               <?=$log->getErrorsString(); ?>
                                            </div>
                                        <?php endif; ?>
                                        <div class="btn btn-blue btn-small btn-no-margin" id="down-button">
                                            <i class="fa fa-arrow-circle-down"></i>
-                                           <?=$lineNumbers . " " . $lineString; ?>
+                                           <?=$log->getLinesString(); ?>
                                        </div>
                                        <a class="btn btn-white btn-small btn-no-margin" id="raw" target="_blank" href="<?=$log->getRawURL()->toString(); ?>">
                                            <i class="fa fa-arrow-up-right-from-square"></i>
@@ -108,24 +66,11 @@ if (count($problems) > 0) {
                            </div>
                        </div>
                     </div>
-                    <?php if(count($analysis) > 0): ?>
+                    <?php if(count($log->getAnalysis()?->getProblems()) > 0): ?>
                         <div class="log-analyse">
                             <div class="log-analyse-inner">
                                 <div class="analysis">
-                                    <?php if(count($information) > 0): ?>
-                                        <div class="information-list">
-                                            <?php foreach($information as $info): ?>
-                                                <div class="information">
-                                                    <div class="information-label">
-                                                        <?=$info->getLabel(); ?>:
-                                                    </div>
-                                                    <div class="information-value">
-                                                        <?=$info->getValue(); ?>
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    <?php endif; ?>
+                                    <?php $problems = $log->getAnalysis()?->getProblems(); ?>
                                     <?php if(count($problems) > 0): ?>
                                         <div class="smart-analyse-list">
                                             <h3 class="detected-issues-headline">Detected Issues</h3>
@@ -168,7 +113,6 @@ if (count($problems) > 0) {
                     <div class="log">
                         <div class="log-inner<?= $shouldWrapLogLines ? "" : " no-wrap"?>">
                             <?php
-                            $log->renew();
                             echo $log->getPrinter()->print();
                             ?>
                         </div>
@@ -184,7 +128,7 @@ if (count($problems) > 0) {
                     </div>
                     <div class="log-notice">
                         This log will be saved for 90 days from their last view.<br />
-                        <a href="mailto:<?=$config->get(ConfigKey::LEGAL_ABUSE); ?>?subject=Report%20mclo.gs/<?=$id->get(); ?>">Report abuse</a>
+                        <a href="mailto:<?=Config::getInstance()->get(ConfigKey::LEGAL_ABUSE); ?>?subject=Report%20mclo.gs/<?=$id->get(); ?>">Report abuse</a>
                     </div>
                 <?php else: ?>
                     <div class="not-found">
