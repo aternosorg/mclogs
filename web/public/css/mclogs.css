@@ -1,10 +1,10 @@
 :root {
-    --color-bg: #0a0a0b;
-    --color-surface: #18181b;
-    --color-text: #ffffff;
-    --color-text-muted: #71717a;
-    --color-primary: #fff;
-    --color-primary-hover: #fff;
+    --color-bg: #1a1a1a;
+    --color-surface: #2a2a2a;
+    --color-text: #e8e8e8;
+    --color-text-muted: #8b8b8b;
+    --color-primary: #5cb85c;
+    --color-primary-hover: #4a9e4a;
     --font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     --log-font-family: 'JetBrains Mono', 'Fira Code', monospace;
     --max-width: 1300px;

@@ -10,12 +10,12 @@
 }
 
 .level-info {
-    color: #f0f0f0;
+    color: var(--color-text);
 }
 
 .level-title {
     font-weight: bold;
-    color: #f0f0f0;
+    color: var(--color-bg);
     background-color: var(--color-primary);
     padding: 0 8px;
     border-radius: 2px;
@@ -136,7 +136,7 @@
 
 .highlight-error {
     background: #F62451;
-    color: #f0f0f0;
+    color: var(--color-text);
     padding: 0px 3px;
     border-radius: 2px;
     font-weight: bold;
@@ -145,7 +145,7 @@
 
 .highlight-warning {
     background: #FF6625;
-    color: #f0f0f0;
+    color: var(--color-text);
     padding: 0px 3px;
     border-radius: 2px;
     font-weight: bold;
@@ -179,12 +179,12 @@
 
 .line-active {
     background: var(--color-primary);
-    color: #f0f0f0;
+    color: var(--color-bg);
     border-radius: 2px;
 }
 
 .line-active:hover {
-    color: #f0f0f0;
+    color: var(--color-bg);
     cursor: default;
 }
 
