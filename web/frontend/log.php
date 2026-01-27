@@ -30,23 +30,6 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                                    <?=$log->getCodexLog()->getTitle(); ?>
                                    <span class="log-id-tag">#<?=$log->getId()->get(); ?></span>
                                </h1>
-                               <?php $information = $log->getAnalysis()->getInformation(); ?>
-                               <?php if(count($information) > 0 || count($log->getVisibleMetadata()) > 0): ?>
-                                   <div class="log-versions">
-                                       <?php foreach($information as $info): ?>
-                                           <span class="version-item">
-                                               <span class="version-label"><?=$info->getLabel(); ?>:</span>
-                                               <span class="version-value"><?=$info->getValue(); ?></span>
-                                           </span>
-                                       <?php endforeach; ?>
-                                       <?php foreach($log->getVisibleMetadata() as $metadata): ?>
-                                           <span class="version-item">
-                                               <span class="version-label"><?=$metadata->getDisplayLabel(); ?>:</span>
-                                               <span class="version-value"><?=$metadata->getDisplayValue(); ?></span>
-                                           </span>
-                                       <?php endforeach; ?>
-                                   </div>
-                               <?php endif; ?>
                            </div>
                        </div>
                        <div class="right">
@@ -70,6 +53,43 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                            </div>
                        </div>
                    </div>
+                   <?php $information = $log->getAnalysis()->getInformation(); ?>
+                   <?php if(count($log->getVisibleMetadata()) > 0 || count($information) > 0): ?>
+                       <div class="log-info-rows">
+                           <?php if(count($log->getVisibleMetadata()) > 0): ?>
+                               <div class="log-info-row">
+                                   <div class="info-row-header">
+                                       <i class="fa-solid fa-tags"></i>
+                                       <span>Metadata</span>
+                                   </div>
+                                   <div class="info-row-items">
+                                       <?php foreach($log->getVisibleMetadata() as $metadata): ?>
+                                           <span class="info-item">
+                                               <span class="info-label"><?=$metadata->getDisplayLabel(); ?>:</span>
+                                               <span class="info-value"><?=$metadata->getDisplayValue(); ?></span>
+                                           </span>
+                                       <?php endforeach; ?>
+                                   </div>
+                               </div>
+                           <?php endif; ?>
+                           <?php if(count($information) > 0): ?>
+                               <div class="log-info-row">
+                                   <div class="info-row-header">
+                                       <i class="fa-solid fa-cube"></i>
+                                       <span>Detected</span>
+                                   </div>
+                                   <div class="info-row-items">
+                                       <?php foreach($information as $info): ?>
+                                           <span class="info-item">
+                                               <span class="info-label"><?=$info->getLabel(); ?>:</span>
+                                               <span class="info-value"><?=$info->getValue(); ?></span>
+                                           </span>
+                                       <?php endforeach; ?>
+                                   </div>
+                               </div>
+                           <?php endif; ?>
+                       </div>
+                   <?php endif; ?>
                 </div>
                 <?php $problems = $log->getAnalysis()?->getProblems(); ?>
                 <?php if(count($problems) > 0): ?>
