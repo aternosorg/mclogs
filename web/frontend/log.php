@@ -140,13 +140,13 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                 <div class="log-notice">
                     <div class="left">
                         <?php if ($source = $log->getSource()): ?>
-                            <div class="source">
+                            <div class="source" title="Source">
                                 <i class="fa-solid fa-arrow-up-from-bracket"></i>
                                 <?=$source; ?>
                             </div>
                         <?php endif; ?>
                         <?php if ($created = $log->getCreated()?->toDateTime()->getTimestamp()): ?>
-                            <div class="created-time">
+                            <div class="created-time" title="Created">
                                 <i class="fa-solid fa-clock"></i>
                                 <span class="created" data-time="<?=$created; ?>">
                                 </span>
