@@ -16,8 +16,8 @@
                         <p>Paste or drop your log here</p>
                         <div class="paste-hints">
                             <button type="button" class="link-btn" id="paste-clipboard"><i class="fa-solid fa-paste"></i> Paste</button>
-                            <span><i class="fa-solid fa-file-arrow-up"></i> Drop</span>
                             <button type="button" class="link-btn" id="paste-select-file"><i class="fa-solid fa-folder-open"></i> Browse</button>
+                            <span><i class="fa-solid fa-file-arrow-up"></i> Drop</span>
                         </div>
                     </div>
                     <textarea spellcheck="false" data-enable-grammarly="false" id="paste-text" data-max-length="10000000" data-max-lines="25000"></textarea>
