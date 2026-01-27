@@ -128,12 +128,25 @@ main {
     flex-direction: column;
     border-radius: var(--radius);
     position: relative;
-    transition: background-color 0.2s ease;
+    transition: all 0.25s ease;
+    border: 2px dashed transparent;
 }
 
 .paste-area.dragover,
 .paste-area.window-dragover {
-    background-color: rgba(31, 31, 35, 0.5);
+    background-color: rgba(92, 184, 92, 0.05);
+    border-color: var(--accent);
+}
+
+.paste-area.dragover .paste-placeholder i.fa-cloud-arrow-up,
+.paste-area.window-dragover .paste-placeholder i.fa-cloud-arrow-up {
+    color: var(--accent);
+    transform: scale(1.1) translateY(-4px);
+}
+
+.paste-area.dragover .paste-placeholder p,
+.paste-area.window-dragover .paste-placeholder p {
+    color: var(--accent);
 }
 
 .paste-placeholder {
@@ -150,6 +163,7 @@ main {
     color: var(--text-muted);
     margin-bottom: 1.5rem;
     display: block;
+    transition: all 0.25s ease;
 }
 
 .paste-placeholder p {
@@ -157,6 +171,7 @@ main {
     color: var(--text);
     font-weight: 500;
     margin-bottom: 1.5rem;
+    transition: color 0.25s ease;
 }
 
 .paste-hints {
