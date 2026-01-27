@@ -808,6 +808,22 @@ footer {
     transition: background-color 0.1s ease;
 }
 
+.log-inner table tr:first-child td {
+    padding-top: 1rem;
+}
+
+.log-inner table tr:first-child .line-number-container {
+    padding-top: 1rem;
+}
+
+.log-inner table tr:last-child td {
+    padding-bottom: 1rem;
+}
+
+.log-inner table tr:last-child .line-number-container {
+    padding-bottom: 1rem;
+}
+
 .log-inner table tr:hover {
     background-color: rgba(255, 255, 255, 0.02);
 }
@@ -824,7 +840,7 @@ footer {
 }
 
 .log-inner .line-number-container {
-    display: inline-block;
+    display: table-cell;
     width: auto;
     min-width: 3.5rem;
     padding: 0.4rem 0.5rem;
@@ -832,6 +848,7 @@ footer {
     position: sticky;
     left: 0;
     z-index: 1;
+    vertical-align: top;
 }
 
 .log-inner table tr:hover .line-number-container {
@@ -839,6 +856,7 @@ footer {
 }
 
 .log-inner .line-number {
+    display: inline-block;
     padding: 0.1rem 0.25rem;
     color: var(--text-muted);
     font-weight: 500;
@@ -874,7 +892,6 @@ footer {
 }
 
 .log-inner table td:last-child {
-    padding: 0.4rem 1.25rem;
     padding-left: 1.25rem;
     word-break: break-word;
     overflow-wrap: anywhere;
