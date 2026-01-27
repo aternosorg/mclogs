@@ -20,7 +20,10 @@
                         </div>
                     </div>
                     <textarea spellcheck="false" data-enable-grammarly="false" id="paste-text" data-max-length="10000000" data-max-lines="25000"></textarea>
-                    <button type="button" class="btn-save paste-save" disabled><i class="fa-solid fa-share"></i> Share</button>
+                    <div class="paste-actions">
+                        <button type="button" class="btn-save paste-save" disabled><i class="fa-solid fa-share"></i> Share</button>
+                        <div class="paste-error" id="paste-error"></div>
+                    </div>
                 </div>
             </main>
             <?php include __DIR__ . '/parts/footer.php'; ?>

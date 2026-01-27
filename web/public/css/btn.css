@@ -1,7 +1,4 @@
 .btn-save {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
     background-color: var(--accent);
     color: var(--bg);
     border: none;
@@ -14,7 +11,6 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    z-index: 2;
     transition: background-color 0.15s ease;
 }
 
