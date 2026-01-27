@@ -8,7 +8,7 @@ class ApiDocsAction extends Action
 {
     public function run(): bool
     {
-        require_once __DIR__ . "/../../../web/frontend/api-docs.php";
+        require __DIR__ . "/../../../web/frontend/api-docs.php";
         return true;
     }
 }

@@ -27,5 +27,8 @@
             "accent": "#5cb85c",
             "error": "#f62451"
         }
+    },
+    "worker": {
+        "requests": 500
     }
 }

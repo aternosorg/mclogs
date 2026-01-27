@@ -9,6 +9,7 @@
     ],
     "require": {
         "php": ">=8.5",
+        "ext-frankenphp": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-mongodb": "*",

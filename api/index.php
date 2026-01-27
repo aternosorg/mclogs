@@ -6,8 +6,6 @@ use Aternos\Mclogs\Id;
 use Aternos\Mclogs\Router\Method;
 use Aternos\Mclogs\Router\Router;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 new Router()
     ->register(Method::GET, "#^/$#", new Frontend\Action\ApiDocsAction())
     ->register(Method::OPTIONS, "#^/.*$#", new Action\EmptyAction())

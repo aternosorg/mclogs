@@ -24,6 +24,8 @@ enum ConfigKey
     case FRONTEND_COLOR_ACCENT;
     case FRONTEND_COLOR_ERROR;
 
+    case WORKER_REQUESTS;
+
     /**
      * Get the default value for the config key
      *
@@ -50,6 +52,8 @@ enum ConfigKey
             ConfigKey::FRONTEND_COLOR_TEXT => "#e8e8e8",
             ConfigKey::FRONTEND_COLOR_ACCENT => "#5cb85c",
             ConfigKey::FRONTEND_COLOR_ERROR => "#f62451",
+
+            ConfigKey::WORKER_REQUESTS => 500,
 
             default => null
         };

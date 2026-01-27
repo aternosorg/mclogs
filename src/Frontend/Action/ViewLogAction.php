@@ -19,7 +19,7 @@ class ViewLogAction extends Action
 
         $log->renew();
 
-        require_once __DIR__ . "/../../../web/frontend/log.php";
+        require __DIR__ . "/../../../web/frontend/log.php";
         return true;
     }
 }

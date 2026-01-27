@@ -1,0 +1,21 @@
+{
+    frankenphp {
+        worker /app/worker.php
+    }
+}
+
+:80 {
+    root * /app/web/public
+    encode zstd br gzip
+
+    @static file
+    handle @static {
+        file_server
+    }
+
+    handle {
+       root * /app
+       rewrite * /worker.php
+       php_server
+    }
+}

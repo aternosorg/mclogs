@@ -12,6 +12,13 @@ class URL
     protected static ?Uri $api = null;
     protected static ?Uri $current = null;
 
+    public static function clear(): void
+    {
+        static::$base = null;
+        static::$api = null;
+        static::$current = null;
+    }
+
     /**
      * Get base URL
      *
@@ -55,6 +62,16 @@ class URL
         $host = $_SERVER['HTTP_HOST'];
         $requestUri = $_SERVER['REQUEST_URI'];
         return static::$current = new Uri("$scheme://$host$requestUri");
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isApi(): bool
+    {
+        $currentHost = static::getCurrent()->getHost();
+        $apiHost = static::getApi()->getHost();
+        return $currentHost === $apiHost;
     }
 
     /**

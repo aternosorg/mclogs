@@ -33,6 +33,16 @@ class MongoDBClient
     }
 
     /**
+     * @return void
+     */
+    public function reset(): void
+    {
+        $this->connection = null;
+        $this->logs = null;
+        $this->cache = null;
+    }
+
+    /**
      * Get the collection for logs
      *
      * @return Collection
