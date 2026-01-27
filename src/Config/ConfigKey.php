@@ -41,11 +41,11 @@ enum ConfigKey
 
             ConfigKey::ID_LENGTH => 7,
 
-            ConfigKey::LEGAL_ABUSE => 'abuse@aternos.org',
-            ConfigKey::LEGAL_IMPRINT => 'https://aternos.gmbh/en/imprint',
-            ConfigKey::LEGAL_PRIVACY => 'https://aternos.gmbh/en/mclogs/privacy',
-
+            ConfigKey::LEGAL_ABUSE,
+            ConfigKey::LEGAL_PRIVACY,
+            ConfigKey::LEGAL_IMPRINT,
             ConfigKey::FRONTEND_ANALYTICS => false,
+
             ConfigKey::FRONTEND_COLOR_BACKGROUND => "#1a1a1a",
             ConfigKey::FRONTEND_COLOR_TEXT => "#e8e8e8",
             ConfigKey::FRONTEND_COLOR_ACCENT => "#5cb85c",

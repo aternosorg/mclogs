@@ -19,7 +19,7 @@
         "privacy": "https://aternos.gmbh/en/mclogs/privacy"
     },
     "frontend": {
-        "name": null,
+        "name": "mclo.gs",
         "analytics": false,
         "color": {
             "background": "#1a1a1a",
