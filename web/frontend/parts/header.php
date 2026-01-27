@@ -10,6 +10,6 @@ use Aternos\Mclogs\Util\URL;
     </a>
     <div class="tagline">
         <div class="tagline-main"><span class="title-verb">Share</span> your logs.</div>
-        <div class="tagline-sub">Build for Minecraft & Hytale</div>
+        <div class="tagline-sub">Built for Minecraft & Hytale</div>
     </div>
 </header>
