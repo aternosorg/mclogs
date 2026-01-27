@@ -71,47 +71,33 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                        </div>
                    </div>
                 </div>
-                <?php if(count($log->getAnalysis()?->getProblems()) > 0): ?>
-                    <div class="log-analyse">
-                        <div class="log-analyse-inner">
-                            <div class="analysis">
-                                <?php $problems = $log->getAnalysis()?->getProblems(); ?>
-                                <?php if(count($problems) > 0): ?>
-                                    <div class="smart-analyse-list">
-                                        <h3 class="detected-issues-headline">Detected Issues</h3>
-                                        <?php foreach($problems as $problem): ?>
-                                            <div class="smart-analyse">
-                                                <div class="smart-analyse-error-section">
-                                                    <div class="smart-analyse-icon">
-                                                        <i class="fa fa-exclamation-triangle"></i>
+                <?php $problems = $log->getAnalysis()?->getProblems(); ?>
+                <?php if(count($problems) > 0): ?>
+                    <div class="issues-panel">
+                        <div class="issues-header">
+                            <span class="issues-count"><?=count($problems); ?></span>
+                            <span class="issues-title"><?=count($problems) === 1 ? 'Issue' : 'Issues'; ?> detected</span>
+                        </div>
+                        <div class="issues-list">
+                            <?php foreach($problems as $problem): ?>
+                                <?php $number = $problem->getEntry()[0]->getNumber(); ?>
+                                <div class="issue-item">
+                                    <a href="/<?=$id->get() . "#L" . $number; ?>" class="issue-line" onclick="updateLineNumber('#L<?=$number; ?>');"><?=$number; ?></a>
+                                    <div class="issue-content">
+                                        <p class="issue-message"><?=htmlspecialchars($problem->getMessage()); ?></p>
+                                        <?php if(count($problem->getSolutions()) > 0): ?>
+                                            <div class="issue-solutions">
+                                                <?php foreach($problem->getSolutions() as $i => $solution): ?>
+                                                    <div class="issue-solution">
+                                                        <span class="solution-num"><?=$i + 1; ?></span>
+                                                        <span class="solution-text"><?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", htmlspecialchars($solution->getMessage())); ?></span>
                                                     </div>
-                                                    <div class="smart-analyse-message">
-                                                        <?=htmlspecialchars($problem->getMessage()); ?>
-                                                    </div>
-                                                    <div class="smart-analyse-actions">
-                                                        <?php $number = $problem->getEntry()[0]->getNumber(); ?>
-                                                        <a href="/<?=$id->get() . "#L" . $number; ?>" class="btn btn-blue btn-no-margin btn-small" onclick="updateLineNumber('#L<?=$number; ?>');">
-                                                            <span class="hide-mobile"><i class="fa fa-arrow-right"></i> Line </span>#<?=$number; ?>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                                <?php if(count($problem->getSolutions()) > 0): ?>
-                                                    <div class="smart-analyse-solutions-section">
-                                                        <div class="smart-analyse-solutions-label">Solutions</div>
-                                                        <ul class="smart-analyse-solution-list">
-                                                            <?php foreach($problem->getSolutions() as $solution): ?>
-                                                                <li class="smart-analyse-solution">
-                                                                    <?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", htmlspecialchars($solution->getMessage())); ?>
-                                                                </li>
-                                                            <?php endforeach; ?>
-                                                        </ul>
-                                                    </div>
-                                                <?php endif; ?>
+                                                <?php endforeach; ?>
                                             </div>
-                                        <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </div>
-                                <?php endif; ?>
-                            </div>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 <?php endif; ?>
@@ -132,17 +118,26 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                     </div>
                 </div>
                 <div class="log-notice">
-                    <?php if ($source = $log->getSource()): ?>
-                        <div class="source">
-                            by <?=$source; ?>
-                        </div>
-                    <?php endif; ?>
-                    <?php if ($created = $log->getCreated()?->toDateTime()->getTimestamp()): ?>
-                        <div class="created" data-time="<?=$created; ?>">
-                        </div>
-                    <?php endif; ?>
-                    This log will be saved for 90 days from their last view.<br />
-                    <a href="mailto:<?=Config::getInstance()->get(ConfigKey::LEGAL_ABUSE); ?>?subject=Report%20mclo.gs/<?=$id->get(); ?>">Report abuse</a>
+                    <div class="left">
+                        <?php if ($source = $log->getSource()): ?>
+                            <div class="source">
+                                by <?=$source; ?>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($created = $log->getCreated()?->toDateTime()->getTimestamp()): ?>
+                            <div class="created-time">
+                                <i class="fa-solid fa-clock"></i>
+                                <span class="created" data-time="<?=$created; ?>">
+                                </span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="right">
+                        <a href="mailto:<?=Config::getInstance()->get(ConfigKey::LEGAL_ABUSE); ?>?subject=Report%20mclo.gs/<?=$id->get(); ?>" class="report-link">
+                            <i class="fa-solid fa-flag"></i>
+                            Report abuse
+                        </a>
+                    </div>
                 </div>
             </main>
 
