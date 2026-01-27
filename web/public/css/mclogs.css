@@ -177,7 +177,7 @@ main {
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: clamp(1rem, 4vw, 2rem);
+    padding: clamp(1rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem) clamp(0.5rem, 4vw, 2rem);
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -234,14 +234,15 @@ main {
 .paste-placeholder i.fa-cloud-arrow-up {
     font-size: clamp(2rem, 8vw, 3.5rem);
     color: var(--text-muted);
-    margin-bottom: 1.5rem;
+    margin-bottom: clamp(0.5rem, 2vw, 1.5rem);
     transition: all 0.25s ease;
 }
 
 .paste-placeholder p {
     color: var(--text);
-    margin-bottom: 1.5rem;
+    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
     transition: color 0.25s ease;
+    font-weight: 600;
 }
 
 .paste-hints {
