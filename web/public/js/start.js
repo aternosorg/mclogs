@@ -119,7 +119,7 @@ function reevaluateContentStatus() {
         pastePlaceholder.style.display = 'none';
         pasteSaveButtons.forEach(button => button.removeAttribute("disabled"));
     } else {
-        pastePlaceholder.style.display = 'block';
+        pastePlaceholder.style.display = 'flex';
         pasteSaveButtons.forEach(button => button.setAttribute("disabled", "disabled"));
     }
 }
