@@ -2,8 +2,8 @@
     position: absolute;
     bottom: 1.5rem;
     right: 1.5rem;
-    background-color: var(--color-primary);
-    color: var(--color-bg);
+    background-color: var(--accent);
+    color: var(--bg);
     border: none;
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
@@ -19,7 +19,7 @@
 }
 
 .btn-save:hover {
-    background-color: var(--color-primary-hover);
+    background-color: var(--accent-hover);
 }
 
 .btn-save:disabled {
@@ -35,7 +35,7 @@
 .link-btn {
     background: none;
     border: none;
-    color: var(--color-text-muted);
+    color: var(--text-muted);
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
@@ -43,7 +43,7 @@
 }
 
 .link-btn:hover {
-    color: var(--color-primary);
+    color: var(--accent);
 }
 
 .btn {
@@ -106,7 +106,7 @@
 
 .btn-black {
     background-color: #1f1f1f;
-    color: var(--color-text);
+    color: var(--text);
 }
 
 .btn-black:hover {
@@ -115,7 +115,7 @@
 
 .btn-white {
     background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-text);
+    color: var(--text);
     border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
