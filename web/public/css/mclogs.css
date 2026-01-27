@@ -188,6 +188,7 @@ main {
     flex-direction: column;
     background-color: var(--bg-surface);
     border-radius: var(--radius);
+    position: relative;
 }
 
 .container {
@@ -210,6 +211,23 @@ main {
     position: relative;
     transition: all 0.25s ease;
     border: 2px dashed transparent;
+}
+
+.paste-area::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, 
+        transparent 0%,
+        color-mix(in srgb, var(--bg-surface) 40%, transparent) 40%,
+        color-mix(in srgb, var(--bg-surface) 80%, transparent) 70%,
+        var(--bg-surface) 100%);
+    pointer-events: none;
+    z-index: 5;
+    border-radius: 0 0 var(--radius) var(--radius);
 }
 
 .paste-area.dragover,
@@ -293,6 +311,34 @@ main {
     font-size: 0.9rem;
 }
 
+.paste-area .btn-save {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    z-index: 10;
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    padding: 0.85rem 2rem;
+}
+
+.paste-area .btn-save:not(:disabled) {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: btn-save-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes btn-save-pulse {
+    0% {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 0 color-mix(in srgb, var(--accent) 80%, transparent);
+    }
+    70% {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 12px color-mix(in srgb, var(--accent) 0%, transparent);
+    }
+    100% {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent);
+    }
+}
+
 .paste-area textarea {
     flex: 1;
     width: 100%;
@@ -326,30 +372,35 @@ main {
     background-color: var(--accent-hover);
 }
 
-.paste-actions {
-    width: 100%;
-    background-color: var(--bg-surface);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
 .paste-error {
     display: none;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    max-width: 400px;
     color: var(--error);
     font-size: 0.9rem;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    background-color: color-mix(in srgb, var(--error) 10%, transparent);
-    border: 1px solid color-mix(in srgb, var(--error) 30%, transparent);
-    border-radius: 6px;
-    width: 100%;
+    padding: 1rem 1.25rem;
+    background-color: color-mix(in srgb, var(--error) 15%, var(--bg-surface) 85%);
+    border: 1px solid color-mix(in srgb, var(--error) 40%, transparent);
+    border-radius: 8px;
+    z-index: 1000;
+    animation: error-slide-in 0.3s ease-out;
 }
 
 .paste-error.show {
     display: block;
+}
+
+@keyframes error-slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 /** Buttons **/
@@ -373,10 +424,6 @@ main {
 
 .btn:hover:not(:disabled) {
     background-image: linear-gradient(#00000014,#00000014);
-}
-
-.btn:active:not(:disabled) {
-    transform: scale(0.98);
 }
 
 .btn:disabled,
