@@ -1,17 +1,9 @@
+/* Title animation */
 const titles = ["Paste", "Share", "Analyse"];
 let currentTitle = 0;
 let speed = 30;
 let pause = 3000;
-const pasteArea = document.getElementById('paste');
-const pastePlaceholder = document.querySelector('.paste-placeholder');
 const titleElement = document.querySelector('.title-verb');
-const pasteSaveButtons = document.querySelectorAll('.paste-save');
-const pasteHeader = document.querySelector('.paste-header');
-const pasteFooter = document.querySelector('.paste-footer');
-const dropZone = document.getElementById('dropzone');
-let fileSelectButton = document.getElementById('paste-select-file');
-let windowDragCount = 0;
-let dropZoneDragCount = 0;
 
 setTimeout(nextTitle, pause);
 
@@ -38,9 +30,18 @@ function nextTitle() {
     setTimeout(nextTitle, title.length * speed + newTitle.length * speed + pause);
 }
 
-pasteArea.focus();
+/* Paste area */
+const pasteArea = document.getElementById('paste-text');
+const pastePlaceholder = document.querySelector('.paste-placeholder');
+const pasteSaveButtons = document.querySelectorAll('.paste-save');
+const fileSelectButton = document.getElementById('paste-select-file');
+const pasteClipboardButton = document.getElementById('paste-clipboard');
 
+pasteArea.focus();
+pasteArea.addEventListener('input', reevaluateContentStatus);
 pasteSaveButtons.forEach(button => button.addEventListener('click', sendLog));
+fileSelectButton.addEventListener('click', selectLogFile);
+pasteClipboardButton.addEventListener('click', pasteFromClipboard);
 
 document.addEventListener('keydown', event => {
     if (event.key.toLowerCase() === 's' && (event.ctrlKey || event.metaKey)) {
@@ -50,7 +51,7 @@ document.addEventListener('keydown', event => {
     }
 
     return true;
-})
+});
 
 /**
  * Save the log to the API
@@ -74,7 +75,15 @@ async function sendLog() {
             "metadata": Array.isArray(self.METADATA) ? self.METADATA : []
         };
 
-        const body = await packGz(new TextEncoder().encode(JSON.stringify(bodyData)));
+        let headers = {
+            "Content-Type": "application/json"
+        }
+
+        let body = JSON.stringify(bodyData);
+        if (isGzSupported()) {
+            headers["Content-Encoding"] = "gzip";
+            body = await packGz(body);
+        }
 
         const response = await fetch(`/new`, {
             method: "POST",
@@ -87,7 +96,7 @@ async function sendLog() {
         });
 
         if (!response.ok) {
-            handleUploadError(`${response.status} (${response.statusText})`);
+            showError(`${response.status} (${response.statusText})`);
             return;
         }
 
@@ -96,73 +105,50 @@ async function sendLog() {
             data = await response.json();
         } catch (e) {
             console.error("Failed to parse JSON returned by API", e);
-            handleUploadError("API returned invalid JSON");
+            showError("API returned invalid JSON");
             return;
         }
 
         if (typeof data === 'object' && !data.success && data.error) {
             console.error(new Error("API returned an error"), data.error);
-            handleUploadError(data.error);
+            showError(data.error);
             return;
         }
 
         if (typeof data !== 'object' || !data.success || !data.id) {
             console.error(new Error("API returned an invalid response"), data);
-            handleUploadError("API returned an invalid response");
+            showError("API returned an invalid response");
             return;
         }
 
         location.href = data.url;
     } catch (e) {
-        handleUploadError("Network error");
+        showError("Network error");
     }
 }
 
-/**
- * Show an error message and stop the loading animation
- * @param {string|null} reason
- * @return {void}
- */
-function handleUploadError(reason = null) {
-    showPasteError(reason ?? "Unknown error");
-    pasteSaveButtons.forEach(button => button.classList.remove("btn-working"));
-}
-
-/**
- * show an error message in the paste header and footer
- * @param {string|null} message
- * @return {void}
- */
-function showPasteError(message) {
-    for (const pasteError of document.querySelectorAll('.paste-error')) {
-        pasteError.remove();
-    }
-
-    for (const parent of [pasteHeader, pasteFooter]) {
-        const pasteError = document.createElement('div');
-        pasteError.classList.add('paste-error');
-        pasteError.innerText = `Failed to save log: ${message}`;
-
-        parent.insertBefore(pasteError, parent.querySelector('.paste-save'));
+async function pasteFromClipboard() {
+    try {
+        pasteArea.value = await navigator.clipboard.readText();
+        reevaluateContentStatus();
+    } catch (err) {
+        console.error('Failed to read clipboard contents: ', err);
     }
 }
 
-function updateWindowDragCount(amount) {
-    windowDragCount = Math.max(0, windowDragCount + amount);
-    if (windowDragCount > 0) {
-        dropZone.classList.add('window-dragover');
+function reevaluateContentStatus() {
+    if (pasteArea.value.length > 0) {
+        pastePlaceholder.style.display = 'none';
+        pasteSaveButtons.forEach(button => button.removeAttribute("disabled"));
     } else {
-        dropZone.classList.remove('window-dragover');
+        pastePlaceholder.style.display = 'block';
+        pasteSaveButtons.forEach(button => button.setAttribute("disabled", "disabled"));
     }
 }
 
-function updateDropZoneDragCount(amount) {
-    dropZoneDragCount = Math.max(0, dropZoneDragCount + amount);
-    if (dropZoneDragCount > 0) {
-        dropZone.classList.add('dragover');
-    } else {
-        dropZone.classList.remove('dragover');
-    }
+function showError(message) {
+    // TODO: nicer error display
+    alert(`Error: ${message}`);
 }
 
 /**
@@ -179,21 +165,16 @@ function readFile(file) {
     });
 }
 
-async function handleDropEvent(e) {
-    let files = e.dataTransfer.files;
-    if (files.length !== 1) {
-        return;
-    }
-
-    await loadFileContents(files[0]);
-}
-
 async function loadFileContents(file) {
     if (file.size > 1024 * 1024 * 100) {
         return;
     }
     let content = await readFile(file);
     if (file.name.endsWith('.gz')) {
+        if (!isGzSupported()) {
+            showError(`Gzip files are not supported in this browser.`);
+            return;
+        }
         content = await unpackGz(content);
     }
 
@@ -203,22 +184,6 @@ async function loadFileContents(file) {
 
     pasteArea.value = new TextDecoder().decode(content);
     reevaluateContentStatus();
-}
-
-function loadScript(url) {
-    return new Promise((resolve, reject) => {
-        let elem = document.createElement('script');
-        elem.addEventListener('load', resolve);
-        elem.addEventListener('error', reject);
-        elem.src = url;
-        document.head.appendChild(elem);
-    });
-}
-
-async function loadFflate() {
-    if (typeof fflate === 'undefined') {
-        await loadScript('https://unpkg.com/fflate');
-    }
 }
 
 function selectLogFile() {
@@ -235,17 +200,16 @@ function selectLogFile() {
     document.body.removeChild(input);
 }
 
+function isGzSupported() {
+    return (typeof CompressionStream !== 'undefined') && (typeof DecompressionStream !== 'undefined');
+}
+
 /**
- * @param {Uint8Array} data
+ * @param {string} raw
  * @returns {Promise<Uint8Array>}
  */
-async function packGz(data) {
-    if (typeof CompressionStream === 'undefined') {
-        console.log("Using fflate for gzip compression");
-        await loadFflate();
-        return fflate.gzipSync(data);
-    }
-
+async function packGz(raw) {
+    let data = new TextEncoder().encode(raw);
     let inputStream = new ReadableStream({
         start: (controller) => {
             controller.enqueue(data);
@@ -262,11 +226,6 @@ async function packGz(data) {
  * @return {Promise<Uint8Array>}
  */
 async function unpackGz(data) {
-    if (typeof DecompressionStream === 'undefined') {
-        await loadFflate();
-        return fflate.gunzipSync(data);
-    }
-
     let inputStream = new ReadableStream({
         start: (controller) => {
             controller.enqueue(data);
@@ -277,6 +236,11 @@ async function unpackGz(data) {
     const decompressedStream = inputStream.pipeThrough(ds);
     return new Uint8Array(await new Response(decompressedStream).arrayBuffer());
 }
+
+/* Drag and drop */
+const dropZone = document.getElementById('dropzone');
+let windowDragCount = 0;
+let dropZoneDragCount = 0;
 
 window.addEventListener('dragover', e => e.preventDefault());
 window.addEventListener('dragenter', e => {
@@ -306,15 +270,29 @@ dropZone.addEventListener('drop', async e => {
     await handleDropEvent(e);
 });
 
-fileSelectButton.addEventListener('click', selectLogFile);
-
-pasteArea.addEventListener('input', reevaluateContentStatus);
-function reevaluateContentStatus() {
-    if (pasteArea.value.length > 0) {
-        pastePlaceholder.style.display = 'none';
-        pasteSaveButtons.forEach(button => button.removeAttribute("disabled"));
+function updateWindowDragCount(amount) {
+    windowDragCount = Math.max(0, windowDragCount + amount);
+    if (windowDragCount > 0) {
+        dropZone.classList.add('window-dragover');
     } else {
-        pastePlaceholder.style.display = 'block';
-        pasteSaveButtons.forEach(button => button.setAttribute("disabled", "disabled"));
+        dropZone.classList.remove('window-dragover');
     }
+}
+
+function updateDropZoneDragCount(amount) {
+    dropZoneDragCount = Math.max(0, dropZoneDragCount + amount);
+    if (dropZoneDragCount > 0) {
+        dropZone.classList.add('dragover');
+    } else {
+        dropZone.classList.remove('dragover');
+    }
+}
+
+async function handleDropEvent(e) {
+    let files = e.dataTransfer.files;
+    if (files.length !== 1) {
+        return;
+    }
+
+    await loadFileContents(files[0]);
 }

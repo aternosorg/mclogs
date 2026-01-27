@@ -2,8 +2,6 @@
 
 namespace Aternos\Mclogs\Data;
 
-use MongoDB\Model\BSONArray;
-
 class MetadataEntry implements \JsonSerializable
 {
     protected const int MAX_KEY_LENGTH = 64;

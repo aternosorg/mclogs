@@ -1,16 +1,8 @@
-<?php
-
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
-use Aternos\Mclogs\Util\URL;
-
-$config = Config::getInstance();
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
        <?php include __DIR__ . '/parts/head.php'; ?>
-       <title><?= URL::getBase()->getHost(); ?> - Paste, share & analyse your Minecraft logs</title>
+       <title><?= \Aternos\Mclogs\Util\URL::getBase()->getHost(); ?> - Paste, share & analyse your Minecraft logs</title>
     </head>
     <body>
         <div class="container">
@@ -22,12 +14,12 @@ $config = Config::getInstance();
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         <p>Paste or drop your log here</p>
                         <div class="paste-hints">
-                            <button type="button" class="link-btn" id=""><i class="fa-solid fa-paste"></i> Paste</button>
+                            <button type="button" class="link-btn" id="paste-clipboard"><i class="fa-solid fa-paste"></i> Paste</button>
                             <span><i class="fa-solid fa-file-arrow-up"></i> Drop</span>
                             <button type="button" class="link-btn" id="paste-select-file"><i class="fa-solid fa-folder-open"></i> Browse</button>
                         </div>
                     </div>
-                    <textarea spellcheck="false" data-enable-grammarly="false" id="paste" data-max-length="10000000" data-max-lines="25000"></textarea>
+                    <textarea spellcheck="false" data-enable-grammarly="false" id="paste-text" data-max-length="10000000" data-max-lines="25000"></textarea>
                     <button type="button" class="btn-save paste-save" disabled><i class="fa-solid fa-share"></i> Share</button>
                 </div>
             </main>
