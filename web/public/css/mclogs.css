@@ -377,10 +377,10 @@ main {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
-    max-width: 400px;
     color: var(--error);
+    font-weight: 600;
     font-size: 0.9rem;
-    padding: 1rem 1.25rem;
+    padding: .8rem 1.25rem;
     background-color: color-mix(in srgb, var(--error) 15%, var(--bg-surface) 85%);
     border: 1px solid color-mix(in srgb, var(--error) 40%, transparent);
     border-radius: 8px;
@@ -1124,7 +1124,7 @@ footer {
 
 .error-message {
     font-size: clamp(1.25rem, 4vw, 1.8rem);
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text);
     margin-top: -0.5rem;
 }
