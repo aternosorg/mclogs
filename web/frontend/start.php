@@ -22,7 +22,7 @@ $config = Config::getInstance();
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         <p>Paste or drop your log here</p>
                         <div class="paste-hints">
-                            <span><i class="fa-solid fa-paste"></i> Paste</span>
+                            <button type="button" class="link-btn" id=""><i class="fa-solid fa-paste"></i> Paste</button>
                             <span><i class="fa-solid fa-file-arrow-up"></i> Drop</span>
                             <button type="button" class="link-btn" id="paste-select-file"><i class="fa-solid fa-folder-open"></i> Browse</button>
                         </div>

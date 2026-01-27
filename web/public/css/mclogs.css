@@ -142,7 +142,7 @@ main {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    pointer-events: none;
+    z-index: 2;
 }
 
 .paste-placeholder i.fa-cloud-arrow-up {
