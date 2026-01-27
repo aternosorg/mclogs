@@ -29,6 +29,16 @@ body {
     overflow-x: hidden;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
 body::before {
     content: '';
     position: fixed;
@@ -63,10 +73,11 @@ header {
     text-decoration: none;
 }
 
-.logo img  {
+.logo-icon {
     height: clamp(1.12rem, 3vw, 1.9rem);
     width: auto;
     margin-top: 3px;
+    color: var(--accent);
 }
 
 .logo-text {
@@ -74,6 +85,7 @@ header {
     font-weight: 600;
     color: var(--text);
     margin-top: -3px;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
 
 .tagline {
@@ -85,19 +97,18 @@ header {
 
 .tagline-main {
     font-size: clamp(1rem, 3vw, 1.5rem);
-    color: var(--text-muted);
+    color: var(--text);
     font-weight: 400;
 }
 
 .tagline-sub {
     font-size: clamp(0.75rem, 2vw, 1rem);
     color: var(--text-muted);
-    opacity: 0.7;
 }
 
 .title-verb {
     font-weight: 600;
-    color: var(--text);
+    color: var(--accent);
 }
 
 /** Main / Container **/
@@ -247,15 +258,13 @@ footer {
 
 .footer-nav a {
     color: var(--text-muted);
-    text-decoration: none;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    transition: color 0.15s ease;
 }
 
 .footer-nav a:hover {
-    color: var(--text);
+    color: var(--accent);
 }
 
 .footer-nav a i {
@@ -264,11 +273,10 @@ footer {
 
 .footer-text a {
     color: var(--text-muted);
-    text-decoration: none;
 }
 
 .footer-text a:hover {
-    color: var(--text);
+    color: var(--accent);
 }
 
 /** Log Header **/
@@ -689,11 +697,10 @@ footer {
 
 .log-notice a {
     color: var(--text-muted);
-    text-decoration: none;
 }
 
 .log-notice a:hover {
-    color: var(--accent-hover);
+    color: var(--accent);
 }
 
 /** Error Page **/
