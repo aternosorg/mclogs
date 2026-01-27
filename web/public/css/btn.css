@@ -5,7 +5,7 @@
     padding: 0.75rem 1.5rem;
     border-radius: 8px;
     font-family: inherit;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
@@ -46,10 +46,10 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.625rem 1rem;
+    padding: 0.6rem 1rem;
     border-radius: 8px;
     font-family: inherit;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     font-weight: 500;
     text-decoration: none;
     border: none;
@@ -59,22 +59,22 @@
 }
 
 .btn i {
-    font-size: 0.875rem;
+    font-size: 0.9rem;
 }
 
 .btn-small {
-    padding: 0.5rem 0.875rem;
-    font-size: 0.8125rem;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
 }
 
 .btn-small i {
-    font-size: 0.8125rem;
+    font-size: 0.8rem;
 }
 
 .btn-notext {
     padding: 0.5rem;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.2rem;
+    height: 2.2rem;
     justify-content: center;
 }
 
