@@ -73,12 +73,16 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     font-family: var(--font-sans), sans-serif;
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.5;
-    min-height: 100dvh;
+    min-height: 100vh;
     position: relative;
     overflow-x: hidden;
     font-weight: 400;
@@ -86,6 +90,7 @@ body {
 
 ::selection {
     background-color: var(--accent);
+    color: var(--text);
 }
 
 a {
@@ -130,6 +135,12 @@ header {
     align-items: center;
     gap: .9rem;
     text-decoration: none;
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+
+.logo:active {
+    transform: scale(.9);
 }
 
 .logo-icon {
@@ -182,7 +193,7 @@ main {
     max-width: var(--max-width);
     margin: 0 auto;
     padding: clamp(1rem, 4vw, 2rem) clamp(0rem, 4vw, 2rem) clamp(0.5rem, 4vw, 2rem);
-    min-height: 100dvh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     position: relative;
