@@ -284,6 +284,10 @@ main {
     font-weight: 400;
 }
 
+.paste-hints button.btn:hover {
+    background-image: none;
+}
+
 .paste-hints i {
     font-size: 0.9rem;
 }
