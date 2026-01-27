@@ -8,5 +8,8 @@ use Aternos\Mclogs\Util\URL;
         <img src="img/logo-icon.svg" alt="" />
         <span class="logo-text"><?= URL::getBase()->getHost(); ?></span>
     </a>
-    <div class="tagline"><span class="title-verb">Paste</span> your Minecraft logs.</div>
+    <div class="tagline">
+        <div class="tagline-main"><span class="title-verb">Share</span> your logs.</div>
+        <div class="tagline-sub">Build for Minecraft & Hytale</div>
+    </div>
 </header>
