@@ -681,6 +681,39 @@ footer {
     color: var(--accent-hover);
 }
 
+/** Error Page **/
+
+.error-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
+
+.error-code {
+    font-size: clamp(4rem, 15vw, 8rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    opacity: 0.15;
+}
+
+.error-message {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-top: -0.5rem;
+}
+
+.error-description {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+    margin-bottom: 2rem;
+}
 
 @media (max-width: 640px) {
     .issues-panel {
