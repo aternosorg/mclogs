@@ -3,6 +3,7 @@
 namespace Aternos\Mclogs\Config;
 
 use Aternos\Mclogs\Util\Singleton;
+use Aternos\Mclogs\Util\URL;
 
 class Config
 {
@@ -41,6 +42,14 @@ class Config
         }
 
         return $key->getDefaultValue();
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->get(ConfigKey::FRONTEND_NAME) ?? URL::getBase()->getHost();
     }
 
     /**

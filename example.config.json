@@ -17,5 +17,15 @@
         "abuse": "abuse@aternos.org",
         "imprint": "https://aternos.gmbh/imprint/",
         "privacy": "https://aternos.gmbh/en/mclogs/privacy"
+    },
+    "frontend": {
+        "name": null,
+        "analytics": false,
+        "color": {
+            "background": "#1a1a1a",
+            "text": "#e8e8e8",
+            "accent": "#5cb85c",
+            "error": "#f62451"
+        }
     }
 }

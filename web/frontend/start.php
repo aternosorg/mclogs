@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
        <?php include __DIR__ . '/parts/head.php'; ?>
-       <title><?= \Aternos\Mclogs\Util\URL::getBase()->getHost(); ?> - Paste, share & analyse your Minecraft logs</title>
+       <title><?= \Aternos\Mclogs\Config\Config::getInstance()->getName(); ?> - Paste, share & analyse your Minecraft logs</title>
     </head>
     <body>
         <div class="container">

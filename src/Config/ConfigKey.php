@@ -17,6 +17,13 @@ enum ConfigKey
     case LEGAL_IMPRINT;
     case LEGAL_PRIVACY;
 
+    case FRONTEND_NAME;
+    case FRONTEND_ANALYTICS;
+    case FRONTEND_COLOR_BACKGROUND;
+    case FRONTEND_COLOR_TEXT;
+    case FRONTEND_COLOR_ACCENT;
+    case FRONTEND_COLOR_ERROR;
+
     /**
      * Get the default value for the config key
      *
@@ -37,6 +44,12 @@ enum ConfigKey
             ConfigKey::LEGAL_ABUSE => 'abuse@aternos.org',
             ConfigKey::LEGAL_IMPRINT => 'https://aternos.gmbh/en/imprint',
             ConfigKey::LEGAL_PRIVACY => 'https://aternos.gmbh/en/mclogs/privacy',
+
+            ConfigKey::FRONTEND_ANALYTICS => false,
+            ConfigKey::FRONTEND_COLOR_BACKGROUND => "#1a1a1a",
+            ConfigKey::FRONTEND_COLOR_TEXT => "#e8e8e8",
+            ConfigKey::FRONTEND_COLOR_ACCENT => "#5cb85c",
+            ConfigKey::FRONTEND_COLOR_ERROR => "#f62451",
 
             default => null
         };
