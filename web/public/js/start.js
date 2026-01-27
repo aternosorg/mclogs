@@ -125,11 +125,13 @@ function reevaluateContentStatus() {
 }
 
 function showError(message) {
+    pasteSaveButtons.forEach(button => button.classList.remove("btn-working"));
     pasteError.innerText = message;
     pasteError.style.display = 'block';
 }
 
 function clearError() {
+    pasteSaveButtons.forEach(button => button.classList.remove("btn-working"));
     pasteError.innerText = '';
     pasteError.style.display = 'none';
 }
