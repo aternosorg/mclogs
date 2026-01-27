@@ -736,6 +736,7 @@ footer {
     border-bottom: 1px solid var(--border);
     background-color: color-mix(in srgb, var(--bg) 95%, var(--text) 5%);
     position: relative;
+    flex: 1;
 }
 
 .log-inner {
@@ -831,6 +832,7 @@ footer {
     word-break: break-word;
     overflow-wrap: anywhere;
     color: var(--text);
+    width: 100%;
 }
 
 .log-inner .level {
