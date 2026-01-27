@@ -67,6 +67,10 @@
     scroll-behavior: smooth;
 }
 
+@view-transition {
+    navigation: auto;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -341,6 +345,7 @@ main {
 }
 
 .paste-area textarea {
+    view-transition-name: log;
     flex: 1;
     width: 100%;
     background: transparent;
@@ -780,6 +785,7 @@ footer {
 /** Log Viewer **/
 
 .log {
+    view-transition-name: log;
     padding: 0;
     border-bottom: 1px solid var(--border);
     background-color: color-mix(in srgb, var(--bg) 95%, var(--text) 5%);
