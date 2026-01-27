@@ -8,6 +8,8 @@ class FaviconAction extends Action
 {
     public function run(): bool
     {
-        // TODO: Implement run() method.
+        header('Content-Type: image/svg+xml');
+        require_once __DIR__ . "/../../../web/frontend/parts/favicon.php";
+        return true;
     }
 }

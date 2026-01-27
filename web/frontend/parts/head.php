@@ -22,7 +22,8 @@ use Aternos\Mclogs\Config\ConfigKey;
         }
     </style>
 
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" sizes="any"/>
+    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <?php if (Config::getInstance()->get(ConfigKey::FRONTEND_ANALYTICS)): ?>

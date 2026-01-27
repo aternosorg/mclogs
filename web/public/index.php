@@ -12,5 +12,6 @@ new Router()
     ->register(Method::GET, "#^/" . Id::PATTERN . "$#", new Action\ViewLogAction())
     ->register(Method::POST, "#^/new$#", new Action\CreateLogAction())
     ->register(Method::DELETE, "#^/" . Id::PATTERN . "$#", new Action\DeleteLogAction())
+    ->register(Method::GET, "#^/favicon\.svg$#", new Action\FaviconAction())
     ->setDefaultAction(new Action\NotFoundAction())
     ->run();
