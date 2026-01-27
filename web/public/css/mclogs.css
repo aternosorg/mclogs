@@ -1,11 +1,7 @@
 :root {
-    --bg: #1a1a1a;
-    --bg-surface: #2a2a2a;
-    --text: #e8e8e8;
-    --text-muted: #8b8b8b;
-    --accent: #5cb85c;
-    --accent-hover: #4a9e4a;
-    --error: #f62451;
+    --bg-surface: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
+    --text-muted: color-mix(in srgb, var(--text) 55%, var(--bg) 45%);
+    --accent-hover: color-mix(in srgb, var(--accent) 78%, var(--bg) 22%);
     --border: rgba(255, 255, 255, 0.08);
     --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
