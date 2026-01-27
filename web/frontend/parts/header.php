@@ -11,7 +11,7 @@
         <span class="logo-text"><?= \Aternos\Mclogs\Config\Config::getInstance()->getName(); ?></span>
     </a>
     <div class="tagline">
-        <div class="tagline-main"><span class="title-verb">Paste</span> your logs.</div>
+        <h1 class="tagline-main"><span class="title-verb">Paste</span> your logs.</h1>
         <div class="tagline-sub">Built for Minecraft & Hytale</div>
     </div>
     <script>

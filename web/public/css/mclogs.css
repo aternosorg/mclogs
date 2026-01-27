@@ -167,6 +167,7 @@ header {
 .tagline-main {
     font-size: clamp(1rem, 3vw, 1.5rem);
     color: var(--text);
+    font-weight: 400;
 }
 
 .tagline-sub {
