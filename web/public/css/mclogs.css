@@ -273,19 +273,21 @@ main {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.paste-hints button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--text-muted);
+    font-weight: 400;
 }
 
 .paste-hints i {
     font-size: 0.9rem;
 }
 
-.paste-hints .link-btn {
-    color: var(--text-muted);
-}
-
-.paste-hints .link-btn:hover {
-    color: var(--accent);
-}
 
 .paste-area textarea {
     flex: 1;
@@ -344,6 +346,69 @@ main {
 
 .paste-error.show {
     display: block;
+}
+
+/** Buttons **/
+
+.btn {
+    background-color: var(--accent);
+    color: var(--bg);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid transparent;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    gap: .4rem;
+    line-height: 1;
+}
+
+.btn:hover {
+    background-image: linear-gradient(#00000014,#00000014);
+}
+
+.btn:disabled,
+.btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-notext {
+    padding: 0.7rem;
+}
+
+.btn-small {
+    font-size: 0.8rem;
+    padding: 0.4rem 1rem;
+}
+
+.btn-transparent {
+    background-color: transparent;
+    color: var(--accent);
+    border: 0 none;
+}
+
+.btn-transparent:hover {
+    color: var(--accent);
+}
+
+.btn-danger {
+    background-color: var(--error);
+    color: var(--text);
+}
+
+.btn-white {
+    background-color: #fff;
+    color: var(--bg);
+}
+
+.btn-dark {
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    border-color: var(--border);
 }
 
 /** Footer **/

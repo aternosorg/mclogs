@@ -8,7 +8,6 @@ use Aternos\Mclogs\Config\ConfigKey;
 
     <base href="/"/>
     <link rel="stylesheet" href="vendor/fontawesome/css/fontawesome.min.css"/>
-    <link rel="stylesheet" href="css/btn.css"/>
     <link rel="stylesheet" href="css/mclogs.css"/>
     <style>
         :root {

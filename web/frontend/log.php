@@ -36,16 +36,16 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                            <div class="details">
                                <div class="log-info-actions">
                                    <?php if($log->hasErrors()): ?>
-                                       <div class="btn btn-red btn-small btn-no-margin" id="error-toggle">
+                                       <div class="btn btn-danger btn-small" id="error-toggle">
                                            <i class="fa fa-exclamation-circle"></i>
                                            <?=$log->getErrorsString(); ?>
                                        </div>
                                    <?php endif; ?>
-                                   <div class="btn btn-blue btn-small btn-no-margin" id="down-button">
+                                   <div class="btn btn-dark btn-small" id="down-button">
                                        <i class="fa fa-arrow-circle-down"></i>
                                        <?=$log->getLinesString(); ?>
                                    </div>
-                                   <a class="btn btn-white btn-small btn-no-margin" id="raw" target="_blank" href="<?=$log->getRawURL()->toString(); ?>">
+                                   <a class="btn btn-white btn-small" id="raw" target="_blank" href="<?=$log->getRawURL()->toString(); ?>">
                                        <i class="fa fa-arrow-up-right-from-square"></i>
                                        Raw
                                    </a>
@@ -129,7 +129,7 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                     </div>
                 </div>
                 <div class="log-bottom">
-                    <div class="btn btn-blue btn-small btn-notext" id="up-button">
+                    <div class="btn btn-small btn-dark" id="up-button">
                         <i class="fa fa-arrow-circle-up"></i>
                     </div>
                     <div class="checkbox-container">
