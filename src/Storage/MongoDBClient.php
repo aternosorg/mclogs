@@ -9,6 +9,7 @@ use MongoDB\BSON\UTCDateTime;
 use MongoDB\Client;
 use MongoDB\Collection;
 use MongoDB\Database;
+use Uri\Rfc3986\Uri;
 
 class MongoDBClient
 {
@@ -21,15 +22,52 @@ class MongoDBClient
     protected ?Collection $cache = null;
 
     /**
+     * @return string
+     */
+    protected function getConnectionURL(): string
+    {
+        $configUrl = Config::getInstance()->get(ConfigKey::MONGODB_URL);
+        $url = new Uri($configUrl);
+        $query = $url->getQuery();
+        $queryParams = [];
+        if ($query !== null) {
+            parse_str($query, $queryParams);
+        }
+        if (!isset($queryParams['serverSelectionTimeoutMS'])) {
+            $queryParams['serverSelectionTimeoutMS'] = 5_000;
+        }
+        if (!isset($queryParams['socketTimeoutMS'])) {
+            $queryParams['socketTimeoutMS'] = 60_000;
+        }
+        $newQuery = http_build_query($queryParams);
+        $newUrl = $url->withQuery($newQuery);
+        return $newUrl->toString();
+    }
+
+    /**
      * Connect to MongoDB
      */
     protected function connect(): void
     {
         if ($this->connection === null) {
             $config = Config::getInstance();
-            $this->connection = new Client($config->get(ConfigKey::MONGODB_URL));
+            $this->connection = new Client($this->getConnectionURL());
             $this->database = $this->connection->getDatabase($config->get(ConfigKey::MONGODB_DATABASE));
         }
+    }
+
+    /**
+     * Ensure indexes exist
+     *
+     * @return void
+     */
+    public function ensureIndexes(): void
+    {
+        $logs = $this->getLogsCollection();
+        $logs->createIndex(['expires' => 1], ['expireAfterSeconds' => 0]);
+
+        $cache = $this->getCacheCollection();
+        $cache->createIndex(['expires' => 1], ['expireAfterSeconds' => 0]);
     }
 
     /**

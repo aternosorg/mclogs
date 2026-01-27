@@ -7,6 +7,8 @@ use Aternos\Mclogs\Util\URL;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+MongoDBClient::getInstance()->ensureIndexes();
+
 $requestCount = 0;
 $maxRequests = Config::getInstance()->get(ConfigKey::WORKER_REQUESTS);
 
