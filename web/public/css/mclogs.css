@@ -942,6 +942,22 @@ footer {
 }
 
 @media (max-width: 640px) {
+
+    footer {
+        justify-content: center;
+    }
+
+    .legal,
+    .footer-text {
+        order: 2;
+    }
+
+    .footer-nav {
+        width: 100%;
+        order: 1;
+        justify-content: center;
+    }
+
     .issues-panel {
         margin: 1rem;
     }
