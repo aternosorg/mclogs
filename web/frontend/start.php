@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-       <?php include __DIR__ . '/parts/head.php'; ?>
-       <title><?= \Aternos\Mclogs\Config\Config::getInstance()->getName(); ?> - Paste, share & analyse your Minecraft logs</title>
+        <?php include __DIR__ . '/parts/head.php'; ?>
+        <title><?= \Aternos\Mclogs\Config\Config::getInstance()->getName(); ?> - Paste, share & analyse your logs</title>
+        <meta name="description" content="Easily paste your Minecraft & Hytale logs to share and analyse them." />
     </head>
     <body>
         <div class="container">
