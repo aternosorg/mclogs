@@ -61,7 +61,7 @@ abstract class Cookie
         return "Lax";
     }
 
-    protected function __construct()
+    public function __construct()
     {
         $this->value = $_COOKIE[$this->getKey()] ?? null;
     }
