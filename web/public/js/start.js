@@ -36,6 +36,7 @@ const pastePlaceholder = document.querySelector('.paste-placeholder');
 const pasteSaveButtons = document.querySelectorAll('.paste-save');
 const fileSelectButton = document.getElementById('paste-select-file');
 const pasteClipboardButton = document.getElementById('paste-clipboard');
+const pasteError = document.getElementById('paste-error');
 
 pasteArea.focus();
 pasteArea.addEventListener('input', reevaluateContentStatus);
@@ -62,6 +63,7 @@ async function sendLog() {
         return;
     }
 
+    clearError();
     pasteSaveButtons.forEach(button => button.classList.add("btn-working"));
 
     try {
@@ -129,14 +131,19 @@ async function sendLog() {
 
 async function pasteFromClipboard() {
     try {
-        pasteArea.value = await navigator.clipboard.readText();
+        let content = await navigator.clipboard.readText();
+        if (!content || content.trim().length === 0) {
+            showError("Clipboard is empty.");
+            return;
+        }
         reevaluateContentStatus();
     } catch (err) {
-        console.error('Failed to read clipboard contents: ', err);
+        showError("Clipboard is empty or not accessible.");
     }
 }
 
 function reevaluateContentStatus() {
+    clearError();
     if (pasteArea.value.length > 0) {
         pastePlaceholder.style.display = 'none';
         pasteSaveButtons.forEach(button => button.removeAttribute("disabled"));
@@ -147,8 +154,13 @@ function reevaluateContentStatus() {
 }
 
 function showError(message) {
-    // TODO: nicer error display
-    alert(`Error: ${message}`);
+    pasteError.innerText = message;
+    pasteError.style.display = 'block';
+}
+
+function clearError() {
+    pasteError.innerText = '';
+    pasteError.style.display = 'none';
 }
 
 /**
@@ -167,6 +179,7 @@ function readFile(file) {
 
 async function loadFileContents(file) {
     if (file.size > 1024 * 1024 * 100) {
+        showError(`File is too large.`);
         return;
     }
     let content = await readFile(file);
@@ -179,6 +192,7 @@ async function loadFileContents(file) {
     }
 
     if (content.includes(0)) {
+        showError(`This file is not supported.`);
         return;
     }
 
