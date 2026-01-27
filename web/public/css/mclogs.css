@@ -129,14 +129,14 @@ header {
 }
 
 .logo-icon {
-    height: clamp(1.1rem, 3vw, 2rem);
+    height: clamp(1.5rem, 3vw, 2rem);
     width: auto;
     margin-top: 3px;
     color: var(--accent);
 }
 
 .logo-text {
-    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-size: clamp(1.75rem, 3vw, 2rem);
     font-weight: 600;
     color: var(--text);
     margin-top: -3px;
