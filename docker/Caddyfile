@@ -1,6 +1,8 @@
 {
     frankenphp {
-        worker /app/worker.php
+        worker /app/worker.php {
+            num {$FRANKENPHP_WORKERS:16}
+        }
     }
 }
 
