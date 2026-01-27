@@ -7,6 +7,7 @@
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
     --max-width: 1300px;
     --radius: 12px;
+    scroll-behavior: smooth;
 }
 
 * {
@@ -601,21 +602,11 @@ footer {
     background-color: rgba(255, 255, 255, 0.02);
 }
 
-.log-inner table tr:has(.line-active) {
-    background-color: color-mix(in srgb, var(--accent) 10%, transparent);
-}
-
-.log-inner table tr:has(.line-active):hover {
-    background-color: color-mix(in srgb, var(--accent) 12%, transparent);
-}
 
 .log-inner table tr.entry-error {
     background-color: color-mix(in srgb, var(--error) 10%, transparent);
 }
 
-.log-inner table tr.entry-error:has(.line-active) {
-    background-color: color-mix(in srgb, var(--accent) 15%, var(--error) 85%);
-}
 
 .log-inner table td {
     padding: 0;
@@ -623,9 +614,9 @@ footer {
 }
 
 .log-inner .line-number-container {
-    width: 2rem;
-    min-width: 2rem;
-    padding: 0.4rem 0.25rem;
+    width: auto;
+    min-width: 3.5rem;
+    padding: 0.4rem 0.5rem;
     text-align: right;
     background-color: rgba(255, 255, 255, 0.03);
     border-right: 1px solid var(--border);
@@ -640,15 +631,6 @@ footer {
     background-color: rgba(255, 255, 255, 0.04);
 }
 
-.log-inner table tr:has(.line-active) .line-number-container {
-    background-color: color-mix(in srgb, var(--accent) 15%, transparent);
-    border-right-color: color-mix(in srgb, var(--accent) 30%, transparent);
-}
-
-.log-inner table tr.entry-error:has(.line-active) .line-number-container {
-    background-color: color-mix(in srgb, var(--error) 15%, transparent);
-    border-right-color: color-mix(in srgb, var(--error) 30%, transparent);
-}
 
 .log-inner .line-number {
     display: inline-block;
@@ -659,10 +641,10 @@ footer {
     text-decoration: none;
     border-radius: 4px;
     transition: all 0.15s ease;
-    min-width: 2rem;
     text-align: right;
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.02em;
+    white-space: nowrap;
 }
 
 .log-inner .line-number:hover {
@@ -708,6 +690,175 @@ footer {
 .log-inner .level-prefix {
     font-weight: 500;
     opacity: 0.9;
+}
+
+/** Log Level Styles **/
+
+.level {
+    white-space: pre-wrap;
+    tab-size: 4;
+    word-break: normal;
+}
+
+.level-prefix {
+    font-weight: bold;
+}
+
+.level-info {
+    color: var(--text);
+}
+
+.level-title {
+    font-weight: bold;
+    color: var(--bg);
+    background-color: var(--accent);
+    padding: 0 8px;
+    border-radius: 2px;
+}
+
+.level-info .level-prefix,
+.level-notice .level-prefix,
+.level-debug .level-prefix {
+    color: var(--accent);
+}
+
+.level-warning {
+    color: #FF6625;
+}
+
+.level-error,
+.level-critical,
+.level-emergency,
+.level-stacktrace {
+    color: var(--error);
+}
+
+.level-comment {
+    color: #A4A4A4;
+}
+
+/** Minecraft Format Colors **/
+
+.format-black {
+    color: #000;
+}
+
+.format-darkblue {
+    color: #0000AA;
+}
+
+.format-darkgreen {
+    color: #00AA00;
+}
+
+.format-darkaqua {
+    color: #00AAAA;
+}
+
+.format-darkred {
+    color: #AA0000;
+}
+
+.format-darkpurple {
+    color: #AA00AA;
+}
+
+.format-gold {
+    color: #FFAA00;
+}
+
+.format-gray {
+    color: #AAAAAA;
+}
+
+.format-darkgray {
+    color: #555555;
+}
+
+.format-blue {
+    color: #5555FF;
+}
+
+.format-green {
+    color: #55FF55;
+}
+
+.format-aqua {
+    color: #55FFFF;
+}
+
+.format-red {
+    color: #FF5555;
+}
+
+.format-lightpurple {
+    color: #FF55FF;
+}
+
+.format-yellow {
+    color: #FFFF55;
+}
+
+.format-white {
+    color: #FFFFFF;
+}
+
+.format-reset {
+    color: #FFFFFF;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    display: inline-block;
+}
+
+.format-bold {
+    font-weight: bold;
+}
+
+.format-underline {
+    text-decoration: underline;
+}
+
+.format-italic {
+    font-style: italic;
+}
+
+.format-strike {
+    text-decoration: line-through;
+}
+
+/** Log Content Styles **/
+
+.multiline {
+    padding-left: 64px;
+}
+
+.highlight-error {
+    background: var(--error);
+    color: #fff;
+    padding: 0px 3px;
+    border-radius: 2px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.highlight-warning {
+    background: #FF6625;
+    color: var(--text);
+    padding: 0px 3px;
+    border-radius: 2px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.entry {
+    overflow-wrap: anywhere;
+}
+
+@media all and (max-width: 800px) {
+    .multiline {
+        padding-left: 0;
+    }
 }
 
 /** Log bottom **/
