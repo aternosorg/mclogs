@@ -10,7 +10,7 @@ use Aternos\Mclogs\Config\ConfigKey;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css"/>
+    <link rel="stylesheet" href="vendor/fontawesome/css/fontawesome.min.css"/>
     <link rel="stylesheet" href="css/btn.css"/>
     <link rel="stylesheet" href="css/mclogs.css?v=260126b"/>
     <style>
