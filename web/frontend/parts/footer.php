@@ -1,14 +1,19 @@
 <?php
 use Aternos\Mclogs\Config\Config;use Aternos\Mclogs\Config\ConfigKey;use Aternos\Mclogs\Util\URL;
+
+$imprintUrl = Config::getInstance()->get(ConfigKey::LEGAL_IMPRINT);
+$privacyUrl = Config::getInstance()->get(ConfigKey::LEGAL_PRIVACY);
 ?>
 <footer>
-    <?php if($imprintUrl = Config::getInstance()->get(ConfigKey::LEGAL_IMPRINT) || $privacyUrl = Config::getInstance()->get(ConfigKey::LEGAL_PRIVACY)): ?>
+    <?php if($imprintUrl || $privacyUrl): ?>
     <nav class="legal">
-        <?php if ($imprintUrl = Config::getInstance()->get(ConfigKey::LEGAL_IMPRINT)): ?>
+        <?php if ($imprintUrl): ?>
             <a href="<?=htmlspecialchars($imprintUrl); ?>" class="footer-link" target="_blank">Imprint</a>
         <?php endif; ?>
-        <?php if ($privacyUrl = Config::getInstance()->get(ConfigKey::LEGAL_PRIVACY)): ?>
-            |
+        <?php if ($imprintUrl && $privacyUrl): ?>
+            <span class="footer-separator"> - </span>
+        <?php endif; ?>
+        <?php if ($privacyUrl): ?>
             <a href="<?=htmlspecialchars($privacyUrl); ?>" class="footer-link" target="_blank">Privacy Policy</a>
         <?php endif; ?>
     </nav>
