@@ -5,7 +5,7 @@
         <title><?= \Aternos\Mclogs\Config\Config::getInstance()->getName(); ?> - Paste, share & analyse your logs</title>
         <meta name="description" content="Easily paste your Minecraft & Hytale logs to share and analyse them." />
     </head>
-    <body>
+    <body data-name="<?=\Aternos\Mclogs\Config\Config::getInstance()->getName(); ?>">
         <div class="container">
             <?php include __DIR__ . '/parts/header.php'; ?>
 

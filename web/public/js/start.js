@@ -1,4 +1,5 @@
 /* Paste area */
+const source = document.body.dataset.name || location.host;
 const pasteArea = document.getElementById('paste-text');
 const pastePlaceholder = document.querySelector('.paste-placeholder');
 const pasteSaveButtons = document.querySelectorAll('.paste-save');
@@ -42,7 +43,7 @@ async function sendLog() {
 
         const bodyData = {
             "content": log,
-            "source": location.host,
+            "source": source,
             "metadata": Array.isArray(self.METADATA) ? self.METADATA : []
         };
 
@@ -98,13 +99,6 @@ async function sendLog() {
     }
 }
 
-async function handlePasteEvent(e) {
-    if (e.clipboardData?.files?.length > 0) {
-        e.preventDefault();
-        await loadFileContents(e.clipboardData.files[0]);
-    }
-}
-
 async function pasteFromClipboard() {
     try {
         let content = await navigator.clipboard.readText();
@@ -137,6 +131,14 @@ function showError(message) {
 function clearError() {
     pasteError.innerText = '';
     pasteError.style.display = 'none';
+}
+
+/* File handling */
+async function handlePasteEvent(e) {
+    if (e.clipboardData?.files?.length > 0) {
+        e.preventDefault();
+        await loadFileContents(e.clipboardData.files[0]);
+    }
 }
 
 /**
@@ -190,6 +192,7 @@ function selectLogFile() {
     document.body.removeChild(input);
 }
 
+/* Gzip compression */
 function isGzSupported() {
     return (typeof CompressionStream !== 'undefined') && (typeof DecompressionStream !== 'undefined');
 }
