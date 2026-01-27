@@ -84,6 +84,10 @@ body {
     font-weight: 400;
 }
 
+::selection {
+    background-color: var(--accent);
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -177,7 +181,7 @@ main {
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: clamp(1rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem) clamp(0.5rem, 4vw, 2rem);
+    padding: clamp(1rem, 4vw, 2rem) clamp(0rem, 4vw, 2rem) clamp(0.5rem, 4vw, 2rem);
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -279,17 +283,36 @@ main {
     border: none;
     outline: none;
     resize: none;
-    padding: clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(.5rem, 3vw, 1.2rem);
     font-family: var(--font-mono), monospace;
-    font-size: clamp(0.75rem, 2vw, 1rem);
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
     color: var(--text);
     position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+}
+
+.paste-area textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.paste-area textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.paste-area textarea::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+    border-radius: 4px;
+}
+
+.paste-area textarea::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-hover);
 }
 
 .paste-actions {
     width: 100%;
     background-color: var(--bg-surface);
-    padding: 1.5rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
