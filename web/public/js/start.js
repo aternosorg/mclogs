@@ -40,6 +40,7 @@ const pasteError = document.getElementById('paste-error');
 
 pasteArea.focus();
 pasteArea.addEventListener('input', reevaluateContentStatus);
+pasteArea.addEventListener('paste', handlePasteEvent);
 pasteSaveButtons.forEach(button => button.addEventListener('click', sendLog));
 fileSelectButton.addEventListener('click', selectLogFile);
 pasteClipboardButton.addEventListener('click', pasteFromClipboard);
@@ -126,6 +127,13 @@ async function sendLog() {
         location.href = data.url;
     } catch (e) {
         showError("Network error");
+    }
+}
+
+async function handlePasteEvent(e) {
+    if (e.clipboardData?.files?.length > 0) {
+        e.preventDefault();
+        await loadFileContents(e.clipboardData.files[0]);
     }
 }
 
