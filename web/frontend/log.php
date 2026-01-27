@@ -141,7 +141,8 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                     <div class="left">
                         <?php if ($source = $log->getSource()): ?>
                             <div class="source">
-                                by <?=$source; ?>
+                                <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                                <?=$source; ?>
                             </div>
                         <?php endif; ?>
                         <?php if ($created = $log->getCreated()?->toDateTime()->getTimestamp()): ?>
@@ -152,12 +153,14 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                             </div>
                         <?php endif; ?>
                     </div>
+                    <?php if ($abuseEmail = Config::getInstance()->get(ConfigKey::LEGAL_ABUSE)): ?>
                     <div class="right">
-                        <a href="mailto:<?=Config::getInstance()->get(ConfigKey::LEGAL_ABUSE); ?>?subject=Report%20mclo.gs/<?=$id->get(); ?>" class="report-link">
+                        <a href="mailto:<?=$abuseEmail; ?>?subject=Report%20mclo.gs/<?=$log->getId()->get(); ?>" class="report-link">
                             <i class="fa-solid fa-flag"></i>
                             Report abuse
                         </a>
                     </div>
+                    <?php endif; ?>
                 </div>
             </main>
 
