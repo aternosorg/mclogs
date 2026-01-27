@@ -135,6 +135,7 @@ header {
 }
 
 .logo {
+    view-transition-name: logo;
     display: flex;
     align-items: center;
     gap: .9rem;
