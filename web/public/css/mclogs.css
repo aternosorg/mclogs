@@ -24,6 +24,7 @@ body {
     min-height: 100dvh;
     position: relative;
     overflow-x: hidden;
+    font-weight: 400;
 }
 
 a {
@@ -94,7 +95,6 @@ header {
 .tagline-main {
     font-size: clamp(1rem, 3vw, 1.5rem);
     color: var(--text);
-    font-weight: 400;
 }
 
 .tagline-sub {
@@ -184,7 +184,6 @@ main {
 .paste-placeholder p {
     font-size: clamp(1rem, 3vw, 1.5rem);
     color: var(--text);
-    font-weight: 500;
     margin-bottom: 1.5rem;
     transition: color 0.25s ease;
 }
@@ -364,7 +363,6 @@ footer {
     border: 1px solid var(--border);
     border-radius: 6px;
     font-size: 0.75rem;
-    font-weight: 500;
     color: var(--text-muted);
     font-family: var(--font-mono);
     margin-left: 0.25rem;
@@ -929,7 +927,7 @@ footer {
 
 .error-code {
     font-size: clamp(4rem, 15vw, 8rem);
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text);
     line-height: 1;
     opacity: 0.15;
