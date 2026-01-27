@@ -106,6 +106,7 @@ async function pasteFromClipboard() {
             showError("Clipboard is empty.");
             return;
         }
+        pasteArea.value = content;
         reevaluateContentStatus();
     } catch (err) {
         showError("Clipboard is empty or not accessible.");
