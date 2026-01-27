@@ -1,7 +1,9 @@
 <?php
 
+use Aternos\Mclogs\Api\ApiRouter;
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Frontend\FrontendRouter;
 use Aternos\Mclogs\Storage\MongoDBClient;
 use Aternos\Mclogs\Util\URL;
 
@@ -19,9 +21,9 @@ do {
         URL::clear();
 
         if (URL::isApi()) {
-            require __DIR__ . '/api/index.php';
+            ApiRouter::getInstance()->run();
         } else {
-            require __DIR__ . '/web/index.php';
+            FrontendRouter::getInstance()->run();
         }
     });
 

@@ -2,10 +2,13 @@
 
 namespace Aternos\Mclogs\Router;
 
+use Aternos\Mclogs\Util\Singleton;
 use Aternos\Mclogs\Util\URL;
 
 class Router
 {
+    use Singleton;
+
     /**
      * @var Route[]
      */
