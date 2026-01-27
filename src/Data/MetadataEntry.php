@@ -26,16 +26,19 @@ class MetadataEntry implements \JsonSerializable
         }
         $entries = [];
         foreach ($dataArray as $data) {
-            $entries[] = static::fromObject($data);
+            $entry = static::fromObject($data);
+            if ($entry !== null) {
+                $entries[] = $entry;
+            }
         }
         return $entries;
     }
 
     /**
      * @param object $data
-     * @return MetadataEntry
+     * @return MetadataEntry|null
      */
-    public static function fromObject(object $data): MetadataEntry
+    public static function fromObject(object $data): ?MetadataEntry
     {
         $entry = new MetadataEntry();
         if (isset($data->key) && is_string($data->key)) {
@@ -49,6 +52,9 @@ class MetadataEntry implements \JsonSerializable
         }
         if (isset($data->visible) && is_bool($data->visible)) {
             $entry->setVisible($data->visible);
+        }
+        if (!$entry->isValid()) {
+            return null;
         }
         return $entry;
     }
@@ -118,7 +124,12 @@ class MetadataEntry implements \JsonSerializable
 
     public function getDisplayLabel(): ?string
     {
-        return $this->label ?? $this->key;
+        return htmlspecialchars($this->label ?? $this->key);
+    }
+
+    public function getDisplayValue(): string
+    {
+        return htmlspecialchars($this->value);
     }
 
     public function setLabel(?string $label): static
@@ -139,5 +150,10 @@ class MetadataEntry implements \JsonSerializable
     {
         $this->visible = $visible;
         return $this;
+    }
+
+    public function isValid(): bool
+    {
+        return $this->key !== null && $this->value !== null;
     }
 }
