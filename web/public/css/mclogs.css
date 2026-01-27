@@ -273,6 +273,12 @@ footer {
     font-size: clamp(0.75rem, 2vw, 0.9rem);
 }
 
+.legal {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .footer-nav {
     display: flex;
     gap: 1.5rem;
