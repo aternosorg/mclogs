@@ -145,6 +145,11 @@ main {
     border-color: var(--accent);
 }
 
+.paste-area.dragover .paste-actions,
+.paste-area.window-dragover .paste-actions {
+    background: transparent;
+}
+
 .paste-area.dragover .paste-placeholder i.fa-cloud-arrow-up,
 .paste-area.window-dragover .paste-placeholder i.fa-cloud-arrow-up {
     color: var(--accent);
