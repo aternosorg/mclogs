@@ -9,7 +9,11 @@ use Aternos\Mclogs\Util\URL;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-MongoDBClient::getInstance()->ensureIndexes();
+try {
+    MongoDBClient::getInstance()->ensureIndexes();
+} catch (Exception $e) {
+    error_log("Failed to ensure MongoDB indexes: " . $e->getMessage());
+}
 
 $requestCount = 0;
 $maxRequests = Config::getInstance()->get(ConfigKey::WORKER_REQUESTS);
