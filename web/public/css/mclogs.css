@@ -1208,6 +1208,15 @@ footer {
     font-size: clamp(1.25rem, 3vw, 1.5rem);
     font-weight: 600;
     color: var(--text);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.api-docs-section p {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.6;
+    margin-top: 0;
     margin-bottom: 1.5rem;
 }
 
@@ -1231,6 +1240,7 @@ footer {
     background-color: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
     border: 1px solid var(--border);
     border-radius: 8px;
+    margin-top: 0;
     margin-bottom: 1.5rem;
     font-family: var(--font-mono);
     font-size: 0.9rem;
@@ -1278,6 +1288,7 @@ footer {
 .api-table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 0;
     margin-bottom: 1.5rem;
     background-color: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
     border: 1px solid var(--border);
@@ -1336,6 +1347,7 @@ footer {
     font-size: 0.85rem;
     line-height: 1.6;
     color: var(--text);
+    margin-top: 0;
     margin-bottom: 1.5rem;
     white-space: pre;
     tab-size: 2;
@@ -1356,6 +1368,39 @@ footer {
 
 .api-code::-webkit-scrollbar-thumb:hover {
     background-color: var(--accent-hover);
+}
+
+.api-note {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    background-color: color-mix(in srgb, var(--accent) 10%, transparent);
+    display: flex;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.api-note::before {
+    content: "!";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    border-radius: 999px;
+    background-color: var(--accent);
+    color: var(--bg);
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+}
+
+.api-note strong {
+    font-weight: 600;
 }
 
 .api-docs-notes {

@@ -25,9 +25,13 @@ $config = Config::getInstance();
                 </div>
                 <div class="api-docs-section">
                     <h2>Paste a log file</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
                     <div class="api-endpoint">
                         <span class="api-method">POST</span> <span class="api-url"><?= URL::getApi()->withPath("/1/log")->toString(); ?></span> <span class="content-type">application/x-www-form-urlencoded</span>
+                    </div>
+                    <div class="api-note">
+                        <strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
                     </div>
                     <table class="api-table">
                         <tr>
