@@ -99,6 +99,30 @@ body {
     font-weight: 400;
 }
 
+/* Global scrollbar styling */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--accent);
+    border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-hover);
+}
+
 ::selection {
     background-color: var(--accent);
     color: var(--text);
@@ -110,7 +134,7 @@ a {
     transition: color 0.15s ease;
 }
 
-a:hover {
+a:hover:not(.btn) {
     color: var(--accent);
 }
 
@@ -121,7 +145,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image:  
+    background-image:
         linear-gradient(color-mix(in srgb, var(--text-muted) 5%, var(--bg) 95%) 1px, transparent 1px),
         linear-gradient(90deg, color-mix(in srgb, var(--text-muted) 5%, var(--bg) 95%) 1px, transparent 1px);
     background-size: 40px 40px;
@@ -136,8 +160,8 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1rem;
-    padding: 5px 0;
+    gap: clamp(0.5rem, 2vw, 1rem);
+    padding: clamp(0.25rem, 1vw, 0.5rem) 0;
     margin-bottom: clamp(1rem, 3vw, 2rem);
 }
 
@@ -234,7 +258,7 @@ main {
     left: 0;
     right: 0;
     height: 120px;
-    background: linear-gradient(to bottom, 
+    background: linear-gradient(to bottom,
         transparent 0%,
         color-mix(in srgb, var(--bg-surface) 40%, transparent) 40%,
         color-mix(in srgb, var(--bg-surface) 80%, transparent) 70%,
@@ -295,10 +319,10 @@ main {
 
 .paste-hints {
     display: flex;
-    gap: 1.5rem;
+    gap: clamp(1rem, 3vw, 1.5rem);
     justify-content: center;
     color: var(--text-muted);
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
 }
 
 .paste-hints span,
@@ -306,7 +330,7 @@ main {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
 }
 
 .paste-hints button {
@@ -322,7 +346,7 @@ main {
 }
 
 .paste-hints i {
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
 }
 
 .paste-area .btn-save {
@@ -366,36 +390,17 @@ main {
     font-size: clamp(0.75rem, 2vw, 0.9rem);
     color: var(--text);
     position: relative;
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent) transparent;
-}
-
-.paste-area textarea::-webkit-scrollbar {
-    width: 8px;
-}
-
-.paste-area textarea::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.paste-area textarea::-webkit-scrollbar-thumb {
-    background-color: var(--accent);
-    border-radius: 4px;
-}
-
-.paste-area textarea::-webkit-scrollbar-thumb:hover {
-    background-color: var(--accent-hover);
 }
 
 .paste-error {
     display: none;
     position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
+    top: clamp(1rem, 2.5vw, 1.5rem);
+    right: clamp(1rem, 2.5vw, 1.5rem);
     color: var(--error);
     font-weight: 600;
-    font-size: 0.9rem;
-    padding: .8rem 1.25rem;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
+    padding: clamp(0.7rem, 2vw, 0.8rem) clamp(1rem, 2.5vw, 1.25rem);
     background-color: var(--error-bg);
     border: 1px solid var(--error-border);
     border-radius: 8px;
@@ -424,13 +429,13 @@ main {
     background-color: var(--accent);
     color: var(--bg);
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     border: 2px solid transparent;
-    padding: 0.7rem 1.5rem;
+    padding: clamp(0.6rem, 2vw, 0.7rem) clamp(1.2rem, 3vw, 1.5rem);
     border-radius: 8px;
     gap: .4rem;
     line-height: 1;
@@ -452,8 +457,8 @@ main {
 }
 
 .btn-small {
-    font-size: 0.8rem;
-    padding: 0.4rem 1rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
+    padding: clamp(0.35rem, 1.5vw, 0.4rem) clamp(0.85rem, 2.5vw, 1rem);
 }
 
 .btn-transparent {
@@ -518,7 +523,7 @@ footer {
 }
 
 .footer-nav a i {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .footer-text a {
@@ -532,7 +537,7 @@ footer {
 /** Log Header **/
 
 .log-header {
-    padding: 1.5rem;
+    padding: clamp(1rem, 3vw, 1.5rem);
     border-bottom: 1px solid var(--border);
 }
 
@@ -554,7 +559,7 @@ footer {
 }
 
 .log-header .log-title h1 {
-    font-size: 1.25rem;
+    font-size: clamp(1.1rem, 3vw, 1.25rem);
     font-weight: 600;
     color: var(--text);
     display: flex;
@@ -571,11 +576,11 @@ footer {
 .log-header .log-id-tag {
     display: inline-flex;
     align-items: center;
-    padding: 0.25rem 0.5rem;
+    padding: clamp(0.2rem, 1vw, 0.25rem) clamp(0.4rem, 1.5vw, 0.5rem);
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: 6px;
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.75rem);
     color: var(--text-muted);
     font-family: var(--font-mono);
     margin-left: 0.25rem;
@@ -593,8 +598,8 @@ footer {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    padding: 0.5rem 0.75rem;
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+    padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.6rem, 2vw, 0.75rem);
     background-color: var(--surface);
     border-radius: 6px;
 }
@@ -603,11 +608,11 @@ footer {
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.75rem);
     font-weight: 600;
     color: var(--text-muted);
     letter-spacing: 0.03em;
-    padding-right: 0.75rem;
+    padding-right: clamp(0.6rem, 2vw, 0.75rem);
     border-right: 1px solid var(--border);
 }
 
@@ -627,7 +632,7 @@ footer {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
     color: var(--text-muted);
 }
 
@@ -656,7 +661,7 @@ footer {
 /** Issues Panel **/
 
 .issues-panel {
-    margin: 1rem 1.25rem;
+    margin: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.25rem);
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -665,8 +670,8 @@ footer {
 .issues-header {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.75rem 1rem;
+    gap: clamp(0.5rem, 1.5vw, 0.6rem);
+    padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.85rem, 2.5vw, 1rem);
     background-color: var(--surface);
     border-bottom: 1px solid var(--border);
 }
@@ -675,17 +680,17 @@ footer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 1.4rem;
-    height: 1.4rem;
+    min-width: clamp(1.25rem, 2.5vw, 1.4rem);
+    height: clamp(1.25rem, 2.5vw, 1.4rem);
     background-color: var(--accent);
     color: var(--bg);
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
     font-weight: 600;
     border-radius: 4px;
 }
 
 .issues-title {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     font-weight: 600;
     color: var(--text);
 }
@@ -698,20 +703,20 @@ footer {
 .issue-item {
     display: flex;
     align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.75rem 1rem;
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+    padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.85rem, 2.5vw, 1rem);
 }
 
 .issue-line {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 2.25rem;
-    padding: 0.2rem 0.4rem;
+    min-width: clamp(2rem, 3vw, 2.25rem);
+    padding: clamp(0.15rem, 1vw, 0.2rem) clamp(0.35rem, 1.5vw, 0.4rem);
     background-color: var(--surface);
     border-radius: 4px;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.75rem);
     font-weight: 500;
     color: var(--text-muted);
     text-decoration: none;
@@ -727,20 +732,21 @@ footer {
 .issue-message {
     font-weight: 500;
     color: var(--text);
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
 }
 
 .issue-solutions {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
-    margin-top: 0.9rem;
+    gap: clamp(0.25rem, 1vw, 0.35rem);
+    margin-top: clamp(0.75rem, 2vw, 0.9rem);
 }
 
 .issue-solution {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.6rem;
+    gap: clamp(0.4rem, 1.5vw, 0.5rem);
+    padding: clamp(0.35rem, 1.5vw, 0.4rem) clamp(0.5rem, 2vw, 0.6rem);
     background-color: var(--accent-bg);
     border: 1px solid var(--accent-border);
     border-radius: 4px;
@@ -750,7 +756,7 @@ footer {
 .solution-text {
     font-weight: 500;
     color: var(--text);
-    font-size: .9rem;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
 }
 
 /** Log Viewer **/
@@ -766,7 +772,7 @@ footer {
 
 .log-inner {
     font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
     line-height: 1.6;
     overflow-x: auto;
     position: relative;
@@ -813,10 +819,10 @@ footer {
 
 .log-inner .line-number {
     display: inline-block;
-    padding: 0.1rem 0.25rem;
+    padding: clamp(0.08rem, 1vw, 0.1rem) clamp(0.2rem, 1.5vw, 0.25rem);
     color: var(--text-muted);
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
     border-radius: 4px;
     transition: all 0.15s ease;
 }
@@ -1040,7 +1046,7 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem;
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
     border-bottom: 1px solid var(--border);
 }
 
@@ -1154,10 +1160,10 @@ footer {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1.25rem;
-    padding: 1rem 1.5rem;
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
     border-top: 1px solid var(--border);
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
     color: var(--text-muted);
 }
 
@@ -1188,7 +1194,7 @@ footer {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 3rem 1.5rem;
+    padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 3vw, 1.5rem);
 }
 
 .error-code {
@@ -1207,10 +1213,10 @@ footer {
 }
 
 .error-description {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     color: var(--text-muted);
     margin-top: 0.75rem;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1.5rem, 4vw, 2rem);
 }
 
 /** API Documentation **/
@@ -1219,8 +1225,8 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
-    padding: 2rem 1.5rem;
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 3vw, 1.5rem);
     border-bottom: 1px solid var(--border);
     background-color: var(--bg-elevated);
 }
@@ -1237,7 +1243,7 @@ footer {
 }
 
 .api-docs-header p {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     color: var(--text-muted);
     line-height: 1.6;
 }
@@ -1247,9 +1253,69 @@ footer {
     font-weight: 600;
 }
 
-.api-docs-section {
-    padding: 2rem 1.5rem;
+.api-docs-toc {
+    padding: clamp(1rem, 2.5vw, 1.25rem) clamp(1rem, 3vw, 1.5rem);
+    margin-bottom: 0;
+    background-color: var(--bg-elevated);
     border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 2vw, 1rem);
+    flex-wrap: wrap;
+}
+
+.api-docs-toc h3 {
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-weight: 500;
+    color: var(--text-muted);
+    margin: 0;
+    white-space: nowrap;
+    opacity: 0.6;
+    pointer-events: none;
+    user-select: none;
+}
+
+.api-docs-toc h3::after {
+    content: ':';
+    margin-left: 0.25rem;
+    opacity: 0.4;
+}
+
+.api-docs-toc-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.api-docs-toc-nav a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.85rem;
+    color: var(--text-muted);
+    font-size: clamp(0.8rem, 2vw, 0.85rem);
+    border-radius: 6px;
+    transition: all 0.15s ease;
+    text-decoration: none;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.api-docs-toc-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+}
+
+.api-docs-toc-nav a:active {
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+.api-docs-section {
+    padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 3vw, 1.5rem);
+    border-bottom: 1px solid var(--border);
+    scroll-margin-top: 1rem;
 }
 
 .api-docs-section:last-of-type {
@@ -1265,15 +1331,44 @@ footer {
 }
 
 .api-docs-section p {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     color: var(--text);
     line-height: 1.6;
     margin-top: 0;
     margin-bottom: 1.5rem;
 }
 
+.api-docs-section p + p {
+    margin-top: -0.75rem;
+}
+
+.api-docs-section p + .api-endpoint,
+.api-docs-section p + .api-table,
+.api-docs-section p + h3,
+.api-docs-section p + h4 {
+    margin-top: 0;
+}
+
 .api-docs-section h3 {
     font-size: clamp(1rem, 2.5vw, 1.1rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.api-docs-section h2 + h3,
+.api-docs-section .api-endpoint + h3,
+.api-docs-section .api-table + h3,
+.api-docs-section .api-note + h3 {
+    margin-top: 1.5rem;
+}
+
+.api-docs-section h4 {
+    font-size: clamp(0.95rem, 2vw, 1rem);
     font-weight: 600;
     color: var(--text);
     margin-top: 1.5rem;
@@ -1283,30 +1378,41 @@ footer {
     gap: 0.5rem;
 }
 
+.api-docs-section h3 + h4 {
+    margin-top: 1rem;
+}
+
 .api-endpoint {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    padding: 1rem 1.25rem;
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.25rem);
     background-color: var(--bg-inset);
     border: 1px solid var(--border);
     border-radius: 8px;
     margin-top: 0;
     margin-bottom: 1.5rem;
     font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
+}
+
+.api-endpoint + .api-note,
+.api-endpoint + .api-table,
+.api-endpoint + h3,
+.api-endpoint + h4 {
+    margin-top: 0;
 }
 
 .api-method {
     display: inline-flex;
     align-items: center;
-    padding: 0.25rem 0.75rem;
+    padding: clamp(0.2rem, 1vw, 0.25rem) clamp(0.6rem, 1.5vw, 0.75rem);
     background-color: var(--accent);
     color: var(--bg);
     font-weight: 600;
     border-radius: 4px;
-    font-size: 0.8rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -1320,18 +1426,18 @@ footer {
 .content-type {
     display: inline-flex;
     align-items: center;
-    padding: 0.25rem 0.75rem;
+    padding: clamp(0.2rem, 1vw, 0.25rem) clamp(0.6rem, 1.5vw, 0.75rem);
     background-color: var(--surface);
     color: var(--text-muted);
     border: 1px solid var(--border);
     border-radius: 4px;
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.75rem);
     font-weight: 500;
     font-family: var(--font-mono);
 }
 
 .command-description {
-    font-size: 0.85rem;
+    font-size: clamp(0.8rem, 2vw, 0.85rem);
     font-weight: 400;
     color: var(--text-muted);
     font-style: italic;
@@ -1348,20 +1454,27 @@ footer {
     overflow: hidden;
 }
 
+.api-table + .api-note,
+.api-table + h3,
+.api-table + h4,
+.api-table + .api-code {
+    margin-top: 0;
+}
+
 .api-table th {
     background-color: var(--surface);
-    padding: 0.75rem 1rem;
+    padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.85rem, 2.5vw, 1rem);
     text-align: left;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: clamp(0.8rem, 2vw, 0.85rem);
     color: var(--text);
     border-bottom: 1px solid var(--border);
 }
 
 .api-table td {
-    padding: 0.75rem 1rem;
+    padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.85rem, 2.5vw, 1rem);
     border-bottom: 1px solid var(--border);
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
 }
 
 .api-table tr:last-child td {
@@ -1389,14 +1502,44 @@ footer {
     line-height: 1.5;
 }
 
+.api-required {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.api-required i {
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.api-required.required i {
+    color: var(--accent);
+    opacity: 1;
+}
+
+.api-required {
+    text-align: center;
+    font-size: 1rem;
+}
+
+.api-required i {
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
+.api-required.required i {
+    color: var(--accent);
+    opacity: 1;
+}
+
 .api-code {
     background-color: var(--bg-elevated);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 1.25rem;
+    padding: clamp(1rem, 2.5vw, 1.25rem);
     overflow-x: auto;
     font-family: var(--font-mono);
-    font-size: 0.85rem;
+    font-size: clamp(0.8rem, 2vw, 0.85rem);
     line-height: 1.6;
     color: var(--text);
     margin-top: 0;
@@ -1405,62 +1548,37 @@ footer {
     tab-size: 2;
 }
 
-.api-code::-webkit-scrollbar {
-    height: 8px;
-}
-
-.api-code::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.api-code::-webkit-scrollbar-thumb {
-    background-color: var(--accent);
-    border-radius: 4px;
-}
-
-.api-code::-webkit-scrollbar-thumb:hover {
-    background-color: var(--accent-hover);
+.api-code + h3,
+.api-code + h4,
+.api-code + .api-note {
+    margin-top: 1.5rem;
 }
 
 .api-note {
     margin-top: 0;
     margin-bottom: 1.5rem;
-    padding: 0.85rem 1rem;
+    padding: clamp(0.75rem, 2vw, 0.85rem) clamp(0.85rem, 2.5vw, 1rem);
     border-radius: 8px;
     border: 1px solid var(--accent-border);
     background-color: var(--accent-bg);
-    display: flex;
-    gap: 0.6rem;
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 1.8vw, 0.9rem);
     color: var(--text);
+    line-height: 1.6;
 }
 
-.api-note::before {
-    content: "!";
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 1.4rem;
-    height: 1.4rem;
-    border-radius: 999px;
-    background-color: var(--accent);
-    color: var(--bg);
-    font-weight: 700;
-    font-size: 0.8rem;
-    flex-shrink: 0;
-    margin-top: 0.05rem;
-}
-
-.api-note strong {
-    font-weight: 600;
+.api-note .content-type {
+    white-space: normal;
+    word-break: break-word;
+    display: inline;
+    vertical-align: baseline;
 }
 
 .api-docs-notes {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
-    padding: 2rem 1.5rem;
+    gap: clamp(1rem, 3vw, 2rem);
+    padding: clamp(1.25rem, 3vw, 2rem) clamp(1rem, 3vw, 1.5rem);
     background-color: var(--bg-elevated);
     border: 1px solid var(--border);
 }
@@ -1477,7 +1595,7 @@ footer {
 }
 
 .api-docs-notes-content p {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 1rem;
@@ -1517,12 +1635,6 @@ footer {
         gap: 1.5rem;
     }
 
-    .api-docs-header-icon {
-        width: 3rem;
-        height: 3rem;
-        font-size: 1.25rem;
-    }
-
     .api-docs-section {
         padding: 1.5rem 1rem;
     }
@@ -1533,14 +1645,20 @@ footer {
         gap: 1.5rem;
     }
 
-    .api-docs-notes-icon {
-        width: 3rem;
-        height: 3rem;
-        font-size: 1.25rem;
-    }
-
     .api-endpoint {
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .api-docs-toc {
+        padding: 1rem;
+    }
+
+    .api-docs-toc-nav {
+        gap: 0.25rem;
+    }
+
+    .api-docs-toc-nav a {
+        padding: 0.35rem 0.7rem;
     }
 }

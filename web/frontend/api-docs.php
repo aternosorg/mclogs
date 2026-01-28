@@ -24,14 +24,22 @@ $config = Config::getInstance();
                         <p>Integrate <strong><?= $config->getName(); ?></strong> directly into your server panel, your hosting software or anything else. This platform was built for high performance automation and can easily be integrated into any existing software via our HTTP API.</p>
                     </div>
                 </div>
-                <div class="api-docs-section">
+                <div class="api-docs-toc">
+                    <h3>Quick Links</h3>
+                    <nav class="api-docs-toc-nav">
+                        <a href="#create-log">Create a log</a>
+                        <a href="#get-log-info">Get log info and content</a>
+                        <a href="#delete-log">Delete a log</a>
+                    </nav>
+                </div>
+                <div class="api-docs-section" id="create-log">
                     <h2>Create a log</h2>
 
                     <div class="api-endpoint">
                         <span class="api-method">POST</span> <span class="api-url"><?= URL::getApi()->withPath("/1/log")->toString(); ?></span> <span class="content-type">application/json</span>
                     </div>
                     <div class="api-note">
-                        <strong>Note:</strong> Posting content with the content type <span class="content-type">application/x-www-form-urlencoded</span> is still supported for backwards compatibility, but does not support setting metadata.
+                        Posting content with the content type <span class="content-type">application/x-www-form-urlencoded</span> is still supported for backwards compatibility, but does not support setting metadata.
                     </div>
                     <table class="api-table">
                         <tr>
@@ -133,7 +141,6 @@ $config = Config::getInstance();
                     <h3>Responses</h3>
                     <h4>Success <span class="content-type">application/json</span></h4>
                     <div class="api-note">
-                        <strong>Note:</strong>
                         The token provided in this response can be used to delete this log later. Store or discard it securely, it will not be shown again.
                     </div>
                     <pre class="api-code">{
@@ -170,7 +177,7 @@ $config = Config::getInstance();
 }</pre>
                 </div>
 
-                <div class="api-docs-section">
+                <div class="api-docs-section" id="get-log-info">
                     <h2>Get log info and content</h2>
                     <div class="api-endpoint">
                         <span class="api-method">GET</span> <span class="api-url"><?= URL::getApi()->toString(); ?>/1/log/[id]</span>
@@ -205,7 +212,6 @@ $config = Config::getInstance();
                     <h3>Responses</h3>
                     <h4>Success <span class="content-type">application/json</span></h4>
                     <div class="api-note">
-                        <strong>Note:</strong>
                         All content fields are only included if the corresponding GET parameter is provided.
                         If no content parameter is provided, the entire content object is omitted from the response.
                     </div>
@@ -246,10 +252,10 @@ $config = Config::getInstance();
     "error": "Log not found."
 }</pre>
                 </div>
-                <div class="api-docs-section">
+                <div class="api-docs-section" id="delete-log">
                     <h2>Delete a log</h2>
                     <div class="api-note">
-                        <strong>Note:</strong> Deleting a log requires the token that was provided when creating the log.
+                        Deleting a log requires the token that was provided when creating the log.
                     </div>
 
                     <div class="api-endpoint">
@@ -282,10 +288,9 @@ $config = Config::getInstance();
     "error": "Invalid token."
 }</pre>
                 </div>
-                <div class="api-docs-section">
+                <div class="api-docs-section" id="get-raw">
                     <h2>Get the raw log file content</h2>
                     <div class="api-note">
-                        <strong>Note: </strong>
                         Only use this endpoint if you really only need the raw log content. For most use cases, getting the log info and content together from the log endpoint is recommended.
                     </div>
                     <div class="api-endpoint">
@@ -318,10 +323,9 @@ $config = Config::getInstance();
     "error": "Log not found."
 }</pre>
                 </div>
-                <div class="api-docs-section">
+                <div class="api-docs-section" id="get-insights">
                     <h2>Get insights</h2>
                     <div class="api-note">
-                        <strong>Note: </strong>
                         This endpoint is mainly kept for backwards compatibility. For new applications, getting the insights together with the log info from the log endpoint is recommended.
                     </div>
                     <div class="api-endpoint">
@@ -399,7 +403,7 @@ $config = Config::getInstance();
     "error": "Log not found."
 }</pre>
                 </div>
-                <div class="api-docs-section">
+                <div class="api-docs-section" id="analyse">
                     <h2>Analyse a log without saving it</h2>
                     <p>
                         If you only want to use the analysis features of this service without saving the log, you can use this endpoint.
@@ -481,7 +485,7 @@ $config = Config::getInstance();
     "error": "Required field 'content' is empty."
 }</pre>
                 </div>
-                <div class="api-docs-section">
+                <div class="api-docs-section" id="check-limits">
                     <h2>Check storage limits</h2>
 
                     <div class="api-endpoint">
