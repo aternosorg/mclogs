@@ -20,7 +20,7 @@ use Aternos\Mclogs\Util\URL;
     </style>
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" sizes="any"/>
-    <link rel="shortcut icon" href="<?= URL::getBase()->withPath("/favicon.svg")->toString(); ?>" type="image/svg+xml">
+    <link rel="shortcut icon" href="<?= htmlspecialchars(URL::getBase()->withPath("/favicon.svg")->toString()); ?>" type="image/svg+xml">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <?php if (Config::getInstance()->get(ConfigKey::FRONTEND_ANALYTICS)): ?>
