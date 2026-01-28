@@ -13,8 +13,8 @@ $settings = new Settings();
 <html lang="en">
     <head>
         <?php include __DIR__ . '/parts/head.php'; ?>
-        <title><?=$log->getPageTitle(); ?></title>
-        <meta name="description" content="<?=$log->getPageDescription(); ?>" />
+        <title><?=htmlspecialchars($log->getPageTitle()); ?></title>
+        <meta name="description" content="<?=htmlspecialchars($log->getPageDescription()); ?>" />
     </head>
     <body class="log-body<?=$settings->getBodyClassesString(); ?>">
         
@@ -39,12 +39,12 @@ $settings = new Settings();
                                    <?php if($log->hasErrors()): ?>
                                        <div class="btn btn-danger btn-small" id="error-toggle">
                                            <i class="fa fa-exclamation-circle"></i>
-                                           <?=$log->getErrorsString(); ?>
+                                           <?=htmlspecialchars($log->getErrorsString()); ?>
                                        </div>
                                    <?php endif; ?>
                                    <div class="btn btn-dark btn-small" id="down-button">
                                        <i class="fa fa-arrow-circle-down"></i>
-                                       <?=$log->getLinesString(); ?>
+                                       <?=htmlspecialchars($log->getLinesString()); ?>
                                    </div>
                                    <a class="btn btn-white btn-small" id="raw" target="_blank" href="<?=$log->getRawURL()->toString(); ?>">
                                        <i class="fa fa-arrow-up-right-from-square"></i>
@@ -66,8 +66,8 @@ $settings = new Settings();
                                    <div class="info-row-items">
                                        <?php foreach($log->getVisibleMetadata() as $metadata): ?>
                                            <span class="info-item">
-                                               <span class="info-label"><?=$metadata->getDisplayLabel(); ?>:</span>
-                                               <span class="info-value"><?=$metadata->getDisplayValue(); ?></span>
+                                               <span class="info-label"><?=htmlspecialchars($metadata->getDisplayLabel()); ?>:</span>
+                                               <span class="info-value"><?=htmlspecialchars($metadata->getDisplayValue()); ?></span>
                                            </span>
                                        <?php endforeach; ?>
                                    </div>
@@ -103,7 +103,7 @@ $settings = new Settings();
                             <?php foreach($problems as $problem): ?>
                                 <?php $number = $problem->getEntry()[0]->getNumber(); ?>
                                 <div class="issue-item">
-                                    <a href="/<?=$id->get() . "#L" . $number; ?>" class="issue-line" onclick="updateLineNumber('#L<?=$number; ?>');"><?=$number; ?></a>
+                                    <a href="/<?=$log->getId()->get() . "#L" . $number; ?>" class="issue-line" onclick="updateLineNumber('#L<?=$number; ?>');"><?=$number; ?></a>
                                     <div class="issue-content">
                                         <p class="issue-message"><?=htmlspecialchars($problem->getMessage()); ?></p>
                                         <?php if(count($problem->getSolutions()) > 0): ?>
@@ -123,7 +123,7 @@ $settings = new Settings();
                     </div>
                 <?php endif; ?>
                 <div class="log">
-                    <div class="log-inner<?= $shouldWrapLogLines ? "" : " no-wrap"?>">
+                    <div class="log-inner">
                         <?php
                         echo $log->getPrinter()->print();
                         ?>
@@ -158,20 +158,20 @@ $settings = new Settings();
                         <?php if ($source = $log->getSource()): ?>
                             <div class="source" title="Source">
                                 <i class="fa-solid fa-arrow-up-from-bracket"></i>
-                                <?=$source; ?>
+                                <?=htmlspecialchars($source); ?>
                             </div>
                         <?php endif; ?>
                         <?php if ($created = $log->getCreated()?->toDateTime()->getTimestamp()): ?>
                             <div class="created-time" title="Created">
                                 <i class="fa-solid fa-clock"></i>
-                                <span class="created" data-time="<?=$created; ?>">
+                                <span class="created" data-time="<?=htmlspecialchars($created); ?>">
                                 </span>
                             </div>
                         <?php endif; ?>
                     </div>
                     <?php if ($abuseEmail = Config::getInstance()->get(ConfigKey::LEGAL_ABUSE)): ?>
                     <div class="right">
-                        <a href="mailto:<?=$abuseEmail; ?>?subject=Report%20mclo.gs/<?=$log->getId()->get(); ?>" class="report-link">
+                        <a href="mailto:<?=htmlspecialchars($abuseEmail); ?>?subject=Report%20mclo.gs/<?=htmlspecialchars($log->getId()->get()); ?>" class="report-link">
                             <i class="fa-solid fa-flag"></i>
                             Report abuse
                         </a>
