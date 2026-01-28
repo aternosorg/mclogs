@@ -776,22 +776,16 @@ footer {
     line-height: 1.6;
     overflow-x: auto;
     position: relative;
+    padding: 0.5rem 0 0;
 }
 
 .log-inner.no-wrap {
     white-space: pre;
 }
 
-.log-inner {
-    display: grid;
-    padding: 0.5rem 0 0;
-    grid-template-columns: auto 1fr;
-}
-
 .log-inner .entry {
-    display: grid;
-    grid-template-columns: subgrid;
-    grid-column: 1 / -1;
+    display: flex;
+    width: 100%;
     transition: background-color 0.1s ease;
 }
 
@@ -804,12 +798,10 @@ footer {
 }
 
 .log-inner .line-number-container {
+    flex-shrink: 0;
     min-width: 2.75rem;
     padding: 0 0.4rem;
     border-right: 1px solid var(--border);
-    position: sticky;
-    left: 0;
-    z-index: 1;
     text-align: right;
 }
 
@@ -854,16 +846,24 @@ footer {
 }
 
 .log-inner .line-content {
+    flex: 1;
     padding-left: 1.25rem;
+    padding-right: 1.25rem;
     word-break: break-word;
     overflow-wrap: anywhere;
     color: var(--text);
+    min-width: 0;
+}
+
+.log-inner .entry:hover .line-content {
+    background-color: var(--surface);
 }
 
 .log-inner .level {
     display: block;
     white-space: pre-wrap;
     tab-size: 4;
+    width: 100%;
 }
 
 .log-inner .level-prefix {
