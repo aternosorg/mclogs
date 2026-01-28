@@ -71,6 +71,10 @@ class ContentParser
             return new ApiError(400, "Required field 'content' is empty.");
         }
 
+        if (!is_string($data['content'])) {
+            return new ApiError(400, "Field 'content' must be a string.");
+        }
+
         return $data;
     }
 }
