@@ -2,7 +2,10 @@
 
 namespace Aternos\Mclogs\Data;
 
-class MetadataEntry implements \JsonSerializable
+use MongoDB\BSON\Serializable;
+use MongoDB\Model\BSONDocument;
+
+class MetadataEntry implements \JsonSerializable, Serializable
 {
     protected const int MAX_KEY_LENGTH = 64;
     protected const int MAX_LABEL_LENGTH = 128;
@@ -17,17 +20,20 @@ class MetadataEntry implements \JsonSerializable
      * @param iterable|null $dataArray
      * @return MetadataEntry[]
      */
-    public static function allFromObjectArray(?iterable $dataArray): array
+    public static function allFromArray(?iterable $dataArray): array
     {
         if ($dataArray === null) {
             return [];
         }
         $entries = [];
         foreach ($dataArray as $data) {
-            if (!is_object($data)) {
+            if (is_array($data)) {
+                $entry = static::fromArray($data);
+            } else if (is_object($data)) {
+                $entry = static::fromObject($data);
+            } else {
                 continue;
             }
-            $entry = static::fromObject($data);
             if ($entry !== null) {
                 $entries[] = $entry;
             }
@@ -36,28 +42,30 @@ class MetadataEntry implements \JsonSerializable
     }
 
     /**
+     * @param array $data
+     * @return MetadataEntry|null
+     */
+    public static function fromArray(array $data): ?MetadataEntry
+    {
+        $entry = new MetadataEntry()->setFromArray($data);
+        if (!$entry->isValid()) {
+            return null;
+        }
+        return $entry;
+    }
+
+    /**
      * @param object $data
      * @return MetadataEntry|null
      */
     public static function fromObject(object $data): ?MetadataEntry
     {
-        $entry = new MetadataEntry();
-        if (isset($data->key) && is_string($data->key)) {
-            $entry->setKey($data->key);
+        if ($data instanceof BSONDocument) {
+            $arrayData = $data->getArrayCopy();
+        } else {
+            $arrayData = get_object_vars($data);
         }
-        if (isset($data->value)) {
-            $entry->setValue($data->value);
-        }
-        if (isset($data->label) && is_string($data->label)) {
-            $entry->setLabel($data->label);
-        }
-        if (isset($data->visible) && is_bool($data->visible)) {
-            $entry->setVisible($data->visible);
-        }
-        if (!$entry->isValid()) {
-            return null;
-        }
-        return $entry;
+        return static::fromArray($arrayData);
     }
 
     public function jsonSerialize(): array
@@ -68,6 +76,11 @@ class MetadataEntry implements \JsonSerializable
             "label" => $this->label,
             "visible" => $this->visible,
         ];
+    }
+
+    public function bsonSerialize(): array
+    {
+        return $this->jsonSerialize();
     }
 
     public function getKey(): ?string
@@ -125,12 +138,12 @@ class MetadataEntry implements \JsonSerializable
 
     public function getDisplayLabel(): ?string
     {
-        return htmlspecialchars($this->label ?? $this->key);
+        return $this->label ?? $this->key;
     }
 
     public function getDisplayValue(): string
     {
-        return htmlspecialchars($this->value);
+        return $this->value;
     }
 
     public function setLabel(?string $label): static
@@ -156,5 +169,26 @@ class MetadataEntry implements \JsonSerializable
     public function isValid(): bool
     {
         return $this->key !== null && $this->value !== null;
+    }
+
+    /**
+     * @param array $data
+     * @return $this
+     */
+    public function setFromArray(array $data): static
+    {
+        if (isset($data['key']) && is_string($data['key'])) {
+            $this->setKey($data['key']);
+        }
+        if (isset($data['value'])) {
+            $this->setValue($data['value']);
+        }
+        if (isset($data['label']) && is_string($data['label'])) {
+            $this->setLabel($data['label']);
+        }
+        if (isset($data['visible']) && is_bool($data['visible'])) {
+            $this->setVisible($data['visible']);
+        }
+        return $this;
     }
 }

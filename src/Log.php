@@ -48,10 +48,11 @@ class Log
         if ($data === null) {
             return null;
         }
+
         return new static($id)
             ->setContent($data->data ?? null)
             ->setToken($data->token ? new Token($data->token) : null)
-            ->setMetadata(MetadataEntry::allFromObjectArray($data->metadata ?? []))
+            ->setMetadata(MetadataEntry::allFromArray($data->metadata ?? []))
             ->setSource($data->source ?? null)
             ->setCreated($data->created ?? null)
             ->setExpires($data->expires ?? null);
@@ -92,7 +93,7 @@ class Log
     }
 
     /**
-     * @param array $metadata
+     * @param MetadataEntry[] $metadata
      * @return $this
      */
     public function setMetadata(array $metadata): static

@@ -6,6 +6,7 @@ use Aternos\Mclogs\Api\ContentParser;
 use Aternos\Mclogs\Api\Response\ApiError;
 use Aternos\Mclogs\Api\Response\ApiResponse;
 use Aternos\Mclogs\Api\Response\LogResponse;
+use Aternos\Mclogs\Data\MetadataEntry;
 use Aternos\Mclogs\Log;
 
 class CreateLogAction extends ApiAction
@@ -24,7 +25,7 @@ class CreateLogAction extends ApiAction
         $content = $data['content'];
         $metadata = [];
         if (isset($data['metadata']) && is_array($data['metadata'])) {
-            $metadata = $data['metadata'];
+            $metadata = MetadataEntry::allFromArray($data['metadata']);
         }
         $source = null;
         if (isset($data['source']) && is_string($data['source'])) {
