@@ -2,6 +2,7 @@
 
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Frontend\Settings\Setting;
 use Aternos\Mclogs\Log;
 
 /** @var Log $log */
@@ -132,9 +133,16 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                     <div class="btn btn-small btn-dark" id="up-button">
                         <i class="fa fa-arrow-circle-up"></i>
                     </div>
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="wrap-checkbox"<?=$shouldWrapLogLines ? " checked" : ""?>/>
-                        <label for="wrap-checkbox">Wrap log lines</label>
+                    <div class="settings-opener">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="settings-panel">
+                        <?php foreach(Setting::cases() as $setting): ?>
+                            <div class="setting">
+                                <label for="setting-<?=$setting->value; ?>"><?=$setting->getLabel(); ?></label>
+                                <input type="checkbox" id="setting-<?=$setting->value; ?>" class="setting-checkbox" />
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="log-notice">
