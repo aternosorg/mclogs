@@ -12,10 +12,10 @@ use Aternos\Mclogs\Util\URL;
     <link rel="stylesheet" href="css/mclogs.css"/>
     <style>
         :root {
-            --bg: <?= Config::getInstance()->get(ConfigKey::FRONTEND_COLOR_BACKGROUND); ?>;
-            --text: <?= Config::getInstance()->get(ConfigKey::FRONTEND_COLOR_TEXT); ?>;
-            --accent: <?= Config::getInstance()->get(ConfigKey::FRONTEND_COLOR_ACCENT); ?>;
-            --error: <?= Config::getInstance()->get(ConfigKey::FRONTEND_COLOR_ERROR); ?>;
+            --bg: <?= htmlspecialchars(Config::getInstance()->get(ConfigKey::FRONTEND_COLOR_BACKGROUND)); ?>;
+            --text: <?= htmlspecialchars(Config::getInstance()->get(ConfigKey::FRONTEND_COLOR_TEXT)); ?>;
+            --accent: <?= htmlspecialchars(Config::getInstance()->get(ConfigKey::FRONTEND_COLOR_ACCENT)); ?>;
+            --error: <?= htmlspecialchars(Config::getInstance()->get(ConfigKey::FRONTEND_COLOR_ERROR)); ?>;
         }
     </style>
 

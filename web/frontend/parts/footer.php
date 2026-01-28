@@ -21,7 +21,7 @@ $privacyUrl = Config::getInstance()->get(ConfigKey::LEGAL_PRIVACY);
     <nav class="footer-nav">
         <a href="https://github.com/aternosorg/mclogs" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
         <a href="https://modrinth.com/plugin/mclogs" target="_blank"><i class="fa-solid fa-cube"></i> Mod/Plugin</a>
-        <a href="<?=URL::getApi()->toString(); ?>"><i class="fa-solid fa-code"></i> API</a>
+        <a href="<?=htmlspecialchars(URL::getApi()->toString()); ?>"><i class="fa-solid fa-code"></i> API</a>
     </nav>
     <span class="footer-text">developed by<a href="https://aternos.org" target="_blank"> Aternos</a>
     </span>

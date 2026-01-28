@@ -10,8 +10,8 @@ $config = Config::getInstance();
 <html lang="en">
     <head>
         <?php include __DIR__ . '/parts/head.php'; ?>
-        <title>API Documentation - <?= $config->getName(); ?></title>
-        <meta name="description" content="API documentation for <?= $config->getName(); ?> - Integrate log sharing directly into your server panel or hosting software." />
+        <title>API Documentation - <?= htmlspecialchars($config->getName()); ?></title>
+        <meta name="description" content="API documentation for <?= htmlspecialchars($config->getName()); ?> - Integrate log sharing directly into your server panel or hosting software." />
     </head>
     <body>
         <div class="container">
@@ -21,7 +21,7 @@ $config = Config::getInstance();
                 <div class="api-docs-header">
                     <div class="api-docs-header-content">
                         <h1>API Documentation</h1>
-                        <p>Integrate <strong><?= $config->getName(); ?></strong> directly into your server panel, your hosting software or anything else. This platform was built for high performance automation and can easily be integrated into any existing software via our HTTP API.</p>
+                        <p>Integrate <strong><?= htmlspecialchars($config->getName()); ?></strong> directly into your server panel, your hosting software or anything else. This platform was built for high performance automation and can easily be integrated into any existing software via our HTTP API.</p>
                     </div>
                 </div>
                 <div class="api-docs-toc">
@@ -36,7 +36,7 @@ $config = Config::getInstance();
                     <h2>Create a log</h2>
 
                     <div class="api-endpoint">
-                        <span class="api-method">POST</span> <span class="api-url"><?= URL::getApi()->withPath("/1/log")->toString(); ?></span> <span class="content-type">application/json</span>
+                        <span class="api-method">POST</span> <span class="api-url"><?= htmlspecialchars(URL::getApi()->withPath("/1/log")->toString()); ?></span> <span class="content-type">application/json</span>
                     </div>
                     <div class="api-note">
                         Posting content with the content type <span class="content-type">application/x-www-form-urlencoded</span> is still supported for backwards compatibility, but does not support setting metadata.
@@ -152,8 +152,8 @@ $config = Config::getInstance();
     "size":157369,
     "lines":1201,
     "errors":8,
-    "url": "<?= URL::getBase()->withPath("/WnMMikq")->toString(); ?>",
-    "raw": "<?= URL::getApi()->withPath("/1/raw/WnMMikq")->toString(); ?>",
+    "url": "<?= htmlspecialchars(URL::getBase()->withPath("/WnMMikq")->toString()); ?>",
+    "raw": "<?= htmlspecialchars(URL::getApi()->withPath("/1/raw/WnMMikq")->toString()); ?>",
     "token":"78351fafe495398163fff847f9a26dda440435dcf7b5f92e8e36308f3683d771",
     "metadata": [
         {
@@ -180,7 +180,7 @@ $config = Config::getInstance();
                 <div class="api-docs-section" id="get-log-info">
                     <h2>Get log info and content</h2>
                     <div class="api-endpoint">
-                        <span class="api-method">GET</span> <span class="api-url"><?= URL::getApi()->toString(); ?>/1/log/[id]</span>
+                        <span class="api-method">GET</span> <span class="api-url"><?= htmlspecialchars(URL::getApi()->toString()); ?>/1/log/[id]</span>
                     </div>
                     <p>
                         This endpoint only returns the log info and metadata by default (same response as creating a log), you can also get the content in the same request by enabling it in different
@@ -224,8 +224,8 @@ $config = Config::getInstance();
     "size":157369,
     "lines":1201,
     "errors":8,
-    "url": "<?= URL::getBase()->withPath("/WnMMikq")->toString(); ?>",
-    "raw": "<?= URL::getApi()->withPath("/1/raw/WnMMikq")->toString(); ?>",
+    "url": "<?= htmlspecialchars(URL::getBase()->withPath("/WnMMikq")->toString()); ?>",
+    "raw": "<?= htmlspecialchars(URL::getApi()->withPath("/1/raw/WnMMikq")->toString()); ?>",
     "metadata": [
         {
             "key": "server_id",
@@ -259,7 +259,7 @@ $config = Config::getInstance();
                     </div>
 
                     <div class="api-endpoint">
-                        <span class="api-method">DELETE</span> <span class="api-url"><?= URL::getApi()->toString(); ?>/1/log/[id]</span>
+                        <span class="api-method">DELETE</span> <span class="api-url"><?= htmlspecialchars(URL::getApi()->toString()); ?>/1/log/[id]</span>
                     </div>
 
                     <h3>Headers</h3>
@@ -294,7 +294,7 @@ $config = Config::getInstance();
                         Only use this endpoint if you really only need the raw log content. For most use cases, getting the log info and content together from the log endpoint is recommended.
                     </div>
                     <div class="api-endpoint">
-                        <span class="api-method">GET</span> <span class="api-url"><?= URL::getApi()->toString(); ?>/1/raw/[id]</span>
+                        <span class="api-method">GET</span> <span class="api-url"><?= htmlspecialchars(URL::getApi()->toString()); ?>/1/raw/[id]</span>
                     </div>
                     <table class="api-table">
                         <tr>
@@ -305,7 +305,7 @@ $config = Config::getInstance();
                         <tr>
                             <td class="api-field">[id]</td>
                             <td class="api-type">string</td>
-                            <td class="api-description">The log file id, received from the paste endpoint or from a URL (<?= URL::getBase()->toString(); ?>/[id]).</td>
+                            <td class="api-description">The log file id, received from the paste endpoint or from a URL (<?= htmlspecialchars(URL::getBase()->toString()); ?>/[id]).</td>
                         </tr>
                     </table>
 
@@ -329,7 +329,7 @@ $config = Config::getInstance();
                         This endpoint is mainly kept for backwards compatibility. For new applications, getting the insights together with the log info from the log endpoint is recommended.
                     </div>
                     <div class="api-endpoint">
-                        <span class="api-method">GET</span> <span class="api-url"><?= URL::getApi()->toString(); ?>/1/insights/[id]</span>
+                        <span class="api-method">GET</span> <span class="api-url"><?= htmlspecialchars(URL::getApi()->toString()); ?>/1/insights/[id]</span>
                     </div>
                     <table class="api-table">
                         <tr>
@@ -340,7 +340,7 @@ $config = Config::getInstance();
                         <tr>
                             <td class="api-field">[id]</td>
                             <td class="api-type">string</td>
-                            <td class="api-description">The log file id, received from the paste endpoint or from a URL (<?= URL::getBase()->toString(); ?>/[id]).</td>
+                            <td class="api-description">The log file id, received from the paste endpoint or from a URL (<?= htmlspecialchars(URL::getBase()->toString()); ?>/[id]).</td>
                         </tr>
                     </table>
 
@@ -411,7 +411,7 @@ $config = Config::getInstance();
                     </p>
 
                     <div class="api-endpoint">
-                        <span class="api-method">POST</span> <span class="api-url"><?= URL::getApi()->withPath("/1/analyse")->toString(); ?></span> <span class="content-type">application/x-www-form-urlencoded</span> <span class="content-type">application/json</span>
+                        <span class="api-method">POST</span> <span class="api-url"><?= htmlspecialchars(URL::getApi()->withPath("/1/analyse")->toString()); ?></span> <span class="content-type">application/x-www-form-urlencoded</span> <span class="content-type">application/json</span>
                     </div>
                     <table class="api-table">
                         <tr>
@@ -489,7 +489,7 @@ $config = Config::getInstance();
                     <h2>Check storage limits</h2>
 
                     <div class="api-endpoint">
-                        <span class="api-method">GET</span> <span class="api-url"><?= URL::getApi()->withPath("/1/limits")->toString(); ?></span>
+                        <span class="api-method">GET</span> <span class="api-url"><?= htmlspecialchars(URL::getApi()->withPath("/1/limits")->toString()); ?></span>
                     </div>
                     <h3>Success <span class="content-type">application/json</span></h3>
                     <pre class="api-code">
