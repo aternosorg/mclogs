@@ -110,7 +110,7 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                                             <div class="issue-solutions">
                                                 <?php foreach($problem->getSolutions() as $solution): ?>
                                                     <div class="issue-solution">
-                                                        <span class="solution-num"></span>
+                                                        <i class="fa-solid fa-lightbulb"></i>
                                                         <span class="solution-text"><?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", htmlspecialchars($solution->getMessage())); ?></span>
                                                     </div>
                                                 <?php endforeach; ?>

@@ -62,7 +62,7 @@
     --text-muted: color-mix(in srgb, var(--text) 55%, var(--bg) 45%);
     --accent-hover: color-mix(in srgb, var(--accent) 78%, var(--bg) 22%);
     --accent-bg: color-mix(in srgb, var(--accent) 12%, transparent);
-    --accent-border: color-mix(in srgb, var(--accent) 40%, transparent);
+    --accent-border: var(--accent);
     --error-bg: color-mix(in srgb, var(--error) 10%, transparent);
     --error-border: color-mix(in srgb, var(--error) 40%, transparent);
     --border: rgba(255, 255, 255, 0.08);
@@ -565,7 +565,6 @@ footer {
 
 .log-header .log-title h1 i {
     color: var(--accent);
-    font-size: 1rem;
 }
 
 .log-header .log-id-tag {
@@ -660,7 +659,6 @@ footer {
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
-    overflow: hidden;
 }
 
 .issues-header {
@@ -678,7 +676,6 @@ footer {
     justify-content: center;
     min-width: 1.4rem;
     height: 1.4rem;
-    padding: 0 0.4rem;
     background-color: var(--accent);
     color: var(--bg);
     font-size: 0.8rem;
@@ -704,10 +701,6 @@ footer {
     padding: 0.75rem 1rem;
 }
 
-.issue-item + .issue-item {
-    border-top: 1px solid var(--border);
-}
-
 .issue-line {
     display: flex;
     align-items: center;
@@ -730,54 +723,33 @@ footer {
     color: var(--bg);
 }
 
-.issue-content {
-    flex: 1;
-    min-width: 0;
-}
-
 .issue-message {
-    font-size: 1rem;
     font-weight: 500;
     color: var(--text);
-    line-height: 1.5;
 }
 
 .issue-solutions {
     display: flex;
     flex-direction: column;
     gap: 0.35rem;
-    margin-top: 0.5rem;
+    margin-top: 0.9rem;
 }
 
 .issue-solution {
     display: flex;
-    gap: 0.5rem;
     align-items: center;
+    gap: 0.5rem;
     padding: 0.4rem 0.6rem;
     background-color: var(--accent-bg);
+    border: 1px solid var(--accent-border);
     border-radius: 4px;
-}
-
-.solution-num {
-    flex-shrink: 0;
-    font-size: 0.8rem;
-    color: var(--accent);
-}
-
-.solution-num::before {
-    content: "→";
+    width: fit-content;
 }
 
 .solution-text {
-    font-size: 1rem;
     font-weight: 500;
     color: var(--text);
-    line-height: 1.4;
-}
-
-.solution-text strong {
-    color: var(--accent);
-    font-weight: 600;
+    font-size: .9rem;
 }
 
 /** Log Viewer **/
