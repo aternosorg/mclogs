@@ -74,6 +74,25 @@
     scroll-behavior: smooth;
 }
 
+/* Log Settings */
+
+body.setting-full-width {
+    --max-width: 100%;
+}
+
+body.setting-no-wrap .log-inner {
+    white-space: pre;
+}
+
+body.setting-no-wrap .log-inner .line-content {
+    word-break: normal;
+    overflow-wrap: normal;
+}
+
+body.setting-no-wrap .log-inner .level {
+    white-space: pre;
+}
+
 @view-transition {
     navigation: auto;
 }
@@ -238,6 +257,7 @@ main {
     flex-direction: column;
     position: relative;
     z-index: 1;
+    transition: all 0.25s ease;
 }
 
 .paste-area {
@@ -780,10 +800,6 @@ footer {
     display: grid;
 }
 
-.log-inner.no-wrap {
-    white-space: pre;
-}
-
 .log-inner .entry {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -800,7 +816,6 @@ footer {
 }
 
 .log-inner .line-number-container {
-    flex-shrink: 0;
     min-width: 2.75rem;
     padding: 0 0.4rem;
     border-right: 1px solid var(--border);
