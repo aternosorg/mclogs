@@ -133,16 +133,19 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                     <div class="btn btn-small btn-dark" id="up-button">
                         <i class="fa fa-arrow-circle-up"></i>
                     </div>
-                    <div class="settings-opener">
-                        <i class="fas fa-cog"></i>
-                    </div>
-                    <div class="settings-panel">
-                        <?php foreach(Setting::cases() as $setting): ?>
-                            <div class="setting">
-                                <label for="setting-<?=$setting->value; ?>"><?=$setting->getLabel(); ?></label>
-                                <input type="checkbox" id="setting-<?=$setting->value; ?>" class="setting-checkbox" data-key="<?=$setting->value; ?>" />
-                            </div>
-                        <?php endforeach; ?>
+                    <div class="settings-dropdown">
+                        <button class="settings-trigger btn btn-small btn-dark" popovertarget="settings-overlay">
+                            <i class="fas fa-cog"></i>
+                            Settings
+                        </button>
+                        <div class="settings-overlay" id="settings-overlay" popover>
+                            <?php foreach(Setting::cases() as $setting): ?>
+                                <label class="setting" for="setting-<?=$setting->value; ?>">
+                                    <span class="setting-label"><?=$setting->getLabel(); ?></span>
+                                    <input type="checkbox" id="setting-<?=$setting->value; ?>" class="setting-checkbox" data-key="<?=$setting->value; ?>" />
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
                 <div class="log-notice">

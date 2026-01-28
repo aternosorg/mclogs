@@ -1044,7 +1044,7 @@ footer {
 .highlight-warning {
     background: #FF6625;
     color: var(--text);
-    padding: 0px 3px;
+    padding: 0 3px;
     border-radius: 2px;
     font-weight: bold;
     display: inline-block;
@@ -1068,6 +1068,111 @@ footer {
     align-items: center;
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border);
+}
+
+.settings-dropdown {
+    position: relative;
+}
+
+.settings-trigger {
+    cursor: pointer;
+    anchor-name: --settings-trigger;
+}
+
+.settings-trigger i {
+    transition: transform 0.2s ease;
+}
+
+.settings-overlay {
+    position: fixed;
+    position-anchor: --settings-trigger;
+    inset: unset;
+    bottom: anchor(top);
+    right: anchor(right);
+    margin-bottom: 0.5rem;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: 200px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.settings-overlay:popover-open {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.settings-overlay::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 1rem;
+    width: 10px;
+    height: 10px;
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transform: rotate(45deg);
+}
+
+.settings-overlay::backdrop {
+    background: transparent;
+}
+
+.setting {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+
+.setting:hover {
+    background-color: var(--surface);
+}
+
+.setting-label {
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.setting-checkbox {
+    appearance: none;
+    width: 2.5rem;
+    height: 1.4rem;
+    background-color: var(--surface);
+    border-radius: 1rem;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    flex-shrink: 0;
+}
+
+.setting-checkbox::before {
+    content: '';
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--text-muted);
+    border-radius: 50%;
+    transition: all 0.15s ease;
+}
+
+.setting-checkbox:checked {
+    background-color: var(--accent);
+}
+
+.setting-checkbox:checked::before {
+    left: 1.3rem;
+    background-color: var(--bg);
 }
 
 .log-notice {
