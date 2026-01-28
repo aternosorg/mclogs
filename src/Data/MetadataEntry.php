@@ -24,6 +24,9 @@ class MetadataEntry implements \JsonSerializable
         }
         $entries = [];
         foreach ($dataArray as $data) {
+            if (!is_object($data)) {
+                continue;
+            }
             $entry = static::fromObject($data);
             if ($entry !== null) {
                 $entries[] = $entry;
