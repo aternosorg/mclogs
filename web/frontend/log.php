@@ -140,7 +140,7 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                         <?php foreach(Setting::cases() as $setting): ?>
                             <div class="setting">
                                 <label for="setting-<?=$setting->value; ?>"><?=$setting->getLabel(); ?></label>
-                                <input type="checkbox" id="setting-<?=$setting->value; ?>" class="setting-checkbox" />
+                                <input type="checkbox" id="setting-<?=$setting->value; ?>" class="setting-checkbox" data-key="<?=$setting->value; ?>" />
                             </div>
                         <?php endforeach; ?>
                     </div>
