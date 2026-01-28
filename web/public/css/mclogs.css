@@ -1567,6 +1567,7 @@ footer {
 }
 
 .api-note .content-type {
+    margin: 0 10px;
     white-space: normal;
     word-break: break-word;
     display: inline;
