@@ -108,9 +108,9 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                                         <p class="issue-message"><?=htmlspecialchars($problem->getMessage()); ?></p>
                                         <?php if(count($problem->getSolutions()) > 0): ?>
                                             <div class="issue-solutions">
-                                                <?php foreach($problem->getSolutions() as $i => $solution): ?>
+                                                <?php foreach($problem->getSolutions() as $solution): ?>
                                                     <div class="issue-solution">
-                                                        <span class="solution-num"><?=$i + 1; ?></span>
+                                                        <span class="solution-num"></span>
                                                         <span class="solution-text"><?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", htmlspecialchars($solution->getMessage())); ?></span>
                                                     </div>
                                                 <?php endforeach; ?>
