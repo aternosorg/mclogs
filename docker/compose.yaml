@@ -13,12 +13,19 @@ services:
       - ../:/app
       - ./dev.ini:/usr/local/etc/php/conf.d/dev.ini
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
 
   mongo:
     image: mongo
     volumes:
       - mongo:/data/db
+    healthcheck:
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
 volumes:
   mongo:
