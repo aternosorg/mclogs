@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: ..
-      dockerfile: Dockerfile
+      dockerfile: ../Dockerfile
     environment:
       - MCLOGS_WORKER_REQUESTS=1
       - FRANKENPHP_WORKERS=4
@@ -12,6 +12,7 @@ services:
     volumes:
       - ../:/app
       - ./dev.ini:/usr/local/etc/php/conf.d/dev.ini
+    user: root
     depends_on:
       mongo:
         condition: service_healthy

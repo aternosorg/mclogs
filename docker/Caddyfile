@@ -6,7 +6,7 @@
     }
 }
 
-:80 {
+{$SERVER_NAME::80} {
     root * /app/web/public
     encode zstd br gzip
 
