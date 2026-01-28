@@ -777,6 +777,7 @@ footer {
 
 .log-inner {
     display: grid;
+    padding: 0.5rem 0 0;
     grid-template-columns: auto 1fr;
 }
 
