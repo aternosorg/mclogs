@@ -1,0 +1,46 @@
+services:
+  web:
+    image: ghcr.io/aternosorg/mclogs:two
+    restart: always
+    ports:
+      # Expose HTTP (80) and HTTPS (443)
+      # Port 443/udp is required for HTTP/3 (QUIC)
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      # Set this to your domain (e.g., mclogs.example.com) to enable Auto-SSL.
+      # If running behind a proxy (Cloudflare/Nginx), set to ":80" to disable Auto-SSL.
+      SERVER_NAME: :80
+
+      MCLOGS_MONGODB_URL: mongodb://mongo:27017
+      MCLOGS_MONGODB_DATABASE: mclogs
+
+      # Optional MCLOGS configuration
+      # See README.md for full list of available options
+      # MCLOGS_FRONTEND_NAME: "mclogs"
+
+    volumes:
+      # For caddy cache (SSL certificates)
+      - web-data:/data
+
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+volumes:
+  web-data:
+  mongo-data:
