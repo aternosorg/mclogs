@@ -1,9 +1,10 @@
 <?php
 
+use Aternos\Mclogs\Log;
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
 use Aternos\Mclogs\Frontend\Settings\Setting;
-use Aternos\Mclogs\Log;
+use Aternos\Mclogs\Frontend\Settings\Settings;
 
 /** @var Log $log */
 
@@ -139,10 +140,11 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                             Settings
                         </button>
                         <div class="settings-overlay" id="settings-overlay" popover>
+                            <?php $settings = new Settings(); ?>
                             <?php foreach(Setting::cases() as $setting): ?>
                                 <label class="setting" for="setting-<?=$setting->value; ?>">
                                     <span class="setting-label"><?=$setting->getLabel(); ?></span>
-                                    <input type="checkbox" id="setting-<?=$setting->value; ?>" class="setting-checkbox" data-key="<?=$setting->value; ?>" />
+                                    <input type="checkbox" id="setting-<?=$setting->value; ?>" class="setting-checkbox" data-key="<?=$setting->value; ?>"<?=($settings->get($setting)) ? " checked" : ""; ?>/>
                                 </label>
                             <?php endforeach; ?>
                         </div>

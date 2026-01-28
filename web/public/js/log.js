@@ -1,3 +1,4 @@
+/* line numbers */
 updateLineNumber(location.hash);
 
 for (let line of document.querySelectorAll('.line-number')) {
@@ -5,6 +6,25 @@ for (let line of document.querySelectorAll('.line-number')) {
         updateLineNumber(line.attributes.getNamedItem("id").value));
 }
 
+function updateLineNumber(id) {
+    if (id && id.startsWith('#')) {
+        id = id.substring(1);
+    }
+
+    if (!id) {
+        return;
+    }
+
+    let element = document.getElementById(id);
+    if (element.classList.contains("line-number")) {
+        for (const line of document.querySelectorAll(".line-active")) {
+            line.classList.remove("line-active");
+        }
+        element.classList.add('line-active');
+    }
+}
+
+/* Scroll to top/bottom buttons */
 const downButton = document.getElementById("down-button");
 if (downButton) {
     downButton.addEventListener("click", () => scrollToHeight(document.body.scrollHeight));
@@ -27,24 +47,7 @@ function scrollToHeight(top, smoothScrollLimit = 10000) {
     window.scrollTo({left: 0, top, behavior});
 }
 
-function updateLineNumber(id) {
-    if (id && id.startsWith('#')) {
-        id = id.substring(1);
-    }
-
-    if (!id) {
-        return;
-    }
-
-    let element = document.getElementById(id);
-    if (element.classList.contains("line-number")) {
-        for (const line of document.querySelectorAll(".line-active")) {
-            line.classList.remove("line-active");
-        }
-        element.classList.add('line-active');
-    }
-}
-
+/* error collapse toggle */
 let showOnlyErrors = false;
 const toggleErrorsButton = document.getElementById("error-toggle");
 if (toggleErrorsButton) {
@@ -116,19 +119,7 @@ function generateCollapsedLines(start, end) {
         '</tr>';
 }
 
-const wrapCheckbox = document.getElementById("wrap-checkbox");
-if (wrapCheckbox) {
-    wrapCheckbox.addEventListener("change", () => {
-        if (wrapCheckbox.checked) {
-            document.querySelector(".log-row .row-inner").classList.remove("no-wrap");
-        } else {
-            document.querySelector(".log-row .row-inner").classList.add("no-wrap");
-        }
-        wrapCheckbox.scrollIntoView({behavior: "instant"});
-        document.cookie = "WRAP_LOG_LINES=" + wrapCheckbox.checked + ";path=/;expires=" + new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000).toUTCString();
-    })
-}
-
+/* convert timestamps */
 let timeElements = document.querySelectorAll('[data-time]');
 for (const element of timeElements) {
     const timestamp = parseInt(element.dataset.time);
@@ -137,4 +128,16 @@ for (const element of timeElements) {
     }
     const date = new Date(timestamp * 1000);
     element.innerHTML = date.toLocaleString();
+}
+
+/* settings */
+const settingCheckboxes = document.querySelectorAll(".setting-checkbox");
+settingCheckboxes.forEach(checkbox => checkbox.addEventListener("change", () => saveSettings()))
+
+function saveSettings() {
+    const data = {};
+    for (const checkbox of settingCheckboxes) {
+        data[checkbox.dataset.key] = checkbox.checked;
+    }
+    document.cookie = "MCLOGS_SETTINGS=" + encodeURIComponent(JSON.stringify(data)) + ";path=/;expires=" + new Date(new Date().getTime() + 100 * 365 * 24 * 60 * 60 * 1000).toUTCString();
 }
