@@ -7,6 +7,7 @@ use MongoDB\Model\BSONDocument;
 
 class MetadataEntry implements \JsonSerializable, Serializable
 {
+    public const int MAX_ENTRIES = 100;
     protected const int MAX_KEY_LENGTH = 64;
     protected const int MAX_LABEL_LENGTH = 128;
     protected const int MAX_VALUE_LENGTH = 1024;
@@ -36,6 +37,9 @@ class MetadataEntry implements \JsonSerializable, Serializable
             }
             if ($entry !== null) {
                 $entries[] = $entry;
+            }
+            if (count($entries) >= static::MAX_ENTRIES) {
+                break;
             }
         }
         return $entries;
