@@ -8,8 +8,7 @@ use Aternos\Mclogs\Frontend\Settings\Settings;
 
 /** @var Log $log */
 
-$shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VALIDATE_BOOLEAN);
-
+$settings = new Settings();
 ?><!DOCTYPE html>
 <html lang="en">
     <head>
@@ -17,7 +16,7 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
         <title><?=$log->getPageTitle(); ?></title>
         <meta name="description" content="<?=$log->getPageDescription(); ?>" />
     </head>
-    <body class="log-body">
+    <body class="log-body<?=$settings->getBodyClassesString(); ?>">
         
         <div class="container">
             <?php include __DIR__ . '/parts/header.php'; ?>
@@ -140,11 +139,15 @@ $shouldWrapLogLines = filter_var($_COOKIE["WRAP_LOG_LINES"] ?? "true", FILTER_VA
                             Settings
                         </button>
                         <div class="settings-overlay" id="settings-overlay" popover>
-                            <?php $settings = new Settings(); ?>
                             <?php foreach(Setting::cases() as $setting): ?>
                                 <label class="setting" for="setting-<?=$setting->value; ?>">
                                     <span class="setting-label"><?=$setting->getLabel(); ?></span>
-                                    <input type="checkbox" id="setting-<?=$setting->value; ?>" class="setting-checkbox" data-key="<?=$setting->value; ?>"<?=($settings->get($setting)) ? " checked" : ""; ?>/>
+                                    <input type="checkbox"
+                                           id="setting-<?=$setting->value; ?>"
+                                           class="setting-checkbox"
+                                           data-body-class="<?=$setting->getBodyClass() ?? ""; ?>"
+                                           data-key="<?=$setting->value; ?>"
+                                            <?=($settings->get($setting)) ? " checked" : ""; ?>/>
                                 </label>
                             <?php endforeach; ?>
                         </div>

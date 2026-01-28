@@ -132,7 +132,18 @@ for (const element of timeElements) {
 
 /* settings */
 const settingCheckboxes = document.querySelectorAll(".setting-checkbox");
-settingCheckboxes.forEach(checkbox => checkbox.addEventListener("change", () => saveSettings()))
+settingCheckboxes.forEach(checkbox => checkbox.addEventListener("change", handleSettingChange))
+
+function handleSettingChange(e) {
+    let checkbox = e.target;
+    let bodyClass = checkbox.dataset.bodyClass;
+    if (checkbox.checked) {
+        document.body.classList.add(bodyClass);
+    } else {
+        document.body.classList.remove(bodyClass);
+    }
+    saveSettings();
+}
 
 function saveSettings() {
     const data = {};
