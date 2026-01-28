@@ -171,7 +171,7 @@ $settings = new Settings();
                     </div>
                     <?php if ($abuseEmail = Config::getInstance()->get(ConfigKey::LEGAL_ABUSE)): ?>
                     <div class="right">
-                        <a href="mailto:<?=htmlspecialchars($abuseEmail); ?>?subject=Report%20mclo.gs/<?=htmlspecialchars($log->getId()->get()); ?>" class="report-link">
+                        <a href="mailto:<?=htmlspecialchars($abuseEmail); ?>?subject=Report%20<?=rawurlencode(Config::getInstance()->getName()) ?>/<?=htmlspecialchars($log->getId()->get()); ?>" class="report-link">
                             <i class="fa-solid fa-flag"></i>
                             Report abuse
                         </a>
