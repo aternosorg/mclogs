@@ -41,7 +41,7 @@ class Printer extends ModifiableDefaultPrinter
      */
     protected function printLog(): string
     {
-        return '<table>' . parent::printLog() . '</table>';
+        return '<div class="log-inner">' . parent::printLog() . '</div>';
     }
 
     /**
@@ -56,21 +56,21 @@ class Printer extends ModifiableDefaultPrinter
         $return = '';
         $first = true;
         foreach ($entry as $line) {
-            $trClass = "entry-no-error";
+            $entryClass = "entry-no-error";
             if ($entry->getLevel()->asInt() <= Level::ERROR->asInt()) {
-                $trClass = "entry-error";
+                $entryClass = "entry-error";
             }
-            $return .= '<tr class="entry ' . $trClass . '">';
-            $return .= '<td class="line-number-container"><a href="/' . $this->id->get() . '#L' . $line->getNumber() . '" id="L' . $line->getNumber() . '" class="line-number">' . $line->getNumber() . '</a></td>';
-            $return .= '<td><span class="level level-' . $entry->getLevel()->asString() . ((!$first) ? " multiline" : "") . '">';
+            $return .= '<div class="entry ' . $entryClass . '">';
+            $return .= '<div class="line-number-container"><a href="/' . $this->id->get() . '#L' . $line->getNumber() . '" id="L' . $line->getNumber() . '" class="line-number">' . $line->getNumber() . '</a></div>';
+            $return .= '<div class="line-content"><span class="level level-' . $entry->getLevel()->asString() . ((!$first) ? " multiline" : "") . '">';
             $lineString = $this->printLine($line);
             if ($entry->getPrefix() !== null) {
                 $prefix = htmlentities($entry->getPrefix());
                 $lineString = str_replace($prefix, '<span class="level-prefix">' . $prefix . '</span>', $lineString);
             }
             $return .= $lineString;
-            $return .= '</span></td>';
-            $return .= '</tr>';
+            $return .= '</span></div>';
+            $return .= '</div>';
             $first = false;
         }
 

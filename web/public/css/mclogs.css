@@ -806,60 +806,37 @@ footer {
     white-space: pre;
 }
 
-.log-inner table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
+.log-inner {
+    display: grid;
+    grid-template-columns: auto 1fr;
 }
 
-.log-inner table tr {
+.log-inner .entry {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
     transition: background-color 0.1s ease;
 }
 
-.log-inner table tr:first-child td {
-    padding-top: 1rem;
-}
-
-.log-inner table tr:first-child .line-number-container {
-    padding-top: 1rem;
-}
-
-.log-inner table tr:last-child td {
-    padding-bottom: 1rem;
-}
-
-.log-inner table tr:last-child .line-number-container {
-    padding-bottom: 1rem;
-}
-
-.log-inner table tr:hover {
+.log-inner .entry:hover {
     background-color: rgba(255, 255, 255, 0.02);
 }
 
-
-.log-inner table tr.entry-error {
+.log-inner .entry.entry-error {
     background-color: color-mix(in srgb, var(--error) 10%, transparent);
 }
 
-
-.log-inner table td {
-    padding: 0;
-    vertical-align: top;
-}
-
 .log-inner .line-number-container {
-    display: table-cell;
-    width: auto;
-    min-width: 3.5rem;
-    padding: 0.4rem 0.5rem;
+    min-width: 2.75rem;
+    padding: 0 0.4rem;
     border-right: 1px solid var(--border);
     position: sticky;
     left: 0;
     z-index: 1;
-    vertical-align: top;
+    text-align: right;
 }
 
-.log-inner table tr:hover .line-number-container {
+.log-inner .entry:hover .line-number-container {
     background-color: rgba(255, 255, 255, 0.04);
 }
 
@@ -889,22 +866,21 @@ footer {
     color: var(--bg);
 }
 
-.log-inner table tr.entry-error .line-number.line-active {
+.log-inner .entry.entry-error .line-number.line-active {
     background-color: var(--error);
     color: #fff;
 }
 
-.log-inner table tr.entry-error .line-number.line-active:hover {
+.log-inner .entry.entry-error .line-number.line-active:hover {
     background-color: color-mix(in srgb, var(--error) 85%, var(--bg) 15%);
     color: #fff;
 }
 
-.log-inner table td:last-child {
+.log-inner .line-content {
     padding-left: 1.25rem;
     word-break: break-word;
     overflow-wrap: anywhere;
     color: var(--text);
-    width: 100%;
 }
 
 .log-inner .level {
