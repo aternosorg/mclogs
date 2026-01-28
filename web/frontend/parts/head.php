@@ -2,6 +2,7 @@
 
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Util\URL;
 
 ?>
     <meta charset="utf-8"/>
@@ -19,7 +20,7 @@ use Aternos\Mclogs\Config\ConfigKey;
     </style>
 
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" sizes="any"/>
-    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="<?= URL::getBase()->withPath("/favicon.svg")->toString(); ?>" type="image/svg+xml">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <?php if (Config::getInstance()->get(ConfigKey::FRONTEND_ANALYTICS)): ?>

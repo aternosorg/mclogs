@@ -1,6 +1,7 @@
 <?php
 
 use Aternos\Mclogs\Config\Config;
+use Aternos\Mclogs\Config\ConfigKey;
 use Aternos\Mclogs\Util\URL;
 
 $config = Config::getInstance();
@@ -9,8 +10,8 @@ $config = Config::getInstance();
 <html lang="en">
     <head>
         <?php include __DIR__ . '/parts/head.php'; ?>
-        <title>API Documentation - <?= URL::getBase()->getHost(); ?></title>
-        <meta name="description" content="API documentation for mclo.gs - Integrate log sharing directly into your server panel or hosting software." />
+        <title>API Documentation - <?= $config->getName(); ?></title>
+        <meta name="description" content="API documentation for <?= $config->getName(); ?> - Integrate log sharing directly into your server panel or hosting software." />
     </head>
     <body>
         <div class="container">
@@ -24,48 +25,269 @@ $config = Config::getInstance();
                     </div>
                 </div>
                 <div class="api-docs-section">
-                    <h2>Paste a log file</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h2>Create a log</h2>
 
                     <div class="api-endpoint">
-                        <span class="api-method">POST</span> <span class="api-url"><?= URL::getApi()->withPath("/1/log")->toString(); ?></span> <span class="content-type">application/x-www-form-urlencoded</span>
+                        <span class="api-method">POST</span> <span class="api-url"><?= URL::getApi()->withPath("/1/log")->toString(); ?></span> <span class="content-type">application/json</span>
                     </div>
                     <div class="api-note">
-                        <strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
+                        <strong>Note:</strong> Posting content with the content type <span class="content-type">application/x-www-form-urlencoded</span> is still supported for backwards compatibility, but does not support setting metadata.
                     </div>
                     <table class="api-table">
                         <tr>
                             <th>Field</th>
+                            <th>Required</th>
                             <th>Type</th>
                             <th>Description</th>
                         </tr>
                         <tr>
                             <td class="api-field">content</td>
+                            <td class="api-required required"><i class="fa-solid fa-square-check"></i></td>
                             <td class="api-type">string</td>
-                            <td class="api-description">The raw log file content as string. Maximum length is 10MiB and 25k lines, will be shortened if necessary.</td>
+                            <td class="api-description">
+                                The raw log file content as string.
+                                Limited to <?= number_format($config->get(ConfigKey::STORAGE_LIMIT_BYTES) / 1024 / 1024, 2); ?> MiB and <?= number_format($config->get(ConfigKey::STORAGE_LIMIT_LINES)); ?> lines.
+                                Will be truncated if possible and necessary, but truncating on the client side is recommended.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="api-field">source</td>
+                            <td class="api-required"><i class="fa-solid fa-square-xmark"></i></td>
+                            <td class="api-type">string</td>
+                            <td class="api-description">The name of the source, e.g. a domain or software name.</td>
+                        </tr>
+                        <tr>
+                            <td class="api-field">metadata</td>
+                            <td class="api-required"><i class="fa-solid fa-square-xmark"></i></td>
+                            <td class="api-type">array</td>
+                            <td class="api-description">An array of metadata entries.</td>
                         </tr>
                     </table>
 
-                    <h3>cURL <span class="command-description">Upload log files from a shell</span></h3>
-                    <pre class="api-code">
-curl -X POST --data-urlencode 'content@path/to/latest.log' '<?= URL::getApi()->withPath("/1/log")->toString(); ?>'</pre>
-                    <h3>Success <span class="content-type">application/json</span></h3>
-                    <pre class="api-code">
-{
-    "success": true,
-    "id": "8FlTowW",
-    "url": "<?= URL::getBase()->withPath("/8FlTowW")->toString(); ?>",
-    "raw": "<?= URL::getApi()->withPath("/1/raw/8FlTowW")->toString(); ?>"
+                    <h3>Example body <span class="content-type">application/json</span></h3>
+                    <pre class="api-code">{
+    "content": "[log file content...]",
+    "source": "example.org"
 }</pre>
-                    <h3>Error <span class="content-type">application/json</span></h3>
+
+                    <h3>Metadata</h3>
+                    <p>
+                        You can send metadata alongside the log content to be displayed on the log page and/or be read by other applications through this API.
+                        This is entirely optional, but can help to provide additional context, e.g. internal server IDs, software versions etc.
+                    </p>
+                    <p>
+                        A metadata entry is an object with the following fields:
+                    </p>
+                    <table class="api-table">
+                        <tr>
+                            <th>Field</th>
+                            <th>Required</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td class="api-field">key</td>
+                            <td class="api-required required"><i class="fa-solid fa-square-check"></i></td>
+                            <td class="api-type">string</td>
+                            <td class="api-description">The metadata key. Can be used to identify the entry in your code later.</td>
+                        </tr>
+                        <tr>
+                            <td class="api-field">value</td>
+                            <td class="api-required required"><i class="fa-solid fa-square-check"></i></td>
+                            <td class="api-type">string|int|float|bool|null</td>
+                            <td class="api-description">The metadata value.</td>
+                        </tr>
+                        <tr>
+                            <td class="api-field">label</td>
+                            <td class="api-required"><i class="fa-solid fa-square-xmark"></i></td>
+                            <td class="api-type">string</td>
+                            <td class="api-description">The display label. If not provided, the key will be used as label.</td>
+                        </tr>
+                        <tr>
+                            <td class="api-field">visible</td>
+                            <td class="api-required"><i class="fa-solid fa-square-xmark"></i></td>
+                            <td class="api-type">bool</td>
+                            <td class="api-description">Whether this metadata should be visible on the log page or is only available through the API. Default is true.</td>
+                        </tr>
+                    </table>
+
+                    <h3>Example body with metadata <span class="content-type">application/json</span></h3>
+                    <pre class="api-code">{
+    "content": "[log file content...]",
+    "source": "example.org",
+    "metadata": [
+        {
+            "key": "server_id",
+            "value": 12345,
+            "visible": false
+        },
+        {
+            "key": "software_version",
+            "value": "1.2.3",
+            "label": "Software Version",
+            "visible": true
+        }
+    ]
+}</pre>
+
+                    <h3>Responses</h3>
+                    <h4>Success <span class="content-type">application/json</span></h4>
+                    <div class="api-note">
+                        <strong>Note:</strong>
+                        The token provided in this response can be used to delete this log later. Store or discard it securely, it will not be shown again.
+                    </div>
+                    <pre class="api-code">{
+    "success":true,
+    "id":"WnMMikq",
+    "source":null,
+    "created":1769597979,
+    "expires":1777373979,
+    "size":157369,
+    "lines":1201,
+    "errors":8,
+    "url": "<?= URL::getBase()->withPath("/WnMMikq")->toString(); ?>",
+    "raw": "<?= URL::getApi()->withPath("/1/raw/WnMMikq")->toString(); ?>",
+    "token":"78351fafe495398163fff847f9a26dda440435dcf7b5f92e8e36308f3683d771",
+    "metadata": [
+        {
+            "key": "server_id",
+            "value": 12345,
+            "visible": false
+        },
+        {
+            "key": "software_version",
+            "value": "1.2.3",
+            "label": "Software Version",
+            "visible": true
+        }
+    ]
+}</pre>
+                    <h4>Error <span class="content-type">application/json</span></h4>
                     <pre class="api-code">
 {
     "success": false,
-    "error": "Required field 'content' is empty."
+    "error": "Required field 'content' not found."
+}</pre>
+                </div>
+
+                <div class="api-docs-section">
+                    <h2>Get log info and content</h2>
+                    <div class="api-endpoint">
+                        <span class="api-method">GET</span> <span class="api-url"><?= URL::getApi()->toString(); ?>/1/log/[id]</span>
+                    </div>
+                    <p>
+                        This endpoint only returns the log info and metadata by default (same response as creating a log), you can also get the content in the same request by enabling it in different
+                        formats using GET parameters. You can combine multiple parameters to get multiple content formats in one request, but keep in mind that this will
+                        increase the response size.
+                    </p>
+                    <table class="api-table">
+                        <tr>
+                            <th>GET Parameter</th>
+                            <th>Response field</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td class="api-field">raw</td>
+                            <td class="api-type">content.raw</td>
+                            <td class="api-description">Includes the raw log content as string in the response.</td>
+                        </tr>
+                        <tr>
+                            <td class="api-field">parsed</td>
+                            <td class="api-type">content.parsed</td>
+                            <td class="api-description">Includes the parsed log content as array/objects in the response.</td>
+                        </tr>
+                        <tr>
+                            <td class="api-field">insights</td>
+                            <td class="api-type">content.insights</td>
+                            <td class="api-description">Includes the automatically detected insights in the response.</td>
+                        </tr>
+                    </table>
+                    <h3>Responses</h3>
+                    <h4>Success <span class="content-type">application/json</span></h4>
+                    <div class="api-note">
+                        <strong>Note:</strong>
+                        All content fields are only included if the corresponding GET parameter is provided.
+                        If no content parameter is provided, the entire content object is omitted from the response.
+                    </div>
+                    <pre class="api-code">{
+    "success":true,
+    "id":"WnMMikq",
+    "source":null,
+    "created":1769597979,
+    "expires":1777373979,
+    "size":157369,
+    "lines":1201,
+    "errors":8,
+    "url": "<?= URL::getBase()->withPath("/WnMMikq")->toString(); ?>",
+    "raw": "<?= URL::getApi()->withPath("/1/raw/WnMMikq")->toString(); ?>",
+    "metadata": [
+        {
+            "key": "server_id",
+            "value": 12345,
+            "visible": false
+        },
+        {
+            "key": "software_version",
+            "value": "1.2.3",
+            "label": "Software Version",
+            "visible": true
+        }
+    ],
+    "content": {
+        "raw": "[log file content...]",
+        "parsed": [ /* parsed log entries */ ],
+        "insights": { "problems": [ /* detected problems */ ], "information": [ /* detected information */ ] }
+    }
+}</pre>
+                    <h4>Error <span class="content-type">application/json</span></h4>
+                    <pre class="api-code">
+{
+    "success": false,
+    "error": "Log not found."
+}</pre>
+                </div>
+                <div class="api-docs-section">
+                    <h2>Delete a log</h2>
+                    <div class="api-note">
+                        <strong>Note:</strong> Deleting a log requires the token that was provided when creating the log.
+                    </div>
+
+                    <div class="api-endpoint">
+                        <span class="api-method">DELETE</span> <span class="api-url"><?= URL::getApi()->toString(); ?>/1/log/[id]</span>
+                    </div>
+
+                    <h3>Headers</h3>
+                    <table class="api-table">
+                        <tr>
+                            <th>Header</th>
+                            <th>Example</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td class="api-field">Authorization</td>
+                            <td class="api-type">Authorization: Bearer 78351fafe495398163f...</td>
+                            <td class="api-description">The type (always "Bearer") and the log token received when creating the log.</td>
+                        </tr>
+                    </table>
+
+                    <h3>Responses</h3>
+                    <h4>Success <span class="content-type">application/json</span></h4>
+                    <pre class="api-code">{
+    "success": true,
+}</pre>
+                    <h4>Error <span class="content-type">application/json</span></h4>
+                    <pre class="api-code">
+{
+    "success": false,
+    "error": "Invalid token."
 }</pre>
                 </div>
                 <div class="api-docs-section">
                     <h2>Get the raw log file content</h2>
+                    <div class="api-note">
+                        <strong>Note: </strong>
+                        Only use this endpoint if you really only need the raw log content. For most use cases, getting the log info and content together from the log endpoint is recommended.
+                    </div>
                     <div class="api-endpoint">
                         <span class="api-method">GET</span> <span class="api-url"><?= URL::getApi()->toString(); ?>/1/raw/[id]</span>
                     </div>
@@ -98,7 +320,10 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?= URL::getApi()->w
                 </div>
                 <div class="api-docs-section">
                     <h2>Get insights</h2>
-
+                    <div class="api-note">
+                        <strong>Note: </strong>
+                        This endpoint is mainly kept for backwards compatibility. For new applications, getting the insights together with the log info from the log endpoint is recommended.
+                    </div>
                     <div class="api-endpoint">
                         <span class="api-method">GET</span> <span class="api-url"><?= URL::getApi()->toString(); ?>/1/insights/[id]</span>
                     </div>
@@ -176,9 +401,13 @@ curl -X POST --data-urlencode 'content@path/to/latest.log' '<?= URL::getApi()->w
                 </div>
                 <div class="api-docs-section">
                     <h2>Analyse a log without saving it</h2>
+                    <p>
+                        If you only want to use the analysis features of this service without saving the log, you can use this endpoint.
+                        Please do not save logs that you only want to analyse, as this wastes storage space and resources.
+                    </p>
 
                     <div class="api-endpoint">
-                        <span class="api-method">POST</span> <span class="api-url"><?= URL::getApi()->withPath("/1/analyse")->toString(); ?></span> <span class="content-type">application/x-www-form-urlencoded</span>
+                        <span class="api-method">POST</span> <span class="api-url"><?= URL::getApi()->withPath("/1/analyse")->toString(); ?></span> <span class="content-type">application/x-www-form-urlencoded</span> <span class="content-type">application/json</span>
                     </div>
                     <table class="api-table">
                         <tr>
