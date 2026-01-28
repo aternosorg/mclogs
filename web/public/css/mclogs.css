@@ -777,6 +777,7 @@ footer {
     overflow-x: auto;
     position: relative;
     padding: 0.5rem 0 0;
+    display: grid;
 }
 
 .log-inner.no-wrap {
@@ -784,7 +785,8 @@ footer {
 }
 
 .log-inner .entry {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
     width: 100%;
     transition: background-color 0.1s ease;
 }
