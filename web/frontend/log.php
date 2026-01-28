@@ -17,7 +17,7 @@ $settings = new Settings();
         <meta name="description" content="<?=htmlspecialchars($log->getPageDescription()); ?>" />
     </head>
     <body class="log-body<?=$settings->getBodyClassesString(); ?>">
-        
+
         <div class="container">
             <?php include __DIR__ . '/parts/header.php'; ?>
 
@@ -28,8 +28,8 @@ $settings = new Settings();
                            <div class="log-title">
                                <h1>
                                    <i class="fas fa-file-lines"></i>
-                                   <?=$log->getCodexLog()->getTitle(); ?>
-                                   <span class="log-id-tag">#<?=$log->getId()->get(); ?></span>
+                                   <?=htmlspecialchars($log->getCodexLog()->getTitle()); ?>
+                                   <span class="log-id-tag">#<?=htmlspecialchars($log->getId()->get()); ?></span>
                                </h1>
                            </div>
                        </div>
@@ -82,8 +82,8 @@ $settings = new Settings();
                                    <div class="info-row-items">
                                        <?php foreach($information as $info): ?>
                                            <span class="info-item">
-                                               <span class="info-label"><?=$info->getLabel(); ?>:</span>
-                                               <span class="info-value"><?=$info->getValue(); ?></span>
+                                               <span class="info-label"><?=htmlspecialchars($info->getLabel()); ?>:</span>
+                                               <span class="info-value"><?=htmlspecialchars($info->getValue()); ?></span>
                                            </span>
                                        <?php endforeach; ?>
                                    </div>
@@ -103,7 +103,7 @@ $settings = new Settings();
                             <?php foreach($problems as $problem): ?>
                                 <?php $number = $problem->getEntry()[0]->getNumber(); ?>
                                 <div class="issue-item">
-                                    <a href="/<?=$log->getId()->get() . "#L" . $number; ?>" class="issue-line" onclick="updateLineNumber('#L<?=$number; ?>');"><?=$number; ?></a>
+                                    <a href="/<?=htmlspecialchars($log->getId()->get()) . "#L" . $number; ?>" class="issue-line" onclick="updateLineNumber('#L<?=$number; ?>');"><?=$number; ?></a>
                                     <div class="issue-content">
                                         <p class="issue-message"><?=htmlspecialchars($problem->getMessage()); ?></p>
                                         <?php if(count($problem->getSolutions()) > 0): ?>
