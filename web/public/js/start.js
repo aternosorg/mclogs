@@ -243,28 +243,40 @@ let dropZoneDragCount = 0;
 window.addEventListener('dragover', e => e.preventDefault());
 window.addEventListener('dragenter', e => {
     e.preventDefault();
-    updateWindowDragCount(1);
+    if (e.dataTransfer?.files?.length) {
+        updateWindowDragCount(1);
+    }
 });
 window.addEventListener('dragleave', e => {
-    e.preventDefault()
-    updateWindowDragCount(-1);
+    e.preventDefault();
+    if (e.dataTransfer?.files?.length) {
+        updateWindowDragCount(-1);
+    }
 });
 window.addEventListener('drop', e => {
-    e.preventDefault()
-    updateWindowDragCount(-1);
+    e.preventDefault();
+    if (e.dataTransfer?.files?.length) {
+        updateWindowDragCount(-1);
+    }
 });
 
 dropZone.addEventListener('dragenter', e => {
     e.preventDefault();
-    updateDropZoneDragCount(1);
+    if (e.dataTransfer?.files?.length) {
+        updateDropZoneDragCount(1);
+    }
 });
 dropZone.addEventListener('dragleave', e => {
     e.preventDefault();
-    updateDropZoneDragCount(-1);
+    if (e.dataTransfer?.files?.length) {
+        updateDropZoneDragCount(-1);
+    }
 });
 dropZone.addEventListener('drop', async e => {
     e.preventDefault();
-    updateDropZoneDragCount(-1);
+    if (e.dataTransfer?.files?.length) {
+        updateDropZoneDragCount(-1);
+    }
     await handleDropEvent(e);
 });
 
