@@ -33,31 +33,30 @@ environment variables. Environment variables override settings in the config fil
 
 Here is a list of all available config options:
 
-| Environment variable               | JSON config path            | Type           | Default                   | Description                                               |
-|------------------------------------|-----------------------------|----------------|---------------------------|-----------------------------------------------------------|
-| `MCLOGS_STORAGE_TTL`               | `storage.ttl`               | `int`          | `7776000` (90 days)       | Time until logs are deleted after their last view         |
-| `MCLOGS_STORAGE_LIMIT_BYTES`       | `storage.limit.bytes`       | `int`          | `10485760` (10 MiB)       | Maximum size of a log in bytes                            |
-| `MCLOGS_STORAGE_LIMIT_LINES`       | `storage.limit.lines`       | `int`          | `25000`                   | Maximum number of lines in a log                          |
-| `MCLOGS_MONGODB_URL`               | `mongodb.url`               | `string`       | `"mongodb://mongo:27017"` | MongoDB connection URL                                    |
-| `MCLOGS_MONGODB_DATABASE`          | `mongodb.database`          | `string`       | `"mclogs"`                | Name of the MongoDB database                              |
-| `MCLOGS_ID_LENGTH`                 | `id.length`                 | `int`          | `7`                       | The default length for new IDs                            |
-| `MCLOGS_LEGAL_ABUSE`               | `legal.abuse`               | `string\|null` | `null`                    | An email address that's linked publicly to report abuse   |
-| `MCLOGS_LEGAL_IMPRINT`             | `legal.imprint`             | `string\|null` | `null`                    | The imprint URL                                           |
-| `MCLOGS_LEGAL_PRIVACY`             | `legal.privacy`             | `string\|null` | `null`                    | The privacy policy URL                                    |
-| `MCLOGS_FRONTEND_NAME`             | `frontend.name`             | `string\|null` | `null`                    | The name of your instance, defaults to the current domain |
-| `MCLOGS_FRONTEND_COLOR_ACCENT`     | `frontend.color.accent`     | `string`       | `#5cb85c`                 | The accent/primary color                                  |
-| `MCLOGS_FRONTEND_COLOR_BACKGROUND` | `frontend.color.background` | `string`       | `#1a1a1a`                 | The background color                                      |
-| `MCLOGS_FRONTEND_COLOR_TEXT`       | `frontend.color.text`       | `string`       | `#e8e8e8`                 | The text color                                            |
-| `MCLOGS_FRONTEND_COLOR_ERROR`      | `frontend.color.text`       | `string`       | `#f62451`                 | The error color                                           |
-| `MCLOGS_WORKER_REQUESTS`           | `worker.requests`           | `int`          | `500`                     | The number of requests a single worker should handle      |
-
+| Variable / JSON Path                                                | Default             | Description                                 |
+|:--------------------------------------------------------------------|:--------------------|:--------------------------------------------|
+| `MCLOGS_STORAGE_TTL` <br> `storage.ttl`                             | `7776000` (90d)     | Time until logs are deleted after last view |
+| `MCLOGS_STORAGE_LIMIT_BYTES` <br> `storage.limit.bytes`             | `10485760` (10 MiB) | Maximum size of a log in bytes              |
+| `MCLOGS_STORAGE_LIMIT_LINES` <br> `storage.limit.lines`             | `25000`             | Maximum number of lines in a log            |
+| `MCLOGS_MONGODB_URL` <br> `mongodb.url`                             | `"mongodb://mongo"` | MongoDB connection URL                      |
+| `MCLOGS_MONGODB_DATABASE` <br> `mongodb.database`                   | `"mclogs"`          | Name of the MongoDB database                |
+| `MCLOGS_ID_LENGTH` <br> `id.length`                                 | `7`                 | The default length for new IDs              |
+| `MCLOGS_LEGAL_ABUSE` <br> `legal.abuse`                             | `null`              | Public email address to report abuse        |
+| `MCLOGS_LEGAL_IMPRINT` <br> `legal.imprint`                         | `null`              | The imprint URL                             |
+| `MCLOGS_LEGAL_PRIVACY` <br> `legal.privacy`                         | `null`              | The privacy policy URL                      |
+| `MCLOGS_FRONTEND_NAME` <br> `frontend.name`                         | `null`              | Instance name (defaults to domain)          |
+| `MCLOGS_FRONTEND_COLOR_ACCENT` <br> `frontend.color.accent`         | `#5cb85c`           | The accent/primary color                    |
+| `MCLOGS_FRONTEND_COLOR_BACKGROUND` <br> `frontend.color.background` | `#1a1a1a`           | The background color                        |
+| `MCLOGS_FRONTEND_COLOR_TEXT` <br> `frontend.color.text`             | `#e8e8e8`           | The text color                              |
+| `MCLOGS_FRONTEND_COLOR_ERROR` <br> `frontend.color.error`           | `#f62451`           | The error color                             |
+| `MCLOGS_WORKER_REQUESTS` <br> `worker.requests`                     | `500`               | Max requests per single worker              |
 
 There are a few more environment variables that can be set to modify the FrankenPHP/Caddy setup directly:
 
-| Environment variable | Type     | Default | Description                                                                                                                                |
-|----------------------|----------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `SERVER_NAME`        | `string` | `":80"` | Set the Caddy server name, set this to your domain for [automatic SSL](https://caddyserver.com/docs/automatic-https#hostname-requirements) |
-| `FRANKENPHP_WORKERS` | `int`    | `16`    | The number of [FrankenPHP workers](https://frankenphp.dev/docs/worker/)                                                                    |                                                                                                                                            |
+| Variable             | Default | Description                                                                                                                                |
+|----------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| `SERVER_NAME`        | `":80"` | Set the Caddy server name, set this to your domain for [automatic SSL](https://caddyserver.com/docs/automatic-https#hostname-requirements) |
+| `FRANKENPHP_WORKERS` | `16`    | The number of [FrankenPHP workers](https://frankenphp.dev/docs/worker/)                                                                    |                                                                                                                                            |
 
 
 ## Development setup
