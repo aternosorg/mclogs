@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: ..
-      dockerfile: ../Dockerfile
+      dockerfile: ./Dockerfile
     environment:
       - MCLOGS_WORKER_REQUESTS=1
       - FRANKENPHP_WORKERS=4
