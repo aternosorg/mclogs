@@ -120,7 +120,6 @@ body {
 
 /* Global scrollbar styling */
 * {
-    scrollbar-width: thin;
     scrollbar-color: var(--accent) transparent;
 }
 
@@ -735,7 +734,7 @@ footer {
     padding: clamp(0.15rem, 1vw, 0.2rem) clamp(0.35rem, 1.5vw, 0.4rem);
     background-color: var(--surface);
     border-radius: 4px;
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), monospace;
     font-size: clamp(0.7rem, 1.8vw, 0.75rem);
     font-weight: 500;
     color: var(--text-muted);
@@ -791,7 +790,7 @@ footer {
 }
 
 .log-inner {
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), monospace;
     font-size: clamp(0.85rem, 2vw, 0.9rem);
     line-height: 1.6;
     overflow-x: auto;
@@ -839,25 +838,35 @@ footer {
     background-color: var(--accent);
 }
 
-.log-inner .line-number.line-active {
+.log-inner .entry.line-active .line-number {
     background-color: var(--accent);
     color: var(--bg);
     font-weight: 600;
 }
 
-.log-inner .line-number.line-active:hover {
+.log-inner .entry.line-active .line-number:hover {
     background-color: var(--accent-hover);
     color: var(--bg);
 }
 
-.log-inner .entry.entry-error .line-number.line-active {
+.log-inner .entry.line-active .line-number-container,
+.log-inner .entry.line-active .line-content {
+    background-color: color-mix(in srgb, var(--accent) 15%, var(--bg) 85%);
+}
+
+.log-inner .entry.entry-error.line-active .line-number {
     background-color: var(--error);
     color: #fff;
 }
 
-.log-inner .entry.entry-error .line-number.line-active:hover {
+.log-inner .entry.entry-error.line-active .line-number:hover {
     background-color: color-mix(in srgb, var(--error) 85%, var(--bg) 15%);
     color: #fff;
+}
+
+.log-inner .entry.entry-error.line-active .line-number-container,
+.log-inner .entry.entry-error.line-active .line-content {
+    background-color: color-mix(in srgb, var(--error) 25%, var(--bg) 75%);
 }
 
 .log-inner .line-content {

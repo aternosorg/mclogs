@@ -20,7 +20,7 @@ function updateLineNumber(id) {
         for (const line of document.querySelectorAll(".line-active")) {
             line.classList.remove("line-active");
         }
-        element.classList.add('line-active');
+        element.closest('.entry').classList.add('line-active');
     }
 }
 
