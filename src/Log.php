@@ -375,7 +375,7 @@ class Log
      *
      * @return string
      */
-    public function getShortURL(): string
+    public function getDisplayURL(): string
     {
         $url = $this->getURL();
         return $url->getHost() . $url->getPath();

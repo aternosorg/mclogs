@@ -152,3 +152,27 @@ function saveSettings() {
     }
     document.cookie = "MCLOGS_SETTINGS=" + encodeURIComponent(JSON.stringify(data)) + ";path=/;expires=" + new Date(new Date().getTime() + 100 * 365 * 24 * 60 * 60 * 1000).toUTCString();
 }
+
+/* copy to clipboard */
+const copyButtons = document.querySelectorAll("[data-clipboard]");
+copyButtons.forEach(button => button.addEventListener("click", handleCopyButtonClick));
+const doneClassName = "fa-solid fa-check";
+
+async function handleCopyButtonClick(e) {
+    const button = e.currentTarget;
+    const data = button.dataset.clipboard;
+    await navigator.clipboard.writeText(data);
+
+    const iconElement = button.querySelector("i");
+    if (!iconElement) {
+        return;
+    }
+    const originalClassName = iconElement.className;
+    if (originalClassName === doneClassName) {
+        return;
+    }
+    iconElement.className = doneClassName;
+    setTimeout(() => {
+        iconElement.className = originalClassName;
+    }, 2000);
+}
