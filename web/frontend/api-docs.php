@@ -279,7 +279,7 @@ $config = Config::getInstance();
                     <h3>Responses</h3>
                     <h4>Success <span class="content-type">application/json</span></h4>
                     <pre class="api-code">{
-    "success": true,
+    "success": true
 }</pre>
                     <h4>Error <span class="content-type">application/json</span></h4>
                     <pre class="api-code">
