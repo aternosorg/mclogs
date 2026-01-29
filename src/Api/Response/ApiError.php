@@ -17,7 +17,7 @@ class ApiError extends ApiResponse
     public function jsonSerialize(): array
     {
         $data = parent::jsonSerialize();
-        $data['message'] = $this->message;
+        $data['error'] = $this->message;
         return $data;
     }
 }
