@@ -43,9 +43,6 @@ enum ConfigKey
 
             ConfigKey::ID_LENGTH => 7,
 
-            ConfigKey::LEGAL_ABUSE,
-            ConfigKey::LEGAL_PRIVACY,
-            ConfigKey::LEGAL_IMPRINT,
             ConfigKey::FRONTEND_ANALYTICS => false,
 
             ConfigKey::FRONTEND_COLOR_BACKGROUND => "#1a1a1a",
