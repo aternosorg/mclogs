@@ -1,8 +1,4 @@
-<?php
-
-use Aternos\Mclogs\Util\URL;
-
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <?php include __DIR__ . '/parts/head.php'; ?>
