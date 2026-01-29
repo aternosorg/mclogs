@@ -1210,6 +1210,18 @@ footer {
     border-color: var(--error);
 }
 
+.popover-error {
+    display: none;
+    font-weight: 600;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
+    padding: clamp(0.2rem, 2vw, 0.2rem);
+    color: var(--text);
+    background-color: var(--error-bg);
+    border: 1px solid var(--error-border);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
 /** Settings Popover **/
 
 .settings-trigger {
