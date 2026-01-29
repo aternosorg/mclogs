@@ -29,8 +29,11 @@ $settings = new Settings();
                                <h1>
                                    <i class="fas fa-file-lines"></i>
                                    <?=htmlspecialchars($log->getCodexLog()->getTitle()); ?>
-                                   <span class="log-id-tag">#<?=htmlspecialchars($log->getId()->get()); ?></span>
                                </h1>
+                               <button class="log-url-btn js-copyable" data-clipboard="<?=htmlspecialchars($log->getShortURL()); ?>" title="Copy log URL to clipboard">
+                                   <span class="log-url"><?=htmlspecialchars($log->getShortURL()); ?></span>
+                                   <i class="fa-solid fa-copy"></i>
+                               </button>
                            </div>
                        </div>
                        <div class="right">
@@ -46,14 +49,10 @@ $settings = new Settings();
                                        <i class="fa fa-arrow-circle-down"></i>
                                        <?=htmlspecialchars($log->getLinesString()); ?>
                                    </div>
-                                   <a class="btn btn-dark btn-small" id="raw" target="_blank" href="<?=$log->getRawURL()->toString(); ?>">
+                                   <a class="btn btn-white btn-small" id="raw" target="_blank" title="Raw log" href="<?=$log->getRawURL()->toString(); ?>">
                                        <i class="fa fa-arrow-up-right-from-square"></i>
                                        Raw
                                    </a>
-                                   <button class="btn btn-small btn-white share-btn" id="share-btn" title="Copy link to clipboard">
-                                       <i class="fa fa-share-nodes"></i>
-                                       <span class="share-btn-text">Share</span>
-                                   </button>
                                </div>
                            </div>
                        </div>
@@ -132,11 +131,11 @@ $settings = new Settings();
                     ?>
                 </div>
                 <div class="log-bottom">
-                    <div class="btn btn-small btn-dark" id="up-button">
+                    <div class="btn btn-small btn-dark" id="up-button" title="Scroll to top">
                         <i class="fa fa-arrow-circle-up"></i>
                     </div>
                     <div class="settings-dropdown">
-                        <button class="settings-trigger btn btn-small btn-dark" popovertarget="settings-overlay">
+                        <button class="settings-trigger btn btn-small btn-dark" title="Settings" popovertarget="settings-overlay">
                             <i class="fas fa-cog"></i>
                             Settings
                         </button>

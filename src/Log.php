@@ -372,6 +372,16 @@ class Log
     }
 
     /**
+     *
+     * @return string
+     */
+    public function getShortURL(): string
+    {
+        $url = $this->getURL();
+        return $url->getHost() . $url->getPath();
+    }
+
+    /**
      * @return Uri
      */
     public function getRawURL(): Uri

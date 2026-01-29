@@ -605,22 +605,36 @@ footer {
     gap: 0.5rem;
 }
 
-.log-header .log-id-tag {
+.log-header .log-url-btn {
     display: inline-flex;
     align-items: center;
+    gap: 0.4rem;
     padding: clamp(0.2rem, 1vw, 0.25rem) clamp(0.4rem, 1.5vw, 0.5rem);
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: 6px;
     font-size: clamp(0.7rem, 1.8vw, 0.75rem);
     color: var(--text-muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), monospace;
     line-height: 1;
+    transition: all 0.15s ease;
+    vertical-align: middle;
+    cursor: pointer;
 }
 
-.log-header .share-btn {
-    flex-shrink: 0;
+.log-header .log-url-btn:hover {
+    border-color: var(--accent-border);
+    background-color: var(--accent-bg);
+    color: var(--text);
 }
+
+.log-header .log-url-btn i {
+    font-size: 0.85em;
+    opacity: 0.5;
+    color: var(--accent);
+}
+
+
 
 .log-info-rows {
     display: flex;
