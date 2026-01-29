@@ -142,9 +142,12 @@ $settings = new Settings();
                             </button>
                             <div class="delete-overlay popover-content popover-danger" id="delete-overlay" popover>
                                 <span class="delete-message">Delete this log permanently?</span>
+                                <div class="popover-error">
+
+                                </div>
                                 <div class="delete-actions">
                                     <button class="btn btn-small btn-white" popovertarget="delete-overlay">Cancel</button>
-                                    <button class="btn btn-small btn-danger delete-log-button" popovertarget="delete-overlay">Delete</button>
+                                    <button class="btn btn-small btn-danger delete-log-button">Delete</button>
                                 </div>
                             </div>
                         </div>

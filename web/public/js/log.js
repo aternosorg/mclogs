@@ -195,17 +195,20 @@ async function handleCopyButtonClick(e) {
 }
 
 const deleteButton = document.querySelector(".delete-log-button");
+const deleteErrorElement = document.querySelector(".delete-overlay .popover-error");
 if (deleteButton) {
     deleteButton.addEventListener("click", handleDeleteButtonClick);
 }
 
 async function handleDeleteButtonClick() {
+    deleteErrorElement.style.display = "none";
     const response = await fetch(window.location.href, {
         method: "DELETE",
         credentials: "include"
     });
     if (!response.ok) {
-        //TODO: handle error
+        deleteErrorElement.style.display = "block";
+        deleteErrorElement.textContent = `${response.status} (${response.statusText})`;
         return;
     }
     window.location.href = "/";
