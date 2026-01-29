@@ -187,7 +187,7 @@ $settings = new Settings();
                     </div>
                     <div class="center">
                         <p class="delete-notice">
-                            This log will be saved for 90 days from their last view.
+                            This log will be saved for <?= htmlspecialchars(\Aternos\Mclogs\Util\TimeInterval::getInstance()->format(Config::getInstance()->get(ConfigKey::STORAGE_TTL))); ?> from their last view.
                         </p>
                     </div>
                     <div class="right">
