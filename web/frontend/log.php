@@ -188,7 +188,7 @@ $settings = new Settings();
                     </div>
                 <?php endif; ?>
                     <div class="delete-notice">
-                        This log will be saved for <?= htmlspecialchars(\Aternos\Mclogs\Util\TimeInterval::getInstance()->format(Config::getInstance()->get(ConfigKey::STORAGE_TTL))); ?> from their last view.
+                        This log will be saved for <?= htmlspecialchars(\Aternos\Mclogs\Util\TimeInterval::getInstance()->format(Config::getInstance()->get(ConfigKey::STORAGE_TTL))); ?> from its last view.
                     </div>
                     <?php if ($abuseEmail = Config::getInstance()->get(ConfigKey::LEGAL_ABUSE)): ?>
                         <a href="mailto:<?=htmlspecialchars($abuseEmail); ?>?subject=Report%20<?=htmlspecialchars(rawurlencode(Config::getInstance()->getName())); ?>/<?=htmlspecialchars($log->getId()->get()); ?>" class="report-link">

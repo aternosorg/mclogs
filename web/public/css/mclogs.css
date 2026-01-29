@@ -501,8 +501,8 @@ main {
 }
 
 #error-toggle.toggled {
-    background-color: var(--surface);
-    color: var(--error);
+    background-color: var(--error-bg);
+    color: var(--text);
     border-color: var(--error);
 }
 
