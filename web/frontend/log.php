@@ -169,8 +169,9 @@ $settings = new Settings();
                         </div>
                     </div>
                 </div>
-                <div class="log-notice">
-                    <div class="left">
+                <div class="log-details">
+                <?php if($source = $log->getSource() || $created = $log->getCreated()?->toDateTime()->getTimestamp()): ?>
+                    <div class="meta-data">
                         <?php if ($source = $log->getSource()): ?>
                             <div class="source" title="Source">
                                 <i class="fa-solid fa-arrow-up-from-bracket"></i>
@@ -185,19 +186,16 @@ $settings = new Settings();
                             </div>
                         <?php endif; ?>
                     </div>
-                    <div class="center">
-                        <p class="delete-notice">
-                            This log will be saved for <?= htmlspecialchars(\Aternos\Mclogs\Util\TimeInterval::getInstance()->format(Config::getInstance()->get(ConfigKey::STORAGE_TTL))); ?> from their last view.
-                        </p>
+                <?php endif; ?>
+                    <div class="delete-notice">
+                        This log will be saved for <?= htmlspecialchars(\Aternos\Mclogs\Util\TimeInterval::getInstance()->format(Config::getInstance()->get(ConfigKey::STORAGE_TTL))); ?> from their last view.
                     </div>
-                    <div class="right">
-                        <?php if ($abuseEmail = Config::getInstance()->get(ConfigKey::LEGAL_ABUSE)): ?>
+                    <?php if ($abuseEmail = Config::getInstance()->get(ConfigKey::LEGAL_ABUSE)): ?>
                         <a href="mailto:<?=htmlspecialchars($abuseEmail); ?>?subject=Report%20<?=htmlspecialchars(rawurlencode(Config::getInstance()->getName())); ?>/<?=htmlspecialchars($log->getId()->get()); ?>" class="report-link">
                             <i class="fa-solid fa-flag"></i>
                             Report abuse
                         </a>
-                        <?php endif; ?>
-                    </div>
+                    <?php endif; ?>
                 </div>
             </main>
 

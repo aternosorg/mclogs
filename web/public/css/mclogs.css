@@ -1338,7 +1338,7 @@ footer {
     background-color: var(--bg);
 }
 
-.log-notice {
+.log-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -1349,25 +1349,25 @@ footer {
     color: var(--text-muted);
 }
 
-.log-notice:has(.right) {
+.log-details:has(:nth-child(3)) {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.log-notice .left {
+.log-details .meta-data {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.7rem;
 }
 
-.log-notice i {
+.log-details i {
     margin-right: 0.25rem;
 }
 
-.log-notice .center {
+.log-details *:nth-child(2) {
     text-align: center;
 }
 
-.log-notice .right {
+.log-details *:last-child {
     text-align: right;
 }
 
