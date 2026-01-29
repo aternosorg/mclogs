@@ -1,0 +1,32 @@
+name: "mclogs"
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: ./Dockerfile
+    environment:
+      - MCLOGS_WORKER_REQUESTS=1
+      - FRANKENPHP_WORKERS=4
+    ports:
+      - "80:80"
+    volumes:
+      - ../:/app
+      - ./dev.ini:/usr/local/etc/php/conf.d/dev.ini
+    user: root
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  mongo:
+    image: mongo
+    volumes:
+      - mongo:/data/db
+    healthcheck:
+      test: [ "CMD", "mongosh", "--eval", "db.adminCommand('ping')" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  mongo:

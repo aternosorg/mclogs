@@ -8,13 +8,21 @@
         }
     ],
     "require": {
-        "php": ">=8.4",
+        "php": ">=8.5",
+        "ext-frankenphp": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
+        "ext-mongodb": "*",
+        "ext-uri": "*",
         "ext-zlib": "*",
         "aternos/codex-hytale": "^2.0",
         "aternos/codex-minecraft": "^5.0.1",
         "aternos/sherlock": "^1.0.2",
         "mongodb/mongodb": "2.1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Aternos\\Mclogs\\": "src/"
+        }
     }
 }

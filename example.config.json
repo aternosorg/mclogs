@@ -1,0 +1,33 @@
+{
+    "storage": {
+        "ttl": 7776000,
+        "limit": {
+            "bytes": 10485760,
+            "lines": 25000
+        }
+    },
+    "mongodb": {
+        "url": "mongodb://127.0.0.1:27017",
+        "database": "mclogs"
+    },
+    "id": {
+        "length": 7
+    },
+    "legal": {
+        "abuse": "abuse@aternos.org",
+        "imprint": "https://aternos.gmbh/imprint/",
+        "privacy": "https://aternos.gmbh/en/mclogs/privacy"
+    },
+    "frontend": {
+        "name": "mclo.gs",
+        "color": {
+            "background": "#1a1a1a",
+            "text": "#e8e8e8",
+            "accent": "#5cb85c",
+            "error": "#f62451"
+        }
+    },
+    "worker": {
+        "requests": 500
+    }
+}

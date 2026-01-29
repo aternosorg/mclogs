@@ -1,4 +1,4 @@
 *.log
 .idea
 /vendor/
-core/config/mongo.php
+config.json
