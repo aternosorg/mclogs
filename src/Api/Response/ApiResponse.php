@@ -41,7 +41,7 @@ class ApiResponse implements \JsonSerializable
     {
         header('Content-Type: application/json');
         http_response_code($this->httpCode);
-        echo json_encode($this);
+        echo json_encode($this, JSON_UNESCAPED_SLASHES);
         return $this;
     }
 }
