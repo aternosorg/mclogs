@@ -20,6 +20,43 @@ class URL
     }
 
     /**
+     * @return string
+     */
+    protected static function readProtocol(): string
+    {
+        if (isset($_SERVER['HTTP_FORWARDED'])) {
+            $forwarded = explode(';', $_SERVER['HTTP_FORWARDED']);
+            foreach ($forwarded as $part) {
+                $part = trim($part);
+                $partParts = explode('=', $part, 2);
+                if (count($partParts) === 2 && strtolower($partParts[0]) === 'proto') {
+                    return strtolower($partParts[1]);
+                }
+            }
+        }
+        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+            $protoParts = explode(',', $_SERVER['HTTP_X_FORWARDED_PROTO']);
+            return strtolower(trim($protoParts[0]));
+        }
+        if (isset($_SERVER['REQUEST_SCHEME'])) {
+            return strtolower($_SERVER['REQUEST_SCHEME']);
+        }
+        return 'http';
+    }
+
+    /**
+     * @return string
+     */
+    protected static function getProtocol(): string
+    {
+        $protocol = static::readProtocol();
+        if ($protocol === 'https') {
+            return 'https';
+        }
+        return 'http';
+    }
+
+    /**
      * Get base URL
      *
      * @return Uri
@@ -33,7 +70,7 @@ class URL
         if (str_starts_with($host, static::API_SUBDOMAIN)) {
             $host = substr($host, strlen(static::API_SUBDOMAIN));
         }
-        return static::$base = new Uri($_SERVER['REQUEST_SCHEME'] . "://" . $host);
+        return static::$base = new Uri(static::getProtocol() . "://" . $host);
     }
 
     /**
