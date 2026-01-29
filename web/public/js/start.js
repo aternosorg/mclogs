@@ -14,6 +14,8 @@ pasteSaveButtons.forEach(button => button.addEventListener('click', sendLog));
 fileSelectButton.addEventListener('click', selectLogFile);
 pasteClipboardButton.addEventListener('click', pasteFromClipboard);
 
+reevaluateContentStatus();
+
 document.addEventListener('keydown', event => {
     if (event.key.toLowerCase() === 's' && (event.ctrlKey || event.metaKey)) {
         void sendLog();
