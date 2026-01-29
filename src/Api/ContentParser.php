@@ -9,6 +9,8 @@ use Aternos\Mclogs\Api\Response\ApiError;
  */
 class ContentParser
 {
+    protected const int MAX_ENCODING_STEPS = 5;
+
     /**
      * Get all supported content encodings
      * @return string[]
@@ -33,6 +35,9 @@ class ContentParser
         $encodingHeader = $_SERVER['HTTP_CONTENT_ENCODING'] ?? '';
         if ($encodingHeader) {
             $encodingSteps = explode(',', $encodingHeader);
+            if (count($encodingSteps) > static::MAX_ENCODING_STEPS) {
+                return new ApiError(400, "Too many Content-Encoding steps.");
+            }
             foreach (array_reverse($encodingSteps) as $step) {
                 switch (trim(strtolower($step))) {
                     case "deflate":
