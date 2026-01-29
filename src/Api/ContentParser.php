@@ -45,6 +45,9 @@ class ContentParser
                     default:
                         return new ApiError(415, "Unsupported Content-Encoding: " . htmlspecialchars($step));
                 }
+                if ($body === false) {
+                    return new ApiError(400, "Failed to decode request body with encoding: " . htmlspecialchars($step));
+                }
             }
         }
 
