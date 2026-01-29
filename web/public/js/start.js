@@ -235,6 +235,10 @@ async function unpackGz(data) {
     return new Uint8Array(await new Response(decompressedStream).arrayBuffer());
 }
 
+function isFileDragEvent(e) {
+    return e.dataTransfer && Array.from(e.dataTransfer.types).includes('Files');
+}
+
 /* Drag and drop */
 const dropZone = document.getElementById('dropzone');
 let windowDragCount = 0;
@@ -243,38 +247,38 @@ let dropZoneDragCount = 0;
 window.addEventListener('dragover', e => e.preventDefault());
 window.addEventListener('dragenter', e => {
     e.preventDefault();
-    if (e.dataTransfer?.files?.length) {
+    if (isFileDragEvent(e)) {
         updateWindowDragCount(1);
     }
 });
 window.addEventListener('dragleave', e => {
     e.preventDefault();
-    if (e.dataTransfer?.files?.length) {
+    if (isFileDragEvent(e)) {
         updateWindowDragCount(-1);
     }
 });
 window.addEventListener('drop', e => {
     e.preventDefault();
-    if (e.dataTransfer?.files?.length) {
+    if (isFileDragEvent(e)) {
         updateWindowDragCount(-1);
     }
 });
 
 dropZone.addEventListener('dragenter', e => {
     e.preventDefault();
-    if (e.dataTransfer?.files?.length) {
+    if (isFileDragEvent(e)) {
         updateDropZoneDragCount(1);
     }
 });
 dropZone.addEventListener('dragleave', e => {
     e.preventDefault();
-    if (e.dataTransfer?.files?.length) {
+    if (isFileDragEvent(e)) {
         updateDropZoneDragCount(-1);
     }
 });
 dropZone.addEventListener('drop', async e => {
     e.preventDefault();
-    if (e.dataTransfer?.files?.length) {
+    if (isFileDragEvent(e)) {
         updateDropZoneDragCount(-1);
     }
     await handleDropEvent(e);
