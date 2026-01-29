@@ -1,6 +1,6 @@
 services:
   web:
-    image: ghcr.io/aternosorg/mclogs:two
+    image: ghcr.io/aternosorg/mclogs:2
     restart: always
     ports:
       # Expose HTTP (80) and HTTPS (443)

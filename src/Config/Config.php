@@ -33,6 +33,11 @@ class Config
     {
         $env = getenv($key->getEnvironmentVariable());
         if ($env !== false) {
+            if ($env === "true") {
+                return true;
+            } else if ($env === "false") {
+                return false;
+            }
             return $env;
         }
 
