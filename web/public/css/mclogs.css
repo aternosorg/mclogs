@@ -592,6 +592,19 @@ footer {
     color: var(--accent);
 }
 
+.log-header .log-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.log-header .log-title-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 .log-header .log-id-tag {
     display: inline-flex;
     align-items: center;
@@ -602,8 +615,11 @@ footer {
     font-size: clamp(0.7rem, 1.8vw, 0.75rem);
     color: var(--text-muted);
     font-family: var(--font-mono);
-    margin-left: 0.25rem;
     line-height: 1;
+}
+
+.log-header .share-btn {
+    flex-shrink: 0;
 }
 
 .log-info-rows {

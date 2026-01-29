@@ -46,10 +46,14 @@ $settings = new Settings();
                                        <i class="fa fa-arrow-circle-down"></i>
                                        <?=htmlspecialchars($log->getLinesString()); ?>
                                    </div>
-                                   <a class="btn btn-white btn-small" id="raw" target="_blank" href="<?=$log->getRawURL()->toString(); ?>">
+                                   <a class="btn btn-dark btn-small" id="raw" target="_blank" href="<?=$log->getRawURL()->toString(); ?>">
                                        <i class="fa fa-arrow-up-right-from-square"></i>
                                        Raw
                                    </a>
+                                   <button class="btn btn-small btn-white share-btn" id="share-btn" title="Copy link to clipboard">
+                                       <i class="fa fa-share-nodes"></i>
+                                       <span class="share-btn-text">Share</span>
+                                   </button>
                                </div>
                            </div>
                        </div>
