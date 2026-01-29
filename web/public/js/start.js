@@ -235,8 +235,15 @@ async function unpackGz(data) {
     return new Uint8Array(await new Response(decompressedStream).arrayBuffer());
 }
 
-function isFileDragEvent(e) {
-    return e.dataTransfer && Array.from(e.dataTransfer.types).includes('Files');
+function isDragEventValid(e) {
+    if (!e.dataTransfer) {
+        return false;
+    }
+    let types = Array.from(e.dataTransfer.types);
+    if (types.includes('text/uri-list')) {
+        return false;
+    }
+    return types.includes('Files') || types.includes('text/plain');
 }
 
 /* Drag and drop */
@@ -247,38 +254,38 @@ let dropZoneDragCount = 0;
 window.addEventListener('dragover', e => e.preventDefault());
 window.addEventListener('dragenter', e => {
     e.preventDefault();
-    if (isFileDragEvent(e)) {
+    if (isDragEventValid(e)) {
         updateWindowDragCount(1);
     }
 });
 window.addEventListener('dragleave', e => {
     e.preventDefault();
-    if (isFileDragEvent(e)) {
+    if (isDragEventValid(e)) {
         updateWindowDragCount(-1);
     }
 });
 window.addEventListener('drop', e => {
     e.preventDefault();
-    if (isFileDragEvent(e)) {
+    if (isDragEventValid(e)) {
         updateWindowDragCount(-1);
     }
 });
 
 dropZone.addEventListener('dragenter', e => {
     e.preventDefault();
-    if (isFileDragEvent(e)) {
+    if (isDragEventValid(e)) {
         updateDropZoneDragCount(1);
     }
 });
 dropZone.addEventListener('dragleave', e => {
     e.preventDefault();
-    if (isFileDragEvent(e)) {
+    if (isDragEventValid(e)) {
         updateDropZoneDragCount(-1);
     }
 });
 dropZone.addEventListener('drop', async e => {
     e.preventDefault();
-    if (isFileDragEvent(e)) {
+    if (isDragEventValid(e)) {
         updateDropZoneDragCount(-1);
     }
     await handleDropEvent(e);
