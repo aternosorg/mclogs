@@ -97,29 +97,34 @@ $settings = new Settings();
                 </div>
                 <?php $problems = $log->getAnalysis()?->getProblems(); ?>
                 <?php if(count($problems) > 0): ?>
-                    <div class="issues-panel">
-                        <div class="issues-header">
-                            <span class="issues-count"><?=count($problems); ?></span>
-                            <span class="issues-title"><?=count($problems) === 1 ? 'Issue' : 'Issues'; ?> detected</span>
+                    <div class="problems-panel">
+                        <div class="problems-header">
+                            <span class="problems-count"><?=count($problems); ?></span>
+                            <span class="problems-title"><?=count($problems) === 1 ? 'Problem' : 'Problems'; ?> detected</span>
                         </div>
-                        <div class="issues-list">
+                        <div class="problems-list">
                             <?php foreach($problems as $problem): ?>
                                 <?php $number = $problem->getEntry()[0]->getNumber(); ?>
-                                <div class="issue-item">
-                                    <a href="/<?=htmlspecialchars($log->getId()->get()) . "#L" . $number; ?>" class="issue-line" onclick="updateLineNumber('#L<?=$number; ?>');"><?=$number; ?></a>
-                                    <div class="issue-content">
-                                        <p class="issue-message"><?=htmlspecialchars($problem->getMessage()); ?></p>
-                                        <?php if(count($problem->getSolutions()) > 0): ?>
-                                            <div class="issue-solutions">
-                                                <?php foreach($problem->getSolutions() as $solution): ?>
-                                                    <div class="issue-solution">
-                                                        <i class="fa-solid fa-lightbulb"></i>
-                                                        <span class="solution-text"><?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", htmlspecialchars($solution->getMessage())); ?></span>
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            </div>
-                                        <?php endif; ?>
-                                    </div>
+                                <div class="problem-item">
+                                    <a href="/<?=htmlspecialchars($log->getId()->get()) . "#L" . $number; ?>" class="problem-entry" onclick="updateLineNumber('#L<?=$number; ?>');">
+                                        <span class="problem-label">
+                                            <i class="fa-solid fa-triangle-exclamation"></i>
+                                            Problem
+                                        </span>
+                                        <span class="problem-text"><?=htmlspecialchars($problem->getMessage()); ?></span>
+                                        <span class="problem-line">Line <?=$number; ?></span>
+                                    </a>
+                                    <?php if(count($problem->getSolutions()) > 0): ?>
+                                        <div class="problem-solutions">
+                                            <span class="problem-solutions-label"><?=count($problem->getSolutions()) === 1 ? 'Solution:' : 'Solutions:'; ?></span>
+                                            <?php foreach($problem->getSolutions() as $solution): ?>
+                                                <div class="problem-solution">
+                                                    <i class="fa-solid fa-lightbulb"></i>
+                                                    <span><?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", htmlspecialchars($solution->getMessage())); ?></span>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             <?php endforeach; ?>
                         </div>

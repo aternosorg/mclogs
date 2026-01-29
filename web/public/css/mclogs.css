@@ -707,16 +707,16 @@ footer {
     align-items: center;
 }
 
-/** Issues Panel **/
+/** Problems Panel **/
 
-.issues-panel {
+.problems-panel {
     margin: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 2.5vw, 1.25rem);
     background-color: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
 }
 
-.issues-header {
+.problems-header {
     display: flex;
     align-items: center;
     gap: clamp(0.5rem, 1.5vw, 0.6rem);
@@ -725,7 +725,7 @@ footer {
     border-bottom: 1px solid var(--border);
 }
 
-.issues-count {
+.problems-count {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -738,74 +738,109 @@ footer {
     border-radius: 4px;
 }
 
-.issues-title {
+.problems-title {
     font-size: clamp(0.9rem, 2vw, 1rem);
     font-weight: 600;
     color: var(--text);
 }
 
-.issues-list {
+.problems-list {
     display: flex;
     flex-direction: column;
 }
 
-.issue-item {
+.problem-item {
     display: flex;
-    align-items: flex-start;
-    gap: clamp(0.5rem, 1.5vw, 0.75rem);
-    padding: clamp(0.6rem, 2vw, 0.75rem) clamp(0.85rem, 2.5vw, 1rem);
+    flex-direction: column;
+    gap: clamp(0.4rem, 1vw, 0.5rem);
+    padding: clamp(0.75rem, 2vw, 1rem) clamp(0.85rem, 2.5vw, 1rem);
+    border-bottom: 1px solid var(--border);
 }
 
-.issue-line {
+.problem-item:last-child {
+    border-bottom: none;
+}
+
+.problem-entry {
+    display: flex;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    text-decoration: none;
+    transition: border-color 0.15s ease;
+}
+
+.problem-entry:hover {
+    border-color: var(--error);
+}
+
+.problem-label {
     display: flex;
     align-items: center;
-    justify-content: center;
-    min-width: clamp(2rem, 3vw, 2.25rem);
-    padding: clamp(0.15rem, 1vw, 0.2rem) clamp(0.35rem, 1.5vw, 0.4rem);
-    background-color: var(--surface);
-    border-radius: 4px;
+    gap: 0.4rem;
+    padding: clamp(0.3rem, 1vw, 0.4rem) clamp(0.55rem, 1.5vw, 0.65rem);
+    font-weight: 600;
+    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
+    white-space: nowrap;
+    background-color: var(--error);
+    color: #fff;
+}
+
+.problem-text {
+    display: flex;
+    align-items: center;
+    padding: clamp(0.3rem, 1vw, 0.4rem) clamp(0.55rem, 1.5vw, 0.65rem);
+    color: var(--text);
+    font-weight: 500;
+    flex: 1;
+}
+
+.problem-line {
+    display: inline-flex;
+    align-items: center;
+    margin: clamp(0.25rem, 0.8vw, 0.35rem) clamp(0.55rem, 1.5vw, 0.65rem);
+    padding: 0.2em 0.5em;
     font-family: var(--font-mono), monospace;
-    font-size: clamp(0.7rem, 1.8vw, 0.75rem);
+    font-size: clamp(0.7rem, 1.6vw, 0.75rem);
     font-weight: 500;
     color: var(--text-muted);
-    text-decoration: none;
-    transition: all 0.15s ease;
-    flex-shrink: 0;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    white-space: nowrap;
 }
 
-.issue-line:hover {
-    background-color: var(--accent);
-    color: var(--bg);
-}
-
-.issue-message {
-    font-weight: 500;
-    color: var(--text);
-    font-size: clamp(0.85rem, 2vw, 0.9rem);
-}
-
-.issue-solutions {
+.problem-solutions {
     display: flex;
     flex-direction: column;
-    gap: clamp(0.25rem, 1vw, 0.35rem);
-    margin-top: clamp(0.75rem, 2vw, 0.9rem);
+    gap: clamp(0.25rem, 0.5vw, 0.3rem);
+    padding: clamp(0.4rem, 1vw, 0.5rem) clamp(0.55rem, 1.5vw, 0.65rem);
+    background-color: var(--surface);
+    border-radius: 5px;
 }
 
-.issue-solution {
+.problem-solutions-label {
+    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.problem-solution {
     display: flex;
-    align-items: center;
-    gap: clamp(0.4rem, 1.5vw, 0.5rem);
-    padding: clamp(0.35rem, 1.5vw, 0.4rem) clamp(0.5rem, 2vw, 0.6rem);
-    background-color: var(--accent-bg);
-    border: 1px solid var(--accent-border);
-    border-radius: 4px;
-    width: fit-content;
+    align-items: baseline;
+    gap: clamp(0.4rem, 1vw, 0.5rem);
+    font-size: clamp(0.8rem, 1.8vw, 0.85rem);
 }
 
-.solution-text {
-    font-weight: 500;
+.problem-solution i {
+    color: var(--accent);
+    font-size: 0.85em;
+}
+
+.problem-solution span {
     color: var(--text);
-    font-size: clamp(0.85rem, 2vw, 0.9rem);
 }
 
 /** Log Viewer **/
@@ -1129,6 +1164,10 @@ footer {
 @media (max-width: 800px) {
     .multiline {
         padding-left: 0;
+    }
+
+    .problem-line {
+        display: none;
     }
 }
 
@@ -1795,8 +1834,16 @@ footer {
         justify-content: center;
     }
 
-    .issues-panel {
+    .problems-panel {
         margin: 1rem;
+    }
+
+    .problem-entry {
+        align-items: stretch;
+    }
+
+    .problem-line {
+        display: none;
     }
 
     .api-docs-header {
