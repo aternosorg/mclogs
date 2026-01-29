@@ -144,7 +144,7 @@ $settings = new Settings();
                                 <span class="delete-message">Delete this log permanently?</span>
                                 <div class="delete-actions">
                                     <button class="btn btn-small btn-white" popovertarget="delete-overlay">Cancel</button>
-                                    <a href="/<?=htmlspecialchars($log->getId()->get()); ?>/delete" class="btn btn-small btn-danger">Delete</a>
+                                    <button class="btn btn-small btn-danger delete-log-button">Delete</button>
                                 </div>
                             </div>
                         </div>

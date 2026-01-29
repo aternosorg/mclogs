@@ -193,3 +193,22 @@ async function handleCopyButtonClick(e) {
         iconElement.className = originalClassName;
     }, 2000);
 }
+
+const deletePopover = document.querySelector(".delete-overlay");
+const deleteButton = document.querySelector(".delete-log-button");
+if (deleteButton) {
+    deleteButton.addEventListener("click", handleDeleteButtonClick);
+}
+
+async function handleDeleteButtonClick() {
+    deletePopover.hidePopover();
+    const response = await fetch(window.location.href, {
+        method: "DELETE",
+        credentials: "include"
+    });
+    if (!response.ok) {
+        //TODO: handle error
+        return;
+    }
+    window.location.href = "/";
+}
