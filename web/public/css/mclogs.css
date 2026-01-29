@@ -798,20 +798,20 @@ footer {
     position: relative;
     padding: 0.5rem 0 0;
     display: grid;
+    grid-template-columns: auto 1fr;
 }
 
 .log-inner .entry {
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: contents;
     width: 100%;
-    transition: background-color 0.1s ease;
 }
 
 .log-inner .entry:hover {
     background-color: var(--surface);
 }
 
-.log-inner .entry.entry-error {
+.log-inner .entry.entry-error .line-content,
+.log-inner .entry.entry-error .line-number-container{
     background-color: var(--error-bg);
 }
 
@@ -827,13 +827,11 @@ footer {
 }
 
 .log-inner .line-number {
-    display: inline-block;
     padding: clamp(0.08rem, 1vw, 0.1rem) clamp(0.2rem, 1.5vw, 0.25rem);
     color: var(--text-muted);
     font-weight: 500;
     font-size: clamp(0.75rem, 1.8vw, 0.8rem);
     border-radius: 4px;
-    transition: all 0.15s ease;
 }
 
 .log-inner .line-number:hover {
@@ -863,13 +861,11 @@ footer {
 }
 
 .log-inner .line-content {
-    flex: 1;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     word-break: break-word;
     overflow-wrap: anywhere;
     color: var(--text);
-    min-width: 0;
 }
 
 .log-inner .entry:hover .line-content {

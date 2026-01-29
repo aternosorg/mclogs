@@ -123,11 +123,9 @@ $settings = new Settings();
                     </div>
                 <?php endif; ?>
                 <div class="log">
-                    <div class="log-inner">
-                        <?php
-                        echo $log->getPrinter()->print();
-                        ?>
-                    </div>
+                    <?php
+                    echo $log->getPrinter()->print();
+                    ?>
                 </div>
                 <div class="log-bottom">
                     <div class="btn btn-small btn-dark" id="up-button">
