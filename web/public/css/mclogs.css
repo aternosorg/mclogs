@@ -911,6 +911,10 @@ footer {
     background-color: var(--surface);
 }
 
+.collapsed-lines {
+    display: contents;
+}
+
 .log-inner .level {
     display: block;
     white-space: pre-wrap;

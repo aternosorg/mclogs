@@ -48,75 +48,92 @@ function scrollToHeight(top, smoothScrollLimit = 10000) {
 }
 
 /* error collapse toggle */
-let showOnlyErrors = false;
 const toggleErrorsButton = document.getElementById("error-toggle");
 if (toggleErrorsButton) {
-    toggleErrorsButton.addEventListener("click", () => {
-        if (showOnlyErrors) {
-            toggleErrorsButton.classList.replace("btn-black", "btn-red");
-            document.querySelectorAll('.entry-no-error').forEach(line => line.hidden = false);
-            document.querySelectorAll('.collapsed-lines').forEach(collapsed => collapsed.remove());
+    toggleErrorsButton.addEventListener("click", toggleErrors);
+}
+
+function toggleErrors() {
+    if (toggleErrorsButton.classList.contains("toggled")) {
+        toggleErrorsButton.classList.remove("toggled");
+        uncollapseAllErrors();
+    } else {
+        toggleErrorsButton.classList.add("toggled");
+        collapseAllErrors();
+    }
+}
+
+function collapseAllErrors() {
+    let firstNoErrorLine = false;
+    let lines = document.querySelectorAll('.log-inner > .entry');
+    let totalLines = lines.length;
+    for (const [i, line] of lines.entries()) {
+        let lineNumber = line.querySelector(".line-number").innerHTML;
+        if (line.classList.contains("entry-no-error")) {
+            line.style.display = "none";
+
+            if (firstNoErrorLine === false) {
+                firstNoErrorLine = lineNumber;
+            }
+
+            if (i + 1 === totalLines && firstNoErrorLine) {
+                line.insertAdjacentElement("afterend", generateCollapsedLines(firstNoErrorLine, lineNumber));
+            }
         } else {
-            let firstNoErrorLine = false;
-            toggleErrorsButton.classList.replace("btn-red", "btn-black");
-            let lines = document.querySelectorAll('.log tr');
-            let totalLines = lines.length;
-            for (const [i, line] of lines.entries()) {
-                let lineNumber = line.querySelector(".line-number").innerHTML;
-                if (line.classList.contains("entry-no-error")) {
-                    line.hidden = true;
-
-                    if (firstNoErrorLine === false) {
-                        firstNoErrorLine = lineNumber;
-                    }
-
-                    if (i + 1 === totalLines && firstNoErrorLine) {
-                        line.insertAdjacentHTML("afterend", generateCollapsedLines(firstNoErrorLine, lineNumber));
-                    }
-                } else {
-                    if (firstNoErrorLine) {
-                        line.insertAdjacentHTML("beforebegin", generateCollapsedLines(firstNoErrorLine, lineNumber - 1));
-                        firstNoErrorLine = false;
-                    }
-                }
+            if (firstNoErrorLine) {
+                line.insertAdjacentElement("beforebegin", generateCollapsedLines(firstNoErrorLine, lineNumber - 1));
+                firstNoErrorLine = false;
             }
         }
-        showOnlyErrors = !showOnlyErrors;
+    }
+}
 
-        for (const collapsed of document.querySelectorAll('.collapsed-lines-count')) {
-            collapsed.addEventListener("click", () => {
-                let positionElement = document.getElementById(`L${parseInt(collapsed.dataset.end) + 1}`);
-                let position;
-                if (positionElement) {
-                    position = positionElement.getBoundingClientRect().top - window.scrollY;
-                }
-                for (let i = parseInt(collapsed.dataset.start); i <= parseInt(collapsed.dataset.end); i++) {
-                    document.getElementById(`L${i}`).parentElement.parentElement.hidden = false;
-                }
-                if (positionElement) {
-                    window.scrollTo({
-                        left: 0,
-                        top: positionElement.getBoundingClientRect().top - position - collapsed.offsetHeight,
-                        behavior: "instant"
-                    });
-                }
-                collapsed.remove();
-            })
-        }
-    });
+function uncollapseAllErrors() {
+    document.querySelectorAll('.entry-no-error').forEach(line => line.style.display = "contents");
+    document.querySelectorAll('.collapsed-lines').forEach(collapsed => collapsed.remove());
+}
+
+function handleCollapsedClick(e) {
+    let collapsed = e.currentTarget;
+    let positionElement = document.getElementById(`L${parseInt(collapsed.dataset.end) + 1}`);
+    let position;
+    if (positionElement) {
+        position = positionElement.getBoundingClientRect().top - window.scrollY;
+    }
+    for (let i = parseInt(collapsed.dataset.start); i <= parseInt(collapsed.dataset.end); i++) {
+        document.getElementById(`L${i}`).parentElement.parentElement.style.display = "contents";
+    }
+    if (positionElement) {
+        window.scrollTo({
+            left: 0,
+            top: positionElement.getBoundingClientRect().top - position - collapsed.offsetHeight,
+            behavior: "instant"
+        });
+    }
+    collapsed.remove();
 }
 
 function generateCollapsedLines(start, end) {
     let count = end - start + 1;
     let string = count === 1 ? "line" : "lines";
-    return '<tr class="collapsed-lines">' +
-        '<td></td>' +
-        '<td class="collapsed-lines-count" data-start="' + start + '" data-end="' + end + '">' +
-        '<i class="fa fa-angle-up"></i> ' +
-        count + " " + string +
-        ' <i class="fa fa-angle-up"></i>' +
-        '</td>' +
-        '</tr>';
+
+    let collapsedRow = document.createElement("div");
+    collapsedRow.classList.add("collapsed-lines");
+    collapsedRow.dataset.start = start;
+    collapsedRow.dataset.end = end;
+    collapsedRow.appendChild(document.createElement("div"));
+    collapsedRow.addEventListener("click", handleCollapsedClick);
+
+    let collapsedLinesCount = document.createElement("div");
+    collapsedLinesCount.classList.add("collapsed-lines-count");
+    let icon = document.createElement("i");
+    icon.classList.add("fa-solid", "fa-angle-up");
+    collapsedLinesCount.appendChild(icon);
+    collapsedLinesCount.append(` ${count} ${string} `);
+    collapsedLinesCount.append(icon.cloneNode());
+    collapsedRow.appendChild(collapsedLinesCount);
+
+    return collapsedRow;
 }
 
 /* convert timestamps */
