@@ -3,6 +3,8 @@
 namespace Aternos\Mclogs\Api;
 
 use Aternos\Mclogs\Api\Response\ApiError;
+use Aternos\Mclogs\Config\Config;
+use Aternos\Mclogs\Config\ConfigKey;
 
 /**
  * Utility class for reading log content from the http request
@@ -27,9 +29,13 @@ class ContentParser
      */
     public function getContent(): array|ApiError
     {
-        $body = file_get_contents('php://input');
+        $limit = Config::getInstance()->get(ConfigKey::STORAGE_LIMIT_BYTES) * 2;
+        $body = file_get_contents('php://input', length: $limit + 1);
         if ($body === false) {
             return new ApiError(500, "Failed to read request body.");
+        }
+        if (strlen($body) > $limit) {
+            return new ApiError(413, "Request body exceeds maximum allowed size.");
         }
 
         $encodingHeader = $_SERVER['HTTP_CONTENT_ENCODING'] ?? '';
@@ -41,11 +47,11 @@ class ContentParser
             foreach (array_reverse($encodingSteps) as $step) {
                 switch (trim(strtolower($step))) {
                     case "deflate":
-                        $body = gzinflate($body);
+                        $body = @gzinflate($body, $limit);
                         break;
                     case "x-gzip":
                     case "gzip":
-                        $body = gzdecode($body);
+                        $body = @gzdecode($body, $limit);
                         break;
                     default:
                         return new ApiError(415, "Unsupported Content-Encoding: " . htmlspecialchars($step));
