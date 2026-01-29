@@ -495,6 +495,21 @@ main {
     color: var(--text);
 }
 
+#error-toggle {
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+#error-toggle.toggled {
+    background-color: var(--surface);
+    color: var(--error);
+    border-color: var(--error);
+}
+
+#error-toggle.toggled:hover {
+    background-color: var(--error-bg);
+}
+
 .btn-white {
     background-color: #fff;
     color: var(--bg);
@@ -913,6 +928,41 @@ footer {
 
 .collapsed-lines {
     display: contents;
+    cursor: pointer;
+}
+
+.collapsed-lines > div:first-child {
+    background-color: var(--surface);
+    border-right: 1px solid var(--border);
+}
+
+.collapsed-lines-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1.25rem;
+    background-color: var(--surface);
+    color: var(--text);
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
+    font-family: var(--font-mono);
+    font-weight: 500;
+    transition: all 0.15s ease;
+}
+
+.collapsed-lines:hover .collapsed-lines-count {
+    background-color: var(--accent-bg);
+    color: var(--accent);
+}
+
+.collapsed-lines-count i {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transition: all 0.15s ease;
+}
+
+.collapsed-lines:hover .collapsed-lines-count i {
+    color: var(--accent);
 }
 
 .log-inner .level {
