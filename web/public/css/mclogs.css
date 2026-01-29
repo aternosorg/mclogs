@@ -936,7 +936,7 @@ footer {
     background-color: var(--surface);
     color: var(--text);
     font-size: clamp(0.85rem, 2vw, 0.9rem);
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), monospace;
     font-weight: 500;
     transition: all 0.15s ease;
 }
@@ -1217,10 +1217,6 @@ footer {
 
 /** Settings Popover **/
 
-.settings-dropdown {
-    position: relative;
-}
-
 .settings-trigger {
     cursor: pointer;
     anchor-name: --settings-trigger;
@@ -1237,10 +1233,6 @@ footer {
 }
 
 /** Delete Popover **/
-
-.delete-wrapper {
-    position: relative;
-}
 
 .delete-trigger {
     anchor-name: --delete-trigger;
@@ -1592,7 +1584,7 @@ footer {
     border-radius: 8px;
     margin-top: 0;
     margin-bottom: 1.5rem;
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), monospace;
     font-size: clamp(0.85rem, 2vw, 0.9rem);
 }
 
@@ -1632,7 +1624,7 @@ footer {
     border-radius: 4px;
     font-size: clamp(0.7rem, 1.8vw, 0.75rem);
     font-weight: 500;
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), monospace;
 }
 
 .api-table {
@@ -1678,13 +1670,13 @@ footer {
 }
 
 .api-field {
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), monospace;
     color: var(--accent);
     font-weight: 500;
 }
 
 .api-type {
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), monospace;
     color: var(--text-muted);
     font-weight: 500;
 }
@@ -1709,28 +1701,13 @@ footer {
     opacity: 1;
 }
 
-.api-required {
-    text-align: center;
-    font-size: 1rem;
-}
-
-.api-required i {
-    color: var(--text-muted);
-    opacity: 0.5;
-}
-
-.api-required.required i {
-    color: var(--accent);
-    opacity: 1;
-}
-
 .api-code {
     background-color: var(--bg-elevated);
     border: 1px solid var(--border);
     border-radius: 8px;
     padding: clamp(1rem, 2.5vw, 1.25rem);
     overflow-x: auto;
-    font-family: var(--font-mono);
+    font-family: var(--font-mono), monospace;
     font-size: clamp(0.8rem, 2vw, 0.85rem);
     line-height: 1.6;
     color: var(--text);
