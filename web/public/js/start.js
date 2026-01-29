@@ -303,8 +303,13 @@ function updateDropZoneDragCount(amount) {
 }
 
 async function handleDropEvent(e) {
+    console.log(e.dataTransfer?.types);
     let files = e.dataTransfer.files;
     if (files.length !== 1) {
+        if (Array.from(e.dataTransfer.types).includes('text/plain')) {
+            pasteArea.value = e.dataTransfer.getData('text/plain');
+            reevaluateContentStatus();
+        }
         return;
     }
 
