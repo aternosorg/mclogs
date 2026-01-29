@@ -94,7 +94,7 @@ class MetadataEntry implements \JsonSerializable, Serializable
 
     public function setKey(?string $key): static
     {
-        if ($key && strlen($key) > static::MAX_KEY_LENGTH) {
+        if (is_string($key) && strlen($key) > static::MAX_KEY_LENGTH) {
             $key = substr($key, 0, static::MAX_KEY_LENGTH);
         }
         $this->key = $key;
