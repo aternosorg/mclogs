@@ -445,6 +445,19 @@ class Log
     }
 
     /**
+     * @return bool
+     */
+    public function hasValidTokenCookie(): bool
+    {
+        $tokenCookie = new TokenCookie();
+        $cookieValue = $tokenCookie->getValue();
+        if ($cookieValue === null || !$this->getToken()) {
+            return false;
+        }
+        return $this->getToken()->matches($cookieValue);
+    }
+
+    /**
      * @return string
      */
     public function getPageTitle(): string

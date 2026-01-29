@@ -5,6 +5,7 @@ use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
 use Aternos\Mclogs\Frontend\Settings\Setting;
 use Aternos\Mclogs\Frontend\Settings\Settings;
+use Aternos\Mclogs\Util\TimeInterval;
 
 /** @var Log $log */
 
@@ -140,6 +141,7 @@ $settings = new Settings();
                         <i class="fa fa-arrow-circle-up"></i>
                     </div>
                     <div class="actions">
+                        <?php if ($log->hasValidTokenCookie()): ?>
                         <div class="delete-wrapper popover-wrapper">
                             <button class="delete-trigger popover-trigger btn btn-small btn-danger" title="Delete log" popovertarget="delete-overlay">
                                 <i class="fa-solid fa-trash"></i>
@@ -156,6 +158,7 @@ $settings = new Settings();
                                 </div>
                             </div>
                         </div>
+                        <?php endif; ?>
                         <div class="settings-dropdown popover-wrapper">
                             <button class="settings-trigger popover-trigger btn btn-small btn-dark" title="Settings" popovertarget="settings-overlay">
                                 <i class="fas fa-cog"></i>
@@ -200,7 +203,7 @@ $settings = new Settings();
                     </div>
                 <?php endif; ?>
                     <div class="delete-notice">
-                        This log will be saved for <?= htmlspecialchars(\Aternos\Mclogs\Util\TimeInterval::getInstance()->format(Config::getInstance()->get(ConfigKey::STORAGE_TTL))); ?> from its last view.
+                        This log will be saved for <?= htmlspecialchars(TimeInterval::getInstance()->format(Config::getInstance()->get(ConfigKey::STORAGE_TTL))); ?> from its last view.
                     </div>
                     <?php if ($abuseEmail = Config::getInstance()->get(ConfigKey::LEGAL_ABUSE)): ?>
                         <a href="mailto:<?=htmlspecialchars($abuseEmail); ?>?subject=Report%20<?=htmlspecialchars(rawurlencode(Config::getInstance()->getName())); ?>/<?=htmlspecialchars($log->getId()->get()); ?>" class="report-link">
