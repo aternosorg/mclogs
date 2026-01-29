@@ -68,7 +68,7 @@ class ContentParser
                 parse_str($body, $data);
                 break;
             case "application/json":
-                $data = json_decode($body, true);
+                $data = @json_decode($body, true);
                 if (!is_array($data)) {
                     return new ApiError(400, "Failed to parse JSON body.");
                 }
