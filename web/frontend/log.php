@@ -134,23 +134,38 @@ $settings = new Settings();
                     <div class="btn btn-small btn-dark" id="up-button" title="Scroll to top">
                         <i class="fa fa-arrow-circle-up"></i>
                     </div>
-                    <div class="settings-dropdown">
-                        <button class="settings-trigger btn btn-small btn-dark" title="Settings" popovertarget="settings-overlay">
-                            <i class="fas fa-cog"></i>
-                            Settings
-                        </button>
-                        <div class="settings-overlay" id="settings-overlay" popover>
-                            <?php foreach(Setting::cases() as $setting): ?>
-                                <label class="setting" for="setting-<?=$setting->value; ?>">
-                                    <span class="setting-label"><?=$setting->getLabel(); ?></span>
-                                    <input type="checkbox"
-                                           id="setting-<?=$setting->value; ?>"
-                                           class="setting-checkbox"
-                                           data-body-class="<?=$setting->getBodyClass() ?? ""; ?>"
-                                           data-key="<?=$setting->value; ?>"
-                                            <?=($settings->get($setting)) ? " checked" : ""; ?>/>
-                                </label>
-                            <?php endforeach; ?>
+                    <div class="actions">
+                        <div class="delete-wrapper popover-wrapper">
+                            <button class="delete-trigger popover-trigger btn btn-small btn-danger" title="Delete log" popovertarget="delete-overlay">
+                                <i class="fa-solid fa-trash"></i>
+                                Delete
+                            </button>
+                            <div class="delete-overlay popover-content popover-danger" id="delete-overlay" popover>
+                                <span class="delete-message">Delete this log permanently?</span>
+                                <div class="delete-actions">
+                                    <button class="btn btn-small btn-white" popovertarget="delete-overlay">Cancel</button>
+                                    <a href="/<?=htmlspecialchars($log->getId()->get()); ?>/delete" class="btn btn-small btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-dropdown popover-wrapper">
+                            <button class="settings-trigger popover-trigger btn btn-small btn-dark" title="Settings" popovertarget="settings-overlay">
+                                <i class="fas fa-cog"></i>
+                                Settings
+                            </button>
+                            <div class="settings-overlay popover-content" id="settings-overlay" popover>
+                                <?php foreach(Setting::cases() as $setting): ?>
+                                    <label class="setting" for="setting-<?=$setting->value; ?>">
+                                        <span class="setting-label"><?=$setting->getLabel(); ?></span>
+                                        <input type="checkbox"
+                                               id="setting-<?=$setting->value; ?>"
+                                               class="setting-checkbox"
+                                               data-body-class="<?=$setting->getBodyClass() ?? ""; ?>"
+                                               data-key="<?=$setting->value; ?>"
+                                                <?=($settings->get($setting)) ? " checked" : ""; ?>/>
+                                    </label>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -170,14 +185,19 @@ $settings = new Settings();
                             </div>
                         <?php endif; ?>
                     </div>
-                    <?php if ($abuseEmail = Config::getInstance()->get(ConfigKey::LEGAL_ABUSE)): ?>
+                    <div class="center">
+                        <p class="delete-notice">
+                            This log will be saved for 90 days from their last view.
+                        </p>
+                    </div>
                     <div class="right">
+                        <?php if ($abuseEmail = Config::getInstance()->get(ConfigKey::LEGAL_ABUSE)): ?>
                         <a href="mailto:<?=htmlspecialchars($abuseEmail); ?>?subject=Report%20<?=htmlspecialchars(rawurlencode(Config::getInstance()->getName())); ?>/<?=htmlspecialchars($log->getId()->get()); ?>" class="report-link">
                             <i class="fa-solid fa-flag"></i>
                             Report abuse
                         </a>
+                        <?php endif; ?>
                     </div>
-                    <?php endif; ?>
                 </div>
             </main>
 

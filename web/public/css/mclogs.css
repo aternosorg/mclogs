@@ -1156,6 +1156,76 @@ footer {
     border-bottom: 1px solid var(--border);
 }
 
+.log-bottom .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/** Generic Popover **/
+
+.popover-wrapper {
+    position: relative;
+}
+
+.popover-trigger {
+    cursor: pointer;
+}
+
+.popover-trigger i {
+    transition: transform 0.2s ease;
+}
+
+.popover-content {
+    position: fixed;
+    inset: unset;
+    margin-bottom: 0.5rem;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: 200px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.popover-content:popover-open {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.popover-content::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: 1rem;
+    width: 10px;
+    height: 10px;
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transform: rotate(45deg);
+}
+
+.popover-content::backdrop {
+    background: transparent;
+}
+
+/* Popover danger variant */
+.popover-content.popover-danger {
+    background-color: var(--bg-surface);
+    border-color: var(--error);
+    text-align: center;
+}
+
+.popover-content.popover-danger::after {
+    background-color: var(--bg-surface);
+    border-color: var(--error);
+}
+
+/** Settings Popover **/
+
 .settings-dropdown {
     position: relative;
 }
@@ -1170,42 +1240,49 @@ footer {
 }
 
 .settings-overlay {
-    position: fixed;
     position-anchor: --settings-trigger;
-    inset: unset;
     bottom: anchor(top);
     right: anchor(right);
-    margin-bottom: 0.5rem;
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.5rem;
-    min-width: 200px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
 }
 
-.settings-overlay:popover-open {
+/** Delete Popover **/
+
+.delete-wrapper {
+    position: relative;
+}
+
+.delete-trigger {
+    anchor-name: --delete-trigger;
+}
+
+.delete-trigger:hover {
+    opacity: 1;
+}
+
+.delete-overlay {
+    position-anchor: --delete-trigger;
+    bottom: anchor(top);
+    right: anchor(right);
+    min-width: 250px;
+    padding: 1rem;
+    gap: 0.75rem;
+}
+
+.delete-message {
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.delete-actions {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.5rem;
 }
 
-.settings-overlay::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    right: 1rem;
-    width: 10px;
-    height: 10px;
-    background-color: var(--bg-surface);
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    transform: rotate(45deg);
-}
-
-.settings-overlay::backdrop {
-    background: transparent;
+.delete-actions .btn {
+    flex: 1;
+    justify-content: center;
 }
 
 .setting {
@@ -1262,15 +1339,18 @@ footer {
 }
 
 .log-notice {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
     gap: clamp(0.75rem, 2vw, 1.25rem);
     padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
     border-top: 1px solid var(--border);
     font-size: clamp(0.85rem, 2vw, 0.9rem);
     color: var(--text-muted);
+}
+
+.log-notice:has(.right) {
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .log-notice .left {
@@ -1283,12 +1363,12 @@ footer {
     margin-right: 0.25rem;
 }
 
-.log-notice a {
-    color: var(--text-muted);
+.log-notice .center {
+    text-align: center;
 }
 
-.log-notice a:hover {
-    color: var(--accent);
+.log-notice .right {
+    text-align: right;
 }
 
 /** Error Page **/
