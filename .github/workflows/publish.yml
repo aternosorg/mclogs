@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - 'two'
-      - 'master'
+      - 'main'
     tags:
       - 'v*'
 
@@ -39,7 +39,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            # Branch Name (e.g. 'two', 'master')
+            # Branch Name (e.g. 'two', 'main')
             type=ref,event=branch
             # Full Version (e.g. '1.2.3')
             type=semver,pattern={{version}}
@@ -63,5 +63,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           cache-from: |
             type=gha
-            type=gha,scope=refs/heads/master
+            type=gha,scope=refs/heads/main
           cache-to: type=gha,mode=max
