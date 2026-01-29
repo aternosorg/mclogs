@@ -293,11 +293,6 @@ main {
     border-color: var(--accent);
 }
 
-.paste-area.dragover .paste-actions,
-.paste-area.window-dragover .paste-actions {
-    background: transparent;
-}
-
 .paste-area.dragover .paste-placeholder i.fa-cloud-arrow-up,
 .paste-area.window-dragover .paste-placeholder i.fa-cloud-arrow-up {
     color: var(--accent);
@@ -469,10 +464,6 @@ main {
 .btn.disabled {
     opacity: 0.5;
     cursor: not-allowed;
-}
-
-.btn-notext {
-    padding: 0.7rem;
 }
 
 .btn-small {
@@ -1642,13 +1633,6 @@ footer {
     font-size: clamp(0.7rem, 1.8vw, 0.75rem);
     font-weight: 500;
     font-family: var(--font-mono);
-}
-
-.command-description {
-    font-size: clamp(0.8rem, 2vw, 0.85rem);
-    font-weight: 400;
-    color: var(--text-muted);
-    font-style: italic;
 }
 
 .api-table {

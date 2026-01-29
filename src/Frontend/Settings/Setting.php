@@ -6,7 +6,6 @@ enum Setting: string
 {
     case FULL_WIDTH = "fullWidth";
     case NO_WRAP = "noWrap";
-    case ALLOW_ZOOM_OUT = "allowZoomOut";
 
     /**
      * @return string
@@ -15,8 +14,7 @@ enum Setting: string
     {
         return match ($this) {
             Setting::FULL_WIDTH => "Full Width",
-            Setting::NO_WRAP => "No Wrap",
-            Setting::ALLOW_ZOOM_OUT => "Allow Zoom Out",
+            Setting::NO_WRAP => "No Wrap"
         };
     }
 
