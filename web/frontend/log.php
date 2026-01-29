@@ -213,6 +213,12 @@ $settings = new Settings();
 
             <?php include __DIR__ . '/parts/footer.php'; ?>
         </div>
+        <div class="floating-scrollbar-container">
+            <div class="floating-scrollbar">
+                <div class="floating-scrollbar-content">
+                </div>
+            </div>
+        </div>
         <script src="js/log.js"></script>
     </body>
 </html>
