@@ -56,7 +56,7 @@ class Router
     }
 
     /**
-     * @return Action|null
+     * @return Route|null
      */
     protected function findRoute(): ?Route
     {

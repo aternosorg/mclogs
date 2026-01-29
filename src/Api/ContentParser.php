@@ -25,7 +25,7 @@ class ContentParser
     /**
      * Get the content from the http request
      *
-     * @return string|ApiError The content string or an ApiError on failure
+     * @return array|ApiError An array with the content or an ApiError on failure
      */
     public function getContent(): array|ApiError
     {
