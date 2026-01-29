@@ -58,7 +58,7 @@
 :root {
     --bg-surface: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
     --bg-elevated: color-mix(in srgb, var(--bg) 95%, var(--text) 5%);
-    --bg-inset: color-mix(in srgb, var(--bg) 92%, var(--text) 8%);
+    --bg-inset: var(--bg-surface);
     --text-muted: color-mix(in srgb, var(--text) 55%, var(--bg) 45%);
     --accent-hover: color-mix(in srgb, var(--accent) 78%, var(--bg) 22%);
     --accent-bg: color-mix(in srgb, var(--accent) 12%, transparent);
@@ -101,6 +101,7 @@ body.setting-no-wrap .log-inner .level {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-color: var(--accent) transparent;
 }
 
 html {
@@ -108,7 +109,7 @@ html {
 }
 
 body {
-    font-family: var(--font-sans), sans-serif;
+    font-family: var(--font-sans);
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.5;
@@ -119,10 +120,6 @@ body {
 }
 
 /* Global scrollbar styling */
-* {
-    scrollbar-color: var(--accent) transparent;
-}
-
 *::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -640,8 +637,6 @@ footer {
     color: var(--accent);
 }
 
-
-
 .log-info-rows {
     display: flex;
     flex-direction: column;
@@ -1113,7 +1108,7 @@ footer {
 .highlight-error {
     background: var(--error);
     color: #fff;
-    padding: 0px 3px;
+    padding: 0 3px;
     border-radius: 2px;
     font-weight: bold;
     display: inline-block;
@@ -1132,7 +1127,7 @@ footer {
     overflow-wrap: anywhere;
 }
 
-@media all and (max-width: 800px) {
+@media (max-width: 800px) {
     .multiline {
         padding-left: 0;
     }
@@ -1219,12 +1214,7 @@ footer {
 /** Settings Popover **/
 
 .settings-trigger {
-    cursor: pointer;
     anchor-name: --settings-trigger;
-}
-
-.settings-trigger i {
-    transition: transform 0.2s ease;
 }
 
 .settings-overlay {
@@ -1778,9 +1768,7 @@ footer {
     flex-wrap: wrap;
 }
 
-
 @media (max-width: 640px) {
-
     footer {
         justify-content: center;
     }
