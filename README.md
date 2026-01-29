@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="web/public/img/logo.svg" width="300">
+    <img src="web/public/img/logo.svg" width="260">
 </p>
 <p align="center">
     <strong>Paste, share & analyse your logs</strong><br>
