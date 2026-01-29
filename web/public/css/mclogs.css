@@ -1357,6 +1357,7 @@ footer {
     display: flex;
     align-items: center;
     gap: 0.7rem;
+    flex-wrap: wrap;
 }
 
 .log-details i {
@@ -1369,6 +1370,27 @@ footer {
 
 .log-details *:last-child {
     text-align: right;
+}
+
+@media (max-width: 640px) {
+    .log-details {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .log-details:has(:nth-child(3)) {
+        grid-template-columns: 1fr;
+    }
+
+    .log-details .meta-data {
+        justify-content: center;
+    }
+
+    .log-details *:nth-child(2),
+    .log-details *:last-child {
+        text-align: center;
+    }
 }
 
 /** Error Page **/
