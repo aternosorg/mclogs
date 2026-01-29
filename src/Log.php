@@ -472,7 +472,7 @@ class Log
     {
         $description = $this->getLinesString();
         if ($this->hasErrors()) {
-            $description .= " | " . $this->getErrorsCount();
+            $description .= " | " . $this->getErrorsString();
         }
 
         $problems = $this->getAnalysis()->getProblems();
