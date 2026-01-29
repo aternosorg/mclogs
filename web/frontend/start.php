@@ -15,13 +15,13 @@
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         <p>Paste or drop your log here</p>
                         <div class="paste-hints">
-                            <button type="button" class="btn btn-transparent" id="paste-clipboard"><i class="fa-solid fa-paste"></i> Paste</button>
-                            <button type="button" class="btn btn-transparent" id="paste-select-file"><i class="fa-solid fa-folder-open"></i> Browse</button>
-                            <span><i class="fa-solid fa-file-arrow-up"></i> Drop</span>
+                            <button type="button" class="btn btn-transparent" title="Paste log" id="paste-clipboard"><i class="fa-solid fa-paste"></i> Paste</button>
+                            <button type="button" class="btn btn-transparent" title="Browse on files" id="paste-select-file"><i class="fa-solid fa-folder-open"></i> Browse</button>
+                            <span><i class="fa-solid fa-file-arrow-up" title="Drop file"></i> Drop</span>
                         </div>
                     </div>
                     <textarea aria-label="Paste or drop your log here" spellcheck="false" data-enable-grammarly="false" id="paste-text" data-max-length="10000000" data-max-lines="25000"></textarea>
-                    <button type="button" class="btn-save btn paste-save" disabled><i class="fa-solid fa-save"></i> Save</button>
+                    <button type="button" class="btn-save btn paste-save" title="Save log" disabled><i class="fa-solid fa-save"></i> Save</button>
                     <div class="paste-error" id="paste-error"></div>
             </main>
             <?php include __DIR__ . '/parts/footer.php'; ?>
