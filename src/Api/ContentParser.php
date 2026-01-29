@@ -63,6 +63,9 @@ class ContentParser
         }
 
         $contentTypeHeader = $_SERVER['CONTENT_TYPE'] ?? '';
+        if ($pos = strpos($contentTypeHeader, ';')) {
+            $contentTypeHeader = substr($contentTypeHeader, 0, $pos);
+        }
         switch ($contentTypeHeader) {
             case "application/x-www-form-urlencoded":
                 parse_str($body, $data);
