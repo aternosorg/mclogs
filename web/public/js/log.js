@@ -213,3 +213,42 @@ async function handleDeleteButtonClick() {
     }
     window.location.href = "/";
 }
+
+/* floating scroll bar */
+const floatingScrollbar = document.querySelector(".floating-scrollbar");
+const logContainer = document.querySelector(".log-inner");
+
+if (floatingScrollbar && logContainer) {
+    updateFloatingScrollbarWidths();
+
+    floatingScrollbar.addEventListener("scroll", () => {
+        syncScroll(floatingScrollbar, logContainer);
+    });
+
+    logContainer.addEventListener("scroll", () => {
+        syncScroll(logContainer, floatingScrollbar);
+    });
+
+    const observer = new ResizeObserver(() => {
+        updateFloatingScrollbarWidths();
+    });
+    observer.observe(logContainer);
+}
+
+function syncScroll(source, target) {
+    if (Math.abs(source.scrollLeft - target.scrollLeft) > 1) {
+        target.scrollLeft = source.scrollLeft;
+    }
+}
+
+function updateFloatingScrollbarWidths() {
+    floatingScrollbar.style.setProperty(
+        "--floating-scrollbar-width",
+        `${logContainer.clientWidth}px`
+    );
+
+    floatingScrollbar.style.setProperty(
+        "--floating-scrollbar-content-width",
+        `${logContainer.scrollWidth}px`
+    );
+}

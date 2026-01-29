@@ -865,7 +865,7 @@ footer {
 
     position: fixed;
     display: none;
-    align-items: center;
+    justify-content: center;
     bottom: 0;
     width: 100%;
     z-index: 10;
