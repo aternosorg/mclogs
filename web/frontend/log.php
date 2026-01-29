@@ -178,15 +178,19 @@ $settings = new Settings();
                     </div>
                 </div>
                 <div class="log-details">
-                <?php if($source = $log->getSource() || $created = $log->getCreated()?->toDateTime()->getTimestamp()): ?>
+                <?php
+                    $source = $log->getSource();
+                    $created = $log->getCreated()?->toDateTime()->getTimestamp();
+                ?>
+                <?php if ($source || $created): ?>
                     <div class="meta-data">
-                        <?php if ($source = $log->getSource()): ?>
+                        <?php if ($source): ?>
                             <div class="source" title="Source">
                                 <i class="fa-solid fa-arrow-up-from-bracket"></i>
                                 <?=htmlspecialchars($source); ?>
                             </div>
                         <?php endif; ?>
-                        <?php if ($created = $log->getCreated()?->toDateTime()->getTimestamp()): ?>
+                        <?php if ($created): ?>
                             <div class="created-time" title="Created">
                                 <i class="fa-solid fa-clock"></i>
                                 <span class="created" data-time="<?=htmlspecialchars($created); ?>">
