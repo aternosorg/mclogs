@@ -30,7 +30,9 @@ class URL
                 $part = trim($part);
                 $partParts = explode('=', $part, 2);
                 if (count($partParts) === 2 && strtolower($partParts[0]) === 'proto') {
-                    return strtolower($partParts[1]);
+                    $protocol = $partParts[1];
+                    $protocol = trim($protocol, '"\'');
+                    return strtolower($protocol);
                 }
             }
         }
