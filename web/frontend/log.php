@@ -30,7 +30,7 @@ $settings = new Settings();
                                    <i class="fas fa-file-lines"></i>
                                    <?=htmlspecialchars($log->getCodexLog()->getTitle()); ?>
                                </h1>
-                               <button class="log-url-btn js-copyable" data-clipboard="<?=htmlspecialchars($log->getShortURL()); ?>" title="Copy log URL to clipboard">
+                               <button class="log-url-btn js-copyable" data-clipboard="<?=htmlspecialchars($log->getURL()->toString()); ?>" title="Copy log URL to clipboard">
                                    <span class="log-url"><?=htmlspecialchars($log->getShortURL()); ?></span>
                                    <i class="fa-solid fa-copy"></i>
                                </button>
@@ -49,7 +49,7 @@ $settings = new Settings();
                                        <i class="fa fa-arrow-circle-down"></i>
                                        <?=htmlspecialchars($log->getLinesString()); ?>
                                    </div>
-                                   <a class="btn btn-white btn-small" id="raw" target="_blank" title="Raw log" href="<?=$log->getRawURL()->toString(); ?>">
+                                   <a class="btn btn-dark btn-small" id="raw" target="_blank" title="Raw log" href="<?=$log->getRawURL()->toString(); ?>">
                                        <i class="fa fa-arrow-up-right-from-square"></i>
                                        Raw
                                    </a>
