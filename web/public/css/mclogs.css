@@ -855,6 +855,7 @@ footer {
     padding: 0 0.4rem;
     border-right: 1px solid var(--border);
     text-align: right;
+    user-select: none;
 }
 
 .log-inner .entry:hover .line-number-container {
