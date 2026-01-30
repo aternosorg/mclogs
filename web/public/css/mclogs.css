@@ -968,8 +968,8 @@ footer {
 }
 
 .log-inner .line-content {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: clamp(0.6rem, 2vw, 0.9rem);
+    padding-right: clamp(0.6rem, 2vw, 0.9rem);
     word-break: break-word;
     overflow-wrap: anywhere;
     color: var(--text);
@@ -1857,6 +1857,10 @@ footer {
 }
 
 @media (max-width: 640px) {
+
+    .log-inner .line-number-container {
+        min-width: unset;
+    }
 
     footer {
         justify-content: center;
