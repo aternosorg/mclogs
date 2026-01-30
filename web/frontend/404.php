@@ -5,8 +5,8 @@
         <title>404 - Page not found</title>
     </head>
     <body>
+    <?php include __DIR__ . '/parts/header.php'; ?>
         <div class="container">
-            <?php include __DIR__ . '/parts/header.php'; ?>
 
             <main>
                 <div class="error-page">
@@ -19,8 +19,7 @@
                     </a>
                 </div>
             </main>
-
-            <?php include __DIR__ . '/parts/footer.php'; ?>
         </div>
+        <?php include __DIR__ . '/parts/footer.php'; ?>
     </body>
 </html>

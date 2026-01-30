@@ -18,9 +18,8 @@ $settings = new Settings();
         <meta name="description" content="<?=htmlspecialchars($log->getPageDescription()); ?>" />
     </head>
     <body class="log-body<?=$settings->getBodyClassesString(); ?>">
-
+    <?php include __DIR__ . '/parts/header.php'; ?>
         <div class="container">
-            <?php include __DIR__ . '/parts/header.php'; ?>
 
             <main>
                 <div class="log-header">
@@ -63,11 +62,11 @@ $settings = new Settings();
                        <div class="log-info-rows">
                            <?php if(count($log->getVisibleMetadata()) > 0): ?>
                                <div class="log-info-row">
-                                   <div class="info-row-header">
-                                       <i class="fa-solid fa-tags"></i>
-                                       <span>Metadata</span>
-                                   </div>
                                    <div class="info-row-items">
+                                       <div class="info-row-header">
+                                           <i class="fa-solid fa-tags"></i>
+                                           <span>Metadata</span>
+                                       </div>
                                        <?php foreach($log->getVisibleMetadata() as $metadata): ?>
                                            <span class="info-item">
                                                <span class="info-label"><?=htmlspecialchars($metadata->getDisplayLabel()); ?>:</span>
@@ -79,11 +78,11 @@ $settings = new Settings();
                            <?php endif; ?>
                            <?php if(count($information) > 0): ?>
                                <div class="log-info-row">
-                                   <div class="info-row-header">
-                                       <i class="fa-solid fa-cube"></i>
-                                       <span>Detected</span>
-                                   </div>
                                    <div class="info-row-items">
+                                       <div class="info-row-header">
+                                           <i class="fa-solid fa-cube"></i>
+                                           <span>Detected</span>
+                                       </div>
                                        <?php foreach($information as $info): ?>
                                            <span class="info-item">
                                                <span class="info-label"><?=htmlspecialchars($info->getLabel()); ?>:</span>
@@ -213,9 +212,8 @@ $settings = new Settings();
                     <?php endif; ?>
                 </div>
             </main>
-
-            <?php include __DIR__ . '/parts/footer.php'; ?>
         </div>
+        <?php include __DIR__ . '/parts/footer.php'; ?>
         <div class="floating-scrollbar-container">
             <div class="floating-scrollbar">
                 <div class="floating-scrollbar-content">

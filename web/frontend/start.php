@@ -6,8 +6,8 @@
         <meta name="description" content="Easily paste your Minecraft & Hytale logs to share and analyse them." />
     </head>
     <body data-name="<?=htmlspecialchars(\Aternos\Mclogs\Config\Config::getInstance()->getName()); ?>">
+    <?php include __DIR__ . '/parts/header.php'; ?>
         <div class="container">
-            <?php include __DIR__ . '/parts/header.php'; ?>
 
             <main>
                 <div class="paste-area" id="dropzone">
@@ -24,8 +24,8 @@
                     <button type="button" class="btn-save btn paste-save" title="Save log" disabled><i class="fa-solid fa-save"></i> Save</button>
                     <div class="paste-error" id="paste-error"></div>
             </main>
-            <?php include __DIR__ . '/parts/footer.php'; ?>
         </div>
+        <?php include __DIR__ . '/parts/footer.php'; ?>
         <script src="js/start.js"></script>
     </body>
 </html>

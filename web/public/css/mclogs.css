@@ -116,7 +116,9 @@ body {
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.5;
-    min-height: 100vh;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
     position: relative;
     overflow-x: hidden;
     font-weight: 400;
@@ -178,9 +180,12 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: clamp(0.5rem, 2vw, 1rem);
-    padding: clamp(0.25rem, 1vw, 0.5rem) 0;
-    margin-bottom: clamp(1rem, 3vw, 2rem);
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 2.5vw, 1.25rem);
+    position: relative;
+    z-index: 1;
 }
 
 .logo {
@@ -248,9 +253,10 @@ main {
 
 .container {
     max-width: var(--max-width);
+    width: 100%;
     margin: 0 auto;
-    padding: clamp(1rem, 4vw, 2rem) clamp(0rem, 4vw, 2rem) clamp(0.5rem, 4vw, 2rem);
-    min-height: 100vh;
+    padding: 0 clamp(1rem, 2.5vw, 1.25rem);
+    flex: 1;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -519,9 +525,14 @@ footer {
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    padding: clamp(1rem, 3vw, 2rem) 0;
     color: var(--text-muted);
     font-size: clamp(0.75rem, 2vw, 0.9rem);
+    max-width: var(--max-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 2.5vw, 1.25rem);
+    position: relative;
+    z-index: 1;
 }
 
 .legal {
@@ -647,10 +658,6 @@ footer {
 }
 
 .log-info-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: clamp(0.5rem, 1.5vw, 0.75rem);
     padding: clamp(0.4rem, 1.5vw, 0.5rem) clamp(0.6rem, 2vw, 0.75rem);
     background-color: var(--surface);
     border-radius: 6px;
@@ -798,6 +805,7 @@ footer {
     color: var(--text);
     font-weight: 500;
     flex: 1;
+    word-break: break-word;
 }
 
 .problem-line {
@@ -885,7 +893,7 @@ footer {
 
 .log-inner {
     font-family: var(--font-mono), monospace;
-    font-size: clamp(0.85rem, 2vw, 0.9rem);
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
     line-height: 1.6;
     overflow-x: auto;
     position: relative;
@@ -924,7 +932,7 @@ footer {
     padding: clamp(0.08rem, 1vw, 0.1rem) clamp(0.2rem, 1.5vw, 0.25rem);
     color: var(--text-muted);
     font-weight: 500;
-    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
+    font-size: clamp(0.65rem, 1.8vw, 0.8rem);
     border-radius: 4px;
 }
 
@@ -965,8 +973,8 @@ footer {
 }
 
 .log-inner .line-content {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: clamp(0.4rem, 1vw, 0.9rem);
+    padding-right: clamp(0.4rem, 2vw, 0.6rem);
     word-break: break-word;
     overflow-wrap: anywhere;
     color: var(--text);
@@ -1847,7 +1855,23 @@ footer {
     flex-wrap: wrap;
 }
 
+@media (max-width: 1024px) {
+    .container {
+        padding: 0;
+    }
+
+    main {
+        border-radius: 0;
+    }
+}
+
 @media (max-width: 640px) {
+
+    .log-inner .line-number-container {
+        min-width: unset;
+        padding: 0;
+    }
+
     footer {
         justify-content: center;
     }
