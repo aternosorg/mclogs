@@ -932,7 +932,7 @@ footer {
     padding: clamp(0.08rem, 1vw, 0.1rem) clamp(0.2rem, 1.5vw, 0.25rem);
     color: var(--text-muted);
     font-weight: 500;
-    font-size: clamp(0.75rem, 1.8vw, 0.8rem);
+    font-size: clamp(0.65rem, 1.8vw, 0.8rem);
     border-radius: 4px;
 }
 
@@ -973,7 +973,7 @@ footer {
 }
 
 .log-inner .line-content {
-    padding-left: clamp(0.6rem, 2vw, 0.9rem);
+    padding-left: clamp(0.4rem, 1vw, 0.9rem);
     padding-right: clamp(0.4rem, 2vw, 0.6rem);
     word-break: break-word;
     overflow-wrap: anywhere;
@@ -1859,12 +1859,17 @@ footer {
     .container {
         padding: 0;
     }
+
+    main {
+        border-radius: 0;
+    }
 }
 
 @media (max-width: 640px) {
 
     .log-inner .line-number-container {
         min-width: unset;
+        padding: 0;
     }
 
     footer {
