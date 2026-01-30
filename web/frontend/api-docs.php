@@ -15,8 +15,6 @@ $config = Config::getInstance();
     </head>
     <body>
     <?php include __DIR__ . '/parts/header.php'; ?>
-        <div class="container">
-
             <main>
                 <div class="api-docs-header">
                     <div class="api-docs-header-content">
@@ -533,7 +531,6 @@ $config = Config::getInstance();
                     </div>
                 </div>
             </main>
-        </div>
         <?php include __DIR__ . '/parts/footer.php'; ?>
     </body>
 </html>

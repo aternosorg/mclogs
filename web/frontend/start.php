@@ -11,8 +11,6 @@ use Aternos\Mclogs\Frontend\Assets\AssetType;
     </head>
     <body data-name="<?=htmlspecialchars(Config::getInstance()->getName()); ?>">
     <?php include __DIR__ . '/parts/header.php'; ?>
-        <div class="container">
-
             <main>
                 <div class="paste-area" id="dropzone">
                     <div class="paste-placeholder">
@@ -27,8 +25,8 @@ use Aternos\Mclogs\Frontend\Assets\AssetType;
                     <textarea aria-label="Paste or drop your log here" spellcheck="false" data-enable-grammarly="false" id="paste-text" data-max-length="10000000" data-max-lines="25000"></textarea>
                     <button type="button" class="btn-save btn paste-save" title="Save log" disabled><i class="fa-solid fa-save"></i> Save</button>
                     <div class="paste-error" id="paste-error"></div>
+                </div>
             </main>
-        </div>
         <?php include __DIR__ . '/parts/footer.php'; ?>
         <?= AssetLoader::getInstance()->getHTML(AssetType::JS, "js/start.js"); ?>
     </body>

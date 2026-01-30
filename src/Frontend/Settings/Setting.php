@@ -7,6 +7,7 @@ enum Setting: string
     case FULL_WIDTH = "fullWidth";
     case NO_WRAP = "noWrap";
     case FLOATING_SCROLLBAR = "floatingScrollbar";
+    case OVERFLOW = "overflow";
 
 
     /**
@@ -17,7 +18,8 @@ enum Setting: string
         return match ($this) {
             Setting::FULL_WIDTH => "Full Width",
             Setting::NO_WRAP => "No Wrap",
-            Setting::FLOATING_SCROLLBAR => "Floating Scrollbar"
+            Setting::FLOATING_SCROLLBAR => "Floating Scrollbar",
+            Setting::OVERFLOW => "Overflow"
         };
     }
 
@@ -30,6 +32,7 @@ enum Setting: string
             Setting::FULL_WIDTH => "setting-full-width",
             Setting::NO_WRAP => "setting-no-wrap",
             Setting::FLOATING_SCROLLBAR => "setting-floating-scrollbar",
+            Setting::OVERFLOW => "setting-overflow",
             default => null
         };
     }

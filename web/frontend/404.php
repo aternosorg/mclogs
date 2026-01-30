@@ -6,8 +6,6 @@
     </head>
     <body>
     <?php include __DIR__ . '/parts/header.php'; ?>
-        <div class="container">
-
             <main>
                 <div class="error-page">
                     <div class="error-code">404</div>
@@ -19,7 +17,6 @@
                     </a>
                 </div>
             </main>
-        </div>
         <?php include __DIR__ . '/parts/footer.php'; ?>
     </body>
 </html>
