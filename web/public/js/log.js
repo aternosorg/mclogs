@@ -149,7 +149,26 @@ for (const element of timeElements) {
 
 /* settings */
 const settingCheckboxes = document.querySelectorAll(".setting-checkbox");
-settingCheckboxes.forEach(checkbox => checkbox.addEventListener("change", handleSettingChange))
+settingCheckboxes.forEach(checkbox => checkbox.addEventListener("change", handleSettingChange));
+
+let settingsChannel = null;
+if (typeof BroadcastChannel !== "undefined") {
+    settingsChannel = new BroadcastChannel("mc-logs-settings");
+    settingsChannel.onmessage = (e) => {
+        if (e.data.type === "settings-updated") {
+            for (const checkbox of settingCheckboxes) {
+                let bodyClass = checkbox.dataset.bodyClass;
+                if (e.data.settings[checkbox.dataset.key]) {
+                    document.body.classList.add(bodyClass);
+                    checkbox.checked = true;
+                } else {
+                    document.body.classList.remove(bodyClass);
+                    checkbox.checked = false;
+                }
+            }
+        }
+    };
+}
 
 function handleSettingChange(e) {
     let checkbox = e.target;
@@ -160,6 +179,20 @@ function handleSettingChange(e) {
         document.body.classList.remove(bodyClass);
     }
     saveSettings();
+    if (settingsChannel) {
+        settingsChannel.postMessage({
+            type: "settings-updated",
+            settings: getCurrentSettings()
+        });
+    }
+}
+
+function getCurrentSettings() {
+    const data = {};
+    for (const checkbox of settingCheckboxes) {
+        data[checkbox.dataset.key] = checkbox.checked;
+    }
+    return data;
 }
 
 function saveSettings() {
@@ -194,6 +227,7 @@ async function handleCopyButtonClick(e) {
     }, 2000);
 }
 
+/* delete button */
 const deleteButton = document.querySelector(".delete-log-button");
 const deleteErrorElement = document.querySelector(".delete-overlay .popover-error");
 if (deleteButton) {
