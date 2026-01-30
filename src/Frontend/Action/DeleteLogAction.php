@@ -8,13 +8,6 @@ use Aternos\Mclogs\Util\URL;
 
 class DeleteLogAction extends \Aternos\Mclogs\Api\Action\DeleteLogAction
 {
-    protected TokenCookie $tokenCookie;
-
-    public function __construct()
-    {
-        $this->tokenCookie = new TokenCookie();
-    }
-
     protected function getAllowedOrigin(): string
     {
         return URL::getBase()->toString();
@@ -27,11 +20,11 @@ class DeleteLogAction extends \Aternos\Mclogs\Api\Action\DeleteLogAction
 
     protected function getRequestToken(): ?string
     {
-        return $this->tokenCookie->getValue();
+        return new TokenCookie()->getValue();
     }
 
     protected function handleDeletedLog(Log $log): void
     {
-        $this->tokenCookie->setLog($log)->delete();
+        new TokenCookie()->setLog($log)->delete();
     }
 }
