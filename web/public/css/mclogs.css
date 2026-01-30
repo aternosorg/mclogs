@@ -969,7 +969,7 @@ footer {
 
 .log-inner .line-content {
     padding-left: clamp(0.6rem, 2vw, 0.9rem);
-    padding-right: clamp(0.6rem, 2vw, 0.9rem);
+    padding-right: clamp(0.4rem, 2vw, 0.6rem);
     word-break: break-word;
     overflow-wrap: anywhere;
     color: var(--text);
