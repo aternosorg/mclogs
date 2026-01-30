@@ -100,6 +100,6 @@ class Asset implements \JsonSerializable
         if (!Config::getInstance()->get(ConfigKey::FRONTEND_ASSETS_INTEGRITY)) {
             return '';
         }
-        return ' crossorigin="anonymous" integrity="' . static::HASH_ALGORITHM . '-' . $this->getBase64Hash() . '"';
+        return ' integrity="' . static::HASH_ALGORITHM . '-' . $this->getBase64Hash() . '"';
     }
 }
