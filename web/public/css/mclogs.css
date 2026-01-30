@@ -1865,6 +1865,10 @@ main {
 }
 
 @media (max-width: 1024px) {
+    body.setting-full-width {
+        --max-width-content: min(100%, calc(var(--max-width)));
+    }
+
     main {
         padding: 0;
         border-radius: 0;
