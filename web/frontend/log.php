@@ -21,8 +21,6 @@ $settings = new Settings();
     </head>
     <body class="log-body<?=$settings->getBodyClassesString(); ?>">
     <?php include __DIR__ . '/parts/header.php'; ?>
-        <div class="container">
-
             <main>
                 <div class="log-header">
                    <div class="log-header-inner">
@@ -96,47 +94,53 @@ $settings = new Settings();
                            <?php endif; ?>
                        </div>
                    <?php endif; ?>
-                </div>
-                <?php $problems = $log->getAnalysis()?->getProblems(); ?>
-                <?php if(count($problems) > 0): ?>
-                    <div class="problems-panel">
-                        <div class="problems-header">
-                            <span class="problems-count"><?=count($problems); ?></span>
-                            <span class="problems-title"><?=count($problems) === 1 ? 'Problem' : 'Problems'; ?> detected</span>
-                        </div>
-                        <div class="problems-list">
-                            <?php foreach($problems as $problem): ?>
-                                <?php $number = $problem->getEntry()[0]->getNumber(); ?>
-                                <div class="problem-item">
-                                    <a href="/<?=htmlspecialchars($log->getId()->get()) . "#L" . $number; ?>" class="problem-entry" onclick="updateLineNumber('#L<?=$number; ?>');">
+                    <?php $problems = $log->getAnalysis()?->getProblems(); ?>
+                    <?php if(count($problems) > 0): ?>
+                        <div class="problems-panel-container">
+                            <div class="problems-panel">
+                                <div class="problems-header">
+                                    <span class="problems-count"><?=count($problems); ?></span>
+                                    <span class="problems-title"><?=count($problems) === 1 ? 'Problem' : 'Problems'; ?> detected</span>
+                                </div>
+                                <div class="problems-list">
+                                    <?php foreach($problems as $problem): ?>
+                                        <?php $number = $problem->getEntry()[0]->getNumber(); ?>
+                                        <div class="problem-item">
+                                            <a href="/<?=htmlspecialchars($log->getId()->get()) . "#L" . $number; ?>" class="problem-entry" onclick="updateLineNumber('#L<?=$number; ?>');">
                                         <span class="problem-label">
                                             <i class="fa-solid fa-triangle-exclamation"></i>
                                             Problem
                                         </span>
-                                        <span class="problem-text"><?=htmlspecialchars($problem->getMessage()); ?></span>
-                                        <span class="problem-line">Line <?=$number; ?></span>
-                                    </a>
-                                    <?php if(count($problem->getSolutions()) > 0): ?>
-                                        <div class="problem-solutions">
-                                            <span class="problem-solutions-label"><?=count($problem->getSolutions()) === 1 ? 'Solution:' : 'Solutions:'; ?></span>
-                                            <?php foreach($problem->getSolutions() as $solution): ?>
-                                                <div class="problem-solution">
-                                                    <i class="fa-solid fa-lightbulb"></i>
-                                                    <span><?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", htmlspecialchars($solution->getMessage())); ?></span>
+                                                <span class="problem-text"><?=htmlspecialchars($problem->getMessage()); ?></span>
+                                                <span class="problem-line">Line <?=$number; ?></span>
+                                            </a>
+                                            <?php if(count($problem->getSolutions()) > 0): ?>
+                                                <div class="problem-solutions">
+                                                    <span class="problem-solutions-label"><?=count($problem->getSolutions()) === 1 ? 'Solution:' : 'Solutions:'; ?></span>
+                                                    <?php foreach($problem->getSolutions() as $solution): ?>
+                                                        <div class="problem-solution">
+                                                            <i class="fa-solid fa-lightbulb"></i>
+                                                            <span><?=preg_replace("/'([^']+)'/", "'<strong>$1</strong>'", htmlspecialchars($solution->getMessage())); ?></span>
+                                                        </div>
+                                                    <?php endforeach; ?>
                                                 </div>
-                                            <?php endforeach; ?>
+                                            <?php endif; ?>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php endforeach; ?>
                                 </div>
-                            <?php endforeach; ?>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+            </main>
+            <div class="log-container">
                 <div class="log">
                     <?php
                     echo $log->getPrinter()->print();
                     ?>
                 </div>
+            </div>
+            <div class="log-footer">
                 <div class="log-bottom">
                     <div class="btn btn-small btn-dark" id="up-button" title="Scroll to top">
                         <i class="fa fa-arrow-circle-up"></i>
@@ -213,8 +217,7 @@ $settings = new Settings();
                         </a>
                     <?php endif; ?>
                 </div>
-            </main>
-        </div>
+            </div>
         <?php include __DIR__ . '/parts/footer.php'; ?>
         <div class="floating-scrollbar-container">
             <div class="floating-scrollbar">
