@@ -53,10 +53,11 @@ Here is a list of all available config options:
 
 There are a few more environment variables that can be set to modify the FrankenPHP/Caddy setup directly:
 
-| Variable             | Default | Description                                                                                                                                |
-|----------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `SERVER_NAME`        | `":80"` | Set the Caddy server name, set this to your domain for [automatic SSL](https://caddyserver.com/docs/automatic-https#hostname-requirements) |
-| `FRANKENPHP_WORKERS` | `16`    | The number of [FrankenPHP workers](https://frankenphp.dev/docs/worker/)                                                                    |                                                                                                                                            |
+| Variable             | Default            | Description                                                                                                                                |
+|----------------------|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
+| `SERVER_NAME`        | `":80"`            | Set the Caddy server name, set this to your domain for [automatic SSL](https://caddyserver.com/docs/automatic-https#hostname-requirements) |
+| `TRUSTED_PROXIES`    | `"private_ranges"` | Set [trusted proxy](https://caddyserver.com/docs/caddyfile/options#trusted-proxies) address ranges                                         |
+| `FRANKENPHP_WORKERS` | `16`               | The number of [FrankenPHP workers](https://frankenphp.dev/docs/worker/)                                                                    |                                                                                                                                            |
 
 
 ## Development setup

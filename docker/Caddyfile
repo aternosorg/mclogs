@@ -1,4 +1,5 @@
 {
+    trusted_proxies static {$TRUSTED_PROXIES:private_ranges}
     frankenphp {
         worker /app/worker.php {
             num {$FRANKENPHP_WORKERS:16}
