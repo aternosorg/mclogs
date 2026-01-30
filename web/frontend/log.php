@@ -62,11 +62,11 @@ $settings = new Settings();
                        <div class="log-info-rows">
                            <?php if(count($log->getVisibleMetadata()) > 0): ?>
                                <div class="log-info-row">
-                                   <div class="info-row-header">
-                                       <i class="fa-solid fa-tags"></i>
-                                       <span>Metadata</span>
-                                   </div>
                                    <div class="info-row-items">
+                                       <div class="info-row-header">
+                                           <i class="fa-solid fa-tags"></i>
+                                           <span>Metadata</span>
+                                       </div>
                                        <?php foreach($log->getVisibleMetadata() as $metadata): ?>
                                            <span class="info-item">
                                                <span class="info-label"><?=htmlspecialchars($metadata->getDisplayLabel()); ?>:</span>
@@ -78,11 +78,11 @@ $settings = new Settings();
                            <?php endif; ?>
                            <?php if(count($information) > 0): ?>
                                <div class="log-info-row">
-                                   <div class="info-row-header">
-                                       <i class="fa-solid fa-cube"></i>
-                                       <span>Detected</span>
-                                   </div>
                                    <div class="info-row-items">
+                                       <div class="info-row-header">
+                                           <i class="fa-solid fa-cube"></i>
+                                           <span>Detected</span>
+                                       </div>
                                        <?php foreach($information as $info): ?>
                                            <span class="info-item">
                                                <span class="info-label"><?=htmlspecialchars($info->getLabel()); ?>:</span>
