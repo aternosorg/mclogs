@@ -42,7 +42,7 @@ class Asset implements \JsonSerializable
 
     public function getPathWithVersion(): string
     {
-        return $this->path . '?v=' . substr($this->getBase64Hash(), 0, 16);
+        return $this->path . '?v=' . rawurlencode(substr($this->getHash(), 0, 16));
     }
 
     protected function getAbsoluteBasePath(): string
