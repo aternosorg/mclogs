@@ -525,9 +525,14 @@ footer {
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
-    padding: clamp(1rem, 3vw, 2rem) 0;
     color: var(--text-muted);
     font-size: clamp(0.75rem, 2vw, 0.9rem);
+    max-width: var(--max-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 2.5vw, 1.25rem);
+    position: relative;
+    z-index: 1;
 }
 
 .legal {

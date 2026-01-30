@@ -533,8 +533,7 @@ $config = Config::getInstance();
                     </div>
                 </div>
             </main>
-
-            <?php include __DIR__ . '/parts/footer.php'; ?>
         </div>
+        <?php include __DIR__ . '/parts/footer.php'; ?>
     </body>
 </html>

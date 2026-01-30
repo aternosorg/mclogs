@@ -24,8 +24,8 @@
                     <button type="button" class="btn-save btn paste-save" title="Save log" disabled><i class="fa-solid fa-save"></i> Save</button>
                     <div class="paste-error" id="paste-error"></div>
             </main>
-            <?php include __DIR__ . '/parts/footer.php'; ?>
         </div>
+        <?php include __DIR__ . '/parts/footer.php'; ?>
         <script src="js/start.js"></script>
     </body>
 </html>

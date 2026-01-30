@@ -212,9 +212,8 @@ $settings = new Settings();
                     <?php endif; ?>
                 </div>
             </main>
-
-            <?php include __DIR__ . '/parts/footer.php'; ?>
         </div>
+        <?php include __DIR__ . '/parts/footer.php'; ?>
         <div class="floating-scrollbar-container">
             <div class="floating-scrollbar">
                 <div class="floating-scrollbar-content">
