@@ -19,6 +19,7 @@ enum ConfigKey
 
     case FRONTEND_NAME;
     case FRONTEND_ANALYTICS;
+    case FRONTEND_ASSETS_INTEGRITY;
     case FRONTEND_COLOR_BACKGROUND;
     case FRONTEND_COLOR_TEXT;
     case FRONTEND_COLOR_ACCENT;
@@ -44,6 +45,8 @@ enum ConfigKey
             ConfigKey::ID_LENGTH => 7,
 
             ConfigKey::FRONTEND_ANALYTICS => false,
+
+            ConfigKey::FRONTEND_ASSETS_INTEGRITY => true,
 
             ConfigKey::FRONTEND_COLOR_BACKGROUND => "#1a1a1a",
             ConfigKey::FRONTEND_COLOR_TEXT => "#e8e8e8",

@@ -1,5 +1,7 @@
 <?php
 
+use Aternos\Mclogs\Frontend\Assets\AssetLoader;
+use Aternos\Mclogs\Frontend\Assets\AssetType;
 use Aternos\Mclogs\Log;
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
@@ -220,6 +222,6 @@ $settings = new Settings();
                 </div>
             </div>
         </div>
-        <script src="js/log.js"></script>
+        <?= AssetLoader::getInstance()->getHTML(AssetType::JS, "js/log.js"); ?>
     </body>
 </html>

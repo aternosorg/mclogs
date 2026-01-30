@@ -20,6 +20,9 @@
     },
     "frontend": {
         "name": "mclo.gs",
+        "assets": {
+            "integrity": true
+        },
         "color": {
             "background": "#1a1a1a",
             "text": "#e8e8e8",
