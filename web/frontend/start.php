@@ -1,11 +1,15 @@
-<!DOCTYPE html>
+<?php
+use Aternos\Mclogs\Config\Config;
+use Aternos\Mclogs\Frontend\Assets\AssetLoader;
+use Aternos\Mclogs\Frontend\Assets\AssetType;
+?><!DOCTYPE html>
 <html lang="en">
     <head>
         <?php include __DIR__ . '/parts/head.php'; ?>
-        <title><?= htmlspecialchars(\Aternos\Mclogs\Config\Config::getInstance()->getName()); ?> - Paste, share & analyse your logs</title>
+        <title><?= htmlspecialchars(Config::getInstance()->getName()); ?> - Paste, share & analyse your logs</title>
         <meta name="description" content="Easily paste your Minecraft & Hytale logs to share and analyse them." />
     </head>
-    <body data-name="<?=htmlspecialchars(\Aternos\Mclogs\Config\Config::getInstance()->getName()); ?>">
+    <body data-name="<?=htmlspecialchars(Config::getInstance()->getName()); ?>">
     <?php include __DIR__ . '/parts/header.php'; ?>
         <div class="container">
 
@@ -26,6 +30,6 @@
             </main>
         </div>
         <?php include __DIR__ . '/parts/footer.php'; ?>
-        <script src="js/start.js"></script>
+        <?= AssetLoader::getInstance()->getHTML(AssetType::JS, "js/start.js"); ?>
     </body>
 </html>

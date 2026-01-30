@@ -25,6 +25,7 @@ COPY docker/mclogs.ini /usr/local/etc/php/conf.d/mclogs.ini
 COPY . .
 
 RUN composer dump-autoload --optimize --no-dev --classmap-authoritative
+RUN php build.php
 
 # Permissions & Runtime
 RUN chown -R ${USER}:${USER} /config/caddy /data/caddy /app

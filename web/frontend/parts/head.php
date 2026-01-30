@@ -2,14 +2,17 @@
 
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
+use Aternos\Mclogs\Frontend\Assets\AssetLoader;
+use Aternos\Mclogs\Frontend\Assets\AssetType;
 use Aternos\Mclogs\Util\URL;
 
 ?>
     <meta charset="utf-8"/>
 
     <base href="/"/>
-    <link rel="stylesheet" href="vendor/fontawesome/css/fontawesome.min.css"/>
-    <link rel="stylesheet" href="css/mclogs.css"/>
+    <?= AssetLoader::getInstance()->getHTML(AssetType::CSS, "vendor/fontawesome/css/fontawesome.min.css"); ?>
+    <?= AssetLoader::getInstance()->getHTML(AssetType::CSS, "css/mclogs.css"); ?>
+
     <style>
         :root {
             --bg: <?= htmlspecialchars(Config::getInstance()->get(ConfigKey::FRONTEND_COLOR_BACKGROUND)); ?>;
