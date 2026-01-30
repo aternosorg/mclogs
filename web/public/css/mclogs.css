@@ -71,7 +71,7 @@
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
     --max-width: 1400px;
     --page-padding: clamp(1rem, 2.5vw, 1.25rem);
-    --max-width-content: calc(var(--max-width) - var(--page-padding) * 2);
+    --max-width-content: min(100%, calc(var(--max-width)) - var(--page-padding) * 2);
     --radius: 12px;
     --scrollbar-height: 8px;
     scroll-behavior: smooth;
@@ -138,6 +138,7 @@ body.setting-full-width {
 
 body.setting-overflow .log-container {
     max-width: unset;
+    min-width: 100%;
 }
 
 body.setting-no-wrap .log-inner {
@@ -575,7 +576,7 @@ main {
 
 .log-container {
     max-width: var(--max-width-content);
-    min-width: 100%;
+    min-width: var(--max-width-content);
     margin: 0 auto;
     background-color: var(--bg-surface);
     position: relative;
