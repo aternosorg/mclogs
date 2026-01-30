@@ -40,6 +40,8 @@ jobs:
           tags: |
             # Branch Name (e.g. 'two', 'main')
             type=ref,event=branch
+            # Branch Name with Run Number (e.g. 'main-45')
+            type=raw,value=${{ github.ref_name }}-${{ github.run_number }},event=branch
             # Full Version (e.g. '1.2.3')
             type=semver,pattern={{version}}
             # Major Version (e.g. '1')
