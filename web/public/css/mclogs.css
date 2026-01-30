@@ -900,15 +900,13 @@ footer {
     padding: 0.5rem 0 0;
     display: grid;
     grid-template-columns: auto 1fr;
+    contain: layout style paint;
+    will-change: scroll-position;
 }
 
 .log-inner .entry {
     display: contents;
     width: 100%;
-}
-
-.log-inner .entry:hover {
-    background-color: var(--surface);
 }
 
 .log-inner .entry.entry-error .line-content,
@@ -924,9 +922,6 @@ footer {
     user-select: none;
 }
 
-.log-inner .entry:hover .line-number-container {
-    background-color: var(--surface);
-}
 
 .log-inner .line-number {
     padding: clamp(0.08rem, 1vw, 0.1rem) clamp(0.2rem, 1.5vw, 0.25rem);
@@ -936,21 +931,12 @@ footer {
     border-radius: 4px;
 }
 
-.log-inner .line-number:hover {
-    color: var(--bg);
-    background-color: var(--accent);
-}
-
 .log-inner .entry.line-active .line-number {
     background-color: var(--accent);
     color: var(--bg);
     font-weight: 600;
 }
 
-.log-inner .entry.line-active .line-number:hover {
-    background-color: var(--accent-hover);
-    color: var(--bg);
-}
 
 .log-inner .entry.line-active .line-number-container,
 .log-inner .entry.line-active .line-content {
@@ -959,11 +945,6 @@ footer {
 
 .log-inner .entry.entry-error.line-active .line-number {
     background-color: var(--error);
-    color: #fff;
-}
-
-.log-inner .entry.entry-error.line-active .line-number:hover {
-    background-color: color-mix(in srgb, var(--error) 85%, var(--bg) 15%);
     color: #fff;
 }
 
@@ -978,10 +959,6 @@ footer {
     word-break: break-word;
     overflow-wrap: anywhere;
     color: var(--text);
-}
-
-.log-inner .entry:hover .line-content {
-    background-color: var(--surface);
 }
 
 .collapsed-lines {
