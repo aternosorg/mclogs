@@ -888,7 +888,7 @@ footer {
 
 .log-inner {
     font-family: var(--font-mono), monospace;
-    font-size: clamp(0.85rem, 2vw, 0.9rem);
+    font-size: clamp(0.82rem, 2vw, 0.9rem);
     line-height: 1.6;
     overflow-x: auto;
     position: relative;
