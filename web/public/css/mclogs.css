@@ -804,6 +804,7 @@ footer {
     color: var(--text);
     font-weight: 500;
     flex: 1;
+    word-break: break-word;
 }
 
 .problem-line {
