@@ -116,7 +116,9 @@ body {
     background-color: var(--bg);
     color: var(--text);
     line-height: 1.5;
-    min-height: 100vh;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
     position: relative;
     overflow-x: hidden;
     font-weight: 400;
@@ -178,9 +180,12 @@ header {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: clamp(0.5rem, 2vw, 1rem);
-    padding: clamp(0.25rem, 1vw, 0.5rem) 0;
-    margin-bottom: clamp(1rem, 3vw, 2rem);
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 2.5vw, 1.25rem);
+    position: relative;
+    z-index: 1;
 }
 
 .logo {
@@ -248,9 +253,10 @@ main {
 
 .container {
     max-width: var(--max-width);
+    width: 100%;
     margin: 0 auto;
-    padding: clamp(1rem, 4vw, 2rem) clamp(0rem, 4vw, 2rem) clamp(0.5rem, 4vw, 2rem);
-    min-height: 100vh;
+    padding: 0 clamp(1rem, 2.5vw, 1.25rem);
+    flex: 1;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -1847,7 +1853,14 @@ footer {
     flex-wrap: wrap;
 }
 
+@media (max-width: 1024px) {
+    .container {
+        padding: 0;
+    }
+}
+
 @media (max-width: 640px) {
+
     footer {
         justify-content: center;
     }

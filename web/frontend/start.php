@@ -6,8 +6,8 @@
         <meta name="description" content="Easily paste your Minecraft & Hytale logs to share and analyse them." />
     </head>
     <body data-name="<?=htmlspecialchars(\Aternos\Mclogs\Config\Config::getInstance()->getName()); ?>">
+    <?php include __DIR__ . '/parts/header.php'; ?>
         <div class="container">
-            <?php include __DIR__ . '/parts/header.php'; ?>
 
             <main>
                 <div class="paste-area" id="dropzone">

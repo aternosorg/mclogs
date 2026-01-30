@@ -18,9 +18,8 @@ $settings = new Settings();
         <meta name="description" content="<?=htmlspecialchars($log->getPageDescription()); ?>" />
     </head>
     <body class="log-body<?=$settings->getBodyClassesString(); ?>">
-
+    <?php include __DIR__ . '/parts/header.php'; ?>
         <div class="container">
-            <?php include __DIR__ . '/parts/header.php'; ?>
 
             <main>
                 <div class="log-header">

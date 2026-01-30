@@ -14,8 +14,8 @@ $config = Config::getInstance();
         <meta name="description" content="API documentation for <?= htmlspecialchars($config->getName()); ?> - Integrate log sharing directly into your server panel or hosting software." />
     </head>
     <body>
+    <?php include __DIR__ . '/parts/header.php'; ?>
         <div class="container">
-            <?php include __DIR__ . '/parts/header.php'; ?>
 
             <main>
                 <div class="api-docs-header">

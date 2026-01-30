@@ -5,8 +5,8 @@
         <title>404 - Page not found</title>
     </head>
     <body>
+    <?php include __DIR__ . '/parts/header.php'; ?>
         <div class="container">
-            <?php include __DIR__ . '/parts/header.php'; ?>
 
             <main>
                 <div class="error-page">
