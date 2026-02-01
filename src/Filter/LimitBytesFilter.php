@@ -5,8 +5,8 @@ namespace Aternos\Mclogs\Filter;
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
 
-class LengthFilter extends Filter {
-
+class LimitBytesFilter extends Filter
+{
     /**
      * Filter the $data string and return it
      *
@@ -19,5 +19,21 @@ class LengthFilter extends Filter {
     {
         $lengthLimit = Config::getInstance()->get(ConfigKey::STORAGE_LIMIT_BYTES);
         return mb_strcut($data, 0, $lengthLimit);
+    }
+
+    /**
+     * @return FilterType
+     */
+    public function getType(): FilterType
+    {
+        return FilterType::LIMIT_BYTES;
+    }
+
+    /**
+     * @return int
+     */
+    public function getData(): int
+    {
+        return Config::getInstance()->get(ConfigKey::STORAGE_LIMIT_BYTES);
     }
 }

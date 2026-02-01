@@ -39,9 +39,8 @@ async function sendLog() {
     pasteSaveButtons.forEach(button => button.classList.add("btn-working"));
 
     try {
-        let log = pasteArea.value
-            .substring(0, parseInt(pasteArea.dataset.maxLength))
-            .split('\n').slice(0, parseInt(pasteArea.dataset.maxLines)).join('\n');
+        let log = pasteArea.value;
+        log = applyFilters(log);
 
         const bodyData = {
             "content": log,
@@ -98,6 +97,45 @@ async function sendLog() {
         location.href = data.url;
     } catch (e) {
         showError("Network error");
+    }
+}
+
+/* filters */
+function applyFilters(text) {
+    if (typeof FILTERS === "undefined" || !Array.isArray(FILTERS)) {
+        return text;
+    }
+    for (let filter of FILTERS) {
+        text = applyFilter(text, filter);
+    }
+    return text;
+}
+
+function applyFilter(text, filter) {
+    switch (filter.type) {
+        case 'trim':
+            return text.trim();
+        case 'limit-bytes':
+            return text.substring(0, filter.data);
+        case 'limit-lines':
+            return text.split('\n').slice(0, filter.data).join('\n');
+        case 'regex':
+            for (const [pattern, replacement] of Object.entries(filter.data.patterns)) {
+                const regex = new RegExp(pattern, 'gi');
+                text = text.replace(regex, (match) => {
+                    for (const exemption of filter.data.exemptions) {
+                        if (new RegExp(exemption, 'i').test(match)) {
+                            return match;
+                        }
+                    }
+
+                    return replacement;
+                });
+            }
+            return text;
+        default:
+            console.error('Unknown filter type', filter.type);
+            return text;
     }
 }
 

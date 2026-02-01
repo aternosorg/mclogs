@@ -2,24 +2,16 @@
 
 namespace Aternos\Mclogs\Filter;
 
-class AccessTokenFilter extends Filter
+class AccessTokenFilter extends RegexFilter
 {
-    /**
-     * @var array<string, string>
-     */
-    protected const array ACCESS_TOKEN_PATTERNS = [
-        '/\(Session ID is token:[^:]+\:[^)]+\)/' => '(Session ID is token:****************:****************)',
-        '/--accessToken [^ ]+/' => '--accessToken ****************:****************',
-    ];
-
     /**
      * @inheritDoc
      */
-    public function filter(string $data): string
+    protected function getPatterns(): array
     {
-        foreach (static::ACCESS_TOKEN_PATTERNS as $pattern => $replacement) {
-            $data = preg_replace($pattern, $replacement, $data);
-        }
-        return $data;
+        return [
+            '\(Session ID is token:[^:]+\:[^)]+\)' => '(Session ID is token:****************:****************)',
+            '--accessToken [^ ]+' => '--accessToken ****************:****************',
+        ];
     }
 }

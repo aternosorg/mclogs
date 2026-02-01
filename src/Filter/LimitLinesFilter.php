@@ -5,7 +5,7 @@ namespace Aternos\Mclogs\Filter;
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
 
-class LinesFilter extends Filter
+class LimitLinesFilter extends Filter
 {
     /**
      * Filter the $data string and return it
@@ -19,5 +19,21 @@ class LinesFilter extends Filter
     {
         $linesLimit = Config::getInstance()->get(ConfigKey::STORAGE_LIMIT_LINES);
         return implode("\n", array_slice(explode("\n", $data), 0, $linesLimit));
+    }
+
+    /**
+     * @return FilterType
+     */
+    public function getType(): FilterType
+    {
+        return FilterType::LIMIT_LINES;
+    }
+
+    /**
+     * @return int
+     */
+    public function getData(): int
+    {
+        return Config::getInstance()->get(ConfigKey::STORAGE_LIMIT_LINES);
     }
 }
