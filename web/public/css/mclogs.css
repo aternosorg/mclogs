@@ -195,7 +195,7 @@ body::before {
     border-radius: 8px;
     gap: .4rem;
     line-height: 1;
-    transition: all 0.15s ease;
+    transition: color .15s ease, background-color .15s ease, border-color .15s ease;
 }
 
 .btn:hover:not(:disabled) {
@@ -230,7 +230,7 @@ body::before {
 
 #error-toggle {
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 #error-toggle.toggled {
@@ -267,6 +267,7 @@ header {
     padding: clamp(1rem, 3vw, 2rem) var(--page-padding);
     position: relative;
     z-index: 1;
+    transition: max-width .25s ease;
 }
 
 .logo {
@@ -336,6 +337,7 @@ footer {
     padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 2.5vw, 1.25rem);
     position: relative;
     z-index: 1;
+    transition: max-width .25s ease;
 }
 
 .legal {
@@ -386,7 +388,7 @@ main {
     position: relative;
     overflow: hidden;
     z-index: 1;
-    transition: all 0.25s ease;
+    transition: max-width .25s ease;
 }
 
 .paste-area {
@@ -396,7 +398,7 @@ main {
     flex-direction: column;
     border-radius: var(--radius);
     position: relative;
-    transition: all 0.25s ease;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
     border: 2px dashed transparent;
 }
 
@@ -451,7 +453,7 @@ main {
     font-size: clamp(2rem, 8vw, 3.5rem);
     color: var(--text-muted);
     margin-bottom: clamp(0.5rem, 2vw, 1.5rem);
-    transition: all 0.25s ease;
+    transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .paste-placeholder p {
@@ -581,6 +583,7 @@ main {
     background-color: var(--bg-surface);
     position: relative;
     z-index: 1;
+    transition: max-width .25s ease, min-width .25s ease;
 }
 
 .log-footer {
@@ -592,6 +595,7 @@ main {
     border-radius: 0 0 var(--radius) var(--radius);
     position: relative;
     z-index: 1;
+    transition: max-width .25s ease;
 }
 
 /** Log Header **/
@@ -658,7 +662,7 @@ main {
     color: var(--text-muted);
     font-family: var(--font-mono), monospace;
     line-height: 1;
-    transition: all 0.15s ease;
+    transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
     vertical-align: middle;
     cursor: pointer;
 }
@@ -1014,7 +1018,7 @@ main {
     font-size: clamp(0.85rem, 2vw, 0.9rem);
     font-family: var(--font-mono), monospace;
     font-weight: 500;
-    transition: all 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .collapsed-lines:hover .collapsed-lines-count {
@@ -1025,7 +1029,7 @@ main {
 .collapsed-lines-count i {
     font-size: 0.75rem;
     color: var(--text-muted);
-    transition: all 0.15s ease;
+    transition: color 0.15s ease;
 }
 
 .collapsed-lines:hover .collapsed-lines-count i {
@@ -1223,7 +1227,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(0.75rem, 2vw, 1rem) 0;
     border-bottom: 1px solid var(--border);
 }
 
@@ -1396,7 +1400,7 @@ main {
     height: 1rem;
     background-color: var(--text-muted);
     border-radius: 50%;
-    transition: all 0.15s ease;
+    transition: left 0.15s ease, background-color 0.15s ease;
 }
 
 .setting-checkbox:checked {
@@ -1413,7 +1417,7 @@ main {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: clamp(0.75rem, 2vw, 1.25rem);
-    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(0.75rem, 2vw, 1rem) 0;
     border-top: 1px solid var(--border);
     font-size: clamp(0.85rem, 2vw, 0.9rem);
     color: var(--text-muted);
@@ -1574,7 +1578,7 @@ main {
     color: var(--text-muted);
     font-size: clamp(0.8rem, 2vw, 0.85rem);
     border-radius: 6px;
-    transition: all 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease;
     text-decoration: none;
     font-weight: 500;
     white-space: nowrap;
@@ -1883,10 +1887,6 @@ main {
     .log-container,
     .log-footer {
         border-radius: 0;
-    }
-
-    .log-footer {
-        padding: 0;
     }
 }
 
