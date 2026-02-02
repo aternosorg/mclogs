@@ -2,6 +2,8 @@
 
 namespace Aternos\Mclogs\Filter;
 
+use Aternos\Mclogs\Filter\Pattern\PatternWithReplacement;
+
 class UsernameFilter extends RegexFilter
 {
     /**
@@ -10,12 +12,12 @@ class UsernameFilter extends RegexFilter
     protected function getPatterns(): array
     {
         return [
-            "C:\\\\Users\\\\([^\\\\]+)\\\\" => "C:\\Users\\********\\", // windows
-            "C:\\\\\\\\Users\\\\\\\\([^\\\\]+)\\\\\\\\" => "C:\\\\Users\\\\********\\\\", // windows with double backslashes
-            "C:\\/Users\\/([^\\/]+)\\/" => "C:/Users/********/", // windows with forward slashes
-            "(?<!\\w)\\/home\\/[^\\/]+\\/" => "/home/********/", // linux
-            "(?<!\\w)\\/Users\\/[^\\/]+\\/" => "/Users/********/", // macos
-            "USERNAME=\\w+" => "USERNAME=********", // environment variable
+            new PatternWithReplacement("C:\\\\Users\\\\([^\\\\]+)\\\\", "C:\\Users\\********\\"), // windows
+            new PatternWithReplacement("C:\\\\\\\\Users\\\\\\\\([^\\\\]+)\\\\\\\\", "C:\\\\Users\\\\********\\\\"), // windows with double backslashes
+            new PatternWithReplacement("C:\\/Users\\/([^\\/]+)\\/", "C:/Users/********/"), // windows with forward slashes
+            new PatternWithReplacement("(?<!\\w)\\/home\\/[^\\/]+\\/", "/home/********/"), // linux
+            new PatternWithReplacement("(?<!\\w)\\/Users\\/[^\\/]+\\/", "/Users/********/"), // macos
+            new PatternWithReplacement("USERNAME=\\w+", "USERNAME=********"), // environment variable
         ];
     }
 }

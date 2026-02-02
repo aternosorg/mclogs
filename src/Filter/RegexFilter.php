@@ -2,15 +2,18 @@
 
 namespace Aternos\Mclogs\Filter;
 
+use Aternos\Mclogs\Filter\Pattern\Pattern;
+use Aternos\Mclogs\Filter\Pattern\PatternWithReplacement;
+
 abstract class RegexFilter extends Filter
 {
     /**
-     * @return array<string, string>
+     * @return PatternWithReplacement[]
      */
     abstract protected function getPatterns(): array;
 
     /**
-     * @return string[]
+     * @return Pattern[]
      */
     protected function getExemptions(): array
     {
@@ -41,16 +44,14 @@ abstract class RegexFilter extends Filter
      */
     public function filter(string $data): string
     {
-        foreach ($this->getPatterns() as $pattern => $replacement) {
-            $pattern = '/' . $pattern . '/i';
-            $data = preg_replace_callback($pattern, function ($matches) use ($replacement) {
-                foreach ($this->getExemptions() as $exemption) {
-                    $exemption = '/' .  $exemption . '/i';
-                    if (preg_match($exemption, $matches[0])) {
+        foreach ($this->getPatterns() as $pattern) {
+            $data = preg_replace_callback($pattern->get(), function ($matches) use ($pattern) {
+                foreach ($this->getExemptions() as $exemptionPattern) {
+                    if (preg_match($exemptionPattern->get(), $matches[0])) {
                         return $matches[0];
                     }
                 }
-                return $replacement;
+                return $pattern->getReplacement();
             }, $data);
         }
         return $data;

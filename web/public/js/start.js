@@ -120,17 +120,20 @@ function applyFilter(text, filter) {
         case 'limit-lines':
             return text.split('\n').slice(0, filter.data).join('\n');
         case 'regex':
-            for (const [pattern, replacement] of Object.entries(filter.data.patterns)) {
-                const regex = new RegExp(pattern, 'gi');
-                text = text.replace(regex, (match) => {
-                    for (const exemption of filter.data.exemptions) {
-                        if (new RegExp(exemption, 'i').test(match)) {
-                            return match;
+            try {
+                for (const pattern of filter.data.patterns) {
+                    const regex = new RegExp(pattern.pattern, 'g' + pattern.modifiers.join());
+                    text = text.replace(regex, (match) => {
+                        for (const exemption of filter.data.exemptions) {
+                            if (new RegExp(exemption.pattern, exemption.modifiers.join()).test(match)) {
+                                return match;
+                            }
                         }
-                    }
-
-                    return replacement;
-                });
+                        return pattern.replacement;
+                    });
+                }
+            } catch (e) {
+                console.error('Error applying regex filter', e);
             }
             return text;
         default:

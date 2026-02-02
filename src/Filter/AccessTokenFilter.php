@@ -2,6 +2,8 @@
 
 namespace Aternos\Mclogs\Filter;
 
+use Aternos\Mclogs\Filter\Pattern\PatternWithReplacement;
+
 class AccessTokenFilter extends RegexFilter
 {
     /**
@@ -10,8 +12,8 @@ class AccessTokenFilter extends RegexFilter
     protected function getPatterns(): array
     {
         return [
-            '\(Session ID is token:[^:]+\:[^)]+\)' => '(Session ID is token:****************:****************)',
-            '--accessToken [^ ]+' => '--accessToken ****************:****************',
+            new PatternWithReplacement('\(Session ID is token:[^:]+\:[^)]+\)', '(Session ID is token:****************:****************)'),
+            new PatternWithReplacement('--accessToken [^ ]+', '--accessToken ****************:****************'),
         ];
     }
 }
