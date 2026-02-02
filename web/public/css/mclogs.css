@@ -155,6 +155,10 @@ body.setting-no-wrap .log-inner .level {
     white-space: pre;
 }
 
+body.setting-no-wrap .log-inner .collapsed-lines-count {
+    justify-content: flex-start;
+}
+
 a {
     color: inherit;
     text-decoration: none;
