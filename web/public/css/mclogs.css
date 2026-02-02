@@ -74,6 +74,7 @@
     --max-width-content: min(100%, calc(var(--max-width)) - var(--page-padding) * 2);
     --radius: 12px;
     --scrollbar-height: 8px;
+    --browser: unset;
     scroll-behavior: smooth;
 }
 
@@ -991,6 +992,45 @@ main {
     word-break: break-word;
     overflow-wrap: anywhere;
     color: var(--text);
+}
+
+/* Firefox fallback: use table layout instead of grid */
+@supports (-moz-appearance: none) {
+    :root {
+        --browser: 'firefox';
+    }
+    .log-inner {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .log-inner .entry {
+        display: table-row;
+    }
+
+    .log-inner .line-number-container {
+        display: table-cell;
+        width: 3.6rem;
+    }
+
+    @media (max-width: 600px) {
+        .log-inner .line-number-container {
+            width: 2.7rem;
+        }
+    }
+
+    .log-inner .line-content {
+        display: table-cell;
+    }
+
+    body.setting-no-wrap .log {
+        overflow-x: auto;
+    }
+
+    body.setting-no-wrap .log-inner {
+        table-layout: auto;
+    }
 }
 
 .collapsed-lines {
