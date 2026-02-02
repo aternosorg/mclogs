@@ -519,6 +519,53 @@ $config = Config::getInstance();
                         </tr>
                     </table>
                 </div>
+                <div class="api-docs-section" id="check-limits">
+                    <h2>Get filters</h2>
+                    <p>
+                        Filters modify the log content before storing it. They are applied automatically when creating a new log on the server side.
+                        You can get a list of active filters from this endpoint if you want to apply the same filters on the client side before uploading a log.
+                    </p>
+                    <div class="api-endpoint">
+                        <span class="api-method">GET</span> <span class="api-url"><?= htmlspecialchars(URL::getApi()->withPath("/1/filters")->toString()); ?></span>
+                    </div>
+                    <h3>Success <span class="content-type">application/json</span></h3>
+                    <pre class="api-code">
+<?=htmlspecialchars(json_encode(\Aternos\Mclogs\Filter\Filter::getAll(), JSON_PRETTY_PRINT)); ?></pre>
+                    <h3>Filter types</h3>
+                    <table class="api-table">
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td class="api-field">trim</td>
+                            <td class="api-description">
+                                Trim any whitespace characters from the beginning and end of the log content.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="api-field">limit-bytes</td>
+                            <td class="api-description">
+                                Limit the log content to a maximum number of bytes (data.limit). Content exceeding this limit will be truncated.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="api-field">limit-lines</td>
+                            <td class="api-description">
+                                Limit the log content to a maximum number of lines (data.limit). Additional lines will be removed.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="api-field">regex</td>
+                            <td class="api-description">
+                                Apply regular expression replacements to the log content. Each pattern in data.patterns will be applied in order and replaced with the provided replacement, unless the matched string matches one of the exemption patterns in data.exemptions.
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="api-note">
+                        Make sure to handle any filter error, e.g. unknown filter types gracefully, as new filter types may be added in the future.
+                    </div>
+                </div>
                 <div class="api-docs-notes">
                     <div class="api-docs-notes-content">
                         <h2>Notes</h2>

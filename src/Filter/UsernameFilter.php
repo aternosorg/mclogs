@@ -2,31 +2,22 @@
 
 namespace Aternos\Mclogs\Filter;
 
-class UsernameFilter extends Filter
+use Aternos\Mclogs\Filter\Pattern\PatternWithReplacement;
+
+class UsernameFilter extends RegexFilter
 {
     /**
-     * @type array<string, string>
+     * @inheritDoc
      */
-    protected const array USERNAME_PATTERNS = [
-        "/C:\\\\Users\\\\([^\\\\]+)\\\\/" => "C:\\Users\\********\\", // windows
-        "/C:\\\\\\\\Users\\\\\\\\([^\\\\]+)\\\\\\\\/" => "C:\\\\Users\\\\********\\\\", // windows with double backslashes
-        "/C:\\/Users\\/([^\\/]+)\\//" => "C:/Users/********/", // windows with forward slashes
-        "/(?<!\\w)\\/home\\/[^\\/]+\\//" => "/home/********/", // linux
-        "/(?<!\\w)\\/Users\\/[^\\/]+\\//" => "/Users/********/", // macos
-        "/^USERNAME=.+$/m" => "USERNAME=********", // environment variable
-    ];
-
-    /**
-     * Censor usernames in paths
-     *
-     * @param string $data
-     * @return string
-     */
-    public function filter(string $data): string
+    protected function getPatterns(): array
     {
-        foreach (static::USERNAME_PATTERNS as $pattern => $replacement) {
-            $data = preg_replace($pattern, $replacement, $data);
-        }
-        return $data;
+        return [
+            new PatternWithReplacement("C:\\\\Users\\\\([^\\\\]+)\\\\", "C:\\Users\\********\\"), // windows
+            new PatternWithReplacement("C:\\\\\\\\Users\\\\\\\\([^\\\\]+)\\\\\\\\", "C:\\\\Users\\\\********\\\\"), // windows with double backslashes
+            new PatternWithReplacement("C:\\/Users\\/([^\\/]+)\\/", "C:/Users/********/"), // windows with forward slashes
+            new PatternWithReplacement("(?<!\\w)\\/home\\/[^\\/]+\\/", "/home/********/"), // linux
+            new PatternWithReplacement("(?<!\\w)\\/Users\\/[^\\/]+\\/", "/Users/********/"), // macos
+            new PatternWithReplacement("USERNAME=\\w+", "USERNAME=********"), // environment variable
+        ];
     }
 }

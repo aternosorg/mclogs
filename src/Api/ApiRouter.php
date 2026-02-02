@@ -22,6 +22,7 @@ class ApiRouter extends Router
             ->register(Method::POST, "#^/1/analyse/?$#", new Action\AnalyseLogAction())
             ->register(Method::GET, "#^/1/errors/rate$#", new Action\RateLimitErrorAction())
             ->register(Method::GET, "#^/1/limits$#", new Action\GetLimitsAction())
+            ->register(Method::GET, "#^/1/filters#", new Action\GetFiltersAction())
             ->setDefaultAction(new Action\EndpointNotFoundAction());
     }
 }

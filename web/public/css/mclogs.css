@@ -1757,6 +1757,7 @@ main {
 }
 
 .api-field {
+    white-space: nowrap;
     font-family: var(--font-mono), monospace;
     color: var(--accent);
     font-weight: 500;
@@ -1802,6 +1803,7 @@ main {
     margin-bottom: 1.5rem;
     white-space: pre;
     tab-size: 2;
+    font-variant-ligatures: none;
 }
 
 .api-code + h3,

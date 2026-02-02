@@ -1,5 +1,6 @@
 <?php
 use Aternos\Mclogs\Config\Config;
+use Aternos\Mclogs\Filter\Filter;
 use Aternos\Mclogs\Frontend\Assets\AssetLoader;
 use Aternos\Mclogs\Frontend\Assets\AssetType;
 ?><!DOCTYPE html>
@@ -22,12 +23,15 @@ use Aternos\Mclogs\Frontend\Assets\AssetType;
                             <span><i class="fa-solid fa-file-arrow-up" title="Drop file"></i> Drop</span>
                         </div>
                     </div>
-                    <textarea aria-label="Paste or drop your log here" spellcheck="false" data-enable-grammarly="false" id="paste-text" data-max-length="10000000" data-max-lines="25000"></textarea>
+                    <textarea aria-label="Paste or drop your log here" spellcheck="false" data-enable-grammarly="false" id="paste-text"></textarea>
                     <button type="button" class="btn-save btn paste-save" title="Save log" disabled><i class="fa-solid fa-save"></i> Save</button>
                     <div class="paste-error" id="paste-error"></div>
                 </div>
             </main>
         <?php include __DIR__ . '/parts/footer.php'; ?>
+        <script>
+            const FILTERS = <?= json_encode(Filter::getAll()); ?>;
+        </script>
         <?= AssetLoader::getInstance()->getHTML(AssetType::JS, "js/start.js"); ?>
     </body>
 </html>
