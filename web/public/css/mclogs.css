@@ -74,6 +74,7 @@
     --max-width-content: min(100%, calc(var(--max-width)) - var(--page-padding) * 2);
     --radius: 12px;
     --scrollbar-height: 8px;
+    --browser: unset;
     scroll-behavior: smooth;
 }
 
@@ -152,6 +153,10 @@ body.setting-no-wrap .log-inner .line-content {
 
 body.setting-no-wrap .log-inner .level {
     white-space: pre;
+}
+
+body.setting-no-wrap .log-inner .collapsed-lines-count {
+    justify-content: flex-start;
 }
 
 a {
@@ -995,6 +1000,53 @@ main {
     word-break: break-word;
     overflow-wrap: anywhere;
     color: var(--text);
+}
+
+/* Firefox fallback: use table layout instead of grid */
+@supports (-moz-appearance: none) {
+    :root {
+        --browser: 'firefox';
+    }
+    .log-inner {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .log-inner .entry,
+    .log-inner .collapsed-lines {
+        display: table-row;
+    }
+
+    .log-inner .line-number-container,
+    .log-inner .collapsed-lines > div:first-child {
+        display: table-cell;
+        width: 3.6rem;
+    }
+
+    @media (max-width: 600px) {
+        .log-inner .line-number-container {
+            width: 2.7rem;
+        }
+    }
+
+    .log-inner .line-content,
+    .log-inner .collapsed-lines-count {
+        display: table-cell;
+    }
+
+    .log-inner .collapsed-lines-count {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    body.setting-no-wrap .log {
+        overflow-x: auto;
+    }
+
+    body.setting-no-wrap .log-inner {
+        table-layout: auto;
+    }
 }
 
 .collapsed-lines {

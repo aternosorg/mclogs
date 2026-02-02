@@ -89,7 +89,7 @@ function collapseAllErrors() {
 }
 
 function uncollapseAllErrors() {
-    document.querySelectorAll('.entry-no-error').forEach(line => line.style.display = "contents");
+    document.querySelectorAll('.entry-no-error').forEach(line => line.style.removeProperty("display"));
     document.querySelectorAll('.collapsed-lines').forEach(collapsed => collapsed.remove());
 }
 
@@ -101,7 +101,7 @@ function handleCollapsedClick(e) {
         position = positionElement.getBoundingClientRect().top - window.scrollY;
     }
     for (let i = parseInt(collapsed.dataset.start); i <= parseInt(collapsed.dataset.end); i++) {
-        document.getElementById(`L${i}`).parentElement.parentElement.style.display = "contents";
+        document.getElementById(`L${i}`).parentElement.parentElement.style.removeProperty("display");
     }
     if (positionElement) {
         window.scrollTo({
@@ -157,14 +157,8 @@ if (typeof BroadcastChannel !== "undefined") {
     settingsChannel.onmessage = (e) => {
         if (e.data.type === "settings-updated") {
             for (const checkbox of settingCheckboxes) {
-                let bodyClass = checkbox.dataset.bodyClass;
-                if (e.data.settings[checkbox.dataset.key]) {
-                    document.body.classList.add(bodyClass);
-                    checkbox.checked = true;
-                } else {
-                    document.body.classList.remove(bodyClass);
-                    checkbox.checked = false;
-                }
+                checkbox.checked = !!e.data.settings[checkbox.dataset.key];
+                applySetting(checkbox);
             }
         }
     };
@@ -172,18 +166,27 @@ if (typeof BroadcastChannel !== "undefined") {
 
 function handleSettingChange(e) {
     let checkbox = e.target;
-    let bodyClass = checkbox.dataset.bodyClass;
-    if (checkbox.checked) {
-        document.body.classList.add(bodyClass);
-    } else {
-        document.body.classList.remove(bodyClass);
-    }
+    applySetting(checkbox);
     saveSettings();
     if (settingsChannel) {
         settingsChannel.postMessage({
             type: "settings-updated",
             settings: getCurrentSettings()
         });
+    }
+}
+
+function applySetting(checkbox) {
+    let bodyClass = checkbox.dataset.bodyClass;
+    if (checkbox.checked) {
+        document.body.classList.add(bodyClass);
+    } else {
+        document.body.classList.remove(bodyClass);
+    }
+    switch (checkbox.dataset.key) {
+        case "floatingScrollbar":
+            initFloatingScrollbar();
+            break;
     }
 }
 
@@ -249,8 +252,18 @@ async function handleDeleteButtonClick() {
 }
 
 /* floating scroll bar */
+const browser = getComputedStyle(document.body)
+    .getPropertyValue("--browser")
+    .replaceAll(/['"]/g, '')
+    .trim()
+    .toLowerCase();
 const floatingScrollbar = document.querySelector(".floating-scrollbar");
-const logContainer = document.querySelector(".log-inner");
+let logContainer = null;
+if (browser === "firefox") {
+    logContainer = document.querySelector(".log");
+} else {
+    logContainer = document.querySelector(".log-inner");
+}
 
 if (floatingScrollbar && logContainer) {
     updateFloatingScrollbarWidths();
@@ -273,6 +286,14 @@ function syncScroll(source, target) {
     if (Math.abs(source.scrollLeft - target.scrollLeft) > 1) {
         target.scrollLeft = source.scrollLeft;
     }
+}
+
+function initFloatingScrollbar() {
+    if (!floatingScrollbar || !logContainer) {
+        return;
+    }
+    updateFloatingScrollbarWidths();
+    syncScroll(logContainer, floatingScrollbar);
 }
 
 function updateFloatingScrollbarWidths() {
