@@ -22,8 +22,8 @@ class TrimFilter extends Filter
         return FilterType::TRIM;
     }
 
-    public function getData(): null
+    public function getData(): object
     {
-        return null;
+        return new \stdClass();
     }
 }

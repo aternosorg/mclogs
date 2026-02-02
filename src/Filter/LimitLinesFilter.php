@@ -30,10 +30,12 @@ class LimitLinesFilter extends Filter
     }
 
     /**
-     * @return int
+     * @return array
      */
-    public function getData(): int
+    public function getData(): array
     {
-        return Config::getInstance()->get(ConfigKey::STORAGE_LIMIT_LINES);
+        return [
+            "limit" => Config::getInstance()->get(ConfigKey::STORAGE_LIMIT_LINES)
+        ];
     }
 }

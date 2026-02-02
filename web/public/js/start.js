@@ -116,9 +116,9 @@ function applyFilter(text, filter) {
         case 'trim':
             return text.trim();
         case 'limit-bytes':
-            return text.substring(0, filter.data);
+            return text.substring(0, filter.data.limit);
         case 'limit-lines':
-            return text.split('\n').slice(0, filter.data).join('\n');
+            return text.split('\n').slice(0, filter.data.limit).join('\n');
         case 'regex':
             try {
                 for (const pattern of filter.data.patterns) {
