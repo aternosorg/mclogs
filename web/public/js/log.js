@@ -89,7 +89,7 @@ function collapseAllErrors() {
 }
 
 function uncollapseAllErrors() {
-    document.querySelectorAll('.entry-no-error').forEach(line => line.style.display = "contents");
+    document.querySelectorAll('.entry-no-error').forEach(line => line.style.removeProperty("display"));
     document.querySelectorAll('.collapsed-lines').forEach(collapsed => collapsed.remove());
 }
 
@@ -101,7 +101,7 @@ function handleCollapsedClick(e) {
         position = positionElement.getBoundingClientRect().top - window.scrollY;
     }
     for (let i = parseInt(collapsed.dataset.start); i <= parseInt(collapsed.dataset.end); i++) {
-        document.getElementById(`L${i}`).parentElement.parentElement.style.display = "contents";
+        document.getElementById(`L${i}`).parentElement.parentElement.style.removeProperty("display");
     }
     if (positionElement) {
         window.scrollTo({
