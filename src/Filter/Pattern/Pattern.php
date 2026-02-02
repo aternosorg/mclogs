@@ -28,7 +28,7 @@ class Pattern implements \JsonSerializable
         foreach ($this->modifiers as $modifier) {
             $modifiersString .= $modifier->value;
         }
-        return self::DELIMITER . $this->pattern . self::DELIMITER . $modifiersString;
+        return static::DELIMITER . $this->pattern . static::DELIMITER . $modifiersString;
     }
 
     public function getPattern(): string

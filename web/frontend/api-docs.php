@@ -558,7 +558,7 @@ $config = Config::getInstance();
                         <tr>
                             <td class="api-field">regex</td>
                             <td class="api-description">
-                                Apply regular expression replacements to the log content. Each pattern in data.patterns will be applied in order and replaced with the provided replacement, unless the line matches one of the exemption patterns in data.exemptions.
+                                Apply regular expression replacements to the log content. Each pattern in data.patterns will be applied in order and replaced with the provided replacement, unless the matched string matches one of the exemption patterns in data.exemptions.
                             </td>
                         </tr>
                     </table>
