@@ -1005,11 +1005,13 @@ main {
         width: 100%;
     }
 
-    .log-inner .entry {
+    .log-inner .entry,
+    .log-inner .collapsed-lines {
         display: table-row;
     }
 
-    .log-inner .line-number-container {
+    .log-inner .line-number-container,
+    .log-inner .collapsed-lines > div:first-child {
         display: table-cell;
         width: 3.6rem;
     }
@@ -1020,8 +1022,14 @@ main {
         }
     }
 
-    .log-inner .line-content {
+    .log-inner .line-content,
+    .log-inner .collapsed-lines-count {
         display: table-cell;
+    }
+
+    .log-inner .collapsed-lines-count {
+        text-align: center;
+        vertical-align: middle;
     }
 
     body.setting-no-wrap .log {
