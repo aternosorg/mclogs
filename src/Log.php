@@ -51,7 +51,7 @@ class Log
 
         return new static($id)
             ->setContent($data->data ?? null)
-            ->setToken($data->token ? new Token($data->token) : null)
+            ->setToken(isset($data->token) ? new Token($data->token) : null)
             ->setMetadata(MetadataEntry::allFromArray($data->metadata ?? []))
             ->setSource($data->source ?? null)
             ->setCreated($data->created ?? null)
