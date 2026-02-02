@@ -1227,7 +1227,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(0.75rem, 2vw, 1rem) 0;
     border-bottom: 1px solid var(--border);
 }
 
@@ -1417,7 +1417,7 @@ main {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: clamp(0.75rem, 2vw, 1.25rem);
-    padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(0.75rem, 2vw, 1rem) 0;
     border-top: 1px solid var(--border);
     font-size: clamp(0.85rem, 2vw, 0.9rem);
     color: var(--text-muted);
@@ -1887,10 +1887,6 @@ main {
     .log-container,
     .log-footer {
         border-radius: 0;
-    }
-
-    .log-footer {
-        padding: 0;
     }
 }
 
