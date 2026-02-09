@@ -78,7 +78,7 @@ class Log
     protected static function fromObject(Id $id, object $data): static
     {
         return new static($id)
-            ->setContent($data->data ?? null)
+            ->setContent($data->data ?? "")
             ->setToken(isset($data->token) ? new Token($data->token) : null)
             ->setMetadata(MetadataEntry::allFromArray($data->metadata ?? []))
             ->setSource($data->source ?? null)
