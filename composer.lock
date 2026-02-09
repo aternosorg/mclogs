@@ -141,16 +141,16 @@
         },
         {
             "name": "aternos/sherlock",
-            "version": "v1.1.2",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/sherlock.git",
-                "reference": "060228da4ff6319d5116d0395e09ec06f1ca2eb1"
+                "reference": "2bfb6427790b24df860f20905b76f09978a7df3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/sherlock/zipball/060228da4ff6319d5116d0395e09ec06f1ca2eb1",
-                "reference": "060228da4ff6319d5116d0395e09ec06f1ca2eb1",
+                "url": "https://api.github.com/repos/aternosorg/sherlock/zipball/2bfb6427790b24df860f20905b76f09978a7df3a",
+                "reference": "2bfb6427790b24df860f20905b76f09978a7df3a",
                 "shasum": ""
             },
             "require": {
@@ -181,9 +181,9 @@
             "description": "PHP library to apply minecraft mappings to log files",
             "support": {
                 "issues": "https://github.com/aternosorg/sherlock/issues",
-                "source": "https://github.com/aternosorg/sherlock/tree/v1.1.2"
+                "source": "https://github.com/aternosorg/sherlock/tree/v1.1.3"
             },
-            "time": "2026-01-23T16:00:23+00:00"
+            "time": "2026-02-09T10:37:21+00:00"
         },
         {
             "name": "mongodb/mongodb",
@@ -409,5 +409,5 @@
         "ext-zlib": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.9.0"
 }
