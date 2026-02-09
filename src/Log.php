@@ -438,9 +438,7 @@ class Log
      */
     public function delete(): bool
     {
-        return MongoDBClient::getInstance()->getLogsCollection()
-                ->deleteOne(['_id' => $this->id->get()])
-                ->getDeletedCount() === 1;
+        return MongoDBClient::getInstance()->deleteLog($this->id->get());
     }
 
     /**

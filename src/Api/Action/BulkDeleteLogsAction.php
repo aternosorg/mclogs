@@ -8,6 +8,7 @@ use Aternos\Mclogs\Api\Response\ApiResponse;
 use Aternos\Mclogs\Api\Response\MultiResponse;
 use Aternos\Mclogs\Id;
 use Aternos\Mclogs\Log;
+use Aternos\Mclogs\Storage\MongoDBClient;
 
 class BulkDeleteLogsAction extends ApiAction
 {
@@ -47,6 +48,7 @@ class BulkDeleteLogsAction extends ApiAction
 
         $logs = Log::findAll($ids, false);
 
+        $deleteIds = [];
         $response = new MultiResponse();
         foreach ($data as $log) {
             $id = $log["id"];
@@ -64,14 +66,11 @@ class BulkDeleteLogsAction extends ApiAction
                 continue;
             }
 
-            $deleted = $log->delete();
-            if (!$deleted) {
-                $response->addResponse($id, new ApiError(500, "Failed to delete log."));
-                continue;
-            }
-
+            $deleteIds[] = $id;
             $response->addResponse($id, new ApiResponse());
         }
+
+        MongoDBClient::getInstance()->deleteLogs($deleteIds);
 
         return $response;
     }

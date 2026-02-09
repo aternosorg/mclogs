@@ -159,6 +159,45 @@ class MongoDBClient
      * @param string $id
      * @return bool
      */
+    public function deleteLog(string $id): bool
+    {
+        $collection = $this->getLogsCollection();
+        $result = $collection->deleteOne(['_id' => $id]);
+        if ($result->getDeletedCount() === 0) {
+            // Check for legacy ID without the first character
+            $result = $collection->deleteOne(['_id' => substr($id, 1)]);
+            return $result->getDeletedCount() === 1;
+        }
+        return true;
+    }
+
+    /**
+     * @param array $ids
+     * @return int Number of logs deleted
+     */
+    public function deleteLogs(array $ids): int
+    {
+        $collection = $this->getLogsCollection();
+        $result = $collection->deleteMany(['_id' => ['$in' => $ids]]);
+        $deletedCount = $result->getDeletedCount();
+
+        if ($deletedCount === count($ids)) {
+            return $deletedCount;
+        }
+
+        // Check for legacy IDs without the first character
+        $legacyIds = [];
+        foreach ($ids as $id) {
+            $legacyIds[] = substr($id, 1);
+        }
+        $legacyResult = $collection->deleteMany(['_id' => ['$in' => $legacyIds]]);
+        return $deletedCount + $legacyResult->getDeletedCount();
+    }
+
+    /**
+     * @param string $id
+     * @return bool
+     */
     public function hasLog(string $id): bool
     {
         return $this->findLog($id) !== null;
