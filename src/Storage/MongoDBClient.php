@@ -110,7 +110,7 @@ class MongoDBClient
         $result = $collection->findOne(['_id' => $id], $options);
         if ($result === null) {
             // Check for legacy ID without the first character
-            return $collection->findOne(['_id' => substr($id, 1), $options]);
+            return $collection->findOne(['_id' => substr($id, 1)], $options);
         }
         return $result;
     }
