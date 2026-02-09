@@ -12,7 +12,7 @@ use Aternos\Mclogs\Storage\MongoDBClient;
 
 class BulkDeleteLogsAction extends ApiAction
 {
-    protected const int MAX_IDS = 256;
+    public const int MAX_IDS = 256;
 
     /**
      * @return ApiResponse

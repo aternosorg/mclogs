@@ -1,5 +1,6 @@
 <?php
 
+use Aternos\Mclogs\Api\Action\BulkDeleteLogsAction;
 use Aternos\Mclogs\Api\Response\ApiError;
 use Aternos\Mclogs\Api\Response\ApiResponse;
 use Aternos\Mclogs\Api\Response\MultiResponse;
@@ -292,6 +293,7 @@ $config = Config::getInstance();
                 <div class="api-docs-section" id="bulk-delete-log">
                     <h2>Bulk delete multiple logs</h2>
                     <div class="api-note">
+                        This method allows deleting up to <?= BulkDeleteLogsAction::MAX_IDS; ?> at once.
                         Deleting logs requires the tokens that were provided when the logs were created.
                     </div>
 
