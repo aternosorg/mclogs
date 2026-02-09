@@ -318,7 +318,7 @@ $config = Config::getInstance();
                                 ->addResponse("OahzhMG", new ApiResponse()), JSON_PRETTY_PRINT); ?></pre>
                     <h4>Error <span class="content-type">application/json</span></h4>
                     <div class="api-note">
-                        If a bulk delete request is malformed of invalid, the entire request will be
+                        If a bulk delete request is malformed or invalid, the entire request will be
                         rejected with an error response and no logs will be deleted.
                     </div>
                     <pre class="api-code">
