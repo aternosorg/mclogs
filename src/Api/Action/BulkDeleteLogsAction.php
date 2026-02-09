@@ -30,6 +30,7 @@ class BulkDeleteLogsAction extends ApiAction
             return new ApiError(400, "Too many logs. Maximum is " . static::MAX_IDS . ".");
         }
 
+        $ids = [];
         foreach ($data as $log) {
             if (!is_array($log)) {
                 return new ApiError(400, "Each entry must be an object with 'id' and 'token' fields.");
@@ -41,14 +42,17 @@ class BulkDeleteLogsAction extends ApiAction
             if (!isset($log["token"]) || !is_string($log["token"])) {
                 return new ApiError(400, "Each log must have a valid 'token' field.");
             }
+            $ids[] = $log["id"];
         }
+
+        $logs = Log::findAll($ids, false);
 
         $response = new MultiResponse();
         foreach ($data as $log) {
             $id = $log["id"];
             $token = $log["token"];
 
-            $log = Log::find(new Id($id));
+            $log = $logs[$id] ?? null;
             if (!$log) {
                 $response->addResponse($id, new ApiError(404, "Log not found."));
                 continue;

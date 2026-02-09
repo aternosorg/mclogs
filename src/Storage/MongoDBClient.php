@@ -96,17 +96,63 @@ class MongoDBClient
 
     /**
      * @param string $id
+     * @param bool $includeContent
      * @return object|null
      */
-    public function findLog(string $id): ?object
+    public function findLog(string $id, bool $includeContent = true): ?object
     {
+        $options = [];
+        if (!$includeContent) {
+            $options['projection'] = ['data' => 0];
+        }
+
         $collection = $this->getLogsCollection();
-        $result = $collection->findOne(['_id' => $id]);
+        $result = $collection->findOne(['_id' => $id], $options);
         if ($result === null) {
             // Check for legacy ID without the first character
-            return $collection->findOne(['_id' => substr($id, 1)]);
+            return $collection->findOne(['_id' => substr($id, 1), $options]);
         }
         return $result;
+    }
+
+    /**
+     * @param string[] $ids
+     * @param bool $includeContent
+     * @return object[]
+     */
+    public function findLogs(array $ids, bool $includeContent = true): array
+    {
+        $options = [];
+        if (!$includeContent) {
+            $options['projection'] = ['data' => 0];
+        }
+
+        $collection = $this->getLogsCollection();
+        $results = $collection->find(['_id' => ['$in' => $ids]], $options)->toArray();
+        $foundIds = [];
+        foreach ($results as $result) {
+            $foundIds[] = (string)$result->_id;
+        }
+
+        $missingIds = array_diff($ids, $foundIds);
+        if (!empty($missingIds)) {
+            $legacyIds = [];
+            foreach ($missingIds as $id) {
+                $legacyIds[substr($id, 1)] = $id;
+            }
+
+            // Check for legacy IDs without the first character
+            $legacyResults = $collection->find(['_id' => ['$in' => array_keys($legacyIds)]], $options)->toArray();
+            foreach ($legacyResults as $result) {
+                // Map the legacy ID back to the original ID
+                $originalId = $legacyIds[(string)$result->_id];
+                $result->_id = $originalId;
+
+                // Add the found legacy results to the main results array
+                $results[] = $result;
+            }
+        }
+        return $results;
     }
 
     /**
