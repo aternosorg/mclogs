@@ -31,7 +31,8 @@ class BulkDeleteLogsAction extends ApiAction
         }
 
         foreach ($data as $log) {
-            if (!isset($log["id"]) || !is_string($log["id"])) {
+            if (!isset($log["id"]) || !is_string($log["id"]) ||
+                !preg_match("/" . Id::PATTERN . "/", $log["id"])) {
                 return new ApiError(400, "Each log must have a valid 'id' field.");
             }
             if (!isset($log["token"]) || !is_string($log["token"])) {
