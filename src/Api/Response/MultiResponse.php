@@ -4,6 +4,8 @@ namespace Aternos\Mclogs\Api\Response;
 
 class MultiResponse extends ApiResponse
 {
+    protected int $httpCode = 207;
+
     /**
      * @var ApiResponse[]
      */
@@ -16,20 +18,6 @@ class MultiResponse extends ApiResponse
      */
     public function addResponse(string $id, ApiResponse $response): static
     {
-        $httpCode = $response->getHttpCode();
-
-        if (count($this->responses) === 0) {
-            $this->setHttpCode($httpCode);
-            $this->setSuccess($response->isSuccess());
-        } else {
-            if ($this->getHttpCode() !== $httpCode) {
-                $this->setHttpCode(207);
-            }
-            if (!$this->isSuccess() && $response->isSuccess()) {
-                $this->setSuccess(true);
-            }
-        }
-
         $this->responses[$id] = $response;
         return $this;
     }
