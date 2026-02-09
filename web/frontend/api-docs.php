@@ -334,12 +334,6 @@ $config = Config::getInstance();
                     <pre class="api-code"><?=json_encode(new MultiResponse()
                                 ->addResponse("6wexMDE", new ApiResponse())
                                 ->addResponse("OahzhMG", new ApiError(404, "Log not found.")), JSON_PRETTY_PRINT); ?></pre>
-                    <div class="api-note">
-                        If the request is valid, but all deletions fail, the response will be returned as unsuccessful.
-                    </div>
-                    <pre class="api-code"><?=json_encode(new MultiResponse()
-                                ->addResponse("6wexMDE", new ApiError(404, "Log not found."))
-                                ->addResponse("OahzhMG", new ApiError(404, "Log not found.")), JSON_PRETTY_PRINT); ?></pre>
                 </div>
                 <div class="api-docs-section" id="get-raw">
                     <h2>Get the raw log file content</h2>
