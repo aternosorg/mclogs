@@ -2,7 +2,7 @@
 
 namespace Aternos\Mclogs\Api\Action;
 
-use Aternos\Mclogs\Api\ContentParser;
+use Aternos\Mclogs\Api\LogContentParser;
 use Aternos\Mclogs\Api\Response\ApiError;
 use Aternos\Mclogs\Api\Response\ApiResponse;
 use Aternos\Mclogs\Api\Response\LogResponse;
@@ -16,7 +16,7 @@ class CreateLogAction extends ApiAction
 
     public function runApi(): ApiResponse
     {
-        $data = new ContentParser()->getContent();
+        $data = new LogContentParser()->getContent();
 
         if ($data instanceof ApiError) {
             return $data;

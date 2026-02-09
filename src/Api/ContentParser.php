@@ -80,18 +80,6 @@ class ContentParser
                 return new ApiError(415, "Unsupported Content-Type: " . htmlspecialchars($contentTypeHeader));
         }
 
-        if (!isset($data['content'])) {
-            return new ApiError(400, "Required field 'content' not found.");
-        }
-
-        if (empty($data['content'])) {
-            return new ApiError(400, "Required field 'content' is empty.");
-        }
-
-        if (!is_string($data['content'])) {
-            return new ApiError(400, "Field 'content' must be a string.");
-        }
-
         return $data;
     }
 }
