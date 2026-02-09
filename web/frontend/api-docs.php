@@ -292,7 +292,7 @@ $config = Config::getInstance();
                 <div class="api-docs-section" id="bulk-delete-log">
                     <h2>Bulk delete multiple logs</h2>
                     <div class="api-note">
-                        Deleting a log requires the token that was provided when creating the log.
+                        Deleting logs requires the tokens that were provided when the logs were created.
                     </div>
 
                     <div class="api-endpoint">
@@ -313,9 +313,22 @@ $config = Config::getInstance();
 
                     <h3>Responses</h3>
                     <h4>Success <span class="content-type">application/json</span></h4>
+                    <div class="api-note">
+                        The bulk delete request will return a successful result and status code <code>207</code>,
+                        indicating that the request was processed.
+                        Results for the individual operations are included in the response body.
+                    </div>
                     <pre class="api-code"><?=json_encode(new MultiResponse()
                                 ->addResponse("6wexMDE", new ApiResponse())
                                 ->addResponse("OahzhMG", new ApiResponse()), JSON_PRETTY_PRINT); ?></pre>
+                    <h4>Partial success <span class="content-type">application/json</span></h4>
+                    <div class="api-note">
+                        If a bulk delete request is valid, but not all logs can be deleted (e.g. due to invalid tokens or non-existing logs),
+                        it will still overall be considered successful, but the response body will include error results for the logs that could not be deleted.
+                    </div>
+                    <pre class="api-code"><?=json_encode(new MultiResponse()
+                                ->addResponse("6wexMDE", new ApiResponse())
+                                ->addResponse("OahzhMG", new ApiError(404, "Log not found.")), JSON_PRETTY_PRINT); ?></pre>
                     <h4>Error <span class="content-type">application/json</span></h4>
                     <div class="api-note">
                         If a bulk delete request is malformed or invalid, the entire request will be
@@ -326,14 +339,6 @@ $config = Config::getInstance();
     "success": false,
     "error": "No logs provided."
 }</pre>
-                    <h4>Partial success <span class="content-type">application/json</span></h4>
-                    <div class="api-note">
-                        If a bulk delete request is valid, but not all logs can be deleted (e.g. due to invalid tokens or non-existing logs),
-                        the response will use the HTTP status code 207 Multi-Status and include the result for each log in the response body.
-                    </div>
-                    <pre class="api-code"><?=json_encode(new MultiResponse()
-                                ->addResponse("6wexMDE", new ApiResponse())
-                                ->addResponse("OahzhMG", new ApiError(404, "Log not found.")), JSON_PRETTY_PRINT); ?></pre>
                 </div>
                 <div class="api-docs-section" id="get-raw">
                     <h2>Get the raw log file content</h2>
