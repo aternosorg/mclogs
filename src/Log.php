@@ -56,7 +56,7 @@ class Log
     /**
      * @param (string|Id)[] $ids
      * @param bool $includeContent
-     * @return Log[]
+     * @return array<string, Log>
      */
     public static function findAll(array $ids, bool $includeContent = true): array
     {
