@@ -17,6 +17,7 @@ class ApiRouter extends Router
             ->register(Method::POST, "#^/1/log/?$#", new Action\CreateLogAction())
             ->register(Method::GET, "#^/1/log/" . Id::PATTERN . "$#", new Action\LogInfoAction())
             ->register(Method::DELETE, "#^/1/log/" . Id::PATTERN . "$#", new Action\DeleteLogAction())
+            ->register(Method::POST, "#^/1/bulk/log/delete/?$#", new Action\BulkDeleteLogsAction())
             ->register(Method::GET, "#^/1/insights/" . Id::PATTERN . "$#", new Action\LogInsightsAction())
             ->register(Method::GET, "#^/1/raw/" . Id::PATTERN . "$#", new Action\RawLogAction())
             ->register(Method::POST, "#^/1/analyse/?$#", new Action\AnalyseLogAction())

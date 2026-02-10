@@ -1,5 +1,9 @@
 <?php
 
+use Aternos\Mclogs\Api\Action\BulkDeleteLogsAction;
+use Aternos\Mclogs\Api\Response\ApiError;
+use Aternos\Mclogs\Api\Response\ApiResponse;
+use Aternos\Mclogs\Api\Response\MultiResponse;
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
 use Aternos\Mclogs\Util\URL;
@@ -284,6 +288,58 @@ $config = Config::getInstance();
 {
     "success": false,
     "error": "Invalid token."
+}</pre>
+                </div>
+                <div class="api-docs-section" id="bulk-delete-log">
+                    <h2>Bulk delete multiple logs</h2>
+                    <div class="api-note">
+                        This method allows deleting up to <?= BulkDeleteLogsAction::MAX_IDS; ?> at once.
+                        Deleting logs requires the tokens that were provided when the logs were created.
+                    </div>
+
+                    <div class="api-endpoint">
+                        <span class="api-method">POST</span> <span class="api-url"><?= htmlspecialchars(URL::getApi()->toString()); ?>/1/bulk/log/delete</span>
+                    </div>
+
+                    <h3>Example body <span class="content-type">application/json</span></h3>
+                    <pre class="api-code"><?= json_encode([
+                                [
+                                        "id" => "6wexMDE",
+                                        "token" => "78351fafe495398163fff847f9a26dda440435dcf7b5f92e8e36308f3683d771"
+                                ],
+                                [
+                                        "id" => "OahzhMG",
+                                        "token" => "6520dd42ec3d5fd0e83f28220974fb83d3bdc0746853f5022373f8e5b062651b"
+                                ],
+                        ], JSON_PRETTY_PRINT); ?></pre>
+
+                    <h3>Responses</h3>
+                    <h4>Success <span class="content-type">application/json</span></h4>
+                    <div class="api-note">
+                        The bulk delete request will return a successful result and status code <code>207</code>,
+                        indicating that the request was processed.
+                        Results for the individual operations are included in the response body.
+                    </div>
+                    <pre class="api-code"><?=json_encode(new MultiResponse()
+                                ->addResponse("6wexMDE", new ApiResponse())
+                                ->addResponse("OahzhMG", new ApiResponse()), JSON_PRETTY_PRINT); ?></pre>
+                    <h4>Partial success <span class="content-type">application/json</span></h4>
+                    <div class="api-note">
+                        If a bulk delete request is valid, but not all logs can be deleted (e.g. due to invalid tokens or non-existing logs),
+                        it will still overall be considered successful, but the response body will include error results for the logs that could not be deleted.
+                    </div>
+                    <pre class="api-code"><?=json_encode(new MultiResponse()
+                                ->addResponse("6wexMDE", new ApiResponse())
+                                ->addResponse("OahzhMG", new ApiError(404, "Log not found.")), JSON_PRETTY_PRINT); ?></pre>
+                    <h4>Error <span class="content-type">application/json</span></h4>
+                    <div class="api-note">
+                        If a bulk delete request is malformed or invalid, the entire request will be
+                        rejected with an error response and no logs will be deleted.
+                    </div>
+                    <pre class="api-code">
+{
+    "success": false,
+    "error": "No logs provided."
 }</pre>
                 </div>
                 <div class="api-docs-section" id="get-raw">
