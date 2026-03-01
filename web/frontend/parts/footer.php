@@ -21,7 +21,7 @@ $privacyUrl = Config::getInstance()->get(ConfigKey::LEGAL_PRIVACY);
     <nav class="footer-nav">
         <a href="https://github.com/indifferentketchup/ib-logs" title="IB Logs on GitHub" target="_blank"><i class="fa-brands fa-github"></i>GitHub</a>
         <a href="https://github.com/indifferentketchup/ib-logs" title="IB Logs on GitHub" target="_blank"><i class="fa-solid fa-cube"></i>Mod/Plugin</a>
-        <a href="<?=htmlspecialchars(URL::getApi()->toString()); ?>" title="mclo.gs API"><i class="fa-solid fa-code"></i>API</a>
+        <a href="<?=htmlspecialchars(URL::getApi()->toString()); ?>" title="IB Logs API"><i class="fa-solid fa-code"></i>API</a>
     </nav>
     <span class="footer-text">developed by <a href="https://github.com/indifferentketchup" target="_blank" title="IndifferentKetchup on GitHub">IndifferentKetchup</a>
     </span>

@@ -7,8 +7,8 @@ use IndifferentKetchup\IBLogs\Frontend\Assets\AssetType;
 <html lang="en">
     <head>
         <?php include __DIR__ . '/parts/head.php'; ?>
-        <title><?= htmlspecialchars(Config::getInstance()->getName()); ?> - Paste, share & analyse your logs</title>
-        <meta name="description" content="Easily paste your Minecraft & Hytale logs to share and analyse them." />
+        <title><?= htmlspecialchars(Config::getInstance()->getName()); ?> - Analyze your logs. Or don't. We don't care.</title>
+        <meta name="description" content="Analyze your logs. Or don't. We don't care." />
     </head>
     <body data-name="<?=htmlspecialchars(Config::getInstance()->getName()); ?>">
     <?php include __DIR__ . '/parts/header.php'; ?>

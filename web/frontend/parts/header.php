@@ -12,7 +12,7 @@
     </a>
     <div class="tagline">
         <h1 class="tagline-main"><span class="title-verb">Paste</span> your logs.</h1>
-        <div class="tagline-sub">Built for Minecraft & Hytale</div>
+        <div class="tagline-sub">Analyze your logs. Or don't. We don't care.</div>
     </div>
     <script>
         const titles = ["Paste", "Share", "Analyse"];
