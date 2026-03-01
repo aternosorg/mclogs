@@ -1,10 +1,10 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Action;
+namespace IndifferentKetchup\IBLogs\Api\Action;
 
-use Aternos\Mclogs\Api\ContentParser;
-use Aternos\Mclogs\Api\Response\ApiResponse;
-use Aternos\Mclogs\Router\Action;
+use IndifferentKetchup\IBLogs\Api\ContentParser;
+use IndifferentKetchup\IBLogs\Api\Response\ApiResponse;
+use IndifferentKetchup\IBLogs\Router\Action;
 
 abstract class ApiAction extends Action
 {

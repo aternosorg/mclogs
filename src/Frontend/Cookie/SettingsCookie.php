@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Cookie;
+namespace IndifferentKetchup\IBLogs\Frontend\Cookie;
 
 class SettingsCookie extends Cookie
 {
@@ -9,6 +9,6 @@ class SettingsCookie extends Cookie
      */
     protected function getKey(): string
     {
-        return "MCLOGS_SETTINGS";
+        return "IBLOGS_SETTINGS";
     }
 }

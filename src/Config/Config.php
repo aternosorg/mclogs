@@ -1,9 +1,9 @@
 <?php
 
-namespace Aternos\Mclogs\Config;
+namespace IndifferentKetchup\IBLogs\Config;
 
-use Aternos\Mclogs\Util\Singleton;
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Util\Singleton;
+use IndifferentKetchup\IBLogs\Util\URL;
 
 class Config
 {

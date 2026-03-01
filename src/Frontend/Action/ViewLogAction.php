@@ -1,11 +1,11 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Action;
+namespace IndifferentKetchup\IBLogs\Frontend\Action;
 
-use Aternos\Mclogs\Id;
-use Aternos\Mclogs\Log;
-use Aternos\Mclogs\Router\Action;
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Id;
+use IndifferentKetchup\IBLogs\Log;
+use IndifferentKetchup\IBLogs\Router\Action;
+use IndifferentKetchup\IBLogs\Util\URL;
 
 class ViewLogAction extends Action
 {

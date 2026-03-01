@@ -1,13 +1,13 @@
 <?php
 
-namespace Aternos\Mclogs\Printer;
+namespace IndifferentKetchup\IBLogs\Printer;
 
 use Aternos\Codex\Log\Entry;
 use Aternos\Codex\Log\EntryInterface;
 use Aternos\Codex\Log\Level;
 use Aternos\Codex\Log\LineInterface;
 use Aternos\Codex\Printer\ModifiableDefaultPrinter;
-use Aternos\Mclogs\Id;
+use IndifferentKetchup\IBLogs\Id;
 
 /**
  * Class Printer

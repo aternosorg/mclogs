@@ -1,10 +1,10 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Action;
+namespace IndifferentKetchup\IBLogs\Frontend\Action;
 
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Util\URL;
 
-class CreateLogAction extends \Aternos\Mclogs\Api\Action\CreateLogAction
+class CreateLogAction extends \IndifferentKetchup\IBLogs\Api\Action\CreateLogAction
 {
     protected bool $includeCookie = true;
     protected bool $includeToken = false;

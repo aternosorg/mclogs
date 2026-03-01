@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Config;
+namespace IndifferentKetchup\IBLogs\Config;
 
 enum ConfigKey
 {
@@ -40,7 +40,7 @@ enum ConfigKey
             ConfigKey::STORAGE_LIMIT_LINES => 25000,
 
             ConfigKey::MONGODB_URL => 'mongodb://mongo:27017',
-            ConfigKey::MONGODB_DATABASE => 'mclogs',
+            ConfigKey::MONGODB_DATABASE => 'iblogs',
 
             ConfigKey::ID_LENGTH => 7,
 
@@ -66,7 +66,7 @@ enum ConfigKey
      */
     public function getEnvironmentVariable(): string
     {
-        return "MCLOGS_" . $this->name;
+        return "IBLOGS_" . $this->name;
     }
 
     /**

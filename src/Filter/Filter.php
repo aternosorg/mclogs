@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Filter;
+namespace IndifferentKetchup\IBLogs\Filter;
 
 abstract class Filter implements \JsonSerializable
 {

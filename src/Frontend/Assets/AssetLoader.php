@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Assets;
+namespace IndifferentKetchup\IBLogs\Frontend\Assets;
 
-use Aternos\Mclogs\Util\Singleton;
+use IndifferentKetchup\IBLogs\Util\Singleton;
 
 class AssetLoader
 {
@@ -90,7 +90,7 @@ class AssetLoader
     public function writeCache(): void
     {
         $assets = [
-            new Asset(AssetType::CSS, "css/mclogs.css"),
+            new Asset(AssetType::CSS, "css/iblogs.css"),
             new Asset(AssetType::JS, "js/start.js"),
             new Asset(AssetType::JS, "js/log.js"),
             new Asset(AssetType::CSS, "vendor/fontawesome/css/fontawesome.min.css")

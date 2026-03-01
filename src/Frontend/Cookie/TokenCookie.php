@@ -1,10 +1,10 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Cookie;
+namespace IndifferentKetchup\IBLogs\Frontend\Cookie;
 
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
-use Aternos\Mclogs\Log;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Log;
 
 class TokenCookie extends Cookie
 {
@@ -23,7 +23,7 @@ class TokenCookie extends Cookie
      */
     protected function getKey(): string
     {
-        return "MCLOGS_LOG_TOKEN";
+        return "IBLOGS_LOG_TOKEN";
     }
 
     /**

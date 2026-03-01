@@ -1,9 +1,9 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Action;
+namespace IndifferentKetchup\IBLogs\Api\Action;
 
-use Aternos\Mclogs\Api\Response\ApiResponse;
-use Aternos\Mclogs\Api\Response\FiltersResponse;
+use IndifferentKetchup\IBLogs\Api\Response\ApiResponse;
+use IndifferentKetchup\IBLogs\Api\Response\FiltersResponse;
 
 class GetFiltersAction extends ApiAction
 {

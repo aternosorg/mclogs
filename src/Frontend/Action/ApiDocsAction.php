@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Action;
+namespace IndifferentKetchup\IBLogs\Frontend\Action;
 
-use Aternos\Mclogs\Router\Action;
+use IndifferentKetchup\IBLogs\Router\Action;
 
 class ApiDocsAction extends Action
 {

@@ -3,7 +3,7 @@ FROM dunglas/frankenphp:1-php8.5
 # System Setup
 RUN install-php-extensions mongodb zip
 
-ARG USER=mclogs
+ARG USER=iblogs
 RUN useradd ${USER} && \
     setcap CAP_NET_BIND_SERVICE=+eip /usr/local/bin/frankenphp
 
@@ -20,7 +20,7 @@ RUN --mount=type=cache,target=/tmp/cache/composer \
 
 # Application Setup
 COPY docker/Caddyfile /etc/frankenphp/Caddyfile
-COPY docker/mclogs.ini /usr/local/etc/php/conf.d/mclogs.ini
+COPY docker/iblogs.ini /usr/local/etc/php/conf.d/iblogs.ini
 
 COPY . .
 

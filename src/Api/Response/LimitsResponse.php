@@ -1,9 +1,9 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Response;
+namespace IndifferentKetchup\IBLogs\Api\Response;
 
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
 
 class LimitsResponse extends ApiResponse
 {

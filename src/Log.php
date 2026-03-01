@@ -1,21 +1,21 @@
 <?php
 
-namespace Aternos\Mclogs;
+namespace IndifferentKetchup\IBLogs;
 
 use Aternos\Codex\Analysis\Analysis;
 use Aternos\Codex\Log\AnalysableLogInterface;
 use Aternos\Codex\Log\File\StringLogFile;
 use Aternos\Codex\Log\Level;
 use Aternos\Codex\Log\LogInterface;
-use Aternos\Mclogs\Config\ConfigKey;
-use Aternos\Mclogs\Data\Deobfuscator;
-use Aternos\Mclogs\Data\MetadataEntry;
-use Aternos\Mclogs\Data\Token;
-use Aternos\Mclogs\Filter\Filter;
-use Aternos\Mclogs\Frontend\Cookie\TokenCookie;
-use Aternos\Mclogs\Printer\Printer;
-use Aternos\Mclogs\Storage\MongoDBClient;
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Data\Deobfuscator;
+use IndifferentKetchup\IBLogs\Data\MetadataEntry;
+use IndifferentKetchup\IBLogs\Data\Token;
+use IndifferentKetchup\IBLogs\Filter\Filter;
+use IndifferentKetchup\IBLogs\Frontend\Cookie\TokenCookie;
+use IndifferentKetchup\IBLogs\Printer\Printer;
+use IndifferentKetchup\IBLogs\Storage\MongoDBClient;
+use IndifferentKetchup\IBLogs\Util\URL;
 use MongoDB\BSON\UTCDateTime;
 use Uri\Rfc3986\Uri;
 
@@ -371,7 +371,7 @@ class Log
      */
     protected function getExpiryTimestamp(): UTCDateTime
     {
-        $ttl = \Aternos\Mclogs\Config\Config::getInstance()->get(ConfigKey::STORAGE_TTL);
+        $ttl = \IndifferentKetchup\IBLogs\Config\Config::getInstance()->get(ConfigKey::STORAGE_TTL);
         $expires = time() + $ttl;
         return new UTCDateTime($expires * 1000);
     }

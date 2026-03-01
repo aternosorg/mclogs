@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Assets;
+namespace IndifferentKetchup\IBLogs\Frontend\Assets;
 
 enum AssetType: string
 {

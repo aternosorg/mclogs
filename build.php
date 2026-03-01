@@ -2,4 +2,4 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-\Aternos\Mclogs\Frontend\Assets\AssetLoader::getInstance()->writeCache();
+\IndifferentKetchup\IBLogs\Frontend\Assets\AssetLoader::getInstance()->writeCache();

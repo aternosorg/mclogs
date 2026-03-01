@@ -1,13 +1,13 @@
 <?php
 
-use Aternos\Mclogs\Frontend\Assets\AssetLoader;
-use Aternos\Mclogs\Frontend\Assets\AssetType;
-use Aternos\Mclogs\Log;
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
-use Aternos\Mclogs\Frontend\Settings\Setting;
-use Aternos\Mclogs\Frontend\Settings\Settings;
-use Aternos\Mclogs\Util\TimeInterval;
+use IndifferentKetchup\IBLogs\Frontend\Assets\AssetLoader;
+use IndifferentKetchup\IBLogs\Frontend\Assets\AssetType;
+use IndifferentKetchup\IBLogs\Log;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Frontend\Settings\Setting;
+use IndifferentKetchup\IBLogs\Frontend\Settings\Settings;
+use IndifferentKetchup\IBLogs\Util\TimeInterval;
 
 /** @var Log $log */
 

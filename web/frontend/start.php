@@ -1,8 +1,8 @@
 <?php
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Filter\Filter;
-use Aternos\Mclogs\Frontend\Assets\AssetLoader;
-use Aternos\Mclogs\Frontend\Assets\AssetType;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Filter\Filter;
+use IndifferentKetchup\IBLogs\Frontend\Assets\AssetLoader;
+use IndifferentKetchup\IBLogs\Frontend\Assets\AssetType;
 ?><!DOCTYPE html>
 <html lang="en">
     <head>

@@ -1,10 +1,10 @@
 <?php
 
-namespace Aternos\Mclogs\Storage;
+namespace IndifferentKetchup\IBLogs\Storage;
 
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
-use Aternos\Mclogs\Util\Singleton;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Util\Singleton;
 use MongoDB\BSON\UTCDateTime;
 use MongoDB\Client;
 use MongoDB\Collection;

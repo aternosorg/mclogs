@@ -1,17 +1,17 @@
 <?php
 
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
-use Aternos\Mclogs\Frontend\Assets\AssetLoader;
-use Aternos\Mclogs\Frontend\Assets\AssetType;
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Frontend\Assets\AssetLoader;
+use IndifferentKetchup\IBLogs\Frontend\Assets\AssetType;
+use IndifferentKetchup\IBLogs\Util\URL;
 
 ?>
     <meta charset="utf-8"/>
 
     <base href="/"/>
     <?= AssetLoader::getInstance()->getHTML(AssetType::CSS, "vendor/fontawesome/css/fontawesome.min.css"); ?>
-    <?= AssetLoader::getInstance()->getHTML(AssetType::CSS, "css/mclogs.css"); ?>
+    <?= AssetLoader::getInstance()->getHTML(AssetType::CSS, "css/iblogs.css"); ?>
 
     <style>
         :root {

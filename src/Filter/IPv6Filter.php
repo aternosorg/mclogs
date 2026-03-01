@@ -1,9 +1,9 @@
 <?php
 
-namespace Aternos\Mclogs\Filter;
+namespace IndifferentKetchup\IBLogs\Filter;
 
-use Aternos\Mclogs\Filter\Pattern\Pattern;
-use Aternos\Mclogs\Filter\Pattern\PatternWithReplacement;
+use IndifferentKetchup\IBLogs\Filter\Pattern\Pattern;
+use IndifferentKetchup\IBLogs\Filter\Pattern\PatternWithReplacement;
 
 class IPv6Filter extends RegexFilter
 {

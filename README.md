@@ -3,7 +3,7 @@
 </p>
 <p align="center">
     <strong>Paste, share & analyse your logs</strong><br>
-    Built for Minecraft & Hytale
+    Game-agnostic log analysis platform
 </p>
 
 ## Features
@@ -13,7 +13,7 @@
 * Syntax highlighting
 * Line numbers
 * Direct links to specific lines
-* Analysis and parsing using [codex](https://github.com/aternosorg/codex-minecraft)
+* Analysis and parsing using [codex](https://github.com/indifferentketchup/codex)
 
 ### For developers
 * Upload your logs using the API
@@ -22,34 +22,34 @@
 * Open source and self-hostable
 
 ## Self-hosting
-You can self-host mclogs using Docker. A [docker image](https://github.com/aternosorg/mclogs/pkgs/container/mclogs) is available in the GitHub Container Registry: `ghcr.io/aternosorg/mclogs`. 
-A MongoDB instance is also required to run mclogs.
+You can self-host IB Logs using Docker. A [docker image](https://github.com/indifferentketchup/ib-logs/pkgs/container/ib-logs) is available in the GitHub Container Registry: `ghcr.io/indifferentketchup/ib-logs`. 
+A MongoDB instance is also required to run IB Logs.
 
 An example docker compose files for self-hosting can be found here: [docker/compose.production.yaml](docker/compose.production.yaml).
 
 ### Config
-You can configure mclogs by creating a `config.json` file in the root directory, see [example.config.json](example.config.json) or by setting
+You can configure IB Logs by creating a `config.json` file in the root directory, see [example.config.json](example.config.json) or by setting
 environment variables. Environment variables override settings in the config file.
 
 Here is a list of all available config options:
 
 | Variable / JSON Path                                                | Default             | Description                                 |
 |:--------------------------------------------------------------------|:--------------------|:--------------------------------------------|
-| `MCLOGS_STORAGE_TTL` <br> `storage.ttl`                             | `7776000` (90d)     | Time until logs are deleted after last view |
-| `MCLOGS_STORAGE_LIMIT_BYTES` <br> `storage.limit.bytes`             | `10485760` (10 MiB) | Maximum size of a log in bytes              |
-| `MCLOGS_STORAGE_LIMIT_LINES` <br> `storage.limit.lines`             | `25000`             | Maximum number of lines in a log            |
-| `MCLOGS_MONGODB_URL` <br> `mongodb.url`                             | `"mongodb://mongo"` | MongoDB connection URL                      |
-| `MCLOGS_MONGODB_DATABASE` <br> `mongodb.database`                   | `"mclogs"`          | Name of the MongoDB database                |
-| `MCLOGS_ID_LENGTH` <br> `id.length`                                 | `7`                 | The default length for new IDs              |
-| `MCLOGS_LEGAL_ABUSE` <br> `legal.abuse`                             | `null`              | Public email address to report abuse        |
-| `MCLOGS_LEGAL_IMPRINT` <br> `legal.imprint`                         | `null`              | The imprint URL                             |
-| `MCLOGS_LEGAL_PRIVACY` <br> `legal.privacy`                         | `null`              | The privacy policy URL                      |
-| `MCLOGS_FRONTEND_NAME` <br> `frontend.name`                         | `null`              | Instance name (defaults to domain)          |
-| `MCLOGS_FRONTEND_COLOR_ACCENT` <br> `frontend.color.accent`         | `#5cb85c`           | The accent/primary color                    |
-| `MCLOGS_FRONTEND_COLOR_BACKGROUND` <br> `frontend.color.background` | `#1a1a1a`           | The background color                        |
-| `MCLOGS_FRONTEND_COLOR_TEXT` <br> `frontend.color.text`             | `#e8e8e8`           | The text color                              |
-| `MCLOGS_FRONTEND_COLOR_ERROR` <br> `frontend.color.error`           | `#f62451`           | The error color                             |
-| `MCLOGS_WORKER_REQUESTS` <br> `worker.requests`                     | `500`               | Max requests per single worker              |
+| `IBLOGS_STORAGE_TTL` <br> `storage.ttl`                             | `7776000` (90d)     | Time until logs are deleted after last view |
+| `IBLOGS_STORAGE_LIMIT_BYTES` <br> `storage.limit.bytes`             | `10485760` (10 MiB) | Maximum size of a log in bytes              |
+| `IBLOGS_STORAGE_LIMIT_LINES` <br> `storage.limit.lines`             | `25000`             | Maximum number of lines in a log            |
+| `IBLOGS_MONGODB_URL` <br> `mongodb.url`                             | `"mongodb://mongo"` | MongoDB connection URL                      |
+| `IBLOGS_MONGODB_DATABASE` <br> `mongodb.database`                   | `"iblogs"`          | Name of the MongoDB database                |
+| `IBLOGS_ID_LENGTH` <br> `id.length`                                 | `7`                 | The default length for new IDs              |
+| `IBLOGS_LEGAL_ABUSE` <br> `legal.abuse`                             | `null`              | Public email address to report abuse        |
+| `IBLOGS_LEGAL_IMPRINT` <br> `legal.imprint`                         | `null`              | The imprint URL                             |
+| `IBLOGS_LEGAL_PRIVACY` <br> `legal.privacy`                         | `null`              | The privacy policy URL                      |
+| `IBLOGS_FRONTEND_NAME` <br> `frontend.name`                         | `null`              | Instance name (defaults to domain)          |
+| `IBLOGS_FRONTEND_COLOR_ACCENT` <br> `frontend.color.accent`         | `#5cb85c`           | The accent/primary color                    |
+| `IBLOGS_FRONTEND_COLOR_BACKGROUND` <br> `frontend.color.background` | `#1a1a1a`           | The background color                        |
+| `IBLOGS_FRONTEND_COLOR_TEXT` <br> `frontend.color.text`             | `#e8e8e8`           | The text color                              |
+| `IBLOGS_FRONTEND_COLOR_ERROR` <br> `frontend.color.error`           | `#f62451`           | The error color                             |
+| `IBLOGS_WORKER_REQUESTS` <br> `worker.requests`                     | `500`               | Max requests per single worker              |
 
 There are a few more environment variables that can be set to modify the FrankenPHP/Caddy setup directly:
 
@@ -69,10 +69,10 @@ There are a few more environment variables that can be set to modify the Franken
 ### Installation
 ```bash
 # clone repository
-git clone git@github.com:aternosorg/mclogs.git
+git clone git@github.com:indifferentketchup/ib-logs.git
 
 # install composer dependencies
-cd mclogs
+cd ib-logs
 composer install
 
 # start development environment

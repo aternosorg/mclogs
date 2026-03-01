@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Response;
+namespace IndifferentKetchup\IBLogs\Api\Response;
 
 class ApiResponse implements \JsonSerializable
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Aternos\Mclogs\Api;
+namespace IndifferentKetchup\IBLogs\Api;
 
-use Aternos\Mclogs\Api\Response\ApiError;
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Api\Response\ApiError;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
 
 /**
  * Utility class for reading log content from the http request

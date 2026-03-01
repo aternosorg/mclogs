@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Settings;
+namespace IndifferentKetchup\IBLogs\Frontend\Settings;
 
-use Aternos\Mclogs\Frontend\Cookie\SettingsCookie;
+use IndifferentKetchup\IBLogs\Frontend\Cookie\SettingsCookie;
 
 class Settings
 {

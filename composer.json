@@ -1,28 +1,40 @@
 {
-    "name": "aternos/mclogs",
-    "description": "Paste, share and analyse Minecraft logs",
+    "name": "indifferentketchup/ib-logs",
+    "description": "Analyze your logs. Or don't. We don't care.",
+    "type": "project",
+    "license": "MIT",
     "authors": [
-        {
-            "name": "Matthias Neid",
-            "email": "matthias@aternos.org"
-        }
+      {
+        "name": "Sam Kintop",
+        "email": "samkintop@gmail.com"
+      }
+    ],
+    "repositories": [
+      { "type": "path", "url": "packages/codex", "options": { "symlink": false } }
     ],
     "require": {
-        "php": ">=8.5",
-        "ext-frankenphp": "*",
-        "ext-json": "*",
-        "ext-mbstring": "*",
-        "ext-mongodb": "*",
-        "ext-uri": "*",
-        "ext-zlib": "*",
-        "aternos/codex-hytale": "^2.0",
-        "aternos/codex-minecraft": "^5.0.1",
-        "aternos/sherlock": "^1.0.2",
-        "mongodb/mongodb": "2.1.2"
+      "php": ">=8.5",
+      "ext-frankenphp": "*",
+      "ext-json": "*",
+      "ext-mbstring": "*",
+      "ext-zlib": "*",
+  
+      "indifferentketchup/codex": "*",
+  
+      "aternos/codex-hytale": "^2.0",
+      "aternos/codex-minecraft": "^5.0.1",
+      "aternos/sherlock": "^1.0.2",
+  
+      "mongodb/mongodb": "2.1.2"
     },
     "autoload": {
-        "psr-4": {
-            "Aternos\\Mclogs\\": "src/"
-        }
-    }
-}
+      "psr-4": {
+        "IndifferentKetchup\\IBLogs\\": "src/"
+      }
+    },
+    "config": {
+      "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+  }

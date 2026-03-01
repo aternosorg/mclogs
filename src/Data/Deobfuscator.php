@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Data;
+namespace IndifferentKetchup\IBLogs\Data;
 
 use Aternos\Codex\Analysis\Information;
 use Aternos\Codex\Log\AnalysableLog;
@@ -12,7 +12,7 @@ use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaCrashReportLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaNetworkProtocolErrorReportLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaServerLog;
-use Aternos\Mclogs\Cache\CacheEntry;
+use IndifferentKetchup\IBLogs\Cache\CacheEntry;
 use Aternos\Sherlock\MapLocator\FabricMavenMapLocator;
 use Aternos\Sherlock\MapLocator\LauncherMetaMapLocator;
 use Aternos\Sherlock\Maps\GZURLYarnMap;

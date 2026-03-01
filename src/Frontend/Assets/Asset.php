@@ -1,9 +1,9 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Assets;
+namespace IndifferentKetchup\IBLogs\Frontend\Assets;
 
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
 
 class Asset implements \JsonSerializable
 {

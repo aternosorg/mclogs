@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Router;
+namespace IndifferentKetchup\IBLogs\Router;
 
 class Route
 {

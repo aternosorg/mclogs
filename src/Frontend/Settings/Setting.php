@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Settings;
+namespace IndifferentKetchup\IBLogs\Frontend\Settings;
 
 enum Setting: string
 {

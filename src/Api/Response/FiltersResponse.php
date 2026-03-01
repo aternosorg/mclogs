@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Response;
+namespace IndifferentKetchup\IBLogs\Api\Response;
 
-use Aternos\Mclogs\Filter\Filter;
+use IndifferentKetchup\IBLogs\Filter\Filter;
 
 class FiltersResponse extends ApiResponse
 {

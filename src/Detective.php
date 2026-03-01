@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs;
+namespace IndifferentKetchup\IBLogs;
 
 use Aternos\Codex\Minecraft\Log\Minecraft\MinecraftLog;
 

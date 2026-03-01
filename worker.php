@@ -1,11 +1,11 @@
 <?php
 
-use Aternos\Mclogs\Api\ApiRouter;
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
-use Aternos\Mclogs\Frontend\FrontendRouter;
-use Aternos\Mclogs\Storage\MongoDBClient;
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Api\ApiRouter;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Frontend\FrontendRouter;
+use IndifferentKetchup\IBLogs\Storage\MongoDBClient;
+use IndifferentKetchup\IBLogs\Util\URL;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

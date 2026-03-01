@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Response;
+namespace IndifferentKetchup\IBLogs\Api\Response;
 
-use Aternos\Mclogs\Log;
+use IndifferentKetchup\IBLogs\Log;
 
 class RawLogResponse extends ApiResponse
 {

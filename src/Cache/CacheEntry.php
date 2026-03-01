@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs\Cache;
+namespace IndifferentKetchup\IBLogs\Cache;
 
-use Aternos\Mclogs\Storage\MongoDBClient;
+use IndifferentKetchup\IBLogs\Storage\MongoDBClient;
 use MongoDB\BSON\UTCDateTime;
 
 class CacheEntry

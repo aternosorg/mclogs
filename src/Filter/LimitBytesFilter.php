@@ -1,9 +1,9 @@
 <?php
 
-namespace Aternos\Mclogs\Filter;
+namespace IndifferentKetchup\IBLogs\Filter;
 
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
 
 class LimitBytesFilter extends Filter
 {

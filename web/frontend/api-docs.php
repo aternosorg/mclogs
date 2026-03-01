@@ -1,12 +1,12 @@
 <?php
 
-use Aternos\Mclogs\Api\Action\BulkDeleteLogsAction;
-use Aternos\Mclogs\Api\Response\ApiError;
-use Aternos\Mclogs\Api\Response\ApiResponse;
-use Aternos\Mclogs\Api\Response\MultiResponse;
-use Aternos\Mclogs\Config\Config;
-use Aternos\Mclogs\Config\ConfigKey;
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Api\Action\BulkDeleteLogsAction;
+use IndifferentKetchup\IBLogs\Api\Response\ApiError;
+use IndifferentKetchup\IBLogs\Api\Response\ApiResponse;
+use IndifferentKetchup\IBLogs\Api\Response\MultiResponse;
+use IndifferentKetchup\IBLogs\Config\Config;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Util\URL;
 
 $config = Config::getInstance();
 ?>
@@ -586,7 +586,7 @@ $config = Config::getInstance();
                     </div>
                     <h3>Success <span class="content-type">application/json</span></h3>
                     <pre class="api-code">
-<?=htmlspecialchars(json_encode(\Aternos\Mclogs\Filter\Filter::getAll(), JSON_PRETTY_PRINT)); ?></pre>
+<?=htmlspecialchars(json_encode(\IndifferentKetchup\IBLogs\Filter\Filter::getAll(), JSON_PRETTY_PRINT)); ?></pre>
                     <h3>Filter types</h3>
                     <table class="api-table">
                         <tr>
@@ -627,7 +627,7 @@ $config = Config::getInstance();
                         <h2>Notes</h2>
                         <p>The API has currently a rate limit of 60 requests per minute per IP address. This is set to ensure the operability of this service. If you have any use case that requires a higher limit, feel free to contact us.</p>
                         <div class="api-docs-notes-actions">
-                            <a class="btn btn-small" href="mailto:matthias@aternos.org">
+                            <a class="btn btn-small" href="mailto:support@indifferentketchup.com">
                                 <i class="fa-solid fa-envelope"></i> Contact via mail
                             </a>
                         </div>

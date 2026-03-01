@@ -1,14 +1,14 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Action;
+namespace IndifferentKetchup\IBLogs\Api\Action;
 
-use Aternos\Mclogs\Api\ContentParser;
-use Aternos\Mclogs\Api\Response\ApiError;
-use Aternos\Mclogs\Api\Response\ApiResponse;
-use Aternos\Mclogs\Api\Response\MultiResponse;
-use Aternos\Mclogs\Id;
-use Aternos\Mclogs\Log;
-use Aternos\Mclogs\Storage\MongoDBClient;
+use IndifferentKetchup\IBLogs\Api\ContentParser;
+use IndifferentKetchup\IBLogs\Api\Response\ApiError;
+use IndifferentKetchup\IBLogs\Api\Response\ApiResponse;
+use IndifferentKetchup\IBLogs\Api\Response\MultiResponse;
+use IndifferentKetchup\IBLogs\Id;
+use IndifferentKetchup\IBLogs\Log;
+use IndifferentKetchup\IBLogs\Storage\MongoDBClient;
 
 class BulkDeleteLogsAction extends ApiAction
 {

@@ -1,11 +1,11 @@
-name: "mclogs"
+name: "iblogs"
 services:
   web:
     build:
       context: ..
       dockerfile: ./Dockerfile
     environment:
-      - MCLOGS_WORKER_REQUESTS=1
+      - IBLOGS_WORKER_REQUESTS=1
       - FRANKENPHP_WORKERS=4
     ports:
       - "80:80"

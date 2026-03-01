@@ -1,12 +1,12 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Action;
+namespace IndifferentKetchup\IBLogs\Api\Action;
 
-use Aternos\Mclogs\Api\LogContentParser;
-use Aternos\Mclogs\Api\Response\ApiError;
-use Aternos\Mclogs\Api\Response\ApiResponse;
-use Aternos\Mclogs\Api\Response\CodexLogResponse;
-use Aternos\Mclogs\Log;
+use IndifferentKetchup\IBLogs\Api\LogContentParser;
+use IndifferentKetchup\IBLogs\Api\Response\ApiError;
+use IndifferentKetchup\IBLogs\Api\Response\ApiResponse;
+use IndifferentKetchup\IBLogs\Api\Response\CodexLogResponse;
+use IndifferentKetchup\IBLogs\Log;
 
 class AnalyseLogAction extends ApiAction
 {

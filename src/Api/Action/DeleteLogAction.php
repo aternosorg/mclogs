@@ -1,12 +1,12 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Action;
+namespace IndifferentKetchup\IBLogs\Api\Action;
 
-use Aternos\Mclogs\Api\Response\ApiError;
-use Aternos\Mclogs\Api\Response\ApiResponse;
-use Aternos\Mclogs\Id;
-use Aternos\Mclogs\Log;
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Api\Response\ApiError;
+use IndifferentKetchup\IBLogs\Api\Response\ApiResponse;
+use IndifferentKetchup\IBLogs\Id;
+use IndifferentKetchup\IBLogs\Log;
+use IndifferentKetchup\IBLogs\Util\URL;
 
 class DeleteLogAction extends ApiAction
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Cookie;
+namespace IndifferentKetchup\IBLogs\Frontend\Cookie;
 
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Util\URL;
 
 abstract class Cookie
 {

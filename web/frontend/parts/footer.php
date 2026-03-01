@@ -1,5 +1,5 @@
 <?php
-use Aternos\Mclogs\Config\Config;use Aternos\Mclogs\Config\ConfigKey;use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Config\Config;use IndifferentKetchup\IBLogs\Config\ConfigKey;use IndifferentKetchup\IBLogs\Util\URL;
 
 $imprintUrl = Config::getInstance()->get(ConfigKey::LEGAL_IMPRINT);
 $privacyUrl = Config::getInstance()->get(ConfigKey::LEGAL_PRIVACY);
@@ -19,10 +19,10 @@ $privacyUrl = Config::getInstance()->get(ConfigKey::LEGAL_PRIVACY);
     </nav>
     <?php endif; ?>
     <nav class="footer-nav">
-        <a href="https://github.com/aternosorg/mclogs" title="mclo.gs on Github" target="_blank"><i class="fa-brands fa-github"></i>GitHub</a>
-        <a href="https://modrinth.com/plugin/mclogs" title="Download mclo.gs Mod/Plugin" target="_blank"><i class="fa-solid fa-cube"></i>Mod/Plugin</a>
+        <a href="https://github.com/indifferentketchup/ib-logs" title="IB Logs on GitHub" target="_blank"><i class="fa-brands fa-github"></i>GitHub</a>
+        <a href="https://github.com/indifferentketchup/ib-logs" title="IB Logs on GitHub" target="_blank"><i class="fa-solid fa-cube"></i>Mod/Plugin</a>
         <a href="<?=htmlspecialchars(URL::getApi()->toString()); ?>" title="mclo.gs API"><i class="fa-solid fa-code"></i>API</a>
     </nav>
-    <span class="footer-text">developed by <a href="https://aternos.org" target="_blank" title="Aternos website">Aternos</a>
+    <span class="footer-text">developed by <a href="https://github.com/indifferentketchup" target="_blank" title="IndifferentKetchup on GitHub">IndifferentKetchup</a>
     </span>
 </footer>

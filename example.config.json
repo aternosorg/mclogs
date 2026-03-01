@@ -8,18 +8,18 @@
     },
     "mongodb": {
         "url": "mongodb://127.0.0.1:27017",
-        "database": "mclogs"
+        "database": "iblogs"
     },
     "id": {
         "length": 7
     },
     "legal": {
-        "abuse": "abuse@aternos.org",
-        "imprint": "https://aternos.gmbh/imprint/",
-        "privacy": "https://aternos.gmbh/en/mclogs/privacy"
+        "abuse": "",
+        "imprint": "",
+        "privacy": ""
     },
     "frontend": {
-        "name": "mclo.gs",
+        "name": "IB Logs",
         "assets": {
             "integrity": true
         },

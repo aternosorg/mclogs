@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Data;
+namespace IndifferentKetchup\IBLogs\Data;
 
 use MongoDB\BSON\Serializable;
 use MongoDB\Model\BSONDocument;

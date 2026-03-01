@@ -1,12 +1,12 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend\Action;
+namespace IndifferentKetchup\IBLogs\Frontend\Action;
 
-use Aternos\Mclogs\Frontend\Cookie\TokenCookie;
-use Aternos\Mclogs\Log;
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Frontend\Cookie\TokenCookie;
+use IndifferentKetchup\IBLogs\Log;
+use IndifferentKetchup\IBLogs\Util\URL;
 
-class DeleteLogAction extends \Aternos\Mclogs\Api\Action\DeleteLogAction
+class DeleteLogAction extends \IndifferentKetchup\IBLogs\Api\Action\DeleteLogAction
 {
     protected function getAllowedOrigin(): string
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs;
+namespace IndifferentKetchup\IBLogs;
 
-use Aternos\Mclogs\Config\ConfigKey;
+use IndifferentKetchup\IBLogs\Config\ConfigKey;
 
 class Id implements \JsonSerializable
 {
@@ -26,7 +26,7 @@ class Id implements \JsonSerializable
      */
     protected function generate(): string
     {
-        $config = \Aternos\Mclogs\Config\Config::getInstance();
+        $config = \IndifferentKetchup\IBLogs\Config\Config::getInstance();
         $idLength = $config->get(ConfigKey::ID_LENGTH);
 
         $newId = "";

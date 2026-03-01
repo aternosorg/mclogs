@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Filter\Pattern;
+namespace IndifferentKetchup\IBLogs\Filter\Pattern;
 
 /**
  * https://www.php.net/manual/en/reference.pcre.pattern.modifiers.php

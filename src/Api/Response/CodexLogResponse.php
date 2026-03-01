@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Response;
+namespace IndifferentKetchup\IBLogs\Api\Response;
 
 use Aternos\Codex\Log\LogInterface;
 

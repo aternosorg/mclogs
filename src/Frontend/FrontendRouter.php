@@ -1,10 +1,10 @@
 <?php
 
-namespace Aternos\Mclogs\Frontend;
+namespace IndifferentKetchup\IBLogs\Frontend;
 
-use Aternos\Mclogs\Router\Router;
-use Aternos\Mclogs\Id;
-use Aternos\Mclogs\Router\Method;
+use IndifferentKetchup\IBLogs\Router\Router;
+use IndifferentKetchup\IBLogs\Id;
+use IndifferentKetchup\IBLogs\Router\Method;
 
 class FrontendRouter extends Router
 {

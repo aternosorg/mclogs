@@ -1,9 +1,9 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Action;
+namespace IndifferentKetchup\IBLogs\Api\Action;
 
-use Aternos\Mclogs\Api\Response\ApiError;
-use Aternos\Mclogs\Api\Response\ApiResponse;
+use IndifferentKetchup\IBLogs\Api\Response\ApiError;
+use IndifferentKetchup\IBLogs\Api\Response\ApiResponse;
 
 class RateLimitErrorAction extends ApiAction
 {

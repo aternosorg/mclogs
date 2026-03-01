@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Util;
+namespace IndifferentKetchup\IBLogs\Util;
 
 trait Singleton
 {

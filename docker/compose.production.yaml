@@ -1,6 +1,6 @@
 services:
   web:
-    image: ghcr.io/aternosorg/mclogs:2
+    image: ghcr.io/indifferentketchup/ib-logs:latest
     restart: always
     ports:
       # Expose HTTP (80) and HTTPS (443)
@@ -9,16 +9,16 @@ services:
       - "443:443"
       - "443:443/udp"
     environment:
-      # Set this to your domain (e.g., mclogs.example.com) to enable Auto-SSL.
+      # Set this to your domain (e.g., iblogs.example.com) to enable Auto-SSL.
       # If running behind a proxy (Cloudflare/Nginx), set to ":80" to disable Auto-SSL.
       SERVER_NAME: :80
 
-      MCLOGS_MONGODB_URL: mongodb://mongo:27017
-      MCLOGS_MONGODB_DATABASE: mclogs
+      IBLOGS_MONGODB_URL: mongodb://mongo:27017
+      IBLOGS_MONGODB_DATABASE: iblogs
 
-      # Optional MCLOGS configuration
+      # Optional IBLOGS configuration
       # See README.md for full list of available options
-      # MCLOGS_FRONTEND_NAME: "mclogs"
+      # IBLOGS_FRONTEND_NAME: "IB Logs"
 
     volumes:
       # For caddy cache (SSL certificates)

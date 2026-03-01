@@ -1,9 +1,9 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Response;
+namespace IndifferentKetchup\IBLogs\Api\Response;
 
-use Aternos\Mclogs\Log;
-use Aternos\Mclogs\Util\URL;
+use IndifferentKetchup\IBLogs\Log;
+use IndifferentKetchup\IBLogs\Util\URL;
 
 class LogResponse extends ApiResponse
 {

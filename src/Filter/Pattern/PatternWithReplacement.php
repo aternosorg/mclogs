@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Filter\Pattern;
+namespace IndifferentKetchup\IBLogs\Filter\Pattern;
 
 class PatternWithReplacement extends Pattern
 {

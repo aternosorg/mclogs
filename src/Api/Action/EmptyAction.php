@@ -1,8 +1,8 @@
 <?php
 
-namespace Aternos\Mclogs\Api\Action;
+namespace IndifferentKetchup\IBLogs\Api\Action;
 
-use Aternos\Mclogs\Router\Action;
+use IndifferentKetchup\IBLogs\Router\Action;
 
 class EmptyAction extends Action
 {

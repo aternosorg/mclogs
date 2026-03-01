@@ -1,6 +1,6 @@
 <?php
 
-namespace Aternos\Mclogs\Printer;
+namespace IndifferentKetchup\IBLogs\Printer;
 
 /**
  * Class FormatModification
