@@ -33,8 +33,11 @@
       }
     },
     "config": {
-      "sort-packages": true
+      "sort-packages": true,
+        "platform": {
+            "ext-frankenphp": "1"
+        }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
   }
