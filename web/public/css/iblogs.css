@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
+
 /* plus-jakarta-sans-regular - latin */
 @font-face {
     font-display: swap;
@@ -67,7 +69,7 @@
     --error-border: color-mix(in srgb, var(--error) 40%, transparent);
     --border: rgba(255, 255, 255, 0.08);
     --surface: rgba(255, 255, 255, 0.04);
-    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-sans: "Sora", "Open Sans", system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
     --max-width: 1400px;
     --page-padding: clamp(1rem, 2.5vw, 1.25rem);
@@ -293,7 +295,7 @@ header {
     height: clamp(1.5rem, 3vw, 2rem);
     width: auto;
     margin-top: 3px;
-    color: var(--accent);
+    object-fit: contain;
 }
 
 .logo-text {

@@ -48,10 +48,10 @@ enum ConfigKey
 
             ConfigKey::FRONTEND_ASSETS_INTEGRITY => true,
 
-            ConfigKey::FRONTEND_COLOR_BACKGROUND => "#1a1a1a",
-            ConfigKey::FRONTEND_COLOR_TEXT => "#e8e8e8",
-            ConfigKey::FRONTEND_COLOR_ACCENT => "#5cb85c",
-            ConfigKey::FRONTEND_COLOR_ERROR => "#f62451",
+            ConfigKey::FRONTEND_COLOR_BACKGROUND => "#0A141E",
+            ConfigKey::FRONTEND_COLOR_TEXT => "#a3b8cc",
+            ConfigKey::FRONTEND_COLOR_ACCENT => "#5EFF0D",
+            ConfigKey::FRONTEND_COLOR_ERROR => "#F42B2A",
 
             ConfigKey::WORKER_REQUESTS => 500,
 
