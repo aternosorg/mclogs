@@ -2,11 +2,11 @@
 
 namespace IndifferentKetchup\IBLogs\Printer;
 
-use Aternos\Codex\Log\Entry;
-use Aternos\Codex\Log\EntryInterface;
-use Aternos\Codex\Log\Level;
-use Aternos\Codex\Log\LineInterface;
-use Aternos\Codex\Printer\ModifiableDefaultPrinter;
+use IndifferentKetchup\Codex\Log\Entry;
+use IndifferentKetchup\Codex\Log\EntryInterface;
+use IndifferentKetchup\Codex\Log\Level;
+use IndifferentKetchup\Codex\Log\LineInterface;
+use IndifferentKetchup\Codex\Printer\ModifiableDefaultPrinter;
 use IndifferentKetchup\IBLogs\Id;
 
 /**

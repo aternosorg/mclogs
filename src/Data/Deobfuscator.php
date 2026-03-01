@@ -2,9 +2,9 @@
 
 namespace IndifferentKetchup\IBLogs\Data;
 
-use Aternos\Codex\Analysis\Information;
-use Aternos\Codex\Log\AnalysableLog;
-use Aternos\Codex\Log\LogInterface;
+use IndifferentKetchup\Codex\Analysis\Information;
+use IndifferentKetchup\Codex\Log\AnalysableLog;
+use IndifferentKetchup\Codex\Log\LogInterface;
 use Aternos\Codex\Minecraft\Analysis\Information\Vanilla\VanillaVersionInformation;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\Fabric\FabricLog;
 use Aternos\Codex\Minecraft\Log\Minecraft\Vanilla\VanillaClientLog;

@@ -2,7 +2,7 @@
 
 namespace IndifferentKetchup\IBLogs\Api\Response;
 
-use Aternos\Codex\Log\LogInterface;
+use IndifferentKetchup\Codex\Log\LogInterface;
 
 class CodexLogResponse extends ApiResponse
 {

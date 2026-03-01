@@ -2,11 +2,11 @@
 
 namespace IndifferentKetchup\IBLogs;
 
-use Aternos\Codex\Analysis\Analysis;
-use Aternos\Codex\Log\AnalysableLogInterface;
-use Aternos\Codex\Log\File\StringLogFile;
-use Aternos\Codex\Log\Level;
-use Aternos\Codex\Log\LogInterface;
+use IndifferentKetchup\Codex\Analysis\Analysis;
+use IndifferentKetchup\Codex\Log\AnalysableLogInterface;
+use IndifferentKetchup\Codex\Log\File\StringLogFile;
+use IndifferentKetchup\Codex\Log\Level;
+use IndifferentKetchup\Codex\Log\LogInterface;
 use IndifferentKetchup\IBLogs\Config\ConfigKey;
 use IndifferentKetchup\IBLogs\Data\Deobfuscator;
 use IndifferentKetchup\IBLogs\Data\MetadataEntry;

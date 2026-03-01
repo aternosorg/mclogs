@@ -4,7 +4,7 @@ namespace IndifferentKetchup\IBLogs;
 
 use Aternos\Codex\Minecraft\Log\Minecraft\MinecraftLog;
 
-class Detective extends \Aternos\Codex\Detective\Detective
+class Detective extends \IndifferentKetchup\Codex\Detective\Detective
 {
     protected string $defaultLogClass = MinecraftLog::class;
 
