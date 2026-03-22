@@ -14,6 +14,8 @@ class AccessTokenFilter extends RegexFilter
         return [
             new PatternWithReplacement('\(Session ID is token:[^:]+\:[^)]+\)', '(Session ID is token:****************:****************)'),
             new PatternWithReplacement('--accessToken [^ ]+', '--accessToken ****************:****************'),
+            new PatternWithReplacement('"authToken":"[^"]+"', '"authToken":"****************"'),
+            new PatternWithReplacement('"refreshToken":"[^"]+"', '"refreshToken":"****************"'),
         ];
     }
 }
