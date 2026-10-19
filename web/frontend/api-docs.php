@@ -401,6 +401,7 @@ $config = Config::getInstance();
                     <h3>Success <span class="content-type">application/json</span></h3>
                     <pre class="api-code">
 {
+  "success": true,
   "id": "name/type",
   "name": "Software name, e.g. Vanilla",
   "type": "Type name, e.g. Server Log",
@@ -483,6 +484,7 @@ $config = Config::getInstance();
                     <h3>Success <span class="content-type">application/json</span></h3>
                     <pre class="api-code">
 {
+  "success": true,
   "id": "name/type",
   "name": "Software name, e.g. Vanilla",
   "type": "Type name, e.g. Server Log",
@@ -548,6 +550,7 @@ $config = Config::getInstance();
                     <h3>Success <span class="content-type">application/json</span></h3>
                     <pre class="api-code">
 {
+  "success": true,
   "storageTime": 7776000,
   "maxLength": 10485760,
   "maxLines": 25000
