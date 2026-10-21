@@ -20,6 +20,11 @@
         file_server
     }
 
+    @multipart header_regexp Content-Type (?i)^\s*multipart/
+    handle @multipart {
+        respond "Unsupported Content-Type" 415
+    }
+
     handle {
        root * /app
        rewrite * /worker.php
