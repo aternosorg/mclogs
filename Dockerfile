@@ -1,5 +1,9 @@
 FROM dunglas/frankenphp:1-php8.5
 
+# Refuse to build against an insecure PHP version
+RUN php -r 'exit(version_compare(PHP_VERSION, "8.5.12", ">=") ? 0 : 1);' \
+    || (echo "PHP $(php -r 'echo PHP_VERSION;') is too old, need >= 8.5.12" && exit 1)
+
 # System Setup
 RUN install-php-extensions mongodb zip
 
