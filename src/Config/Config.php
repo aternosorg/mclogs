@@ -58,6 +58,17 @@ class Config
     }
 
     /**
+     * Metrics are only enabled by an explicit true, the same value that docker/Caddyfile
+     * requires to open the internal metrics listener
+     *
+     * @return bool
+     */
+    public function isMetricsEnabled(): bool
+    {
+        return $this->get(ConfigKey::METRICS_ENABLED) === true;
+    }
+
+    /**
      * Recursively get a value from the json data by path
      *
      * @param array $path

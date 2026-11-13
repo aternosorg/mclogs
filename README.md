@@ -50,6 +50,8 @@ Here is a list of all available config options:
 | `MCLOGS_FRONTEND_COLOR_TEXT` <br> `frontend.color.text`             | `#e8e8e8`           | The text color                              |
 | `MCLOGS_FRONTEND_COLOR_ERROR` <br> `frontend.color.error`           | `#f62451`           | The error color                             |
 | `MCLOGS_WORKER_REQUESTS` <br> `worker.requests`                     | `500`               | Max requests per single worker              |
+| `MCLOGS_METRICS_ENABLED` <br> `metrics.enabled`                     | `false`             | Enable [metrics](#metrics)                  |
+| `MCLOGS_METRICS_PORT` <br> `metrics.port`                           | `9464`              | Internal port of the metrics endpoint       |
 
 There are a few more environment variables that can be set to modify the FrankenPHP/Caddy setup directly:
 
@@ -59,6 +61,16 @@ There are a few more environment variables that can be set to modify the Franken
 | `TRUSTED_PROXIES`    | `"private_ranges"` | Set [trusted proxy](https://caddyserver.com/docs/caddyfile/options#trusted-proxies) address ranges                                         |
 | `FRANKENPHP_WORKERS` | `16`               | The number of [FrankenPHP workers](https://frankenphp.dev/docs/worker/)                                                                    |                                                                                                                                            |
 
+### Metrics
+mclogs can count events in MongoDB (collection `metrics`) and expose them for [Prometheus](https://prometheus.io/).
+Metrics are disabled by default.
+
+Set `MCLOGS_METRICS_ENABLED` to `true` to enable them (only `true` and `false` are allowed, the container does not start with any other value).
+The metrics are then available on `http://<container>:9464/metrics`, the port can be changed with `MCLOGS_METRICS_PORT`.
+Both options have to be set as environment variables, because the web server reads them as well to open the port.
+
+The endpoint only answers on this separate port, never on the public ports.
+It has no authentication, so do not publish the port and only make it reachable for your Prometheus instance.
 
 ## Development setup
 ### Prerequisites

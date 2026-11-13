@@ -4,6 +4,8 @@ use Aternos\Mclogs\Api\ApiRouter;
 use Aternos\Mclogs\Config\Config;
 use Aternos\Mclogs\Config\ConfigKey;
 use Aternos\Mclogs\Frontend\FrontendRouter;
+use Aternos\Mclogs\Metrics\CounterStore;
+use Aternos\Mclogs\Metrics\MetricsRouter;
 use Aternos\Mclogs\Storage\MongoDBClient;
 use Aternos\Mclogs\Util\URL;
 
@@ -24,10 +26,16 @@ do {
         MongoDBClient::getInstance()->reset();
         URL::clear();
 
-        if (URL::isApi()) {
-            ApiRouter::getInstance()->run();
-        } else {
-            FrontendRouter::getInstance()->run();
+        try {
+            if (MetricsRouter::isResponsible()) {
+                MetricsRouter::getInstance()->run();
+            } else if (URL::isApi()) {
+                ApiRouter::getInstance()->run();
+            } else {
+                FrontendRouter::getInstance()->run();
+            }
+        } finally {
+            CounterStore::getInstance()->flush();
         }
     });
 

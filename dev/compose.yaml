@@ -7,8 +7,11 @@ services:
     environment:
       - MCLOGS_WORKER_REQUESTS=1
       - FRANKENPHP_WORKERS=4
+      # Start with MCLOGS_METRICS_ENABLED=true to try the metrics endpoint on http://localhost:9464/metrics
+      - MCLOGS_METRICS_ENABLED=${MCLOGS_METRICS_ENABLED:-false}
     ports:
       - "80:80"
+      - "127.0.0.1:9464:9464"
     volumes:
       - ../:/app
       - ./dev.ini:/usr/local/etc/php/conf.d/dev.ini

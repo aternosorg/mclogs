@@ -20,6 +20,7 @@ class MongoDBClient
 
     protected ?Collection $logs = null;
     protected ?Collection $cache = null;
+    protected ?Collection $metrics = null;
 
     /**
      * @return string
@@ -78,6 +79,7 @@ class MongoDBClient
         $this->connection = null;
         $this->logs = null;
         $this->cache = null;
+        $this->metrics = null;
     }
 
     /**
@@ -230,5 +232,19 @@ class MongoDBClient
             $this->cache = $this->database->getCollection('cache');
         }
         return $this->cache;
+    }
+
+    /**
+     * Get the collection for metric counters
+     *
+     * @return Collection
+     */
+    public function getMetricsCollection(): Collection
+    {
+        if ($this->metrics === null) {
+            $this->connect();
+            $this->metrics = $this->database->getCollection('metrics');
+        }
+        return $this->metrics;
     }
 }

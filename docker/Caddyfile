@@ -11,6 +11,26 @@
     }
 }
 
+# Internal listener for the Prometheus metrics endpoint of the app.
+# It only exists when MCLOGS_METRICS_ENABLED is "true": the import below then picks
+# the snippet with the listener, otherwise the empty one.
+(metrics_listener_true) {
+    http://:{$MCLOGS_METRICS_PORT:9464} {
+        root * /app
+        rewrite * /worker.php
+        php_server {
+            # Tells the app on which port the request really arrived,
+            # the public listener below never sets this.
+            env MCLOGS_LISTENER_PORT {http.request.local.port}
+        }
+    }
+}
+
+(metrics_listener_false) {
+}
+
+import metrics_listener_{$MCLOGS_METRICS_ENABLED:false}
+
 {$SERVER_NAME::80} {
     root * /app/web/public
     encode zstd br gzip

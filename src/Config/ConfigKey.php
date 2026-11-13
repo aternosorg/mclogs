@@ -27,6 +27,9 @@ enum ConfigKey
 
     case WORKER_REQUESTS;
 
+    case METRICS_ENABLED;
+    case METRICS_PORT;
+
     /**
      * Get the default value for the config key
      *
@@ -54,6 +57,10 @@ enum ConfigKey
             ConfigKey::FRONTEND_COLOR_ERROR => "#f62451",
 
             ConfigKey::WORKER_REQUESTS => 500,
+
+            ConfigKey::METRICS_ENABLED => false,
+            // The internal listener in docker/Caddyfile uses the same default
+            ConfigKey::METRICS_PORT => 9464,
 
             default => null
         };
