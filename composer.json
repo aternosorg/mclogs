@@ -16,7 +16,7 @@
         "ext-uri": "*",
         "ext-zlib": "*",
         "aternos/codex-hytale": "^2.0",
-        "aternos/codex-minecraft": "^5.0.1",
+        "aternos/codex-minecraft": "^6.0.0",
         "aternos/sherlock": "^1.0.2",
         "mongodb/mongodb": "^2.5.0"
     },

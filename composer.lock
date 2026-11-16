@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c0d9c1bc8cb8e61d2be7fef7499292bd",
+    "content-hash": "ce485e0f630cbdb2eebcde026abe5a42",
     "packages": [
         {
             "name": "aternos/codex",
@@ -96,16 +96,16 @@
         },
         {
             "name": "aternos/codex-minecraft",
-            "version": "v5.3.0",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aternosorg/codex-minecraft.git",
-                "reference": "d7fb6a30b8dbe9d9f73c97e4ad7927a45c3173e9"
+                "reference": "d7ff1388a7707d25b80d3104d27b38328021dea0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/d7fb6a30b8dbe9d9f73c97e4ad7927a45c3173e9",
-                "reference": "d7fb6a30b8dbe9d9f73c97e4ad7927a45c3173e9",
+                "url": "https://api.github.com/repos/aternosorg/codex-minecraft/zipball/d7ff1388a7707d25b80d3104d27b38328021dea0",
+                "reference": "d7ff1388a7707d25b80d3104d27b38328021dea0",
                 "shasum": ""
             },
             "require": {
@@ -135,9 +135,10 @@
             "description": "PHP library to read, parse, print and analyse Minecraft log files.",
             "support": {
                 "issues": "https://github.com/aternosorg/codex-minecraft/issues",
-                "source": "https://github.com/aternosorg/codex-minecraft/tree/v5.3.0"
+                "source": "https://github.com/aternosorg/codex-minecraft/tree/v6.0.0"
             },
-            "time": "2026-08-10T12:35:28+00:00"
+            "time": "2026-11-16T13:17:45+00:00",
+            "published-time": "2026-11-16T13:38:37+00:00"
         },
         {
             "name": "aternos/sherlock",
@@ -486,5 +487,5 @@
         "ext-zlib": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.11.0"
 }
