@@ -207,26 +207,67 @@ function saveSettings() {
 }
 
 /* copy to clipboard */
-const copyButtons = document.querySelectorAll("[data-clipboard]");
-copyButtons.forEach(button => button.addEventListener("click", handleCopyButtonClick));
-const doneClassName = "fa-solid fa-check";
+const copyLogUrlButton = document.getElementById("copy-log-url");
+const copyLogButton = document.getElementById("copy-log");
+const doneClassName = "fa-solid fa-check fa-fw";
+const errorClassName = "fa-solid fa-triangle-exclamation fa-fw";
 
-async function handleCopyButtonClick(e) {
-    const button = e.currentTarget;
-    const data = button.dataset.clipboard;
-    await navigator.clipboard.writeText(data);
+copyLogUrlButton?.addEventListener("click", handleCopyLogUrlButtonClick);
+copyLogButton?.addEventListener("click", handleCopyLogButtonClick);
 
+async function handleCopyLogUrlButtonClick() {
+    await copyWithFeedback(
+        copyLogUrlButton,
+        () => navigator.clipboard.writeText(copyLogUrlButton.dataset.logUrl)
+    );
+}
+
+async function handleCopyLogButtonClick() {
+    await copyWithFeedback(
+        copyLogButton,
+        () => copyLogToClipboard(copyLogButton.dataset.rawUrl)
+    );
+}
+
+async function copyWithFeedback(button, copy) {
+    try {
+        await copy();
+        showCopyButtonResult(button, doneClassName, "Copied");
+    } catch (error) {
+        console.error("Could not copy to clipboard", error);
+        showCopyButtonResult(button, errorClassName, "Copy failed");
+    }
+}
+
+function copyLogToClipboard(url) {
+    const content = fetch(url).then(response => {
+        if (!response.ok) {
+            throw new Error(`Could not load log: ${response.status} (${response.statusText})`);
+        }
+        return response.blob();
+    });
+
+    // Pass the pending request to ClipboardItem so Safari sees write() during the click event.
+    return navigator.clipboard.write([
+        new ClipboardItem({"text/plain": content})
+    ]);
+}
+
+function showCopyButtonResult(button, resultClassName, resultLabel) {
     const iconElement = button.querySelector("i");
-    if (!iconElement) {
-        return;
+    const originalClassName = iconElement?.className;
+    const originalTitle = button.title;
+
+    if (iconElement) {
+        iconElement.className = resultClassName;
     }
-    const originalClassName = iconElement.className;
-    if (originalClassName === doneClassName) {
-        return;
-    }
-    iconElement.className = doneClassName;
+    button.title = resultLabel;
+
     setTimeout(() => {
-        iconElement.className = originalClassName;
+        if (iconElement) {
+            iconElement.className = originalClassName;
+        }
+        button.title = originalTitle;
     }, 2000);
 }
 
